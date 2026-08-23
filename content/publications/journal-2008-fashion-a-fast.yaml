@@ -1,0 +1,18 @@
+id: journal-2008-fashion-a-fast
+category: journal
+title: "Fashion: A Fast and Accurate Solution to Global Routing Problem"
+authors:
+  - name: Z. Cao
+  - name: T. Jing
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: Y. Hu
+  - name: L. He
+  - name: X. Hong
+venue: IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems
+volumeIssue: Vol. 27, No. 4, pp. 726-737
+year: 2008
+month: April
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-journals.yaml
+  note: 40 journal articles, 2003-2021, verbatim from https://www.xlab-ub.com/publication/journals. authors[].personId is only set for "J. Xiong" -> jinjun-xiong; all other co-authors are name-only (no Person record to confidently match).

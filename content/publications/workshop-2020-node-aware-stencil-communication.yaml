@@ -1,0 +1,19 @@
+id: workshop-2020-node-aware-stencil-communication
+category: workshop
+title: Node-Aware Stencil Communication for Heterogeneous Supercomputers
+authors:
+  - name: C. Pearson
+  - name: M. Hidayetoglu
+  - name: M. Almasri
+  - name: O. Anjum
+  - name: I. Chung
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: W. Hwu
+venue: Fifteenth International Workshop on Automatic Performance Tuning (iWAPT) at IEEE IPDPS
+year: 2020
+dateDisplay: May 22, 2020
+location: New Orleans, Louisiana (virtual)
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-workshops.yaml
+  note: 47 workshop papers, 2004-2021, verbatim from https://www.xlab-ub.com/publication/workshops. authors[].personId is only set for "J. Xiong" -> jinjun-xiong; all other co-authors are name-only. Source "award" fields (e.g. "Best Poster Award") are award info and are intentionally NOT copied into note -- that belongs on Recognition, out of scope here. Two pairs of same-titled entries below ("Statistical Ordering of Correlated Timing Quantities..." and "Statistical Multilayer Process Space Coverage for At-Speed Test") are flagged in the source as possible duplicates (NATW 2009 vs. ACM/IEEE Timing Issues, both May/Feb 2009) -- see SOURCE-NOTES.md item 3. Not resolved here; both kept as given, and the source's internal QA note text was not copied into Publication.note.

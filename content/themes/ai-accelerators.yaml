@@ -1,0 +1,8 @@
+id: ai-accelerators
+title: AI Accelerators
+shortDescription: Specialized hardware for optimizing AI model performance.
+longDescription: |
+  AI accelerators are specialized hardware designed to optimize the performance of AI models, particularly in terms of speed and energy efficiency. X-Lab is at the forefront of developing such accelerators to support high-performance computing needs in AI applications.
+order: 4
+_meta:
+  note: "Full population (only 6 records, unambiguous) — source: data-extraction/sources/01-xlab-test-web-hugo-site/extracted/research-themes.yaml None of these had a project linked in the source data; see content/projects/ — all 3 current open-source projects have themeId: null since the old site never cross-referenced them to a theme. That's a real gap to fill during the merge pass, not a schema limitation (Project.themeId is fully able to point at any of these)."

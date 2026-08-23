@@ -1,0 +1,16 @@
+id: yuting-hu
+name: Yuting Hu
+personType: phd-student
+roleTitle: PhD Candidate, 4th Year, Computer Science & Engineering
+photo: /images/people/yuting-hu.png
+links:
+  email: yhu54@buffalo.edu
+  scholar: https://scholar.google.com/citations?user=TTsigxgAAAAJ&hl=en
+affiliations:
+  - institutionId: ub
+    department: Computer Science & Engineering
+    roleTitle: PhD Candidate
+    type: primary
+_meta:
+  source: data-extraction/sources/01-xlab-test-web-hugo-site/extracted/team-phd.yaml
+  note: 'No joined/left year in source — labTenure left absent per SPEC.md §7 rather than invented. Also authored the real blog post "LLMs: Transforming the Landscape of AI and Beyond" — see content/posts/.'

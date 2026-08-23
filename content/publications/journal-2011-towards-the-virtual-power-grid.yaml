@@ -1,0 +1,15 @@
+id: journal-2011-towards-the-virtual-power-grid
+category: journal
+title: "Towards the Virtual Power Grid: Large Scale Modeling and Simulation of Power Grids"
+authors:
+  - name: P. Feldmann
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: D. Kung
+venue: The European Journal for the Informatics Professional
+volumeIssue: Vol. 12, No. 4, pp. 28-40
+year: 2011
+month: October
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-journals.yaml
+  note: 40 journal articles, 2003-2021, verbatim from https://www.xlab-ub.com/publication/journals. authors[].personId is only set for "J. Xiong" -> jinjun-xiong; all other co-authors are name-only (no Person record to confidently match).

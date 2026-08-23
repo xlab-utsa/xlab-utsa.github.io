@@ -1,0 +1,10 @@
+id: prof-2012-research-division-smarter-energy-bigbet
+category: professional-honor-award
+personId: jinjun-xiong
+award: Research Division Award for Contributions to Research Big Bet on Smarter Energy Research
+dateDisplay: "2012"
+year: 2012
+org: IBM Research
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/recognitions.yaml
+  note: (professional_awards). All 19 belong to the lab lead; none are paper-specific, so no publicationId on any entry here (unlike the other recognition category files).

@@ -1,0 +1,18 @@
+id: invited-paper-2021-can-noise
+category: invited-paper
+title: Can Noise on Qubits Be Learned in Quantum Neural Network? A Case Study on QuantumFlow
+authors:
+  - name: Z. Liang
+  - name: Z. Wang
+  - name: J. Yang
+  - name: L. Yang
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: Y. Shi
+  - name: W. Jiang
+venue: 2021 International Conference On Computer Aided Design (ICCAD)
+year: 2021
+location: Online, Nov 1-5
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-invited-papers.yaml
+  note: 12 invited papers, 2004-2021, verbatim from https://www.xlab-ub.com/publication/invited-papers. The source has no separate date field for this category -- "location" already contains date/place info combined (e.g. "San Diego, CA, Nov 2-5", or just a bare month like "October" when no venue city was given) and is copied verbatim into location as-is.

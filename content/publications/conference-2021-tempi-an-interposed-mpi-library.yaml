@@ -1,0 +1,8 @@
+id: conference-2021-tempi-an-interposed-mpi-library
+category: conference
+title: "TEMPI: An Interposed MPI Library with a Canonical Representation of CUDA-aware Datatypes"
+authors:
+  - name: C. Pearson et al.
+venue: HPDC
+year: 2021
+dateDisplay: June 2021

@@ -1,0 +1,15 @@
+id: meihuan-liu
+name: Meihuan Liu
+personType: phd-student
+roleTitle: PhD Student, 1st Year, Computer Science & Engineering
+links:
+  email: meihuanl@buffalo.edu
+affiliations:
+  - institutionId: ub
+    department: Computer Science & Engineering
+    roleTitle: PhD Student
+    type: primary
+photo: /images/people/meihuan-liu.png
+_meta:
+  source: data-extraction/sources/01-xlab-test-web-hugo-site/extracted/team-phd.yaml
+  note: "No joined/left year in source — labTenure left absent per SPEC.md §7 rather than invented. photo omitted: public/images/people/meihuan-liu.png is a generated cartoon illustration (identical file to ziyue-bai.png), not a real headshot — falls back to the initials tile instead."

@@ -1,0 +1,241 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Design system: near-black/white/gray base, with the mockup's original blue/orange
+   accent hues restored exactly (2026-08-11 — full color fidelity to
+   `Polo Club Website Inspiration/X-Lab Homepage.dc.html`, option 1A). `--brand`/
+   `--brand-orange` etc. are named distinctly from shadcn's own `--accent` (a
+   different concept — hover-state tint) to avoid collision. Light/dark are true
+   inversions of each other (toggled by next-themes adding/removing .dark on <html>).
+   See SPEC.md §1/§5 for the full rationale. */
+:root {
+  --radius: 0.25rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.09 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.09 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.09 0 0);
+  --primary: oklch(0.09 0 0);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.95 0 0);
+  --secondary-foreground: oklch(0.09 0 0);
+  --muted: oklch(0.96 0 0);
+  --muted-foreground: oklch(0.4 0 0);
+  --accent: oklch(0.95 0 0);
+  --accent-foreground: oklch(0.09 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.88 0 0);
+  --input: oklch(0.88 0 0);
+  --ring: oklch(0.6 0 0);
+  /* mockup-specific roles the base shadcn set doesn't have */
+  --bg-alt: oklch(0.97 0 0);
+  --text-faint: oklch(0.55 0 0);
+  --text-placeholder: oklch(0.75 0 0);
+  --hairline: oklch(0.92 0 0);
+  --invert-bg: oklch(0.09 0 0);
+  --invert-fg: oklch(0.98 0 0);
+  /* mockup's two accent hues — blue = Project/lab identity, orange = Publication
+     (orange currently has no live UI use: the research browser shows Projects only,
+     see SPEC.md's Project placement note — token kept for parity/future use). */
+  --brand: oklch(0.55 0.13 250);
+  --brand-foreground: oklch(0.98 0 0);
+  --brand-strong: oklch(0.45 0.13 250);
+  --brand-soft-bg: oklch(0.97 0.02 250);
+  --brand-soft-border: oklch(0.9 0.03 250);
+  --brand-orange: oklch(0.55 0.13 40);
+  --brand-orange-strong: oklch(0.45 0.13 40);
+  --brand-orange-soft-bg: oklch(0.97 0.02 40);
+  --brand-orange-soft-border: oklch(0.9 0.03 40);
+  --invert-brand: oklch(0.72 0.12 250);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.09 0 0);
+  --foreground: oklch(0.98 0 0);
+  --card: oklch(0.09 0 0);
+  --card-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.09 0 0);
+  --popover-foreground: oklch(0.98 0 0);
+  --primary: oklch(0.98 0 0);
+  --primary-foreground: oklch(0.09 0 0);
+  --secondary: oklch(0.16 0 0);
+  --secondary-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.15 0 0);
+  --muted-foreground: oklch(0.68 0 0);
+  --accent: oklch(0.16 0 0);
+  --accent-foreground: oklch(0.98 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(0.24 0 0);
+  --input: oklch(0.24 0 0);
+  --ring: oklch(0.5 0 0);
+  --bg-alt: oklch(0.13 0 0);
+  --text-faint: oklch(0.58 0 0);
+  --text-placeholder: oklch(0.38 0 0);
+  --hairline: oklch(0.2 0 0);
+  --invert-bg: oklch(0.98 0 0);
+  --invert-fg: oklch(0.09 0 0);
+  --brand: oklch(0.68 0.14 250);
+  --brand-foreground: oklch(0.09 0 0);
+  --brand-strong: oklch(0.68 0.14 250);
+  --brand-soft-bg: oklch(0.18 0.035 250);
+  --brand-soft-border: oklch(0.3 0.05 250);
+  --brand-orange: oklch(0.68 0.14 40);
+  --brand-orange-strong: oklch(0.68 0.14 40);
+  --brand-orange-soft-bg: oklch(0.18 0.035 40);
+  --brand-orange-soft-border: oklch(0.3 0.05 40);
+  --invert-brand: oklch(0.45 0.13 250);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@theme inline {
+  --font-sans: var(--font-sans-instrument), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono-jetbrains), ui-monospace, "SFMono-Regular", monospace;
+  --color-bg-alt: var(--bg-alt);
+  --color-text-faint: var(--text-faint);
+  --color-text-placeholder: var(--text-placeholder);
+  --color-hairline: var(--hairline);
+  --color-invert-bg: var(--invert-bg);
+  --color-invert-fg: var(--invert-fg);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-soft-bg: var(--brand-soft-bg);
+  --color-brand-soft-border: var(--brand-soft-border);
+  --color-brand-orange: var(--brand-orange);
+  --color-brand-orange-strong: var(--brand-orange-strong);
+  --color-brand-orange-soft-bg: var(--brand-orange-soft-bg);
+  --color-brand-orange-soft-border: var(--brand-orange-soft-border);
+  --color-invert-brand: var(--invert-brand);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+/* Minimal markdown typography for Post.body / ResearchTheme.longDescription — hand-
+   written rather than pulling in @tailwindcss/typography for what's plain CommonMark
+   (headings/lists/bold/links), no tables or other GFM extensions. */
+.prose-content > * + * {
+  margin-top: 1em;
+}
+.prose-content h1,
+.prose-content h2,
+.prose-content h3 {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+  color: var(--foreground);
+}
+.prose-content h1 {
+  font-size: 1.5em;
+}
+.prose-content h2 {
+  font-size: 1.25em;
+}
+.prose-content h3 {
+  font-size: 1.125em;
+}
+.prose-content p {
+  line-height: 1.75;
+}
+.prose-content ul,
+.prose-content ol {
+  padding-left: 1.5em;
+}
+.prose-content ul {
+  list-style: disc;
+}
+.prose-content ol {
+  list-style: decimal;
+}
+.prose-content li + li {
+  margin-top: 0.25em;
+}
+.prose-content a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.prose-content strong {
+  font-weight: 600;
+}
+.prose-content blockquote {
+  border-left: 3px solid var(--border);
+  padding-left: 1em;
+  color: var(--muted-foreground);
+  font-style: italic;
+}
+.prose-content code {
+  border-radius: 0.25em;
+  background: var(--muted);
+  padding: 0.15em 0.4em;
+  font-size: 0.875em;
+}

@@ -1,0 +1,10 @@
+id: prof-2007-invention-1st
+category: professional-honor-award
+personId: jinjun-xiong
+award: First Invention Plateau Achievement Award
+dateDisplay: April 2007
+year: 2007
+org: IBM Research
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/recognitions.yaml
+  note: (professional_awards). All 19 belong to the lab lead; none are paper-specific, so no publicationId on any entry here (unlike the other recognition category files).

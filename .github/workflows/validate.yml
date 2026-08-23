@@ -1,0 +1,60 @@
+name: Validate content
+
+# The merge gate for every content submission.
+#
+# Studio (and any human) proposes changes as a pull request. This workflow is what decides
+# whether that PR is safe to merge: schema shapes, foreign keys, asset existence, id
+# uniqueness, types, lint, and a full static build. A red run blocks the merge, so bad data
+# physically cannot reach main — and because GitHub Pages keeps serving the last successful
+# deploy, the live site stays up regardless.
+#
+# Enable "Require status checks to pass before merging" on main in branch protection and
+# select this job, otherwise the gate is advisory rather than enforced.
+
+on:
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: "validate-${{ github.ref }}"
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Schema, integrity, types, build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      # labbench/ has its own package.json/lockfile and must never be touched by the root
+      # build — `npm ci` at repo root only installs/uses the root lockfile.
+      - name: Install dependencies
+        run: npm ci
+
+      # Runs first: it produces the clearest, most specific errors ("people/jane.yaml at
+      # links.email: must be a valid email address") so a contributor sees the real problem
+      # rather than a downstream build failure.
+      - name: Validate content
+        run: npm run validate:content
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build (static export)
+        env:
+          NODE_ENV: production
+        run: npm run build

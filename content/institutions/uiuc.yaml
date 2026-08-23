@@ -1,0 +1,9 @@
+id: uiuc
+name: University of Illinois at Urbana-Champaign
+shortName: UIUC
+url: https://illinois.edu
+city: Urbana-Champaign
+state: IL
+country: United States
+_meta:
+  note: "Institutions the lab's people are (or have been) affiliated with. Scope: only workplaces/affiliations — NOT a general org registry. Education-only schools (e.g. UCLA, Tsinghua) live as free text on Person.profile.education instead, since they're never referenced by a live Affiliation record."

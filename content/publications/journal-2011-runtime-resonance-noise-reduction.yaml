@@ -1,0 +1,15 @@
+id: journal-2011-runtime-resonance-noise-reduction
+category: journal
+title: Runtime Resonance Noise Reduction with Current Prediction Enabled Frequency Actuator
+authors:
+  - name: Y. Shi
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: H. Chen
+  - name: L. He
+venue: IEEE Transactions on Very Large Scale Integration Systems
+volumeIssue: Vol. 19, No. 3, pp. 508-512
+year: 2011
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-journals.yaml
+  note: 40 journal articles, 2003-2021, verbatim from https://www.xlab-ub.com/publication/journals. authors[].personId is only set for "J. Xiong" -> jinjun-xiong; all other co-authors are name-only (no Person record to confidently match).

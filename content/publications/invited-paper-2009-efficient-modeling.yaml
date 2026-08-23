@@ -1,0 +1,14 @@
+id: invited-paper-2009-efficient-modeling
+category: invited-paper
+title: Efficient Modeling of Spatial Correlations for Parameterized Statistical Static Timing Analysis
+authors:
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: V. Zolotov
+  - name: C. Visweswariah
+venue: IEEE 8th International Conference on ASIC
+year: 2009
+location: October
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-invited-papers.yaml
+  note: 12 invited papers, 2004-2021, verbatim from https://www.xlab-ub.com/publication/invited-papers. The source has no separate date field for this category -- "location" already contains date/place info combined (e.g. "San Diego, CA, Nov 2-5", or just a bare month like "October" when no venue city was given) and is copied verbatim into location as-is.

@@ -1,0 +1,17 @@
+id: utkarsh-kumar
+name: Utkarsh Kumar
+personType: phd-student
+roleTitle: PhD Student, 2nd Year, Computer Science & Engineering
+photo: /images/people/utkarsh-kumar.jpg
+links:
+  email: utkarshk@buffalo.edu
+  scholar: https://scholar.google.com/citations?user=5ix_YFkAAAAJ&hl=en&oi=ao
+  github: https://github.com/utkrshkmr
+affiliations:
+  - institutionId: ub
+    department: Computer Science & Engineering
+    roleTitle: PhD Student
+    type: primary
+_meta:
+  source: data-extraction/sources/01-xlab-test-web-hugo-site/extracted/team-phd.yaml
+  note: "No joined/left year in source — labTenure left absent per SPEC.md §7 rather than invented. Note: content/projects/synctree.yaml and quadranet.yaml's unverified `links.code` pointed at this person's GitHub profile (github.com/utkrshkmr) instead of a project repo — see SPEC.md §3.6, now replaced with a placeholder there."

@@ -1,0 +1,11 @@
+id: poster-2019-spgnet
+category: best-poster-award
+personId: jinjun-xiong
+award: Best Poster Award
+year: 2019
+title: "SPGNet: Semantic Prediction Guidance for Scene Parsing"
+org: IBM AI Horizons Colloquium
+publicationId: conference-2019-spgnet-semantic-prediction-guidance
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/recognitions.yaml
+  note: (best_poster_awards). All 3 belong to the lab lead. The award venues here (IBM AI Horizons Colloquium, an internal poster session) differ from the underlying paper's own publication venue — publicationId still links to the actual paper record where one exists, same pattern as best-paper-awards.yaml. Per-person attribution deferred, see SPEC.md §7.

@@ -1,0 +1,14 @@
+id: journal-2005-extended-global-routing
+category: journal
+title: Extended Global Routing with RLC Crosstalk Constraints
+authors:
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: L. He
+venue: IEEE Transactions on Very Large Scale Integration Systems
+volumeIssue: Vol. 13, No. 3, pp. 319-329
+year: 2005
+month: March
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-journals.yaml
+  note: 40 journal articles, 2003-2021, verbatim from https://www.xlab-ub.com/publication/journals. authors[].personId is only set for "J. Xiong" -> jinjun-xiong; all other co-authors are name-only (no Person record to confidently match).

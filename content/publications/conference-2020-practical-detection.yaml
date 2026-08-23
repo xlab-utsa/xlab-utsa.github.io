@@ -1,0 +1,11 @@
+id: conference-2020-practical-detection
+category: conference
+thumbnail: /images/publications/conference-2020-practical-detection/thumbnail.png
+title: "Practical Detection of Trojan Neural Networks: Data-Limited and Data-Free Cases"
+authors:
+  - name: R. Wang et al.
+venue: ECCV
+year: 2020
+dateDisplay: August 2020
+themeIds:
+  - ai-security

@@ -1,0 +1,8 @@
+id: ai-systems
+title: AI Systems
+shortDescription: Integrating AI components for comprehensive, scalable solutions.
+longDescription: |
+  AI systems integrate various AI components, such as algorithms, data, and hardware, to create comprehensive solutions that operate effectively in complex environments. X-Lab's research in AI systems focuses on optimizing these integrations to enhance performance, reliability, and scalability.
+order: 3
+_meta:
+  note: "Full population (only 6 records, unambiguous) — source: data-extraction/sources/01-xlab-test-web-hugo-site/extracted/research-themes.yaml None of these had a project linked in the source data; see content/projects/ — all 3 current open-source projects have themeId: null since the old site never cross-referenced them to a theme. That's a real gap to fill during the merge pass, not a schema limitation (Project.themeId is fully able to point at any of these)."

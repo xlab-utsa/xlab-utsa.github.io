@@ -1,0 +1,8 @@
+id: conference-2021-emogi-efficient-memory-access
+category: conference
+title: "EMOGI: Efficient Memory-access for Out-of-memory Graph-traversal In GPUs"
+authors:
+  - name: S. Min et al.
+venue: VLDB
+year: 2021
+dateDisplay: August 2021

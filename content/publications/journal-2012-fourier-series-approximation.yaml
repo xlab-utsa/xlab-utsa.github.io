@@ -1,0 +1,18 @@
+id: journal-2012-fourier-series-approximation
+category: journal
+title: Fourier Series Approximation for Max Operation in Non-Gaussian and Quadratic Statistical Static Timing Analysis
+authors:
+  - name: L. Cheng
+  - name: F. Gong
+  - name: W. Xu
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: L. He
+  - name: M. Sarrafzadeh
+venue: IEEE Transactions on Very Large Scale Integration Systems
+volumeIssue: Vol. 20, No. 8, pp. 1383-1391
+year: 2012
+month: June
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-journals.yaml
+  note: 40 journal articles, 2003-2021, verbatim from https://www.xlab-ub.com/publication/journals. authors[].personId is only set for "J. Xiong" -> jinjun-xiong; all other co-authors are name-only (no Person record to confidently match).

@@ -1,0 +1,17 @@
+id: journal-2009-statistical-power-analysis
+category: journal
+title: Statistical Power Analysis for High-Performance Processors
+authors:
+  - name: H. Chen
+  - name: S. Neely
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: V. Zolotov
+  - name: C. Visweswariah
+venue: Journal of Low Power Electronics
+volumeIssue: Vol. 5, No. 1, pp. 70-76
+year: 2009
+month: April
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-journals.yaml
+  note: 40 journal articles, 2003-2021, verbatim from https://www.xlab-ub.com/publication/journals. authors[].personId is only set for "J. Xiong" -> jinjun-xiong; all other co-authors are name-only (no Person record to confidently match).

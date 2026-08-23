@@ -1,0 +1,16 @@
+id: changjae-lee
+name: Changjae Lee
+personType: phd-student
+roleTitle: PhD Candidate, 4th Year, Computer Science & Engineering
+photo: /images/people/changjae-lee.png
+links:
+  email: changjae@buffalo.edu
+  scholar: https://scholar.google.com/citations?user=N0BVPPcAAAAJ&hl=en
+affiliations:
+  - institutionId: ub
+    department: Computer Science & Engineering
+    roleTitle: PhD Candidate
+    type: primary
+_meta:
+  source: data-extraction/sources/01-xlab-test-web-hugo-site/extracted/team-phd.yaml
+  note: 'No joined/left year in source — labTenure left absent per SPEC.md §7 rather than invented. Also authored the real blog post "LLMs: Revolutionizing AI-Powered Communication" — see content/posts/.'

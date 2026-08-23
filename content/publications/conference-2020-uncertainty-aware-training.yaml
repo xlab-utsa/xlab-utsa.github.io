@@ -1,0 +1,11 @@
+id: conference-2020-uncertainty-aware-training
+category: conference
+thumbnail: /images/publications/conference-2020-uncertainty-aware-training/thumbnail.png
+title: Uncertainty-Aware Training of Neural Networks for Selective Medical Image Segmentation
+authors:
+  - name: Y. Ding et al.
+venue: MIDL
+year: 2020
+dateDisplay: July 2020
+themeIds:
+  - ai-solutions

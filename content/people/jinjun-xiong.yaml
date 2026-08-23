@@ -1,0 +1,86 @@
+id: jinjun-xiong
+name: Jinjun Xiong
+personType: lab-lead
+roleTitle: Founding Dean, College of AI, Cyber and Computing
+secondaryTitles:
+  - Scientific Director, National AI Institute for Exceptional Education
+  - AI Thrust Lead, Center for Early Literacy and Responsible AI
+photo: /images/people/jinjun-xiong.png
+bio: |
+  Empire Innovation Professor turned founding dean, working across AI algorithms, systems, hardware accelerators, and security — with a research philosophy centered on building functional AI systems meaningful to society.
+profile:
+  education:
+    - degree: Ph.D.
+      institution: UCLA
+      year: 2006
+      note: Outstanding Ph.D. Award
+    - degree: M.S.
+      institution: University of Wisconsin-Madison
+      year: 2002
+    - degree: M.S.
+      institution: Tsinghua University
+      year: 2000
+    - degree: B.S.
+      institution: Tsinghua University
+      year: 1998
+  researchPhilosophy: |
+    Curiosity-driven AI systems research focused on developing functional AI systems that address societal challenges — described as an "Earthly AI" approach: conducting research through building functional AI systems and solutions that should be meaningful to society.
+  researchInterests:
+    - Novel applied AI solutions with emerging technologies (IoT, AR/VR, edge clouds, quantum computers)
+    - Data-driven science research from deployed AI systems
+    - Co-optimization across computing, algorithmic, and application levels
+  researchAgenda:
+    - project: Creative Experiential Learning Advisor (CELA)
+      description: |
+        AI technologies for assessing knowledge gaps, suggesting personalized learning modules, analyzing student behavior via video streams, inferring emotions/ learning states, and enabling pedagogical agent conversations.
+      representativeTechniques:
+        - Image-cue-to-textual-cue mapping (NIPS'18 Oral, ICCV'21)
+        - Curriculum-to-projects mapping (ACL'18)
+        - Fine-grain action recognition (ICCV'19 Oral)
+        - NLP phrase extraction (SDM'21)
+        - Semantic capacity assessment (EMNLP'20, ACL'21)
+    - project: Cognitive Application Builder (CAB)
+      description: |
+        Automated tooling to identify computation, memory, and networking bottlenecks on a distributed heterogeneous system.
+      representativeTechniques:
+        - Across-stack profiling platform (IPDPS'20, CLOUD'20 Best Papers)
+        - Communication/memory pattern tool (ICPE'19 Best Paper)
+    - project: Near-Memory Acceleration (NMA) for AI Hardware
+      description: |
+        Hardware systems that bring AI computation near (or in) memory with storage-scale capacity.
+      representativeTechniques:
+        - Near-memory prototype (MICRO'18 nomination)
+        - Big-data query acceleration (MICRO'19)
+        - DNN co-design (MLSys'20, ICCAD'18 Best Paper)
+        - Quantum computing impact analysis (Nature Communications'21)
+  futureVision: |
+    Expanding holistic AI systems research across hybrid infrastructure combining core clouds, edge clouds, embedded IoT, AR/VR devices, and future quantum computers.
+  quote: "Teaching: the sacred responsibility of academia"
+links:
+  email: jinjun@buffalo.edu
+  scholar: https://scholar.google.com/citations?user=tRt1xPYAAAAJ&hl=en
+  universityProfile: https://engineering.buffalo.edu/computer-science-engineering/people/faculty-directory.host.html/content/shared/engineering/computer-science-engineering/profiles/faculty/ladder/xiong-jinjun.detail.html
+  website: https://www.xlab-ub.com/
+affiliations:
+  - institutionId: utsa
+    department: College of AI, Cyber and Computing
+    roleTitle: Founding Dean
+    type: primary
+    startDate: 2026-03
+  - institutionId: ub
+    department: Computer Science & Engineering
+    roleTitle: Adjunct Professor
+    type: adjunct
+    startDate: 2026-03
+  - institutionId: ub
+    department: Computer Science & Engineering
+    roleTitle: Empire Innovation Professor
+    type: primary
+    startDate: 2021-09
+    endDate: 2026-02
+  - institutionId: uiuc
+    roleTitle: Adjunct Research Professor
+    type: affiliate
+    startDate: 2017-07
+_meta:
+  note: "Dry-run mapping of the lab lead into the new schema, sourced from: data-extraction/sources/01-xlab-test-web-hugo-site/extracted/lab-lead.yaml data-extraction/sources/02-xlab-ub-com-live-site/extracted/lab-lead-bio.yaml data-extraction/sources/03-linkedin-scholar-utsa-news/extracted/career-timeline-and-metrics.yaml Verification finding: `labTenure` (joined/left the LAB) doesn't map cleanly onto a founder/PI the way it does for a student who joined an existing group — there's no real \"joined the lab\" date distinct from \"founded/started the lab.\" Left both fields out here rather than inventing one. Fine as-is for a founder; worth remembering this field is really \"membership tenure,\" not \"career tenure,\" when populating real data."

@@ -1,0 +1,17 @@
+id: dancheng-liu
+name: Dancheng Liu
+personType: phd-student
+roleTitle: PhD Candidate, 3rd Year, Computer Science & Engineering
+photo: /images/people/dancheng-liu.png
+links:
+  email: dliu37@buffalo.edu
+  scholar: https://scholar.google.com/citations?user=yGDaYPoAAAAJ&hl=en
+  website: https://danchengliu.github.io/
+affiliations:
+  - institutionId: ub
+    department: Computer Science & Engineering
+    roleTitle: PhD Candidate
+    type: primary
+_meta:
+  source: data-extraction/sources/01-xlab-test-web-hugo-site/extracted/team-phd.yaml
+  note: No joined/left year in source — labTenure left absent per SPEC.md §7 rather than invented.

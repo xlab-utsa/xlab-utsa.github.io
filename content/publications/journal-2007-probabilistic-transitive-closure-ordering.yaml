@@ -1,0 +1,14 @@
+id: journal-2007-probabilistic-transitive-closure-ordering
+category: journal
+title: Probabilistic Transitive-closure Ordering and its Application on Variational Buffer insertion
+authors:
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: L. He
+venue: IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems
+volumeIssue: Vol. 26, No. 4, pp. 739-742
+year: 2007
+month: April
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-journals.yaml
+  note: 40 journal articles, 2003-2021, verbatim from https://www.xlab-ub.com/publication/journals. authors[].personId is only set for "J. Xiong" -> jinjun-xiong; all other co-authors are name-only (no Person record to confidently match).

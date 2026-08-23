@@ -1,0 +1,11 @@
+id: prof-2002-beijing-science-tech
+category: professional-honor-award
+personId: jinjun-xiong
+award: Beijing Science and Technology Bronze Award
+title: Embedded System Design for Mass Optical Storage Systems
+dateDisplay: "2002"
+year: 2002
+org: The Government of Beijing, China
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/recognitions.yaml
+  note: (professional_awards). All 19 belong to the lab lead; none are paper-specific, so no publicationId on any entry here (unlike the other recognition category files).

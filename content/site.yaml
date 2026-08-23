@@ -1,0 +1,40 @@
+title: X-Lab
+tagline: Accelerating AI Systems & Solutions
+description: We build AI across the full stack — from accelerators and compilers up to algorithms and the applications that reach classrooms, power grids, and factory floors. Our aim is not only scaling intelligence, but scaling intelligence per joule.
+nav:
+  - label: Research
+    path: /#research
+  - label: Projects
+    path: /#research
+  - label: People
+    path: /#team
+  - label: News
+    path: /#news
+  - label: Publications
+    path: /publications
+  - label: Blog
+    path: /blog
+  - label: Sponsors
+    path: /#sponsors
+  - label: Join
+    path: /#sponsors
+contact:
+  email: jinjun@buffalo.edu
+  address:
+    line1: One UTSA Circle
+    city: San Antonio
+    state: TX
+    zip: "78249"
+    country: United States
+primaryInstitutionId: utsa
+recruitingNotice: We are recruiting PhD students and postdoctoral fellows to conduct cutting-edge AI systems and solutions research!
+socialLinks:
+  github: https://github.com/xlab-utsa
+  linkedin: https://www.linkedin.com/in/jinjun-xiong/
+  scholar: https://scholar.google.com/citations?user=tRt1xPYAAAAJ&hl=en
+  huggingface: https://huggingface.co/x-labs
+logo:
+  light: /images/logos/xlab-black-logo.png
+  dark: /images/logos/xlab-white-logo.png
+_meta:
+  note: "Singleton site metadata. Resolved per SPEC.md §3.1 (institutional identity = UTSA) and §5 (nav = anchor sections on Home + real routes for /publications and /blog only). — deliberately unset in v1: github, contact.phone"

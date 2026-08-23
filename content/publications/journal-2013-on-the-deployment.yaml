@@ -1,0 +1,14 @@
+id: journal-2013-on-the-deployment
+category: journal
+title: On the Deployment of On-Chip Noise Sensors
+authors:
+  - name: T. Wang
+  - name: C. Zhang
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: Y. Shi
+venue: IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems
+year: 2013
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-journals.yaml
+  note: 40 journal articles, 2003-2021, verbatim from https://www.xlab-ub.com/publication/journals. authors[].personId is only set for "J. Xiong" -> jinjun-xiong; all other co-authors are name-only (no Person record to confidently match).

@@ -1,0 +1,29 @@
+id: workshop-2021-safer-illinois
+category: workshop
+title: "Safer Illinois and RokWall: Privacy Preserving University Health Apps for COVID-19"
+authors:
+  - name: V. S. Mailthody
+  - name: J. Wei
+  - name: N. Chen
+  - name: M. Behnia
+  - name: R. Yao
+  - name: Q. Wang
+  - name: V. Agarwal
+  - name: C. He
+  - name: C. Fletcher
+  - name: L. Wang
+  - name: L. Chen
+  - name: A. Agarwal
+  - name: E. Richter
+  - name: W. Hwu
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: A. Miller
+  - name: S. Patel
+venue: CoronaDef Workshop at NDSS
+year: 2021
+dateDisplay: February 21-24, 2021
+location: Online
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-workshops.yaml
+  note: 47 workshop papers, 2004-2021, verbatim from https://www.xlab-ub.com/publication/workshops. authors[].personId is only set for "J. Xiong" -> jinjun-xiong; all other co-authors are name-only. Source "award" fields (e.g. "Best Poster Award") are award info and are intentionally NOT copied into note -- that belongs on Recognition, out of scope here. Two pairs of same-titled entries below ("Statistical Ordering of Correlated Timing Quantities..." and "Statistical Multilayer Process Space Coverage for At-Speed Test") are flagged in the source as possible duplicates (NATW 2009 vs. ACM/IEEE Timing Issues, both May/Feb 2009) -- see SOURCE-NOTES.md item 3. Not resolved here; both kept as given, and the source's internal QA note text was not copied into Publication.note.

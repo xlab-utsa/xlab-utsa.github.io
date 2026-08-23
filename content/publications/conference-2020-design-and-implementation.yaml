@@ -1,0 +1,11 @@
+id: conference-2020-design-and-implementation
+category: conference
+thumbnail: /images/publications/conference-2020-design-and-implementation/thumbnail.png
+title: The Design and Implementation of a Scalable DL Benchmarking Platform
+authors:
+  - name: C. Li et al.
+venue: CLOUD
+year: 2020
+dateDisplay: October 2020
+themeIds:
+  - ai-systems

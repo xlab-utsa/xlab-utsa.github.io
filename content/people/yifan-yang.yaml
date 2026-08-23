@@ -1,0 +1,17 @@
+id: yifan-yang
+name: Yifan Yang
+personType: phd-student
+roleTitle: PhD Student, 2nd Year, Computer Science & Engineering
+photo: /images/people/yifan-yang.png
+links:
+  email: yyang99@buffalo.edu
+  scholar: https://scholar.google.com/citations?user=8HptYz0AAAAJ&hl=zh-CN
+  website: https://www-student.cse.buffalo.edu/~yyang99/
+affiliations:
+  - institutionId: ub
+    department: Computer Science & Engineering
+    roleTitle: PhD Student
+    type: primary
+_meta:
+  source: data-extraction/sources/01-xlab-test-web-hugo-site/extracted/team-phd.yaml
+  note: No joined/left year in source — labTenure left absent per SPEC.md §7 rather than invented.

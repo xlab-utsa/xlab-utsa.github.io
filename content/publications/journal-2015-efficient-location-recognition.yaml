@@ -1,0 +1,13 @@
+id: journal-2015-efficient-location-recognition
+category: journal
+title: Efficient Location Recognition of Multiple Line Outages with Limited PMU in Smart Grids
+authors:
+  - name: J. Wu
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: Y. Shi
+venue: IEEE Transactions on Power Systems
+year: 2015
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-journals.yaml
+  note: 40 journal articles, 2003-2021, verbatim from https://www.xlab-ub.com/publication/journals. authors[].personId is only set for "J. Xiong" -> jinjun-xiong; all other co-authors are name-only (no Person record to confidently match).

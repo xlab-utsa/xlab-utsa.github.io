@@ -1,0 +1,9 @@
+id: mlmodelscope
+title: MLModelScope
+tagline: A hardware/software agnostic platform to facilitate the evaluation, measurement, and introspection of ML models.
+thumbnail: /images/projects/mlmodelscope/thumbnail.png
+links:
+  code: https://github.com/c3sr/mlmodelscope
+themeIds:
+  - ai-tools
+projectStatus: active

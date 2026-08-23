@@ -1,0 +1,15 @@
+id: workshop-2011-acceleration-of-multi-agent-simulation
+category: workshop
+title: Acceleration of Multi-Agent Simulation based on FPGA
+authors:
+  - name: L. Cui
+  - name: J. Chen
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: Y. Hu
+venue: "DATE Workshop W2: Design Methods and Tools for FPGA-Based Acceleration of Scientific Computing"
+year: 2011
+dateDisplay: "2011"
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-workshops.yaml
+  note: 47 workshop papers, 2004-2021, verbatim from https://www.xlab-ub.com/publication/workshops. authors[].personId is only set for "J. Xiong" -> jinjun-xiong; all other co-authors are name-only. Source "award" fields (e.g. "Best Poster Award") are award info and are intentionally NOT copied into note -- that belongs on Recognition, out of scope here. Two pairs of same-titled entries below ("Statistical Ordering of Correlated Timing Quantities..." and "Statistical Multilayer Process Space Coverage for At-Speed Test") are flagged in the source as possible duplicates (NATW 2009 vs. ACM/IEEE Timing Issues, both May/Feb 2009) -- see SOURCE-NOTES.md item 3. Not resolved here; both kept as given, and the source's internal QA note text was not copied into Publication.note.

@@ -1,0 +1,13 @@
+id: journal-2019-enabling-real-time-multi-messenger-astrophysics-discoveries
+category: journal
+title: Enabling real-time multi-messenger astrophysics discoveries with deep learning
+authors:
+  - name: E. A. Huerta et al.
+  - name: J. Xiong et al.
+venue: Nature Reviews Physics
+volumeIssue: Vol. 1, Issue 3, pp. 600-608
+year: 2019
+dateDisplay: October 3, 2019
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-journals.yaml
+  note: 40 journal articles, 2003-2021, verbatim from https://www.xlab-ub.com/publication/journals. authors[].personId is only set for "J. Xiong" -> jinjun-xiong; all other co-authors are name-only (no Person record to confidently match).

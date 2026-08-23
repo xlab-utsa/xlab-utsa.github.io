@@ -1,0 +1,14 @@
+id: journal-2004-full-chip-routing-optimization
+category: journal
+title: Full-chip Routing Optimization with RLC Crosstalk Budgeting
+authors:
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: L. He
+venue: IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems
+volumeIssue: Vol. 23, No. 3, pp. 366-377
+year: 2004
+month: March
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-journals.yaml
+  note: 40 journal articles, 2003-2021, verbatim from https://www.xlab-ub.com/publication/journals. authors[].personId is only set for "J. Xiong" -> jinjun-xiong; all other co-authors are name-only (no Person record to confidently match).

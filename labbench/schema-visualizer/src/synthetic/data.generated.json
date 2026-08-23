@@ -1,0 +1,5825 @@
+{
+  "generatedAt": "1970-01-01T00:00:00.000Z",
+  "seed": 20260810,
+  "dataset": {
+    "institution": [
+      {
+        "record": {
+          "id": "ub",
+          "name": "University at Buffalo",
+          "shortName": "UB",
+          "url": "https://www.buffalo.edu",
+          "city": "Buffalo",
+          "state": "NY",
+          "country": "United States"
+        },
+        "covers": [
+          "real-institution"
+        ]
+      },
+      {
+        "record": {
+          "id": "utsa",
+          "name": "The University of Texas at San Antonio",
+          "shortName": "UTSA",
+          "url": "https://www.utsa.edu",
+          "city": "San Antonio",
+          "state": "TX",
+          "country": "United States"
+        },
+        "covers": [
+          "real-institution"
+        ]
+      },
+      {
+        "record": {
+          "id": "uiuc",
+          "name": "University of Illinois at Urbana-Champaign",
+          "shortName": "UIUC",
+          "url": "https://illinois.edu",
+          "city": "Urbana-Champaign",
+          "state": "IL",
+          "country": "United States"
+        },
+        "covers": [
+          "real-institution"
+        ]
+      }
+    ],
+    "person": [
+      {
+        "record": {
+          "id": "fake-person-01",
+          "name": "Karen Moen",
+          "personType": "lab-lead",
+          "roleTitle": "Lab Director",
+          "photo": "/images/people/karen-moen.jpg",
+          "links": {
+            "email": "Karen.Moen97@example.edu",
+            "scholar": "https://scholar.example.com/citations?user=fake0",
+            "website": "https://moen.example.dev"
+          },
+          "affiliations": [
+            {
+              "institutionId": "ub",
+              "department": "Computer Science",
+              "roleTitle": "Lab Director",
+              "type": "primary",
+              "startDate": "2018-01"
+            }
+          ],
+          "labTenure": {
+            "joinedYear": 2020
+          }
+        },
+        "covers": [
+          "personType=lab-lead",
+          "single-affiliation",
+          "typical-richness"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-person-02",
+          "name": "Randi Turcotte",
+          "personType": "postdoc",
+          "roleTitle": "Postdoctoral Fellow",
+          "photo": "/images/people/randi-turcotte.jpg",
+          "links": {
+            "email": "Randi_Turcotte@example.edu"
+          },
+          "affiliations": [
+            {
+              "institutionId": "utsa",
+              "department": "Computer Science & Engineering",
+              "roleTitle": "Postdoctoral Fellow",
+              "type": "primary",
+              "startDate": "2019-02"
+            }
+          ],
+          "labTenure": {
+            "joinedYear": 2021
+          }
+        },
+        "covers": [
+          "personType=postdoc",
+          "single-affiliation",
+          "typical-richness"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-person-03",
+          "name": "Demarcus Koepp",
+          "personType": "research-staff",
+          "roleTitle": "Research Software Engineer",
+          "photo": "/images/people/demarcus-koepp.jpg",
+          "links": {
+            "email": "Demarcus_Koepp98@example.edu",
+            "scholar": "https://scholar.example.com/citations?user=fake2"
+          },
+          "affiliations": [
+            {
+              "institutionId": "uiuc",
+              "department": "Electrical & Computer Engineering",
+              "roleTitle": "Research Software Engineer",
+              "type": "primary",
+              "startDate": "2020-03"
+            }
+          ],
+          "labTenure": {
+            "joinedYear": 2022
+          }
+        },
+        "covers": [
+          "personType=research-staff",
+          "single-affiliation",
+          "typical-richness"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-person-04",
+          "name": "Hugo Emard",
+          "personType": "phd-student",
+          "roleTitle": "PhD Student",
+          "photo": "/images/people/hugo-emard.jpg",
+          "links": {
+            "email": "Hugo_Emard@example.edu",
+            "website": "https://emard.example.dev"
+          },
+          "affiliations": [
+            {
+              "institutionId": "ub",
+              "department": "Data Science",
+              "roleTitle": "PhD Student",
+              "type": "primary",
+              "startDate": "2021-04"
+            }
+          ],
+          "labTenure": {
+            "joinedYear": 2023
+          }
+        },
+        "covers": [
+          "personType=phd-student",
+          "single-affiliation",
+          "typical-richness"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-person-05",
+          "name": "Janie Hartmann",
+          "personType": "masters-student",
+          "roleTitle": "MS Student",
+          "photo": "/images/people/janie-hartmann.jpg",
+          "links": {
+            "email": "Janie.Hartmann16@example.edu",
+            "scholar": "https://scholar.example.com/citations?user=fake4"
+          },
+          "affiliations": [
+            {
+              "institutionId": "utsa",
+              "department": "AI Systems",
+              "roleTitle": "MS Student",
+              "type": "primary",
+              "startDate": "2022-05"
+            }
+          ],
+          "labTenure": {
+            "joinedYear": 2024
+          }
+        },
+        "covers": [
+          "personType=masters-student",
+          "single-affiliation",
+          "typical-richness"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-person-06",
+          "name": "Denise Nienow",
+          "personType": "undergrad-student",
+          "roleTitle": "Undergraduate Research Assistant",
+          "photo": "/images/people/denise-nienow.jpg",
+          "links": {
+            "email": "Denise.Nienow@example.edu"
+          },
+          "affiliations": [
+            {
+              "institutionId": "uiuc",
+              "department": "Information Science",
+              "roleTitle": "Undergraduate Research Assistant",
+              "type": "primary",
+              "startDate": "2023-06"
+            }
+          ],
+          "labTenure": {
+            "joinedYear": 2025
+          }
+        },
+        "covers": [
+          "personType=undergrad-student",
+          "single-affiliation",
+          "typical-richness"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-person-07",
+          "name": "Krista Hahn",
+          "personType": "grad-collaborator",
+          "roleTitle": "Visiting Graduate Collaborator",
+          "photo": "/images/people/krista-hahn.jpg",
+          "links": {
+            "email": "Krista.Hahn@example.edu",
+            "scholar": "https://scholar.example.com/citations?user=fake6",
+            "website": "https://hahn.example.dev"
+          },
+          "affiliations": [
+            {
+              "institutionId": "ub",
+              "department": "Computer Science",
+              "roleTitle": "Visiting Graduate Collaborator",
+              "type": "primary",
+              "startDate": "2024-07"
+            }
+          ],
+          "labTenure": {
+            "joinedYear": 2026
+          }
+        },
+        "covers": [
+          "personType=grad-collaborator",
+          "single-affiliation",
+          "typical-richness"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-person-08",
+          "name": "Emelia Roob",
+          "personType": "phd-student",
+          "roleTitle": "PhD Student, 1st Year"
+        },
+        "covers": [
+          "minimal-record",
+          "no-optional-fields",
+          "0-affiliations",
+          "no-labTenure"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-person-09",
+          "name": "Davin Bartoletti",
+          "personType": "postdoc",
+          "roleTitle": "Postdoctoral Fellow",
+          "photo": "/images/people/fake-multi-institution.jpg",
+          "office": "300 Fake Hall",
+          "links": {
+            "email": "Davin_Bartoletti@example.edu"
+          },
+          "affiliations": [
+            {
+              "institutionId": "ub",
+              "department": "Computer Science",
+              "roleTitle": "Postdoctoral Fellow",
+              "type": "primary",
+              "startDate": "2023-01"
+            },
+            {
+              "institutionId": "utsa",
+              "department": "AI Systems",
+              "roleTitle": "Visiting Researcher",
+              "type": "visiting",
+              "startDate": "2024-06"
+            },
+            {
+              "institutionId": "uiuc",
+              "roleTitle": "Affiliate Researcher",
+              "type": "affiliate",
+              "startDate": "2022-09"
+            }
+          ],
+          "labTenure": {
+            "joinedYear": 2023
+          }
+        },
+        "covers": [
+          "multi-institution-3",
+          "mixed-affiliation-types",
+          "cross-institution"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-person-10",
+          "name": "Clint Hettinger",
+          "personType": "lab-lead",
+          "roleTitle": "Founding Director",
+          "secondaryTitles": [
+            "Distinguished Fellow",
+            "Editor-in-Chief, Journal of Intelligent Systems Research"
+          ],
+          "links": {
+            "email": "Clint_Hettinger26@example.edu",
+            "scholar": "https://scholar.example.com/citations?user=founder",
+            "website": "https://hettinger.example.dev",
+            "universityProfile": "https://www.utsa.edu/people/founder-example",
+            "linkedin": "https://linkedin.com/in/clint-hettinger",
+            "github": "https://github.com/hettinger"
+          },
+          "affiliations": [
+            {
+              "institutionId": "utsa",
+              "department": "AI Systems",
+              "roleTitle": "Founding Director",
+              "type": "primary",
+              "startDate": "2026-01"
+            },
+            {
+              "institutionId": "ub",
+              "department": "Computer Science",
+              "roleTitle": "Adjunct Professor",
+              "type": "adjunct",
+              "startDate": "2026-01"
+            },
+            {
+              "institutionId": "ub",
+              "department": "Computer Science",
+              "roleTitle": "Endowed Professor",
+              "type": "primary",
+              "startDate": "2019-08",
+              "endDate": "2025-12"
+            },
+            {
+              "institutionId": "uiuc",
+              "roleTitle": "Affiliate Research Professor",
+              "type": "affiliate",
+              "startDate": "2015-07"
+            }
+          ]
+        },
+        "covers": [
+          "overlapping-affiliation-history",
+          "4-affiliations",
+          "founder-no-labTenure",
+          "rich-links"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-person-11",
+          "name": "Guillermo Casper",
+          "personType": "research-staff",
+          "roleTitle": "Senior Research Engineer",
+          "photo": "/images/people/fake-full-profile.jpg",
+          "bio": "We are particularly interested in how contrastive learning can improve recommendation under real-world constraints. Our work explores adaptive meta-learning for knowledge graph completion in edge devices.",
+          "links": {
+            "email": "Guillermo.Casper@example.edu",
+            "website": "https://casper.example.dev"
+          },
+          "affiliations": [
+            {
+              "institutionId": "ub",
+              "department": "AI Systems",
+              "roleTitle": "Senior Research Engineer",
+              "type": "primary",
+              "startDate": "2021-03"
+            }
+          ],
+          "labTenure": {
+            "joinedYear": 2021
+          },
+          "profile": {
+            "education": [
+              {
+                "degree": "Ph.D.",
+                "institution": "Fake Tech University",
+                "year": 2015,
+                "note": "Dissertation Award"
+              },
+              {
+                "degree": "M.S.",
+                "institution": "Example State University",
+                "year": 2011
+              },
+              {
+                "degree": "B.S.",
+                "institution": "Sample Institute",
+                "year": 2009
+              }
+            ],
+            "researchPhilosophy": "Our work explores adaptive meta-learning for knowledge graph completion in edge devices. Recent progress in sparse mixture-of-experts has opened new directions for anomaly detection. This line of research aims to make time-series forecasting more privacy-preserving for deployment in educational technology.",
+            "researchInterests": [
+              "Reinforcement Learning",
+              "Computer Vision",
+              "Causal Inference",
+              "Differential Privacy",
+              "Multimodal Learning"
+            ],
+            "researchAgenda": [
+              {
+                "project": "Efficient Diffusion Models",
+                "description": "Our work explores scalable reinforcement learning for time-series forecasting in educational technology.",
+                "representativeTechniques": [
+                  "contrastive pretraining",
+                  "adversarial training"
+                ]
+              },
+              {
+                "project": "Interpretable Meta-Learning",
+                "description": "We are particularly interested in how self-supervised representations can improve visual question answering under real-world constraints.",
+                "representativeTechniques": [
+                  "sparse attention routing",
+                  "knowledge distillation"
+                ]
+              },
+              {
+                "project": "Federated Neural Architecture Search",
+                "description": "This line of research aims to make time-series forecasting more privacy-preserving for deployment in educational technology.",
+                "representativeTechniques": [
+                  "adversarial training",
+                  "sparse attention routing"
+                ]
+              }
+            ],
+            "futureVision": "Recent progress in sparse mixture-of-experts has opened new directions for anomaly detection. This line of research aims to make time-series forecasting more privacy-preserving for deployment in educational technology.",
+            "quote": "Good research starts with a question worth asking twice."
+          }
+        },
+        "covers": [
+          "full-profile",
+          "profile-on-non-lead",
+          "rich-richness"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-person-12",
+          "name": "Bill Wisozk",
+          "personType": "masters-student",
+          "roleTitle": "MS Student, Graduating Spring",
+          "links": {
+            "email": "Bill_Wisozk@example.edu"
+          },
+          "affiliations": [
+            {
+              "institutionId": "ub",
+              "department": "Computer Science",
+              "roleTitle": "MS Student",
+              "type": "primary",
+              "startDate": "2023-08",
+              "endDate": "2025-05"
+            }
+          ],
+          "labTenure": {
+            "joinedYear": 2023,
+            "leftYear": 2025
+          }
+        },
+        "covers": [
+          "alumni",
+          "affiliation-also-ended",
+          "labTenure-and-affiliation-both-end"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-person-13",
+          "name": "Lempi Gerhold",
+          "personType": "undergrad-student",
+          "roleTitle": "Undergraduate Researcher",
+          "affiliations": [
+            {
+              "institutionId": "ub",
+              "roleTitle": "Undergraduate Researcher",
+              "type": "primary"
+            }
+          ],
+          "labTenure": {
+            "joinedYear": 2022,
+            "leftYear": null
+          }
+        },
+        "covers": [
+          "labTenure-leftYear-explicit-null",
+          "current-member"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-person-14",
+          "name": "田中 陽子",
+          "personType": "grad-collaborator",
+          "roleTitle": "Visiting Graduate Collaborator",
+          "links": {
+            "email": "yoko.tanaka@example.ac.jp"
+          },
+          "affiliations": [
+            {
+              "institutionId": "utsa",
+              "roleTitle": "Visiting Graduate Collaborator",
+              "type": "visiting",
+              "startDate": "2025-04"
+            }
+          ]
+        },
+        "covers": [
+          "unicode-name",
+          "cjk-characters"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-person-15",
+          "name": "Taylor Little",
+          "personType": "phd-student",
+          "roleTitle": "PhD Candidate, 5th Year",
+          "secondaryTitles": [
+            "Teaching Fellow",
+            "Student Chapter President",
+            "Outreach Coordinator",
+            "Peer Mentor"
+          ],
+          "labTenure": {
+            "joinedYear": 2019
+          }
+        },
+        "covers": [
+          "many-secondary-titles-4",
+          "long-tenure-7yr"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-person-16",
+          "name": "Scott Hamill",
+          "personType": "research-staff",
+          "roleTitle": "Research Scientist",
+          "photo": "/images/people/scott-hamill.jpg",
+          "bio": "Our work explores scalable reinforcement learning for time-series forecasting in educational technology.",
+          "links": {
+            "email": "Scott_Hamill@example.edu",
+            "scholar": "https://scholar.example.com/citations?user=fake10"
+          },
+          "affiliations": []
+        },
+        "covers": [
+          "personType=research-staff",
+          "0-affiliations",
+          "filler"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-person-17",
+          "name": "Mike Borer",
+          "personType": "phd-student",
+          "roleTitle": "PhD Student",
+          "links": {
+            "email": "Mike.Borer94@example.edu"
+          },
+          "affiliations": [
+            {
+              "institutionId": "uiuc",
+              "department": "Data Science",
+              "roleTitle": "Adjunct Research Professor",
+              "type": "adjunct",
+              "startDate": "2020-02"
+            }
+          ],
+          "labTenure": {
+            "joinedYear": 2020
+          }
+        },
+        "covers": [
+          "personType=phd-student",
+          "single-affiliation",
+          "filler"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-person-18",
+          "name": "Ross Nader",
+          "personType": "masters-student",
+          "roleTitle": "MS Student",
+          "photo": "/images/people/ross-nader.jpg",
+          "links": {
+            "email": "Ross_Nader@example.edu",
+            "scholar": "https://scholar.example.com/citations?user=fake12",
+            "website": "https://nader.example.dev"
+          },
+          "affiliations": [
+            {
+              "institutionId": "ub",
+              "department": "AI Systems",
+              "roleTitle": "Visiting Researcher",
+              "type": "visiting",
+              "startDate": "2021-03"
+            }
+          ],
+          "labTenure": {
+            "joinedYear": 2021
+          }
+        },
+        "covers": [
+          "personType=masters-student",
+          "single-affiliation",
+          "filler"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-person-19",
+          "name": "Jaquelin Weissnat",
+          "personType": "undergrad-student",
+          "roleTitle": "Undergraduate Research Assistant",
+          "bio": "Recent progress in transformer architectures has opened new directions for code generation.",
+          "links": {
+            "email": "Jaquelin.Weissnat@example.edu"
+          },
+          "affiliations": [
+            {
+              "institutionId": "utsa",
+              "department": "Information Science",
+              "roleTitle": "Affiliate Faculty",
+              "type": "affiliate",
+              "startDate": "2022-04"
+            }
+          ],
+          "labTenure": {
+            "joinedYear": 2022
+          }
+        },
+        "covers": [
+          "personType=undergrad-student",
+          "single-affiliation",
+          "filler"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-person-20",
+          "name": "Melvin Stroman",
+          "personType": "grad-collaborator",
+          "roleTitle": "Visiting Graduate Collaborator",
+          "photo": "/images/people/melvin-stroman.jpg",
+          "links": {
+            "email": "Melvin.Stroman86@example.edu",
+            "scholar": "https://scholar.example.com/citations?user=fake14"
+          },
+          "affiliations": [],
+          "labTenure": {
+            "joinedYear": 2023
+          }
+        },
+        "covers": [
+          "personType=grad-collaborator",
+          "0-affiliations",
+          "filler"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-person-21",
+          "name": "Cathrine Kuhlman",
+          "personType": "lab-lead",
+          "roleTitle": "Founding Director",
+          "links": {
+            "email": "Cathrine_Kuhlman9@example.edu",
+            "website": "https://kuhlman.example.dev"
+          },
+          "affiliations": [
+            {
+              "institutionId": "ub",
+              "department": "Computer Science & Engineering",
+              "roleTitle": "Adjunct Research Professor",
+              "type": "adjunct",
+              "startDate": "2024-06"
+            }
+          ]
+        },
+        "covers": [
+          "personType=lab-lead",
+          "single-affiliation",
+          "filler"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-person-22",
+          "name": "Glen Boyle",
+          "personType": "postdoc",
+          "roleTitle": "Postdoctoral Researcher",
+          "photo": "/images/people/glen-boyle.jpg",
+          "bio": "This line of research aims to make object detection more lightweight for deployment in healthcare.",
+          "links": {
+            "email": "Glen.Boyle@example.edu",
+            "scholar": "https://scholar.example.com/citations?user=fake16"
+          },
+          "affiliations": [
+            {
+              "institutionId": "utsa",
+              "department": "Electrical & Computer Engineering",
+              "roleTitle": "Visiting Researcher",
+              "type": "visiting",
+              "startDate": "2019-07"
+            }
+          ],
+          "labTenure": {
+            "joinedYear": 2019
+          }
+        },
+        "covers": [
+          "personType=postdoc",
+          "single-affiliation",
+          "filler"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-person-23",
+          "name": "Andre McLaughlin",
+          "personType": "research-staff",
+          "roleTitle": "Lab Manager",
+          "links": {
+            "email": "Andre_McLaughlin@example.edu"
+          },
+          "affiliations": [
+            {
+              "institutionId": "uiuc",
+              "department": "Data Science",
+              "roleTitle": "Affiliate Faculty",
+              "type": "affiliate",
+              "startDate": "2020-08"
+            }
+          ],
+          "labTenure": {
+            "joinedYear": 2020
+          }
+        },
+        "covers": [
+          "personType=research-staff",
+          "single-affiliation",
+          "filler"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-person-24",
+          "name": "Dorothea Ebert",
+          "personType": "phd-student",
+          "roleTitle": "PhD Candidate",
+          "photo": "/images/people/dorothea-ebert.jpg",
+          "links": {
+            "email": "Dorothea_Ebert@example.edu",
+            "scholar": "https://scholar.example.com/citations?user=fake18",
+            "website": "https://ebert.example.dev"
+          },
+          "affiliations": [],
+          "labTenure": {
+            "joinedYear": 2021
+          }
+        },
+        "covers": [
+          "personType=phd-student",
+          "0-affiliations",
+          "filler"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-person-25",
+          "name": "Monica Pouros",
+          "personType": "masters-student",
+          "roleTitle": "Master's Student",
+          "bio": "We are particularly interested in how attention mechanisms can improve image segmentation under real-world constraints.",
+          "links": {
+            "email": "Monica.Pouros26@example.edu"
+          },
+          "affiliations": [
+            {
+              "institutionId": "utsa",
+              "department": "Information Science",
+              "roleTitle": "Adjunct Research Professor",
+              "type": "adjunct",
+              "startDate": "2022-02"
+            }
+          ],
+          "labTenure": {
+            "joinedYear": 2022
+          }
+        },
+        "covers": [
+          "personType=masters-student",
+          "single-affiliation",
+          "filler"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-person-26",
+          "name": "Davin Shields",
+          "personType": "undergrad-student",
+          "roleTitle": "Undergraduate Researcher",
+          "photo": "/images/people/davin-shields.jpg",
+          "links": {
+            "email": "Davin_Shields@example.edu",
+            "scholar": "https://scholar.example.com/citations?user=fake20"
+          },
+          "affiliations": [
+            {
+              "institutionId": "uiuc",
+              "department": "Computer Science",
+              "roleTitle": "Visiting Researcher",
+              "type": "visiting",
+              "startDate": "2023-03"
+            }
+          ]
+        },
+        "covers": [
+          "personType=undergrad-student",
+          "single-affiliation",
+          "filler"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-person-27",
+          "name": "Velva Goyette",
+          "personType": "grad-collaborator",
+          "roleTitle": "Graduate Research Collaborator",
+          "links": {
+            "email": "Velva_Goyette@example.edu",
+            "website": "https://goyette.example.dev"
+          },
+          "affiliations": [
+            {
+              "institutionId": "ub",
+              "department": "Computer Science & Engineering",
+              "roleTitle": "Affiliate Faculty",
+              "type": "affiliate",
+              "startDate": "2024-04"
+            }
+          ],
+          "labTenure": {
+            "joinedYear": 2024
+          }
+        },
+        "covers": [
+          "personType=grad-collaborator",
+          "single-affiliation",
+          "filler"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-person-28",
+          "name": "Cathrine Hermann",
+          "personType": "lab-lead",
+          "roleTitle": "Lab Director",
+          "photo": "/images/people/cathrine-hermann.jpg",
+          "bio": "Our work explores scalable diffusion models for speech recognition in wireless networks.",
+          "links": {
+            "email": "Cathrine_Hermann@example.edu",
+            "scholar": "https://scholar.example.com/citations?user=fake22"
+          },
+          "affiliations": [],
+          "labTenure": {
+            "joinedYear": 2019
+          }
+        },
+        "covers": [
+          "personType=lab-lead",
+          "0-affiliations",
+          "filler"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-person-29",
+          "name": "Izabella Heathcote",
+          "personType": "postdoc",
+          "roleTitle": "Postdoctoral Fellow",
+          "links": {
+            "email": "Izabella_Heathcote@example.edu"
+          },
+          "affiliations": [
+            {
+              "institutionId": "uiuc",
+              "department": "Data Science",
+              "roleTitle": "Adjunct Research Professor",
+              "type": "adjunct",
+              "startDate": "2020-06"
+            }
+          ],
+          "labTenure": {
+            "joinedYear": 2020
+          }
+        },
+        "covers": [
+          "personType=postdoc",
+          "single-affiliation",
+          "filler"
+        ]
+      }
+    ],
+    "research-theme": [
+      {
+        "record": {
+          "id": "fake-theme-vision",
+          "title": "Fake Computer Vision",
+          "shortDescription": "Understanding images and video.",
+          "longDescription": "Our work explores scalable reinforcement learning for time-series forecasting in educational technology. Recent progress in transformer architectures has opened new directions for code generation. This line of research aims to make object detection more lightweight for deployment in healthcare.",
+          "icon": "images/icons/fake-vision.svg",
+          "order": 1
+        },
+        "covers": [
+          "all-fields"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-theme-nlp",
+          "title": "Fake Language Understanding",
+          "shortDescription": "Processing and generating text.",
+          "longDescription": "Recent progress in transformer architectures has opened new directions for code generation. This line of research aims to make object detection more lightweight for deployment in healthcare. We are particularly interested in how attention mechanisms can improve image segmentation under real-world constraints.",
+          "icon": "images/icons/fake-nlp.svg",
+          "order": 2
+        },
+        "covers": [
+          "all-fields"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-theme-systems",
+          "title": "Fake Distributed Systems",
+          "shortDescription": "Scaling software across machines."
+        },
+        "covers": [
+          "minimal-fields",
+          "no-longDescription",
+          "no-icon",
+          "no-order"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-theme-hardware",
+          "title": "Fake Hardware Accelerators",
+          "shortDescription": "Custom silicon for AI workloads.",
+          "longDescription": "This line of research aims to make object detection more lightweight for deployment in healthcare. We are particularly interested in how attention mechanisms can improve image segmentation under real-world constraints. Our work explores scalable diffusion models for speech recognition in wireless networks. Recent progress in self-supervised representations has opened new directions for visual question answering. This line of research aims to make language understanding more lightweight for deployment in smart grids."
+        },
+        "covers": [
+          "long-description",
+          "no-order"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-theme-security",
+          "title": "Fake Security & Privacy",
+          "shortDescription": "Protecting systems and data.",
+          "order": 5
+        },
+        "covers": [
+          "no-longDescription"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-theme-robotics",
+          "title": "Fake Robotics",
+          "shortDescription": "Physical agents acting in the world.",
+          "longDescription": "We are particularly interested in how attention mechanisms can improve image segmentation under real-world constraints. Our work explores scalable diffusion models for speech recognition in wireless networks. Recent progress in self-supervised representations has opened new directions for visual question answering.",
+          "icon": "images/icons/fake-robotics.svg"
+        },
+        "covers": [
+          "no-order"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-theme-hci",
+          "title": "Fake Human-Computer Interaction",
+          "shortDescription": "Designing systems people can trust.",
+          "order": 7
+        },
+        "covers": [
+          "short-description"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-theme-empty-theme",
+          "title": "Fake Theme With Zero Projects",
+          "shortDescription": "Deliberately has no linked projects.",
+          "order": 8
+        },
+        "covers": [
+          "zero-linked-projects"
+        ]
+      }
+    ],
+    "project": [
+      {
+        "record": {
+          "id": "fake-project-01",
+          "title": "Efficient Diffusion Models",
+          "tagline": "Reinforcement Learning for speech recognition.",
+          "description": "Our work explores scalable reinforcement learning for time-series forecasting in educational technology. Recent progress in transformer architectures has opened new directions for code generation.",
+          "thumbnail": "/images/projects/fake-0/thumbnail.jpg",
+          "themeId": "fake-theme-vision",
+          "status": "active",
+          "collaborationWith": "IBM Research",
+          "featured": true,
+          "links": {}
+        },
+        "covers": [
+          "status=active",
+          "theme-set",
+          "link-pattern-0",
+          "no-links",
+          "0-contributors"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-project-02",
+          "title": "Robust Transformer Architectures",
+          "tagline": "Contrastive Learning for code generation.",
+          "themeId": null,
+          "status": "active",
+          "contributors": [
+            "fake-person-02"
+          ],
+          "featured": false,
+          "links": {
+            "paperUrl": "https://fake-repo.example.com/papers/proj-1.pdf"
+          }
+        },
+        "covers": [
+          "status=active",
+          "theme-null",
+          "link-pattern-1",
+          "has-links",
+          "contributors-count-1"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-project-03",
+          "title": "Interpretable Meta-Learning",
+          "tagline": "Diffusion Models for knowledge graph completion.",
+          "thumbnail": "/images/projects/fake-2/thumbnail.jpg",
+          "themeId": "fake-theme-systems",
+          "status": "active",
+          "contributors": [
+            "fake-person-03",
+            "fake-person-08"
+          ],
+          "featured": false,
+          "links": {
+            "code": "https://github.com/fake-lab/proj-2"
+          }
+        },
+        "covers": [
+          "status=active",
+          "theme-set",
+          "link-pattern-2",
+          "has-links",
+          "contributors-count-2"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-project-04",
+          "title": "Adaptive Self-Supervised Representations",
+          "tagline": "Transformer Architectures for visual question answering.",
+          "description": "Recent progress in transformer architectures has opened new directions for code generation. This line of research aims to make object detection more lightweight for deployment in healthcare.",
+          "themeId": null,
+          "status": "active",
+          "featured": true,
+          "links": {
+            "demo": "https://demo.fake-lab.example.dev/proj-3",
+            "video": "https://video.fake-lab.example.dev/proj-3"
+          }
+        },
+        "covers": [
+          "status=active",
+          "theme-null",
+          "link-pattern-3",
+          "has-links",
+          "0-contributors"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-project-05",
+          "title": "Federated Neural Architecture Search",
+          "tagline": "Meta-Learning for object detection.",
+          "thumbnail": "/images/projects/fake-4/thumbnail.jpg",
+          "themeId": "fake-theme-security",
+          "status": "active",
+          "collaborationWith": "Microsoft Research",
+          "contributors": [
+            "fake-person-05"
+          ],
+          "featured": false,
+          "links": {
+            "publicationId": "fake-pub-patent-05"
+          }
+        },
+        "covers": [
+          "status=active",
+          "theme-set",
+          "link-pattern-4",
+          "has-links",
+          "contributors-count-1"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-project-06",
+          "title": "Lightweight Sparse Mixture-of-Experts",
+          "tagline": "Self-Supervised Representations for anomaly detection.",
+          "themeId": null,
+          "status": "active",
+          "contributors": [
+            "fake-person-06",
+            "fake-person-11"
+          ],
+          "featured": false,
+          "links": {
+            "paperUrl": "https://fake-repo.example.com/papers/proj-5.pdf",
+            "code": "https://github.com/fake-lab/proj-5",
+            "demo": "https://demo.fake-lab.example.dev/proj-5",
+            "video": "https://video.fake-lab.example.dev/proj-5",
+            "poster": "https://fake-repo.example.com/posters/proj-5.pdf",
+            "website": "https://proj-5.fake-lab.example.dev"
+          }
+        },
+        "covers": [
+          "status=active",
+          "theme-null",
+          "link-pattern-5",
+          "has-links",
+          "contributors-count-2"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-project-07",
+          "title": "Real-Time Graph Neural Networks",
+          "tagline": "Neural Architecture Search for language understanding.",
+          "description": "This line of research aims to make object detection more lightweight for deployment in healthcare. We are particularly interested in how attention mechanisms can improve image segmentation under real-world constraints.",
+          "thumbnail": "/images/projects/fake-6/thumbnail.jpg",
+          "themeId": "fake-theme-hci",
+          "status": "active",
+          "featured": true,
+          "links": {}
+        },
+        "covers": [
+          "status=active",
+          "theme-set",
+          "link-pattern-0",
+          "no-links",
+          "0-contributors"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-project-08",
+          "title": "Generalizable Attention Mechanisms",
+          "tagline": "Sparse Mixture-of-Experts for image segmentation.",
+          "themeId": null,
+          "status": "active",
+          "contributors": [
+            "fake-person-08"
+          ],
+          "featured": false,
+          "links": {
+            "paperUrl": "https://fake-repo.example.com/papers/proj-7.pdf"
+          }
+        },
+        "covers": [
+          "status=active",
+          "theme-null",
+          "link-pattern-1",
+          "has-links",
+          "contributors-count-1"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-project-09",
+          "title": "Uncertainty-Aware Reinforcement Learning",
+          "tagline": "Graph Neural Networks for time-series forecasting.",
+          "thumbnail": "/images/projects/fake-8/thumbnail.jpg",
+          "themeId": "fake-theme-vision",
+          "status": "deployed",
+          "collaborationWith": "National Science Foundation",
+          "contributors": [
+            "fake-person-09",
+            "fake-person-14"
+          ],
+          "featured": false,
+          "links": {
+            "code": "https://github.com/fake-lab/proj-8"
+          }
+        },
+        "covers": [
+          "status=deployed",
+          "theme-set",
+          "link-pattern-2",
+          "has-links",
+          "contributors-count-2"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-project-10",
+          "title": "Privacy-Preserving Contrastive Learning",
+          "tagline": "Attention Mechanisms for recommendation.",
+          "description": "We are particularly interested in how attention mechanisms can improve image segmentation under real-world constraints. Our work explores scalable diffusion models for speech recognition in wireless networks.",
+          "themeId": null,
+          "status": "deployed",
+          "featured": true,
+          "links": {
+            "demo": "https://demo.fake-lab.example.dev/proj-9",
+            "video": "https://video.fake-lab.example.dev/proj-9"
+          }
+        },
+        "covers": [
+          "status=deployed",
+          "theme-null",
+          "link-pattern-3",
+          "has-links",
+          "0-contributors"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-project-11",
+          "title": "Energy-Efficient Diffusion Models",
+          "tagline": "Reinforcement Learning for speech recognition.",
+          "thumbnail": "/images/projects/fake-10/thumbnail.jpg",
+          "themeId": "fake-theme-systems",
+          "status": "deployed",
+          "contributors": [
+            "fake-person-11"
+          ],
+          "featured": false,
+          "links": {
+            "publicationId": "fake-pub-patent-11"
+          }
+        },
+        "covers": [
+          "status=deployed",
+          "theme-set",
+          "link-pattern-4",
+          "has-links",
+          "contributors-count-1"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-project-12",
+          "title": "Scalable Transformer Architectures",
+          "tagline": "Contrastive Learning for code generation.",
+          "themeId": null,
+          "status": "deployed",
+          "contributors": [
+            "fake-person-12",
+            "fake-person-17"
+          ],
+          "featured": false,
+          "links": {
+            "paperUrl": "https://fake-repo.example.com/papers/proj-11.pdf",
+            "code": "https://github.com/fake-lab/proj-11",
+            "demo": "https://demo.fake-lab.example.dev/proj-11",
+            "video": "https://video.fake-lab.example.dev/proj-11",
+            "poster": "https://fake-repo.example.com/posters/proj-11.pdf",
+            "website": "https://proj-11.fake-lab.example.dev"
+          }
+        },
+        "covers": [
+          "status=deployed",
+          "theme-null",
+          "link-pattern-5",
+          "has-links",
+          "contributors-count-2"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-project-13",
+          "title": "Efficient Meta-Learning",
+          "tagline": "Diffusion Models for knowledge graph completion.",
+          "description": "Our work explores scalable diffusion models for speech recognition in wireless networks. Recent progress in self-supervised representations has opened new directions for visual question answering.",
+          "thumbnail": "/images/projects/fake-12/thumbnail.jpg",
+          "themeId": "fake-theme-security",
+          "status": "deployed",
+          "collaborationWith": "IBM Research",
+          "featured": true,
+          "links": {}
+        },
+        "covers": [
+          "status=deployed",
+          "theme-set",
+          "link-pattern-0",
+          "no-links",
+          "0-contributors"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-project-14",
+          "title": "Robust Self-Supervised Representations",
+          "tagline": "Transformer Architectures for visual question answering.",
+          "themeId": null,
+          "status": "deployed",
+          "contributors": [
+            "fake-person-14"
+          ],
+          "featured": false,
+          "links": {
+            "paperUrl": "https://fake-repo.example.com/papers/proj-13.pdf"
+          }
+        },
+        "covers": [
+          "status=deployed",
+          "theme-null",
+          "link-pattern-1",
+          "has-links",
+          "contributors-count-1"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-project-15",
+          "title": "Interpretable Neural Architecture Search",
+          "tagline": "Meta-Learning for object detection.",
+          "thumbnail": "/images/projects/fake-14/thumbnail.jpg",
+          "themeId": "fake-theme-hci",
+          "status": "deployed",
+          "contributors": [
+            "fake-person-15",
+            "fake-person-20"
+          ],
+          "featured": false,
+          "links": {
+            "code": "https://github.com/fake-lab/proj-14"
+          }
+        },
+        "covers": [
+          "status=deployed",
+          "theme-set",
+          "link-pattern-2",
+          "has-links",
+          "contributors-count-2"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-project-16",
+          "title": "Adaptive Sparse Mixture-of-Experts",
+          "tagline": "Self-Supervised Representations for anomaly detection.",
+          "description": "Recent progress in self-supervised representations has opened new directions for visual question answering. This line of research aims to make language understanding more lightweight for deployment in smart grids.",
+          "themeId": null,
+          "status": "deployed",
+          "featured": true,
+          "links": {
+            "demo": "https://demo.fake-lab.example.dev/proj-15",
+            "video": "https://video.fake-lab.example.dev/proj-15"
+          }
+        },
+        "covers": [
+          "status=deployed",
+          "theme-null",
+          "link-pattern-3",
+          "has-links",
+          "0-contributors"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-project-17",
+          "title": "Federated Graph Neural Networks",
+          "tagline": "Neural Architecture Search for language understanding.",
+          "thumbnail": "/images/projects/fake-16/thumbnail.jpg",
+          "themeId": "fake-theme-vision",
+          "status": "archived",
+          "collaborationWith": "Microsoft Research",
+          "contributors": [
+            "fake-person-17"
+          ],
+          "featured": false,
+          "links": {
+            "publicationId": "fake-pub-journal-01"
+          }
+        },
+        "covers": [
+          "status=archived",
+          "theme-set",
+          "link-pattern-4",
+          "has-links",
+          "contributors-count-1"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-project-18",
+          "title": "Lightweight Attention Mechanisms",
+          "tagline": "Sparse Mixture-of-Experts for image segmentation.",
+          "themeId": null,
+          "status": "archived",
+          "contributors": [
+            "fake-person-18",
+            "fake-person-23"
+          ],
+          "featured": false,
+          "links": {
+            "paperUrl": "https://fake-repo.example.com/papers/proj-17.pdf",
+            "code": "https://github.com/fake-lab/proj-17",
+            "demo": "https://demo.fake-lab.example.dev/proj-17",
+            "video": "https://video.fake-lab.example.dev/proj-17",
+            "poster": "https://fake-repo.example.com/posters/proj-17.pdf",
+            "website": "https://proj-17.fake-lab.example.dev"
+          }
+        },
+        "covers": [
+          "status=archived",
+          "theme-null",
+          "link-pattern-5",
+          "has-links",
+          "contributors-count-2"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-project-19",
+          "title": "Real-Time Reinforcement Learning",
+          "tagline": "Graph Neural Networks for time-series forecasting.",
+          "description": "This line of research aims to make language understanding more lightweight for deployment in smart grids. We are particularly interested in how contrastive learning can improve recommendation under real-world constraints.",
+          "thumbnail": "/images/projects/fake-18/thumbnail.jpg",
+          "themeId": "fake-theme-systems",
+          "status": "archived",
+          "featured": true,
+          "links": {}
+        },
+        "covers": [
+          "status=archived",
+          "theme-set",
+          "link-pattern-0",
+          "no-links",
+          "0-contributors"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-project-20",
+          "title": "Generalizable Contrastive Learning",
+          "tagline": "Attention Mechanisms for recommendation.",
+          "themeId": null,
+          "status": "archived",
+          "contributors": [
+            "fake-person-20"
+          ],
+          "featured": false,
+          "links": {
+            "paperUrl": "https://fake-repo.example.com/papers/proj-19.pdf"
+          }
+        },
+        "covers": [
+          "status=archived",
+          "theme-null",
+          "link-pattern-1",
+          "has-links",
+          "contributors-count-1"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-project-21",
+          "title": "Uncertainty-Aware Diffusion Models",
+          "tagline": "Reinforcement Learning for speech recognition.",
+          "thumbnail": "/images/projects/fake-20/thumbnail.jpg",
+          "themeId": "fake-theme-security",
+          "status": "archived",
+          "collaborationWith": "National Science Foundation",
+          "contributors": [
+            "fake-person-21",
+            "fake-person-26"
+          ],
+          "featured": false,
+          "links": {
+            "code": "https://github.com/fake-lab/proj-20"
+          }
+        },
+        "covers": [
+          "status=archived",
+          "theme-set",
+          "link-pattern-2",
+          "has-links",
+          "contributors-count-2"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-project-22",
+          "title": "Privacy-Preserving Transformer Architectures",
+          "tagline": "Contrastive Learning for code generation.",
+          "description": "We are particularly interested in how contrastive learning can improve recommendation under real-world constraints. Our work explores scalable meta-learning for knowledge graph completion in edge devices.",
+          "themeId": null,
+          "status": "archived",
+          "featured": true,
+          "links": {
+            "demo": "https://demo.fake-lab.example.dev/proj-21",
+            "video": "https://video.fake-lab.example.dev/proj-21"
+          }
+        },
+        "covers": [
+          "status=archived",
+          "theme-null",
+          "link-pattern-3",
+          "has-links",
+          "0-contributors"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-project-23",
+          "title": "Energy-Efficient Meta-Learning",
+          "tagline": "Diffusion Models for knowledge graph completion.",
+          "thumbnail": "/images/projects/fake-22/thumbnail.jpg",
+          "themeId": "fake-theme-hci",
+          "status": "archived",
+          "contributors": [
+            "fake-person-23"
+          ],
+          "featured": false,
+          "links": {
+            "publicationId": "fake-pub-journal-07"
+          }
+        },
+        "covers": [
+          "status=archived",
+          "theme-set",
+          "link-pattern-4",
+          "has-links",
+          "contributors-count-1"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-project-24",
+          "title": "Scalable Self-Supervised Representations",
+          "tagline": "Transformer Architectures for visual question answering.",
+          "themeId": null,
+          "status": "archived",
+          "contributors": [
+            "fake-person-24",
+            "fake-person-29"
+          ],
+          "featured": false,
+          "links": {
+            "paperUrl": "https://fake-repo.example.com/papers/proj-23.pdf",
+            "code": "https://github.com/fake-lab/proj-23",
+            "demo": "https://demo.fake-lab.example.dev/proj-23",
+            "video": "https://video.fake-lab.example.dev/proj-23",
+            "poster": "https://fake-repo.example.com/posters/proj-23.pdf",
+            "website": "https://proj-23.fake-lab.example.dev"
+          }
+        },
+        "covers": [
+          "status=archived",
+          "theme-null",
+          "link-pattern-5",
+          "has-links",
+          "contributors-count-2"
+        ]
+      }
+    ],
+    "publication": [
+      {
+        "record": {
+          "id": "fake-pub-patent-01",
+          "category": "patent",
+          "title": "Efficient Diffusion Models for Speech Recognition in Wireless Networks",
+          "authors": [
+            {
+              "name": "Travon Tremblay"
+            },
+            {
+              "name": "Karen Moen",
+              "personId": "fake-person-01"
+            }
+          ],
+          "year": 2005,
+          "featured": true,
+          "note": "in press",
+          "doi": "10.1234/fake.patent.1000",
+          "patentNo": "CN 1000000C",
+          "filedDate": "2010-01",
+          "issuedDate": "2012-01",
+          "jurisdiction": "China Patent",
+          "pdfUrl": "https://fake-repo.example.com/papers/fake-pub-patent-01.pdf",
+          "url": "https://fake-repo.example.com/fake-pub-patent-01"
+        },
+        "covers": [
+          "category=patent",
+          "featured",
+          "has-note",
+          "has-doi",
+          "international-jurisdiction",
+          "has-pdfUrl",
+          "has-url"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-patent-02",
+          "category": "patent",
+          "title": "Robust Transformer Architectures for Code Generation in Scientific Computing",
+          "authors": [
+            {
+              "name": "Elwin Beier"
+            },
+            {
+              "name": "Homer McCullough"
+            }
+          ],
+          "year": 2008,
+          "featured": false,
+          "note": "Spotlight",
+          "patentNo": "P202101US01",
+          "docketNo": "Y900001",
+          "applicationNo": "17/100001",
+          "filedDate": "2011-02"
+        },
+        "covers": [
+          "category=patent",
+          "not-featured",
+          "has-note",
+          "no-doi",
+          "us-docket-style"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-patent-03",
+          "category": "patent",
+          "title": "Interpretable Meta-Learning for Knowledge Graph Completion in Edge Devices",
+          "authors": [
+            {
+              "name": "Lloyd MacGyver"
+            },
+            {
+              "name": "Jeanette Kreiger III"
+            },
+            {
+              "name": "Ms. Bernice Muller"
+            }
+          ],
+          "year": 2011,
+          "featured": false,
+          "note": "cover featured",
+          "patentNo": "P202102US01",
+          "docketNo": "Y900002",
+          "applicationNo": "17/100002",
+          "filedDate": "2012-03",
+          "issuedDate": "2014-03"
+        },
+        "covers": [
+          "category=patent",
+          "not-featured",
+          "has-note",
+          "no-doi",
+          "us-docket-style"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-patent-04",
+          "category": "patent",
+          "title": "Adaptive Self-Supervised Representations for Visual Question Answering in Autonomous Systems",
+          "authors": [
+            {
+              "name": "Chester Hamill"
+            },
+            {
+              "name": "Hugo Emard",
+              "personId": "fake-person-04"
+            },
+            {
+              "name": "Alvin Swift DVM"
+            },
+            {
+              "name": "Natalie Luettgen"
+            },
+            {
+              "name": "et al."
+            }
+          ],
+          "year": 2014,
+          "featured": false,
+          "patentNo": "P202103US01",
+          "docketNo": "Y900003",
+          "filedDate": "2013-04"
+        },
+        "covers": [
+          "category=patent",
+          "not-featured",
+          "no-note",
+          "no-doi",
+          "us-docket-style"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-patent-05",
+          "category": "patent",
+          "title": "Federated Neural Architecture Search for Object Detection in Healthcare",
+          "authors": [
+            {
+              "name": "Ira Borer"
+            }
+          ],
+          "year": 2017,
+          "featured": false,
+          "doi": "10.1234/fake.patent.1004",
+          "patentNo": "P202104US01",
+          "docketNo": "Y900004",
+          "applicationNo": "17/100004",
+          "filedDate": "2014-05",
+          "issuedDate": "2016-05"
+        },
+        "covers": [
+          "category=patent",
+          "not-featured",
+          "no-note",
+          "has-doi",
+          "us-docket-style"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-patent-06",
+          "category": "patent",
+          "title": "Lightweight Sparse Mixture-of-Experts for Anomaly Detection in Cybersecurity",
+          "authors": [
+            {
+              "name": "Gregg Dach"
+            },
+            {
+              "name": "Owen Haag-Goyette I"
+            }
+          ],
+          "year": 2020,
+          "featured": true,
+          "patentNo": "P202105US01",
+          "docketNo": "Y900005",
+          "applicationNo": "17/100005",
+          "filedDate": "2015-06"
+        },
+        "covers": [
+          "category=patent",
+          "featured",
+          "no-note",
+          "no-doi",
+          "us-docket-style"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-patent-07",
+          "category": "patent",
+          "title": "Real-Time Graph Neural Networks for Language Understanding in Smart Grids",
+          "authors": [
+            {
+              "name": "Donald Ziemann IV"
+            },
+            {
+              "name": "Krista Hahn",
+              "personId": "fake-person-07"
+            },
+            {
+              "name": "Michele Carroll"
+            },
+            {
+              "name": "Shirley Witting"
+            }
+          ],
+          "year": 2023,
+          "featured": false,
+          "note": "in press",
+          "patentNo": "CN 1000006C",
+          "filedDate": "2016-07",
+          "issuedDate": "2018-07",
+          "jurisdiction": "China Patent"
+        },
+        "covers": [
+          "category=patent",
+          "not-featured",
+          "has-note",
+          "no-doi",
+          "international-jurisdiction"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-patent-08",
+          "category": "patent",
+          "title": "Generalizable Attention Mechanisms for Image Segmentation in Robotics",
+          "authors": [
+            {
+              "name": "Cecile Cummings"
+            },
+            {
+              "name": "Hugh Jast"
+            },
+            {
+              "name": "Mrs. Annette Jacobs"
+            },
+            {
+              "name": "Mr. Fabiola Torphy"
+            },
+            {
+              "name": "et al."
+            }
+          ],
+          "year": 2006,
+          "featured": false,
+          "note": "Spotlight",
+          "patentNo": "P202107US01",
+          "docketNo": "Y900007",
+          "applicationNo": "17/100007",
+          "filedDate": "2017-08",
+          "pdfUrl": "https://fake-repo.example.com/papers/fake-pub-patent-08.pdf"
+        },
+        "covers": [
+          "category=patent",
+          "not-featured",
+          "has-note",
+          "no-doi",
+          "us-docket-style",
+          "has-pdfUrl"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-patent-09",
+          "category": "patent",
+          "title": "Uncertainty-Aware Reinforcement Learning for Time-Series Forecasting in Educational Technology",
+          "authors": [
+            {
+              "name": "Brandt Fay V"
+            }
+          ],
+          "year": 2009,
+          "featured": false,
+          "note": "cover featured",
+          "doi": "10.1234/fake.patent.1008",
+          "patentNo": "P202108US01",
+          "docketNo": "Y900008",
+          "applicationNo": "17/100008",
+          "filedDate": "2018-01",
+          "issuedDate": "2020-01",
+          "url": "https://fake-repo.example.com/fake-pub-patent-09"
+        },
+        "covers": [
+          "category=patent",
+          "not-featured",
+          "has-note",
+          "has-doi",
+          "us-docket-style",
+          "has-url"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-patent-10",
+          "category": "patent",
+          "title": "Privacy-Preserving Contrastive Learning for Recommendation in Financial Systems",
+          "authors": [
+            {
+              "name": "Bradford Ernser"
+            },
+            {
+              "name": "Clint Hettinger",
+              "personId": "fake-person-10"
+            },
+            {
+              "name": "Amy Marvin"
+            }
+          ],
+          "year": 2012,
+          "featured": false,
+          "patentNo": "P202109US01",
+          "docketNo": "Y900009",
+          "filedDate": "2019-02"
+        },
+        "covers": [
+          "category=patent",
+          "not-featured",
+          "no-note",
+          "no-doi",
+          "us-docket-style"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-patent-11",
+          "category": "patent",
+          "title": "Energy-Efficient Diffusion Models for Speech Recognition in Wireless Networks",
+          "authors": [
+            {
+              "name": "Velma Ondricka"
+            },
+            {
+              "name": "Ralph Mante"
+            },
+            {
+              "name": "Jordan Kozey"
+            }
+          ],
+          "year": 2015,
+          "featured": true,
+          "patentNo": "P202110US01",
+          "docketNo": "Y900010",
+          "applicationNo": "17/100010",
+          "filedDate": "2020-03",
+          "issuedDate": "2022-03"
+        },
+        "covers": [
+          "category=patent",
+          "featured",
+          "no-note",
+          "no-doi",
+          "us-docket-style"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-patent-12",
+          "category": "patent",
+          "title": "Scalable Transformer Architectures for Code Generation in Scientific Computing",
+          "authors": [
+            {
+              "name": "Mr. Luther Reichel"
+            },
+            {
+              "name": "Josh Yost"
+            },
+            {
+              "name": "Mike Willms-Paucek"
+            },
+            {
+              "name": "Helena Streich"
+            },
+            {
+              "name": "et al."
+            }
+          ],
+          "year": 2018,
+          "featured": false,
+          "patentNo": "P202111US01",
+          "docketNo": "Y900011",
+          "applicationNo": "17/100011",
+          "filedDate": "2021-04"
+        },
+        "covers": [
+          "category=patent",
+          "not-featured",
+          "no-note",
+          "no-doi",
+          "us-docket-style"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-patent-13",
+          "category": "patent",
+          "title": "Efficient Meta-Learning for Knowledge Graph Completion in Edge Devices",
+          "authors": [
+            {
+              "name": "Daniel Gleichner"
+            },
+            {
+              "name": "Lempi Gerhold",
+              "personId": "fake-person-13"
+            }
+          ],
+          "year": 2021,
+          "featured": false,
+          "note": "in press",
+          "doi": "10.1234/fake.patent.1012",
+          "patentNo": "CN 1000012C",
+          "filedDate": "2022-05",
+          "issuedDate": "2024-05",
+          "jurisdiction": "China Patent"
+        },
+        "covers": [
+          "category=patent",
+          "not-featured",
+          "has-note",
+          "has-doi",
+          "international-jurisdiction"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-patent-14",
+          "category": "patent",
+          "title": "Robust Self-Supervised Representations for Visual Question Answering in Autonomous Systems",
+          "authors": [
+            {
+              "name": "Sarah Morissette Jr."
+            },
+            {
+              "name": "Daphney Heidenreich"
+            }
+          ],
+          "year": 2024,
+          "featured": false,
+          "note": "Spotlight",
+          "patentNo": "P202113US01",
+          "docketNo": "Y900013",
+          "applicationNo": "17/100013",
+          "filedDate": "2023-06"
+        },
+        "covers": [
+          "category=patent",
+          "not-featured",
+          "has-note",
+          "no-doi",
+          "us-docket-style"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-patent-15",
+          "category": "patent",
+          "title": "Interpretable Neural Architecture Search for Object Detection in Healthcare",
+          "authors": [
+            {
+              "name": "Beryl Gottlieb"
+            },
+            {
+              "name": "Gwen Lebsack"
+            },
+            {
+              "name": "Vena Upton"
+            }
+          ],
+          "year": 2007,
+          "featured": false,
+          "note": "cover featured",
+          "patentNo": "P202114US01",
+          "docketNo": "Y900014",
+          "applicationNo": "17/100014",
+          "filedDate": "2024-07",
+          "issuedDate": "2026-07",
+          "pdfUrl": "https://fake-repo.example.com/papers/fake-pub-patent-15.pdf"
+        },
+        "covers": [
+          "category=patent",
+          "not-featured",
+          "has-note",
+          "no-doi",
+          "us-docket-style",
+          "has-pdfUrl"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-patent-16",
+          "category": "patent",
+          "title": "Adaptive Sparse Mixture-of-Experts for Anomaly Detection in Cybersecurity",
+          "authors": [
+            {
+              "name": "Stefan Schroeder"
+            },
+            {
+              "name": "Scott Hamill",
+              "personId": "fake-person-16"
+            },
+            {
+              "name": "Terrance Gleason"
+            },
+            {
+              "name": "Macie Johns"
+            },
+            {
+              "name": "et al."
+            }
+          ],
+          "year": 2010,
+          "featured": true,
+          "patentNo": "P202115US01",
+          "docketNo": "Y900015",
+          "filedDate": "2010-08"
+        },
+        "covers": [
+          "category=patent",
+          "featured",
+          "no-note",
+          "no-doi",
+          "us-docket-style"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-journal-01",
+          "category": "journal",
+          "title": "Robust Transformer Architectures for Code Generation in Scientific Computing",
+          "authors": [
+            {
+              "name": "Hettie Wuckert"
+            },
+            {
+              "name": "Karen Moen",
+              "personId": "fake-person-01"
+            }
+          ],
+          "year": 2005,
+          "featured": true,
+          "note": "in press",
+          "doi": "10.1234/fake.journal.1000",
+          "venue": "Journal of Intelligent Systems Research",
+          "month": "October",
+          "pdfUrl": "https://fake-repo.example.com/papers/fake-pub-journal-01.pdf",
+          "url": "https://fake-repo.example.com/fake-pub-journal-01"
+        },
+        "covers": [
+          "category=journal",
+          "featured",
+          "has-note",
+          "has-doi",
+          "no-volumeIssue",
+          "has-pdfUrl",
+          "has-url"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-journal-02",
+          "category": "journal",
+          "title": "Interpretable Meta-Learning for Knowledge Graph Completion in Edge Devices",
+          "authors": [
+            {
+              "name": "Darrell Spinka"
+            },
+            {
+              "name": "Raul Hayes"
+            }
+          ],
+          "year": 2008,
+          "featured": false,
+          "note": "Spotlight",
+          "venue": "Transactions on Scalable Computing",
+          "volumeIssue": "Vol. 11, No. 2"
+        },
+        "covers": [
+          "category=journal",
+          "not-featured",
+          "has-note",
+          "no-doi",
+          "has-volumeIssue"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-journal-03",
+          "category": "journal",
+          "title": "Adaptive Self-Supervised Representations for Visual Question Answering in Autonomous Systems",
+          "authors": [
+            {
+              "name": "Gerardo Wehner"
+            },
+            {
+              "name": "Cade Murray"
+            },
+            {
+              "name": "Kathryne Becker"
+            }
+          ],
+          "year": 2011,
+          "featured": false,
+          "note": "cover featured",
+          "venue": "Journal of Applied Machine Learning",
+          "volumeIssue": "Vol. 12, No. 3",
+          "month": "February"
+        },
+        "covers": [
+          "category=journal",
+          "not-featured",
+          "has-note",
+          "no-doi",
+          "has-volumeIssue"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-journal-04",
+          "category": "journal",
+          "title": "Federated Neural Architecture Search for Object Detection in Healthcare",
+          "authors": [
+            {
+              "name": "Noel Dietrich"
+            },
+            {
+              "name": "Hugo Emard",
+              "personId": "fake-person-04"
+            },
+            {
+              "name": "Bernard Gusikowski"
+            },
+            {
+              "name": "Carmella Beatty-Rutherford"
+            },
+            {
+              "name": "et al."
+            }
+          ],
+          "year": 2014,
+          "featured": false,
+          "venue": "Transactions on Data Engineering",
+          "volumeIssue": "Vol. 13, No. 4"
+        },
+        "covers": [
+          "category=journal",
+          "not-featured",
+          "no-note",
+          "no-doi",
+          "has-volumeIssue"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-journal-05",
+          "category": "journal",
+          "title": "Lightweight Sparse Mixture-of-Experts for Anomaly Detection in Cybersecurity",
+          "authors": [
+            {
+              "name": "Aubrey Klein"
+            }
+          ],
+          "year": 2017,
+          "featured": false,
+          "doi": "10.1234/fake.journal.1004",
+          "venue": "Journal of Robotics and Autonomous Systems",
+          "month": "January"
+        },
+        "covers": [
+          "category=journal",
+          "not-featured",
+          "no-note",
+          "has-doi",
+          "no-volumeIssue"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-journal-06",
+          "category": "journal",
+          "title": "Real-Time Graph Neural Networks for Language Understanding in Smart Grids",
+          "authors": [
+            {
+              "name": "Lottie Paucek-Mosciski"
+            },
+            {
+              "name": "Alberta Lindgren-Cole"
+            }
+          ],
+          "year": 2020,
+          "featured": true,
+          "venue": "Transactions on Human-Centered Computing",
+          "volumeIssue": "Vol. 15, No. 2"
+        },
+        "covers": [
+          "category=journal",
+          "featured",
+          "no-note",
+          "no-doi",
+          "has-volumeIssue"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-journal-07",
+          "category": "journal",
+          "title": "Generalizable Attention Mechanisms for Image Segmentation in Robotics",
+          "authors": [
+            {
+              "name": "Luciano Ledner"
+            },
+            {
+              "name": "Krista Hahn",
+              "personId": "fake-person-07"
+            },
+            {
+              "name": "Ms. Nina Schaefer"
+            },
+            {
+              "name": "Frederick Hyatt Sr."
+            }
+          ],
+          "year": 2023,
+          "featured": false,
+          "note": "in press",
+          "venue": "Journal of Distributed AI Systems",
+          "volumeIssue": "Vol. 16, No. 3",
+          "month": "January"
+        },
+        "covers": [
+          "category=journal",
+          "not-featured",
+          "has-note",
+          "no-doi",
+          "has-volumeIssue"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-journal-08",
+          "category": "journal",
+          "title": "Uncertainty-Aware Reinforcement Learning for Time-Series Forecasting in Educational Technology",
+          "authors": [
+            {
+              "name": "Lora Hoeger DVM"
+            },
+            {
+              "name": "Mariane Jaskolski"
+            },
+            {
+              "name": "Rogelio Murazik"
+            },
+            {
+              "name": "Mrs. Geraldine Schinner"
+            },
+            {
+              "name": "et al."
+            }
+          ],
+          "year": 2006,
+          "featured": false,
+          "note": "Spotlight",
+          "venue": "Journal of Intelligent Systems Research",
+          "volumeIssue": "Vol. 17, No. 4",
+          "pdfUrl": "https://fake-repo.example.com/papers/fake-pub-journal-08.pdf"
+        },
+        "covers": [
+          "category=journal",
+          "not-featured",
+          "has-note",
+          "no-doi",
+          "has-volumeIssue",
+          "has-pdfUrl"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-journal-09",
+          "category": "journal",
+          "title": "Privacy-Preserving Contrastive Learning for Recommendation in Financial Systems",
+          "authors": [
+            {
+              "name": "Lyla Tromp"
+            }
+          ],
+          "year": 2009,
+          "featured": false,
+          "note": "cover featured",
+          "doi": "10.1234/fake.journal.1008",
+          "venue": "Transactions on Scalable Computing",
+          "month": "October",
+          "url": "https://fake-repo.example.com/fake-pub-journal-09"
+        },
+        "covers": [
+          "category=journal",
+          "not-featured",
+          "has-note",
+          "has-doi",
+          "no-volumeIssue",
+          "has-url"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-journal-10",
+          "category": "journal",
+          "title": "Energy-Efficient Diffusion Models for Speech Recognition in Wireless Networks",
+          "authors": [
+            {
+              "name": "Amir Pacocha"
+            },
+            {
+              "name": "Clint Hettinger",
+              "personId": "fake-person-10"
+            },
+            {
+              "name": "Sabina Aufderhar-Bins"
+            }
+          ],
+          "year": 2012,
+          "featured": false,
+          "venue": "Journal of Applied Machine Learning",
+          "volumeIssue": "Vol. 19, No. 2"
+        },
+        "covers": [
+          "category=journal",
+          "not-featured",
+          "no-note",
+          "no-doi",
+          "has-volumeIssue"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-journal-11",
+          "category": "journal",
+          "title": "Scalable Transformer Architectures for Code Generation in Scientific Computing",
+          "authors": [
+            {
+              "name": "Edna Boyle"
+            },
+            {
+              "name": "Priscilla Mertz-Berge"
+            },
+            {
+              "name": "Edmund Keebler"
+            }
+          ],
+          "year": 2015,
+          "featured": true,
+          "venue": "Transactions on Data Engineering",
+          "volumeIssue": "Vol. 20, No. 3",
+          "month": "October"
+        },
+        "covers": [
+          "category=journal",
+          "featured",
+          "no-note",
+          "no-doi",
+          "has-volumeIssue"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-journal-12",
+          "category": "journal",
+          "title": "Efficient Meta-Learning for Knowledge Graph Completion in Edge Devices",
+          "authors": [
+            {
+              "name": "Addison Klein"
+            },
+            {
+              "name": "Ellen Willms V"
+            },
+            {
+              "name": "Sharon Reichert"
+            },
+            {
+              "name": "Haylie Jenkins"
+            },
+            {
+              "name": "et al."
+            }
+          ],
+          "year": 2018,
+          "featured": false,
+          "venue": "Journal of Robotics and Autonomous Systems",
+          "volumeIssue": "Vol. 21, No. 4"
+        },
+        "covers": [
+          "category=journal",
+          "not-featured",
+          "no-note",
+          "no-doi",
+          "has-volumeIssue"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-journal-13",
+          "category": "journal",
+          "title": "Robust Self-Supervised Representations for Visual Question Answering in Autonomous Systems",
+          "authors": [
+            {
+              "name": "Seth Kiehn"
+            },
+            {
+              "name": "Lempi Gerhold",
+              "personId": "fake-person-13"
+            }
+          ],
+          "year": 2021,
+          "featured": false,
+          "note": "in press",
+          "doi": "10.1234/fake.journal.1012",
+          "venue": "Transactions on Human-Centered Computing",
+          "month": "March"
+        },
+        "covers": [
+          "category=journal",
+          "not-featured",
+          "has-note",
+          "has-doi",
+          "no-volumeIssue"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-journal-14",
+          "category": "journal",
+          "title": "Interpretable Neural Architecture Search for Object Detection in Healthcare",
+          "authors": [
+            {
+              "name": "Jo Rogahn"
+            },
+            {
+              "name": "Holden Corwin"
+            }
+          ],
+          "year": 2024,
+          "featured": false,
+          "note": "Spotlight",
+          "venue": "Journal of Distributed AI Systems",
+          "volumeIssue": "Vol. 23, No. 2"
+        },
+        "covers": [
+          "category=journal",
+          "not-featured",
+          "has-note",
+          "no-doi",
+          "has-volumeIssue"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-journal-15",
+          "category": "journal",
+          "title": "Adaptive Sparse Mixture-of-Experts for Anomaly Detection in Cybersecurity",
+          "authors": [
+            {
+              "name": "Dr. Andrew McKenzie"
+            },
+            {
+              "name": "Traci Watsica-Murray"
+            },
+            {
+              "name": "Adolph Brekke"
+            }
+          ],
+          "year": 2007,
+          "featured": false,
+          "note": "cover featured",
+          "venue": "Journal of Intelligent Systems Research",
+          "volumeIssue": "Vol. 24, No. 3",
+          "month": "January",
+          "pdfUrl": "https://fake-repo.example.com/papers/fake-pub-journal-15.pdf"
+        },
+        "covers": [
+          "category=journal",
+          "not-featured",
+          "has-note",
+          "no-doi",
+          "has-volumeIssue",
+          "has-pdfUrl"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-journal-16",
+          "category": "journal",
+          "title": "Federated Graph Neural Networks for Language Understanding in Smart Grids",
+          "authors": [
+            {
+              "name": "Barbara Rohan"
+            },
+            {
+              "name": "Scott Hamill",
+              "personId": "fake-person-16"
+            },
+            {
+              "name": "Clark Ruecker"
+            },
+            {
+              "name": "Etha Oberbrunner"
+            },
+            {
+              "name": "et al."
+            }
+          ],
+          "year": 2010,
+          "featured": true,
+          "venue": "Transactions on Scalable Computing",
+          "volumeIssue": "Vol. 25, No. 4"
+        },
+        "covers": [
+          "category=journal",
+          "featured",
+          "no-note",
+          "no-doi",
+          "has-volumeIssue"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-conference-01",
+          "category": "conference",
+          "title": "Scalable Contrastive Learning for Recommendation in Financial Systems",
+          "authors": [
+            {
+              "name": "Clay Dickens DVM"
+            },
+            {
+              "name": "Karen Moen",
+              "personId": "fake-person-01"
+            }
+          ],
+          "year": 2005,
+          "featured": true,
+          "note": "in press",
+          "doi": "10.1234/fake.conference.1000",
+          "venue": "International Conference on Machine Learning Systems 2005",
+          "location": "North Port, North Dakota",
+          "dateDisplay": "November 2005",
+          "pdfUrl": "https://fake-repo.example.com/papers/fake-pub-conference-01.pdf",
+          "url": "https://fake-repo.example.com/fake-pub-conference-01"
+        },
+        "covers": [
+          "category=conference",
+          "featured",
+          "has-note",
+          "has-doi",
+          "has-location",
+          "has-pdfUrl",
+          "has-url"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-conference-02",
+          "category": "conference",
+          "title": "Efficient Diffusion Models for Speech Recognition in Wireless Networks",
+          "authors": [
+            {
+              "name": "Sergio Koch-Douglas"
+            },
+            {
+              "name": "Sonja Romaguera"
+            }
+          ],
+          "year": 2008,
+          "featured": false,
+          "note": "Spotlight",
+          "venue": "Symposium on Intelligent Data Systems 2006",
+          "dateDisplay": "December 2006"
+        },
+        "covers": [
+          "category=conference",
+          "not-featured",
+          "has-note",
+          "no-doi",
+          "no-location"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-conference-03",
+          "category": "conference",
+          "title": "Robust Transformer Architectures for Code Generation in Scientific Computing",
+          "authors": [
+            {
+              "name": "Jimmie Jast"
+            },
+            {
+              "name": "Myra Wolff"
+            },
+            {
+              "name": "Sharon Hirthe"
+            }
+          ],
+          "year": 2011,
+          "featured": false,
+          "note": "cover featured",
+          "venue": "International Conference on Autonomous Agents 2007",
+          "dateDisplay": "January 2007"
+        },
+        "covers": [
+          "category=conference",
+          "not-featured",
+          "has-note",
+          "no-doi",
+          "no-location"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-conference-04",
+          "category": "conference",
+          "title": "Interpretable Meta-Learning for Knowledge Graph Completion in Edge Devices",
+          "authors": [
+            {
+              "name": "Marilie Dooley"
+            },
+            {
+              "name": "Hugo Emard",
+              "personId": "fake-person-04"
+            },
+            {
+              "name": "Francisco Lowe"
+            },
+            {
+              "name": "Zoey Hegmann"
+            },
+            {
+              "name": "et al."
+            }
+          ],
+          "year": 2014,
+          "featured": false,
+          "venue": "Conference on Trustworthy AI 2008",
+          "location": "West Francis, Texas",
+          "dateDisplay": "November 2008"
+        },
+        "covers": [
+          "category=conference",
+          "not-featured",
+          "no-note",
+          "no-doi",
+          "has-location"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-conference-05",
+          "category": "conference",
+          "title": "Adaptive Self-Supervised Representations for Visual Question Answering in Autonomous Systems",
+          "authors": [
+            {
+              "name": "Jaime Littel"
+            }
+          ],
+          "year": 2017,
+          "featured": false,
+          "doi": "10.1234/fake.conference.1004",
+          "venue": "International Workshop on Scalable Computing 2009",
+          "dateDisplay": "July 2009"
+        },
+        "covers": [
+          "category=conference",
+          "not-featured",
+          "no-note",
+          "has-doi",
+          "no-location"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-conference-06",
+          "category": "conference",
+          "title": "Federated Neural Architecture Search for Object Detection in Healthcare",
+          "authors": [
+            {
+              "name": "Mr. Alonzo Kutch MD"
+            },
+            {
+              "name": "Tyrone Gleason"
+            }
+          ],
+          "year": 2020,
+          "featured": true,
+          "venue": "Symposium on Human-Centered AI 2010",
+          "dateDisplay": "March 2010"
+        },
+        "covers": [
+          "category=conference",
+          "featured",
+          "no-note",
+          "no-doi",
+          "no-location"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-conference-07",
+          "category": "conference",
+          "title": "Lightweight Sparse Mixture-of-Experts for Anomaly Detection in Cybersecurity",
+          "authors": [
+            {
+              "name": "Dr. Geoffrey Stehr"
+            },
+            {
+              "name": "Krista Hahn",
+              "personId": "fake-person-07"
+            },
+            {
+              "name": "Mr. Ryan Terry-Wintheiser"
+            },
+            {
+              "name": "Ludwig Breitenberg"
+            }
+          ],
+          "year": 2023,
+          "featured": false,
+          "note": "in press",
+          "venue": "International Conference on Applied Data Science 2011",
+          "location": "Schummland, Wyoming",
+          "dateDisplay": "November 2011"
+        },
+        "covers": [
+          "category=conference",
+          "not-featured",
+          "has-note",
+          "no-doi",
+          "has-location"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-conference-08",
+          "category": "conference",
+          "title": "Real-Time Graph Neural Networks for Language Understanding in Smart Grids",
+          "authors": [
+            {
+              "name": "Rhett Terry"
+            },
+            {
+              "name": "Floyd Wisoky"
+            },
+            {
+              "name": "Bryan Emard"
+            },
+            {
+              "name": "Vanessa Lakin MD"
+            },
+            {
+              "name": "et al."
+            }
+          ],
+          "year": 2006,
+          "featured": false,
+          "note": "Spotlight",
+          "venue": "Workshop on Efficient Deep Learning 2012",
+          "dateDisplay": "September 2012",
+          "pdfUrl": "https://fake-repo.example.com/papers/fake-pub-conference-08.pdf"
+        },
+        "covers": [
+          "category=conference",
+          "not-featured",
+          "has-note",
+          "no-doi",
+          "no-location",
+          "has-pdfUrl"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-conference-09",
+          "category": "conference",
+          "title": "Generalizable Attention Mechanisms for Image Segmentation in Robotics",
+          "authors": [
+            {
+              "name": "Gertrude Heller"
+            }
+          ],
+          "year": 2009,
+          "featured": false,
+          "note": "cover featured",
+          "doi": "10.1234/fake.conference.1008",
+          "venue": "International Symposium on Robotics and Automation 2013",
+          "dateDisplay": "March 2013",
+          "url": "https://fake-repo.example.com/fake-pub-conference-09"
+        },
+        "covers": [
+          "category=conference",
+          "not-featured",
+          "has-note",
+          "has-doi",
+          "no-location",
+          "has-url"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-conference-10",
+          "category": "conference",
+          "title": "Uncertainty-Aware Reinforcement Learning for Time-Series Forecasting in Educational Technology",
+          "authors": [
+            {
+              "name": "Belinda Mohr"
+            },
+            {
+              "name": "Clint Hettinger",
+              "personId": "fake-person-10"
+            },
+            {
+              "name": "Miss Maria Fay"
+            }
+          ],
+          "year": 2012,
+          "featured": false,
+          "venue": "Conference on Networked Intelligent Systems 2014",
+          "location": "Kubview, Tennessee",
+          "dateDisplay": "June 2014"
+        },
+        "covers": [
+          "category=conference",
+          "not-featured",
+          "no-note",
+          "no-doi",
+          "has-location"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-conference-11",
+          "category": "conference",
+          "title": "Privacy-Preserving Contrastive Learning for Recommendation in Financial Systems",
+          "authors": [
+            {
+              "name": "Griffin Pfeffer DDS"
+            },
+            {
+              "name": "Orlo Bayer"
+            },
+            {
+              "name": "Wilma Jenkins"
+            }
+          ],
+          "year": 2015,
+          "featured": true,
+          "venue": "International Conference on Machine Learning Systems 2015",
+          "dateDisplay": "November 2015"
+        },
+        "covers": [
+          "category=conference",
+          "featured",
+          "no-note",
+          "no-doi",
+          "no-location"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-conference-12",
+          "category": "conference",
+          "title": "Energy-Efficient Diffusion Models for Speech Recognition in Wireless Networks",
+          "authors": [
+            {
+              "name": "Francisco Bechtelar"
+            },
+            {
+              "name": "Marcus Ondricka-Wyman"
+            },
+            {
+              "name": "Rochelle Lind"
+            },
+            {
+              "name": "Glenna Hagenes"
+            },
+            {
+              "name": "et al."
+            }
+          ],
+          "year": 2018,
+          "featured": false,
+          "venue": "Symposium on Intelligent Data Systems 2016",
+          "dateDisplay": "October 2016"
+        },
+        "covers": [
+          "category=conference",
+          "not-featured",
+          "no-note",
+          "no-doi",
+          "no-location"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-conference-13",
+          "category": "conference",
+          "title": "Scalable Transformer Architectures for Code Generation in Scientific Computing",
+          "authors": [
+            {
+              "name": "Cristal Ruecker"
+            },
+            {
+              "name": "Lempi Gerhold",
+              "personId": "fake-person-13"
+            }
+          ],
+          "year": 2021,
+          "featured": false,
+          "note": "in press",
+          "doi": "10.1234/fake.conference.1012",
+          "venue": "International Conference on Autonomous Agents 2017",
+          "location": "North Audratown, Rhode Island",
+          "dateDisplay": "April 2017"
+        },
+        "covers": [
+          "category=conference",
+          "not-featured",
+          "has-note",
+          "has-doi",
+          "has-location"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-conference-14",
+          "category": "conference",
+          "title": "Efficient Meta-Learning for Knowledge Graph Completion in Edge Devices",
+          "authors": [
+            {
+              "name": "Dennis Hills"
+            },
+            {
+              "name": "Janice Donnelly"
+            }
+          ],
+          "year": 2024,
+          "featured": false,
+          "note": "Spotlight",
+          "venue": "Conference on Trustworthy AI 2018",
+          "dateDisplay": "October 2018"
+        },
+        "covers": [
+          "category=conference",
+          "not-featured",
+          "has-note",
+          "no-doi",
+          "no-location"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-conference-15",
+          "category": "conference",
+          "title": "Robust Self-Supervised Representations for Visual Question Answering in Autonomous Systems",
+          "authors": [
+            {
+              "name": "Pansy Hagenes I"
+            },
+            {
+              "name": "Taylor Kerluke"
+            },
+            {
+              "name": "Cody Feeney"
+            }
+          ],
+          "year": 2007,
+          "featured": false,
+          "note": "cover featured",
+          "venue": "International Workshop on Scalable Computing 2019",
+          "dateDisplay": "September 2019",
+          "pdfUrl": "https://fake-repo.example.com/papers/fake-pub-conference-15.pdf"
+        },
+        "covers": [
+          "category=conference",
+          "not-featured",
+          "has-note",
+          "no-doi",
+          "no-location",
+          "has-pdfUrl"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-conference-16",
+          "category": "conference",
+          "title": "Interpretable Neural Architecture Search for Object Detection in Healthcare",
+          "authors": [
+            {
+              "name": "Rosalinda Parisian"
+            },
+            {
+              "name": "Scott Hamill",
+              "personId": "fake-person-16"
+            },
+            {
+              "name": "Adella Stiedemann"
+            },
+            {
+              "name": "Jayson Batz"
+            },
+            {
+              "name": "et al."
+            }
+          ],
+          "year": 2010,
+          "featured": true,
+          "venue": "Symposium on Human-Centered AI 2020",
+          "location": "Muellerton, New York",
+          "dateDisplay": "August 2020"
+        },
+        "covers": [
+          "category=conference",
+          "featured",
+          "no-note",
+          "no-doi",
+          "has-location"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-conference-17",
+          "category": "conference",
+          "title": "Adaptive Sparse Mixture-of-Experts for Anomaly Detection in Cybersecurity",
+          "authors": [
+            {
+              "name": "Austin Dibbert"
+            }
+          ],
+          "year": 2013,
+          "featured": false,
+          "doi": "10.1234/fake.conference.1016",
+          "venue": "International Conference on Applied Data Science 2021",
+          "dateDisplay": "December 2021",
+          "url": "https://fake-repo.example.com/fake-pub-conference-17"
+        },
+        "covers": [
+          "category=conference",
+          "not-featured",
+          "no-note",
+          "has-doi",
+          "no-location",
+          "has-url"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-conference-18",
+          "category": "conference",
+          "title": "Federated Graph Neural Networks for Language Understanding in Smart Grids",
+          "authors": [
+            {
+              "name": "Donald Conroy"
+            },
+            {
+              "name": "Sabryna Rogahn"
+            }
+          ],
+          "year": 2016,
+          "featured": false,
+          "venue": "Workshop on Efficient Deep Learning 2022",
+          "dateDisplay": "September 2022"
+        },
+        "covers": [
+          "category=conference",
+          "not-featured",
+          "no-note",
+          "no-doi",
+          "no-location"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-workshop-01",
+          "category": "workshop",
+          "title": "Interpretable Meta-Learning for Knowledge Graph Completion in Edge Devices",
+          "authors": [
+            {
+              "name": "Susie Stanton"
+            },
+            {
+              "name": "Karen Moen",
+              "personId": "fake-person-01"
+            }
+          ],
+          "year": 2005,
+          "featured": true,
+          "note": "in press",
+          "doi": "10.1234/fake.workshop.1000",
+          "venue": "International Conference on Machine Learning Systems 2005",
+          "location": "West Archibaldton, Mississippi",
+          "dateDisplay": "April 2005",
+          "pdfUrl": "https://fake-repo.example.com/papers/fake-pub-workshop-01.pdf",
+          "url": "https://fake-repo.example.com/fake-pub-workshop-01"
+        },
+        "covers": [
+          "category=workshop",
+          "featured",
+          "has-note",
+          "has-doi",
+          "has-location",
+          "has-pdfUrl",
+          "has-url"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-workshop-02",
+          "category": "workshop",
+          "title": "Adaptive Self-Supervised Representations for Visual Question Answering in Autonomous Systems",
+          "authors": [
+            {
+              "name": "Mrs. Stella Schiller"
+            },
+            {
+              "name": "Trinity Kuhn"
+            }
+          ],
+          "year": 2008,
+          "featured": false,
+          "note": "Spotlight",
+          "venue": "Symposium on Intelligent Data Systems 2006",
+          "dateDisplay": "December 2006"
+        },
+        "covers": [
+          "category=workshop",
+          "not-featured",
+          "has-note",
+          "no-doi",
+          "no-location"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-workshop-03",
+          "category": "workshop",
+          "title": "Federated Neural Architecture Search for Object Detection in Healthcare",
+          "authors": [
+            {
+              "name": "Ephraim Grant"
+            },
+            {
+              "name": "Christie Weimann"
+            },
+            {
+              "name": "Layne Rowe"
+            }
+          ],
+          "year": 2011,
+          "featured": false,
+          "note": "cover featured",
+          "venue": "International Conference on Autonomous Agents 2007",
+          "dateDisplay": "August 2007"
+        },
+        "covers": [
+          "category=workshop",
+          "not-featured",
+          "has-note",
+          "no-doi",
+          "no-location"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-workshop-04",
+          "category": "workshop",
+          "title": "Lightweight Sparse Mixture-of-Experts for Anomaly Detection in Cybersecurity",
+          "authors": [
+            {
+              "name": "Isidro Toy"
+            },
+            {
+              "name": "Hugo Emard",
+              "personId": "fake-person-04"
+            },
+            {
+              "name": "Mr. Brian Emard"
+            },
+            {
+              "name": "Dr. Earl Rath"
+            },
+            {
+              "name": "et al."
+            }
+          ],
+          "year": 2014,
+          "featured": false,
+          "venue": "Conference on Trustworthy AI 2008",
+          "location": "Fort Baby, New Mexico",
+          "dateDisplay": "June 2008"
+        },
+        "covers": [
+          "category=workshop",
+          "not-featured",
+          "no-note",
+          "no-doi",
+          "has-location"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-workshop-05",
+          "category": "workshop",
+          "title": "Real-Time Graph Neural Networks for Language Understanding in Smart Grids",
+          "authors": [
+            {
+              "name": "Bertha Gutmann-Will"
+            }
+          ],
+          "year": 2017,
+          "featured": false,
+          "doi": "10.1234/fake.workshop.1004",
+          "venue": "International Workshop on Scalable Computing 2009",
+          "dateDisplay": "February 2009"
+        },
+        "covers": [
+          "category=workshop",
+          "not-featured",
+          "no-note",
+          "has-doi",
+          "no-location"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-workshop-06",
+          "category": "workshop",
+          "title": "Generalizable Attention Mechanisms for Image Segmentation in Robotics",
+          "authors": [
+            {
+              "name": "Joann Satterfield"
+            },
+            {
+              "name": "Jaqueline Adams"
+            }
+          ],
+          "year": 2020,
+          "featured": true,
+          "venue": "Symposium on Human-Centered AI 2010",
+          "dateDisplay": "August 2010"
+        },
+        "covers": [
+          "category=workshop",
+          "featured",
+          "no-note",
+          "no-doi",
+          "no-location"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-workshop-07",
+          "category": "workshop",
+          "title": "Uncertainty-Aware Reinforcement Learning for Time-Series Forecasting in Educational Technology",
+          "authors": [
+            {
+              "name": "Maximus Christiansen-Bergstrom"
+            },
+            {
+              "name": "Krista Hahn",
+              "personId": "fake-person-07"
+            },
+            {
+              "name": "Mr. Carl Gorczany"
+            },
+            {
+              "name": "Polly Leffler-Stokes I"
+            }
+          ],
+          "year": 2023,
+          "featured": false,
+          "note": "in press",
+          "venue": "International Conference on Applied Data Science 2011",
+          "location": "East Obie, Georgia",
+          "dateDisplay": "February 2011"
+        },
+        "covers": [
+          "category=workshop",
+          "not-featured",
+          "has-note",
+          "no-doi",
+          "has-location"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-workshop-08",
+          "category": "workshop",
+          "title": "Privacy-Preserving Contrastive Learning for Recommendation in Financial Systems",
+          "authors": [
+            {
+              "name": "Kennith Gleason"
+            },
+            {
+              "name": "Cory Douglas"
+            },
+            {
+              "name": "Dustin Daniel"
+            },
+            {
+              "name": "Miss Laura Schaden IV"
+            },
+            {
+              "name": "et al."
+            }
+          ],
+          "year": 2006,
+          "featured": false,
+          "note": "Spotlight",
+          "venue": "Workshop on Efficient Deep Learning 2012",
+          "dateDisplay": "August 2012",
+          "pdfUrl": "https://fake-repo.example.com/papers/fake-pub-workshop-08.pdf"
+        },
+        "covers": [
+          "category=workshop",
+          "not-featured",
+          "has-note",
+          "no-doi",
+          "no-location",
+          "has-pdfUrl"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-workshop-09",
+          "category": "workshop",
+          "title": "Energy-Efficient Diffusion Models for Speech Recognition in Wireless Networks",
+          "authors": [
+            {
+              "name": "Lindsey Aufderhar"
+            }
+          ],
+          "year": 2009,
+          "featured": false,
+          "note": "cover featured",
+          "doi": "10.1234/fake.workshop.1008",
+          "venue": "International Symposium on Robotics and Automation 2013",
+          "dateDisplay": "December 2013",
+          "url": "https://fake-repo.example.com/fake-pub-workshop-09"
+        },
+        "covers": [
+          "category=workshop",
+          "not-featured",
+          "has-note",
+          "has-doi",
+          "no-location",
+          "has-url"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-workshop-10",
+          "category": "workshop",
+          "title": "Scalable Transformer Architectures for Code Generation in Scientific Computing",
+          "authors": [
+            {
+              "name": "Adrienne Crooks"
+            },
+            {
+              "name": "Clint Hettinger",
+              "personId": "fake-person-10"
+            },
+            {
+              "name": "Alena Von"
+            }
+          ],
+          "year": 2012,
+          "featured": false,
+          "venue": "Conference on Networked Intelligent Systems 2014",
+          "location": "Ponce, Nevada",
+          "dateDisplay": "November 2014"
+        },
+        "covers": [
+          "category=workshop",
+          "not-featured",
+          "no-note",
+          "no-doi",
+          "has-location"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-workshop-11",
+          "category": "workshop",
+          "title": "Efficient Meta-Learning for Knowledge Graph Completion in Edge Devices",
+          "authors": [
+            {
+              "name": "Dolly Haag"
+            },
+            {
+              "name": "Remington O'Reilly"
+            },
+            {
+              "name": "Mona Kshlerin Sr."
+            }
+          ],
+          "year": 2015,
+          "featured": true,
+          "venue": "International Conference on Machine Learning Systems 2015",
+          "dateDisplay": "January 2015"
+        },
+        "covers": [
+          "category=workshop",
+          "featured",
+          "no-note",
+          "no-doi",
+          "no-location"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-workshop-12",
+          "category": "workshop",
+          "title": "Robust Self-Supervised Representations for Visual Question Answering in Autonomous Systems",
+          "authors": [
+            {
+              "name": "Miriam Vandervort"
+            },
+            {
+              "name": "Kaya Jerde-Schmidt"
+            },
+            {
+              "name": "Miss Carolyn Kovacek IV"
+            },
+            {
+              "name": "Johnathan Dickens-Brown"
+            },
+            {
+              "name": "et al."
+            }
+          ],
+          "year": 2018,
+          "featured": false,
+          "venue": "Symposium on Intelligent Data Systems 2016",
+          "dateDisplay": "August 2016"
+        },
+        "covers": [
+          "category=workshop",
+          "not-featured",
+          "no-note",
+          "no-doi",
+          "no-location"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-workshop-13",
+          "category": "workshop",
+          "title": "Interpretable Neural Architecture Search for Object Detection in Healthcare",
+          "authors": [
+            {
+              "name": "Terrell Turner"
+            },
+            {
+              "name": "Lempi Gerhold",
+              "personId": "fake-person-13"
+            }
+          ],
+          "year": 2021,
+          "featured": false,
+          "note": "in press",
+          "doi": "10.1234/fake.workshop.1012",
+          "venue": "International Conference on Autonomous Agents 2017",
+          "location": "South Sherman, Arkansas",
+          "dateDisplay": "March 2017"
+        },
+        "covers": [
+          "category=workshop",
+          "not-featured",
+          "has-note",
+          "has-doi",
+          "has-location"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-workshop-14",
+          "category": "workshop",
+          "title": "Adaptive Sparse Mixture-of-Experts for Anomaly Detection in Cybersecurity",
+          "authors": [
+            {
+              "name": "Evalyn Schroeder"
+            },
+            {
+              "name": "Hugh Carroll"
+            }
+          ],
+          "year": 2024,
+          "featured": false,
+          "note": "Spotlight",
+          "venue": "Conference on Trustworthy AI 2018",
+          "dateDisplay": "September 2018"
+        },
+        "covers": [
+          "category=workshop",
+          "not-featured",
+          "has-note",
+          "no-doi",
+          "no-location"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-workshop-15",
+          "category": "workshop",
+          "title": "Federated Graph Neural Networks for Language Understanding in Smart Grids",
+          "authors": [
+            {
+              "name": "Brett Abbott"
+            },
+            {
+              "name": "Elvera Hagenes III"
+            },
+            {
+              "name": "Brooke Hills II"
+            }
+          ],
+          "year": 2007,
+          "featured": false,
+          "note": "cover featured",
+          "venue": "International Workshop on Scalable Computing 2019",
+          "dateDisplay": "April 2019",
+          "pdfUrl": "https://fake-repo.example.com/papers/fake-pub-workshop-15.pdf"
+        },
+        "covers": [
+          "category=workshop",
+          "not-featured",
+          "has-note",
+          "no-doi",
+          "no-location",
+          "has-pdfUrl"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-workshop-16",
+          "category": "workshop",
+          "title": "Lightweight Attention Mechanisms for Image Segmentation in Robotics",
+          "authors": [
+            {
+              "name": "Dr. Laverne Mitchell"
+            },
+            {
+              "name": "Scott Hamill",
+              "personId": "fake-person-16"
+            },
+            {
+              "name": "Lyle Keebler"
+            },
+            {
+              "name": "Anne Considine"
+            },
+            {
+              "name": "et al."
+            }
+          ],
+          "year": 2010,
+          "featured": true,
+          "venue": "Symposium on Human-Centered AI 2020",
+          "location": "Armstrongborough, Idaho",
+          "dateDisplay": "January 2020"
+        },
+        "covers": [
+          "category=workshop",
+          "featured",
+          "no-note",
+          "no-doi",
+          "has-location"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-invited-paper-01",
+          "category": "invited-paper",
+          "title": "Interpretable Meta-Learning for Knowledge Graph Completion in Edge Devices",
+          "authors": [
+            {
+              "name": "Dr. Delbert Beatty"
+            },
+            {
+              "name": "Karen Moen",
+              "personId": "fake-person-01"
+            }
+          ],
+          "year": 2005,
+          "featured": true,
+          "note": "in press",
+          "doi": "10.1234/fake.invited-paper.1000",
+          "venue": "International Conference on Autonomous Agents 2005",
+          "location": "Parisianberg, August 2005",
+          "pdfUrl": "https://fake-repo.example.com/papers/fake-pub-invited-paper-01.pdf",
+          "url": "https://fake-repo.example.com/fake-pub-invited-paper-01"
+        },
+        "covers": [
+          "category=invited-paper",
+          "featured",
+          "has-note",
+          "has-doi",
+          "has-pdfUrl",
+          "has-url"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-invited-paper-02",
+          "category": "invited-paper",
+          "title": "Adaptive Self-Supervised Representations for Visual Question Answering in Autonomous Systems",
+          "authors": [
+            {
+              "name": "Maximilian Bednar"
+            },
+            {
+              "name": "Richard Trantow"
+            }
+          ],
+          "year": 2008,
+          "featured": false,
+          "note": "Spotlight",
+          "venue": "Conference on Trustworthy AI 2006",
+          "location": "Treutelview, December 2006"
+        },
+        "covers": [
+          "category=invited-paper",
+          "not-featured",
+          "has-note",
+          "no-doi"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-invited-paper-03",
+          "category": "invited-paper",
+          "title": "Federated Neural Architecture Search for Object Detection in Healthcare",
+          "authors": [
+            {
+              "name": "Adam Johns"
+            },
+            {
+              "name": "Rupert Koepp"
+            },
+            {
+              "name": "Maurice Hirthe MD"
+            }
+          ],
+          "year": 2011,
+          "featured": false,
+          "note": "cover featured",
+          "venue": "International Workshop on Scalable Computing 2007",
+          "location": "Fort Jameshaven, October 2007"
+        },
+        "covers": [
+          "category=invited-paper",
+          "not-featured",
+          "has-note",
+          "no-doi"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-invited-paper-04",
+          "category": "invited-paper",
+          "title": "Lightweight Sparse Mixture-of-Experts for Anomaly Detection in Cybersecurity",
+          "authors": [
+            {
+              "name": "Kari Reichel DVM"
+            },
+            {
+              "name": "Hugo Emard",
+              "personId": "fake-person-04"
+            },
+            {
+              "name": "Dr. Gloria Monahan"
+            },
+            {
+              "name": "Vena Mante Jr."
+            },
+            {
+              "name": "et al."
+            }
+          ],
+          "year": 2014,
+          "featured": false,
+          "venue": "Symposium on Human-Centered AI 2008",
+          "location": "Marvinboro, December 2008"
+        },
+        "covers": [
+          "category=invited-paper",
+          "not-featured",
+          "no-note",
+          "no-doi"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-invited-paper-05",
+          "category": "invited-paper",
+          "title": "Real-Time Graph Neural Networks for Language Understanding in Smart Grids",
+          "authors": [
+            {
+              "name": "Dr. Alexandra Turner"
+            }
+          ],
+          "year": 2017,
+          "featured": false,
+          "doi": "10.1234/fake.invited-paper.1004",
+          "venue": "International Conference on Applied Data Science 2009",
+          "location": "Abernathyland, March 2009"
+        },
+        "covers": [
+          "category=invited-paper",
+          "not-featured",
+          "no-note",
+          "has-doi"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-invited-paper-06",
+          "category": "invited-paper",
+          "title": "Generalizable Attention Mechanisms for Image Segmentation in Robotics",
+          "authors": [
+            {
+              "name": "Simon Powlowski"
+            },
+            {
+              "name": "Essie Heaney"
+            }
+          ],
+          "year": 2020,
+          "featured": true,
+          "venue": "Workshop on Efficient Deep Learning 2010",
+          "location": "Adeliaborough, October 2010"
+        },
+        "covers": [
+          "category=invited-paper",
+          "featured",
+          "no-note",
+          "no-doi"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-invited-paper-07",
+          "category": "invited-paper",
+          "title": "Uncertainty-Aware Reinforcement Learning for Time-Series Forecasting in Educational Technology",
+          "authors": [
+            {
+              "name": "Phil Luettgen"
+            },
+            {
+              "name": "Krista Hahn",
+              "personId": "fake-person-07"
+            },
+            {
+              "name": "Miss Nicholaus Larson"
+            },
+            {
+              "name": "Lucas Rice"
+            }
+          ],
+          "year": 2023,
+          "featured": false,
+          "note": "in press",
+          "venue": "International Symposium on Robotics and Automation 2011",
+          "location": "Alvenaport, July 2011"
+        },
+        "covers": [
+          "category=invited-paper",
+          "not-featured",
+          "has-note",
+          "no-doi"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-invited-paper-08",
+          "category": "invited-paper",
+          "title": "Privacy-Preserving Contrastive Learning for Recommendation in Financial Systems",
+          "authors": [
+            {
+              "name": "Leonard Flatley"
+            },
+            {
+              "name": "Vera Abernathy"
+            },
+            {
+              "name": "Olive Simonis"
+            },
+            {
+              "name": "Miss Phoebe Shields DDS"
+            },
+            {
+              "name": "et al."
+            }
+          ],
+          "year": 2006,
+          "featured": false,
+          "note": "Spotlight",
+          "venue": "Conference on Networked Intelligent Systems 2012",
+          "location": "Voncester, November 2012",
+          "pdfUrl": "https://fake-repo.example.com/papers/fake-pub-invited-paper-08.pdf"
+        },
+        "covers": [
+          "category=invited-paper",
+          "not-featured",
+          "has-note",
+          "no-doi",
+          "has-pdfUrl"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-invited-paper-09",
+          "category": "invited-paper",
+          "title": "Energy-Efficient Diffusion Models for Speech Recognition in Wireless Networks",
+          "authors": [
+            {
+              "name": "Lucas Ankunding"
+            }
+          ],
+          "year": 2009,
+          "featured": false,
+          "note": "cover featured",
+          "doi": "10.1234/fake.invited-paper.1008",
+          "venue": "International Conference on Machine Learning Systems 2013",
+          "location": "Noelstad, December 2013",
+          "url": "https://fake-repo.example.com/fake-pub-invited-paper-09"
+        },
+        "covers": [
+          "category=invited-paper",
+          "not-featured",
+          "has-note",
+          "has-doi",
+          "has-url"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-invited-paper-10",
+          "category": "invited-paper",
+          "title": "Scalable Transformer Architectures for Code Generation in Scientific Computing",
+          "authors": [
+            {
+              "name": "Levi Ullrich"
+            },
+            {
+              "name": "Clint Hettinger",
+              "personId": "fake-person-10"
+            },
+            {
+              "name": "Miguel Sporer-Corkery"
+            }
+          ],
+          "year": 2012,
+          "featured": false,
+          "venue": "Symposium on Intelligent Data Systems 2014",
+          "location": "South Beatrice, August 2014"
+        },
+        "covers": [
+          "category=invited-paper",
+          "not-featured",
+          "no-note",
+          "no-doi"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-invited-paper-11",
+          "category": "invited-paper",
+          "title": "Efficient Meta-Learning for Knowledge Graph Completion in Edge Devices",
+          "authors": [
+            {
+              "name": "Ms. Elizabeth Mueller"
+            },
+            {
+              "name": "Miss Lavina McCullough"
+            },
+            {
+              "name": "Amelia Schmidt"
+            }
+          ],
+          "year": 2015,
+          "featured": true,
+          "venue": "International Conference on Autonomous Agents 2015",
+          "location": "Conntown, December 2015"
+        },
+        "covers": [
+          "category=invited-paper",
+          "featured",
+          "no-note",
+          "no-doi"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-invited-paper-12",
+          "category": "invited-paper",
+          "title": "Robust Self-Supervised Representations for Visual Question Answering in Autonomous Systems",
+          "authors": [
+            {
+              "name": "Jasmin Koelpin"
+            },
+            {
+              "name": "Gardner McClure"
+            },
+            {
+              "name": "Al Von"
+            },
+            {
+              "name": "Sheila Kozey"
+            },
+            {
+              "name": "et al."
+            }
+          ],
+          "year": 2018,
+          "featured": false,
+          "venue": "Conference on Trustworthy AI 2016",
+          "location": "Lake Christ, February 2016"
+        },
+        "covers": [
+          "category=invited-paper",
+          "not-featured",
+          "no-note",
+          "no-doi"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-book-chapter-01",
+          "category": "book-chapter",
+          "title": "Robust Transformer Architectures for Code Generation in Scientific Computing",
+          "authors": [
+            {
+              "name": "Wendell Conn"
+            },
+            {
+              "name": "Karen Moen",
+              "personId": "fake-person-01"
+            }
+          ],
+          "year": 2005,
+          "featured": true,
+          "note": "in press",
+          "doi": "10.1234/fake.book-chapter.1000",
+          "book": "Handbook of Graph Neural Networks",
+          "editors": "Shelly Berge, Minerva Kuhic",
+          "publisher": "Fake Springer",
+          "onlineIsbn": "978-1000000000",
+          "pdfUrl": "https://fake-repo.example.com/papers/fake-pub-book-chapter-01.pdf",
+          "url": "https://fake-repo.example.com/fake-pub-book-chapter-01"
+        },
+        "covers": [
+          "category=book-chapter",
+          "featured",
+          "has-note",
+          "has-doi",
+          "has-editors",
+          "has-pdfUrl",
+          "has-url"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-book-chapter-02",
+          "category": "book-chapter",
+          "title": "Interpretable Meta-Learning for Knowledge Graph Completion in Edge Devices",
+          "authors": [
+            {
+              "name": "Jeanette Bergstrom DDS"
+            },
+            {
+              "name": "Webster Corwin"
+            }
+          ],
+          "year": 2008,
+          "featured": false,
+          "note": "Spotlight",
+          "book": "Handbook of Attention Mechanisms",
+          "publisher": "Fake Wiley"
+        },
+        "covers": [
+          "category=book-chapter",
+          "not-featured",
+          "has-note",
+          "no-doi",
+          "no-editors"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-book-chapter-03",
+          "category": "book-chapter",
+          "title": "Adaptive Self-Supervised Representations for Visual Question Answering in Autonomous Systems",
+          "authors": [
+            {
+              "name": "Hettie Schaden"
+            },
+            {
+              "name": "Kaden Mann"
+            },
+            {
+              "name": "Annie Rosenbaum"
+            }
+          ],
+          "year": 2011,
+          "featured": false,
+          "note": "cover featured",
+          "book": "Handbook of Reinforcement Learning",
+          "editors": "Hermina Brakus, Desiree Christiansen",
+          "publisher": "Fake Academic Press"
+        },
+        "covers": [
+          "category=book-chapter",
+          "not-featured",
+          "has-note",
+          "no-doi",
+          "has-editors"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-book-chapter-04",
+          "category": "book-chapter",
+          "title": "Federated Neural Architecture Search for Object Detection in Healthcare",
+          "authors": [
+            {
+              "name": "Floyd Hirthe I"
+            },
+            {
+              "name": "Hugo Emard",
+              "personId": "fake-person-04"
+            },
+            {
+              "name": "Bobbie Hackett"
+            },
+            {
+              "name": "Angelina Homenick"
+            },
+            {
+              "name": "et al."
+            }
+          ],
+          "year": 2014,
+          "featured": false,
+          "book": "Handbook of Contrastive Learning",
+          "publisher": "Fake Springer",
+          "onlineIsbn": "978-1000000003"
+        },
+        "covers": [
+          "category=book-chapter",
+          "not-featured",
+          "no-note",
+          "no-doi",
+          "no-editors"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-book-chapter-05",
+          "category": "book-chapter",
+          "title": "Lightweight Sparse Mixture-of-Experts for Anomaly Detection in Cybersecurity",
+          "authors": [
+            {
+              "name": "Colin Schulist"
+            }
+          ],
+          "year": 2017,
+          "featured": false,
+          "doi": "10.1234/fake.book-chapter.1004",
+          "book": "Handbook of Diffusion Models",
+          "editors": "Garfield Collier, Tim Kozey",
+          "publisher": "Fake Wiley"
+        },
+        "covers": [
+          "category=book-chapter",
+          "not-featured",
+          "no-note",
+          "has-doi",
+          "has-editors"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-book-chapter-06",
+          "category": "book-chapter",
+          "title": "Real-Time Graph Neural Networks for Language Understanding in Smart Grids",
+          "authors": [
+            {
+              "name": "Alan Schultz"
+            },
+            {
+              "name": "Vanessa McCullough MD"
+            }
+          ],
+          "year": 2020,
+          "featured": true,
+          "book": "Handbook of Transformer Architectures",
+          "publisher": "Fake Academic Press"
+        },
+        "covers": [
+          "category=book-chapter",
+          "featured",
+          "no-note",
+          "no-doi",
+          "no-editors"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-book-chapter-07",
+          "category": "book-chapter",
+          "title": "Generalizable Attention Mechanisms for Image Segmentation in Robotics",
+          "authors": [
+            {
+              "name": "Rogers Hammes"
+            },
+            {
+              "name": "Krista Hahn",
+              "personId": "fake-person-07"
+            },
+            {
+              "name": "Dayna Kling"
+            },
+            {
+              "name": "Margie Maggio"
+            }
+          ],
+          "year": 2023,
+          "featured": false,
+          "note": "in press",
+          "book": "Handbook of Meta-Learning",
+          "editors": "Roxanne Russel-Mills III, Mr. James Kling",
+          "publisher": "Fake Springer",
+          "onlineIsbn": "978-1000000006"
+        },
+        "covers": [
+          "category=book-chapter",
+          "not-featured",
+          "has-note",
+          "no-doi",
+          "has-editors"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-book-chapter-08",
+          "category": "book-chapter",
+          "title": "Uncertainty-Aware Reinforcement Learning for Time-Series Forecasting in Educational Technology",
+          "authors": [
+            {
+              "name": "Dallas Gulgowski"
+            },
+            {
+              "name": "Viola Wisozk"
+            },
+            {
+              "name": "Norma Torp"
+            },
+            {
+              "name": "Toney Lynch"
+            },
+            {
+              "name": "et al."
+            }
+          ],
+          "year": 2006,
+          "featured": false,
+          "note": "Spotlight",
+          "book": "Handbook of Self-Supervised Representations",
+          "publisher": "Fake Wiley",
+          "pdfUrl": "https://fake-repo.example.com/papers/fake-pub-book-chapter-08.pdf"
+        },
+        "covers": [
+          "category=book-chapter",
+          "not-featured",
+          "has-note",
+          "no-doi",
+          "no-editors",
+          "has-pdfUrl"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-book-chapter-09",
+          "category": "book-chapter",
+          "title": "Privacy-Preserving Contrastive Learning for Recommendation in Financial Systems",
+          "authors": [
+            {
+              "name": "Giles Kozey"
+            }
+          ],
+          "year": 2009,
+          "featured": false,
+          "note": "cover featured",
+          "doi": "10.1234/fake.book-chapter.1008",
+          "book": "Handbook of Neural Architecture Search",
+          "editors": "May Abshire, Dr. Theresa Koch",
+          "publisher": "Fake Academic Press",
+          "url": "https://fake-repo.example.com/fake-pub-book-chapter-09"
+        },
+        "covers": [
+          "category=book-chapter",
+          "not-featured",
+          "has-note",
+          "has-doi",
+          "has-editors",
+          "has-url"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-book-chapter-10",
+          "category": "book-chapter",
+          "title": "Energy-Efficient Diffusion Models for Speech Recognition in Wireless Networks",
+          "authors": [
+            {
+              "name": "Leanne Stark"
+            },
+            {
+              "name": "Clint Hettinger",
+              "personId": "fake-person-10"
+            },
+            {
+              "name": "Lacey Carroll"
+            }
+          ],
+          "year": 2012,
+          "featured": false,
+          "book": "Handbook of Sparse Mixture-of-Experts",
+          "publisher": "Fake Springer",
+          "onlineIsbn": "978-1000000009"
+        },
+        "covers": [
+          "category=book-chapter",
+          "not-featured",
+          "no-note",
+          "no-doi",
+          "no-editors"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-book-chapter-11",
+          "category": "book-chapter",
+          "title": "Scalable Transformer Architectures for Code Generation in Scientific Computing",
+          "authors": [
+            {
+              "name": "Ernest Stehr"
+            },
+            {
+              "name": "Pam Blanda"
+            },
+            {
+              "name": "Rasheed McLaughlin"
+            }
+          ],
+          "year": 2015,
+          "featured": true,
+          "book": "Handbook of Graph Neural Networks",
+          "editors": "Jazmin Schultz, Harold Franey",
+          "publisher": "Fake Wiley"
+        },
+        "covers": [
+          "category=book-chapter",
+          "featured",
+          "no-note",
+          "no-doi",
+          "has-editors"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-pub-book-chapter-12",
+          "category": "book-chapter",
+          "title": "Efficient Meta-Learning for Knowledge Graph Completion in Edge Devices",
+          "authors": [
+            {
+              "name": "Evelyn Ritchie"
+            },
+            {
+              "name": "Kenny Kerluke"
+            },
+            {
+              "name": "Lilly Koch"
+            },
+            {
+              "name": "Scott Cormier"
+            },
+            {
+              "name": "et al."
+            }
+          ],
+          "year": 2018,
+          "featured": false,
+          "book": "Handbook of Attention Mechanisms",
+          "publisher": "Fake Academic Press"
+        },
+        "covers": [
+          "category=book-chapter",
+          "not-featured",
+          "no-note",
+          "no-doi",
+          "no-editors"
+        ]
+      }
+    ],
+    "post": [
+      {
+        "record": {
+          "id": "fake-post-01",
+          "kind": "news",
+          "date": "2023-04-01",
+          "title": "Karen Moen Awarded Grant to Advance Object Detection Research",
+          "summary": "Our work explores scalable reinforcement learning for time-series forecasting in educational technology.",
+          "body": "Our work explores scalable reinforcement learning for time-series forecasting in educational technology. Recent progress in transformer architectures has opened new directions for code generation. This line of research aims to make object detection more lightweight for deployment in healthcare. We are particularly interested in how attention mechanisms can improve image segmentation under real-world constraints.",
+          "image": "/images/posts/fake-0.jpg",
+          "authorId": "fake-person-01",
+          "tags": [
+            "Hardware",
+            "Systems"
+          ],
+          "sourceUrl": "https://news.fake-university.example.edu/2020/announcement",
+          "relatedPublicationId": "fake-pub-patent-06"
+        },
+        "covers": [
+          "kind=news",
+          "has-body",
+          "has-author"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-post-02",
+          "kind": "blog",
+          "date": "2023-07-19",
+          "title": "Understanding Attention Mechanisms: A Primer on Anomaly Detection",
+          "summary": "We are particularly interested in how contrastive learning can improve recommendation under real-world constraints.",
+          "body": "We are particularly interested in how contrastive learning can improve recommendation under real-world constraints. Our work explores adaptive meta-learning for knowledge graph completion in edge devices. Recent progress in sparse mixture-of-experts has opened new directions for anomaly detection. This line of research aims to make time-series forecasting more privacy-preserving for deployment in educational technology.",
+          "tags": [
+            "AI",
+            "Systems"
+          ]
+        },
+        "covers": [
+          "kind=blog",
+          "has-body",
+          "no-author"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-post-03",
+          "kind": "news",
+          "date": "2023-05-08",
+          "title": "Lab Paper on Language Understanding Accepted to International Conference on Autonomous Agents",
+          "summary": "This line of research aims to make speech recognition more robust for deployment in wireless networks.",
+          "authorId": "fake-person-03"
+        },
+        "covers": [
+          "kind=news",
+          "no-body",
+          "has-author"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-post-04",
+          "kind": "blog",
+          "date": "2023-04-08",
+          "title": "Understanding Contrastive Learning: A Primer on Image Segmentation",
+          "summary": "Recent progress in transformer architectures has opened new directions for code generation.",
+          "body": "Recent progress in transformer architectures has opened new directions for code generation. This line of research aims to make object detection more lightweight for deployment in healthcare. We are particularly interested in how attention mechanisms can improve image segmentation under real-world constraints. Our work explores scalable diffusion models for speech recognition in wireless networks.",
+          "image": "/images/posts/fake-3.jpg",
+          "tags": [
+            "Systems",
+            "NLP"
+          ]
+        },
+        "covers": [
+          "kind=blog",
+          "has-body",
+          "no-author"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-post-05",
+          "kind": "news",
+          "date": "2025-05-28",
+          "title": "Janie Hartmann Awarded Grant to Advance Time-Series Forecasting Research",
+          "summary": "Our work explores adaptive meta-learning for knowledge graph completion in edge devices.",
+          "authorId": "fake-person-05",
+          "relatedPublicationId": "fake-pub-patent-10"
+        },
+        "covers": [
+          "kind=news",
+          "no-body",
+          "has-author"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-post-06",
+          "kind": "blog",
+          "date": "2025-06-03",
+          "title": "Understanding Transformer Architectures: A Primer on Recommendation",
+          "summary": "We are particularly interested in how self-supervised representations can improve visual question answering under real-world constraints.",
+          "body": "We are particularly interested in how self-supervised representations can improve visual question answering under real-world constraints. Our work explores generalizable graph neural networks for language understanding in smart grids. Recent progress in contrastive learning has opened new directions for recommendation. This line of research aims to make knowledge graph completion more robust for deployment in edge devices.",
+          "tags": [
+            "Hardware",
+            "Security"
+          ]
+        },
+        "covers": [
+          "kind=blog",
+          "has-body",
+          "no-author"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-post-07",
+          "kind": "news",
+          "date": "2023-01-06",
+          "title": "Lab Paper on Speech Recognition Accepted to International Conference on Applied Data Science",
+          "summary": "This line of research aims to make object detection more lightweight for deployment in healthcare.",
+          "body": "This line of research aims to make object detection more lightweight for deployment in healthcare. We are particularly interested in how attention mechanisms can improve image segmentation under real-world constraints. Our work explores scalable diffusion models for speech recognition in wireless networks. Recent progress in self-supervised representations has opened new directions for visual question answering.",
+          "image": "/images/posts/fake-6.jpg",
+          "authorId": "fake-person-07",
+          "sourceUrl": "https://news.fake-university.example.edu/2026/announcement"
+        },
+        "covers": [
+          "kind=news",
+          "has-body",
+          "has-author"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-post-08",
+          "kind": "blog",
+          "date": "2024-09-13",
+          "title": "Understanding Self-Supervised Representations: A Primer on Code Generation",
+          "summary": "Recent progress in sparse mixture-of-experts has opened new directions for anomaly detection.",
+          "body": "Recent progress in sparse mixture-of-experts has opened new directions for anomaly detection. This line of research aims to make time-series forecasting more privacy-preserving for deployment in educational technology. We are particularly interested in how transformer architectures can improve code generation under real-world constraints. Our work explores adaptive neural architecture search for object detection in healthcare.",
+          "tags": [
+            "Security",
+            "AI"
+          ]
+        },
+        "covers": [
+          "kind=blog",
+          "has-body",
+          "no-author"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-post-09",
+          "kind": "news",
+          "date": "2023-06-24",
+          "title": "Davin Bartoletti Awarded Grant to Advance Knowledge Graph Completion Research",
+          "summary": "Our work explores generalizable graph neural networks for language understanding in smart grids.",
+          "authorId": "fake-person-09",
+          "relatedPublicationId": "fake-pub-patent-14"
+        },
+        "covers": [
+          "kind=news",
+          "no-body",
+          "has-author"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-post-10",
+          "kind": "blog",
+          "date": "2024-05-24",
+          "title": "Understanding Sparse Mixture-of-Experts: A Primer on Visual Question Answering",
+          "summary": "We are particularly interested in how attention mechanisms can improve image segmentation under real-world constraints.",
+          "body": "We are particularly interested in how attention mechanisms can improve image segmentation under real-world constraints. Our work explores scalable diffusion models for speech recognition in wireless networks. Recent progress in self-supervised representations has opened new directions for visual question answering. This line of research aims to make language understanding more lightweight for deployment in smart grids.",
+          "image": "/images/posts/fake-9.jpg",
+          "tags": [
+            "Systems",
+            "Hardware"
+          ]
+        },
+        "covers": [
+          "kind=blog",
+          "has-body",
+          "no-author"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-post-11",
+          "kind": "news",
+          "date": "2023-04-05",
+          "title": "Lab Paper on Object Detection Accepted to International Conference on Machine Learning Systems",
+          "summary": "This line of research aims to make time-series forecasting more privacy-preserving for deployment in educational technology.",
+          "authorId": "fake-person-11",
+          "tags": [
+            "AI",
+            "Hardware"
+          ]
+        },
+        "covers": [
+          "kind=news",
+          "no-body",
+          "has-author"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-post-12",
+          "kind": "blog",
+          "date": "2024-01-04",
+          "title": "Understanding Attention Mechanisms: A Primer on Anomaly Detection",
+          "summary": "Recent progress in contrastive learning has opened new directions for recommendation.",
+          "body": "Recent progress in contrastive learning has opened new directions for recommendation. This line of research aims to make knowledge graph completion more robust for deployment in edge devices. We are particularly interested in how sparse mixture-of-experts can improve anomaly detection under real-world constraints. Our work explores generalizable reinforcement learning for time-series forecasting in educational technology.",
+          "tags": [
+            "Security",
+            "AI"
+          ]
+        },
+        "covers": [
+          "kind=blog",
+          "has-body",
+          "no-author"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-post-13",
+          "kind": "news",
+          "date": "2026-02-01",
+          "title": "Bare Minimum News Item",
+          "summary": "Only the required fields are set."
+        },
+        "covers": [
+          "minimal-record",
+          "kind=news"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-post-14",
+          "kind": "blog",
+          "date": "2026-03-15",
+          "title": "Understanding Graph Neural Networks: A Deep Dive",
+          "summary": "Our work explores generalizable reinforcement learning for time-series forecasting in educational technology.",
+          "body": "Our work explores generalizable reinforcement learning for time-series forecasting in educational technology. Recent progress in transformer architectures has opened new directions for code generation. This line of research aims to make object detection more robust for deployment in healthcare. We are particularly interested in how attention mechanisms can improve image segmentation under real-world constraints. Our work explores generalizable diffusion models for speech recognition in wireless networks. Recent progress in self-supervised representations has opened new directions for visual question answering.",
+          "image": "/images/posts/fake-maximal.jpg",
+          "authorId": "fake-person-01",
+          "tags": [
+            "AI",
+            "Systems",
+            "NLP"
+          ],
+          "sourceUrl": "https://news.fake-university.example.edu/2026/deep-dive",
+          "relatedPublicationId": "fake-pub-patent-01"
+        },
+        "covers": [
+          "maximal-record",
+          "kind=blog",
+          "links-to-featured-publication"
+        ]
+      }
+    ],
+    "site-meta": [
+      {
+        "record": {
+          "title": "X-Lab",
+          "tagline": "Accelerating AI Systems & Solutions",
+          "description": "X-Lab — cross-stack AI systems and solutions research.",
+          "keywords": [
+            "AI",
+            "machine learning",
+            "deep learning",
+            "AI systems",
+            "research"
+          ],
+          "nav": [
+            {
+              "label": "Home",
+              "path": "/"
+            },
+            {
+              "label": "Research",
+              "path": "/research"
+            },
+            {
+              "label": "Publications",
+              "path": "/publications",
+              "children": [
+                {
+                  "label": "Patents",
+                  "path": "/publications/patents"
+                },
+                {
+                  "label": "Journals",
+                  "path": "/publications/journals"
+                }
+              ]
+            },
+            {
+              "label": "Team",
+              "path": "/team"
+            }
+          ],
+          "contact": {
+            "email": "jinjun@buffalo.edu",
+            "phone": "(716) 645-4760",
+            "address": {
+              "line1": "316 Davis Hall",
+              "city": "Buffalo",
+              "state": "NY",
+              "zip": "14260-2500",
+              "country": "United States"
+            }
+          },
+          "primaryInstitutionId": "utsa",
+          "recruitingNotice": "We are recruiting PhD students and postdoctoral fellows to conduct cutting-edge AI systems and solutions research!",
+          "socialLinks": {
+            "github": "https://github.com/x-labs",
+            "linkedin": "https://linkedin.com/company/xlab",
+            "huggingface": "https://huggingface.co/x-labs"
+          },
+          "logo": {
+            "light": "/images/logos/xlab-black-logo.png",
+            "dark": "/images/logos/xlab-white-logo.png"
+          }
+        },
+        "covers": [
+          "maximal-record",
+          "every-optional-field-populated"
+        ]
+      }
+    ],
+    "recognition": [
+      {
+        "record": {
+          "id": "fake-recognition-01",
+          "category": "best-paper-award",
+          "personId": "fake-person-01",
+          "award": "Best Paper Award",
+          "year": 2008,
+          "venue": "International Conference on Machine Learning Systems 2008",
+          "org": "IBM Research",
+          "publicationId": "fake-pub-patent-01"
+        },
+        "covers": [
+          "category=best-paper-award",
+          "linked-to-publication",
+          "person-is-not-lab-lead-example"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-recognition-02",
+          "category": "best-paper-award",
+          "personId": "fake-person-02",
+          "award": "Best Paper Award",
+          "year": 2009,
+          "title": "Efficient Diffusion Models for Speech Recognition in Wireless Networks",
+          "venue": "Symposium on Intelligent Data Systems 2009"
+        },
+        "covers": [
+          "category=best-paper-award",
+          "no-publication-link",
+          "varied-person"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-recognition-03",
+          "category": "best-paper-award",
+          "personId": "fake-person-03",
+          "award": "Best Paper Award",
+          "year": 2010,
+          "venue": "International Conference on Autonomous Agents 2010",
+          "publicationId": "fake-pub-patent-03"
+        },
+        "covers": [
+          "category=best-paper-award",
+          "linked-to-publication",
+          "varied-person"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-recognition-04",
+          "category": "best-paper-award",
+          "personId": "fake-person-04",
+          "award": "Best Paper Award",
+          "year": 2011,
+          "title": "Interpretable Meta-Learning for Knowledge Graph Completion in Edge Devices",
+          "venue": "Conference on Trustworthy AI 2011",
+          "org": "NVIDIA"
+        },
+        "covers": [
+          "category=best-paper-award",
+          "no-publication-link",
+          "person-is-not-lab-lead-example"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-recognition-05",
+          "category": "best-paper-nomination",
+          "personId": "fake-person-05",
+          "award": "Best Paper Nomination",
+          "year": 2012,
+          "venue": "International Workshop on Scalable Computing 2012",
+          "publicationId": "fake-pub-patent-05"
+        },
+        "covers": [
+          "category=best-paper-nomination",
+          "linked-to-publication",
+          "varied-person"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-recognition-06",
+          "category": "best-paper-nomination",
+          "personId": "fake-person-06",
+          "award": "Best Paper Nomination",
+          "year": 2013,
+          "title": "Federated Neural Architecture Search for Object Detection in Healthcare",
+          "venue": "Symposium on Human-Centered AI 2013"
+        },
+        "covers": [
+          "category=best-paper-nomination",
+          "no-publication-link",
+          "varied-person"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-recognition-07",
+          "category": "best-paper-nomination",
+          "personId": "fake-person-07",
+          "award": "Best Paper Nomination",
+          "year": 2014,
+          "venue": "International Conference on Applied Data Science 2014",
+          "org": "IBM Research",
+          "publicationId": "fake-pub-patent-07"
+        },
+        "covers": [
+          "category=best-paper-nomination",
+          "linked-to-publication",
+          "person-is-not-lab-lead-example"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-recognition-08",
+          "category": "best-paper-nomination",
+          "personId": "fake-person-08",
+          "award": "Best Paper Nomination",
+          "year": 2015,
+          "title": "Real-Time Graph Neural Networks for Language Understanding in Smart Grids",
+          "venue": "Workshop on Efficient Deep Learning 2015"
+        },
+        "covers": [
+          "category=best-paper-nomination",
+          "no-publication-link",
+          "varied-person"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-recognition-09",
+          "category": "best-poster-award",
+          "personId": "fake-person-09",
+          "award": "Best Poster Award",
+          "year": 2016,
+          "venue": "International Symposium on Robotics and Automation 2016",
+          "publicationId": "fake-pub-patent-09"
+        },
+        "covers": [
+          "category=best-poster-award",
+          "linked-to-publication",
+          "varied-person"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-recognition-10",
+          "category": "best-poster-award",
+          "personId": "fake-person-10",
+          "award": "Best Poster Award",
+          "year": 2017,
+          "title": "Uncertainty-Aware Reinforcement Learning for Time-Series Forecasting in Educational Technology",
+          "venue": "Conference on Networked Intelligent Systems 2017",
+          "org": "NVIDIA"
+        },
+        "covers": [
+          "category=best-poster-award",
+          "no-publication-link",
+          "person-is-not-lab-lead-example"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-recognition-11",
+          "category": "best-poster-award",
+          "personId": "fake-person-11",
+          "award": "Best Poster Award",
+          "year": 2018,
+          "venue": "International Conference on Machine Learning Systems 2018",
+          "publicationId": "fake-pub-patent-11"
+        },
+        "covers": [
+          "category=best-poster-award",
+          "linked-to-publication",
+          "varied-person"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-recognition-12",
+          "category": "best-poster-award",
+          "personId": "fake-person-12",
+          "award": "Best Poster Award",
+          "year": 2019,
+          "title": "Energy-Efficient Diffusion Models for Speech Recognition in Wireless Networks",
+          "venue": "Symposium on Intelligent Data Systems 2019"
+        },
+        "covers": [
+          "category=best-poster-award",
+          "no-publication-link",
+          "varied-person"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-recognition-13",
+          "category": "international-competition-award",
+          "personId": "fake-person-13",
+          "award": "International Competition Award",
+          "year": 2020,
+          "venue": "International Conference on Autonomous Agents 2020",
+          "org": "IBM Research",
+          "publicationId": "fake-pub-patent-13"
+        },
+        "covers": [
+          "category=international-competition-award",
+          "linked-to-publication",
+          "person-is-not-lab-lead-example"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-recognition-14",
+          "category": "international-competition-award",
+          "personId": "fake-person-14",
+          "award": "International Competition Award",
+          "year": 2021,
+          "title": "Efficient Meta-Learning for Knowledge Graph Completion in Edge Devices",
+          "venue": "Conference on Trustworthy AI 2021"
+        },
+        "covers": [
+          "category=international-competition-award",
+          "no-publication-link",
+          "varied-person"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-recognition-15",
+          "category": "international-competition-award",
+          "personId": "fake-person-15",
+          "award": "International Competition Award",
+          "year": 2022,
+          "venue": "International Workshop on Scalable Computing 2022",
+          "publicationId": "fake-pub-patent-15"
+        },
+        "covers": [
+          "category=international-competition-award",
+          "linked-to-publication",
+          "varied-person"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-recognition-16",
+          "category": "international-competition-award",
+          "personId": "fake-person-16",
+          "award": "International Competition Award",
+          "year": 2023,
+          "title": "Interpretable Neural Architecture Search for Object Detection in Healthcare",
+          "venue": "Symposium on Human-Centered AI 2023",
+          "org": "NVIDIA"
+        },
+        "covers": [
+          "category=international-competition-award",
+          "no-publication-link",
+          "person-is-not-lab-lead-example"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-recognition-17",
+          "category": "professional-honor-award",
+          "personId": "fake-person-17",
+          "award": "Professional Honor Award",
+          "year": 2024,
+          "venue": "International Conference on Applied Data Science 2024",
+          "publicationId": "fake-pub-journal-01"
+        },
+        "covers": [
+          "category=professional-honor-award",
+          "linked-to-publication",
+          "varied-person"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-recognition-18",
+          "category": "professional-honor-award",
+          "personId": "fake-person-18",
+          "award": "Professional Honor Award",
+          "year": 2025,
+          "title": "Federated Graph Neural Networks for Language Understanding in Smart Grids",
+          "venue": "Workshop on Efficient Deep Learning 2025"
+        },
+        "covers": [
+          "category=professional-honor-award",
+          "no-publication-link",
+          "varied-person"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-recognition-19",
+          "category": "professional-honor-award",
+          "personId": "fake-person-19",
+          "award": "Professional Honor Award",
+          "year": 2008,
+          "venue": "International Symposium on Robotics and Automation 2008",
+          "org": "IBM Research",
+          "publicationId": "fake-pub-journal-03"
+        },
+        "covers": [
+          "category=professional-honor-award",
+          "linked-to-publication",
+          "person-is-not-lab-lead-example"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-recognition-20",
+          "category": "professional-honor-award",
+          "personId": "fake-person-20",
+          "award": "Professional Honor Award",
+          "year": 2009,
+          "title": "Real-Time Reinforcement Learning for Time-Series Forecasting in Educational Technology",
+          "venue": "Conference on Networked Intelligent Systems 2009"
+        },
+        "covers": [
+          "category=professional-honor-award",
+          "no-publication-link",
+          "varied-person"
+        ]
+      }
+    ],
+    "service-record": [
+      {
+        "record": {
+          "id": "fake-service-01",
+          "personId": "fake-person-04",
+          "category": "editorial",
+          "role": "Associate Editor",
+          "org": "International Conference on Machine Learning Systems",
+          "periodDisplay": "2008–2010",
+          "startYear": 2008,
+          "endYear": 2010,
+          "isOngoing": false
+        },
+        "covers": [
+          "category=editorial",
+          "period-pattern-0"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-service-02",
+          "personId": "fake-person-05",
+          "category": "editorial",
+          "role": "Program Committee Member",
+          "periodDisplay": "2009–present",
+          "startYear": 2009,
+          "isOngoing": true
+        },
+        "covers": [
+          "category=editorial",
+          "period-pattern-1"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-service-03",
+          "personId": "fake-person-06",
+          "category": "editorial",
+          "role": "Workshop Co-Chair",
+          "org": "International Conference on Autonomous Agents",
+          "periodDisplay": "2010, 2013, 2015–2016",
+          "isOngoing": false
+        },
+        "covers": [
+          "category=editorial",
+          "period-pattern-2"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-service-04",
+          "personId": "fake-person-07",
+          "category": "editorial",
+          "role": "Session Chair",
+          "periodDisplay": "2011"
+        },
+        "covers": [
+          "category=editorial",
+          "period-pattern-3"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-service-05",
+          "personId": "fake-person-08",
+          "category": "conference-leadership",
+          "role": "Review Committee Member",
+          "org": "International Workshop on Scalable Computing",
+          "periodDisplay": "Multiple semesters"
+        },
+        "covers": [
+          "category=conference-leadership",
+          "period-pattern-4"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-service-06",
+          "personId": "fake-person-09",
+          "category": "conference-leadership",
+          "role": "Panel Organizer",
+          "periodDisplay": "2013–2015",
+          "startYear": 2013,
+          "endYear": 2015,
+          "isOngoing": false
+        },
+        "covers": [
+          "category=conference-leadership",
+          "period-pattern-0"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-service-07",
+          "personId": "fake-person-10",
+          "category": "conference-leadership",
+          "role": "Track Chair",
+          "org": "International Conference on Applied Data Science",
+          "periodDisplay": "2014–present",
+          "startYear": 2014,
+          "isOngoing": true
+        },
+        "covers": [
+          "category=conference-leadership",
+          "period-pattern-1"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-service-08",
+          "personId": "fake-person-11",
+          "category": "conference-leadership",
+          "role": "Publicity Chair",
+          "periodDisplay": "2015, 2018, 2020–2021",
+          "isOngoing": false
+        },
+        "covers": [
+          "category=conference-leadership",
+          "period-pattern-2"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-service-09",
+          "personId": "fake-person-12",
+          "category": "technical-program-committee",
+          "role": "Area Chair",
+          "org": "International Symposium on Robotics and Automation",
+          "periodDisplay": "2016"
+        },
+        "covers": [
+          "category=technical-program-committee",
+          "period-pattern-3"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-service-10",
+          "personId": "fake-person-13",
+          "category": "technical-program-committee",
+          "role": "Guest Editor",
+          "periodDisplay": "Multiple semesters"
+        },
+        "covers": [
+          "category=technical-program-committee",
+          "period-pattern-4"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-service-11",
+          "personId": "fake-person-14",
+          "category": "technical-program-committee",
+          "role": "Associate Editor",
+          "org": "International Conference on Machine Learning Systems",
+          "periodDisplay": "2018–2020",
+          "startYear": 2018,
+          "endYear": 2020,
+          "isOngoing": false
+        },
+        "covers": [
+          "category=technical-program-committee",
+          "period-pattern-0"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-service-12",
+          "personId": "fake-person-15",
+          "category": "technical-program-committee",
+          "role": "Program Committee Member",
+          "periodDisplay": "2019–present",
+          "startYear": 2019,
+          "isOngoing": true
+        },
+        "covers": [
+          "category=technical-program-committee",
+          "period-pattern-1"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-service-13",
+          "personId": "fake-person-16",
+          "category": "community-service",
+          "role": "Workshop Co-Chair",
+          "org": "International Conference on Autonomous Agents",
+          "periodDisplay": "2020, 2023, 2025–2026",
+          "isOngoing": false
+        },
+        "covers": [
+          "category=community-service",
+          "period-pattern-2"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-service-14",
+          "personId": "fake-person-17",
+          "category": "community-service",
+          "role": "Session Chair",
+          "periodDisplay": "2021"
+        },
+        "covers": [
+          "category=community-service",
+          "period-pattern-3"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-service-15",
+          "personId": "fake-person-18",
+          "category": "community-service",
+          "role": "Review Committee Member",
+          "org": "International Workshop on Scalable Computing",
+          "periodDisplay": "Multiple semesters"
+        },
+        "covers": [
+          "category=community-service",
+          "period-pattern-4"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-service-16",
+          "personId": "fake-person-19",
+          "category": "community-service",
+          "role": "Panel Organizer",
+          "periodDisplay": "2023–2025",
+          "startYear": 2023,
+          "endYear": 2025,
+          "isOngoing": false
+        },
+        "covers": [
+          "category=community-service",
+          "period-pattern-0"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-service-17",
+          "personId": "fake-person-20",
+          "category": "university-service",
+          "role": "Track Chair",
+          "org": "International Conference on Applied Data Science",
+          "periodDisplay": "2024–present",
+          "startYear": 2024,
+          "isOngoing": true
+        },
+        "covers": [
+          "category=university-service",
+          "period-pattern-1"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-service-18",
+          "personId": "fake-person-21",
+          "category": "university-service",
+          "role": "Publicity Chair",
+          "periodDisplay": "2025, 2028, 2030–2031",
+          "isOngoing": false
+        },
+        "covers": [
+          "category=university-service",
+          "period-pattern-2"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-service-19",
+          "personId": "fake-person-22",
+          "category": "university-service",
+          "role": "Area Chair",
+          "org": "International Symposium on Robotics and Automation",
+          "periodDisplay": "2026"
+        },
+        "covers": [
+          "category=university-service",
+          "period-pattern-3"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-service-20",
+          "personId": "fake-person-23",
+          "category": "university-service",
+          "role": "Guest Editor",
+          "periodDisplay": "Multiple semesters"
+        },
+        "covers": [
+          "category=university-service",
+          "period-pattern-4"
+        ]
+      }
+    ],
+    "course": [
+      {
+        "record": {
+          "id": "fake-course-01",
+          "personId": "fake-person-08",
+          "title": "Introduction to Machine Learning",
+          "institutionId": "ub",
+          "termDisplay": "Fall 2024"
+        },
+        "covers": [
+          "institutionId-set",
+          "no-code"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-course-02",
+          "personId": "fake-person-09",
+          "code": "FAKE 110",
+          "title": "Advanced Computer Vision",
+          "institutionName": "Carnegie Mellon University",
+          "termDisplay": "Spring 2025"
+        },
+        "covers": [
+          "institutionName-fallback",
+          "has-code"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-course-03",
+          "personId": "fake-person-10",
+          "code": "FAKE 120",
+          "title": "Foundations of Deep Learning",
+          "institutionId": "uiuc",
+          "termDisplay": "Multiple semesters"
+        },
+        "covers": [
+          "institutionId-set",
+          "has-code"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-course-04",
+          "personId": "fake-person-11",
+          "title": "Distributed Systems",
+          "institutionName": "Columbia University",
+          "termDisplay": "Summer 2023"
+        },
+        "covers": [
+          "institutionName-fallback",
+          "no-code"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-course-05",
+          "personId": "fake-person-12",
+          "code": "FAKE 140",
+          "title": "Natural Language Processing",
+          "institutionId": "utsa",
+          "termDisplay": "Fall 2024"
+        },
+        "covers": [
+          "institutionId-set",
+          "has-code"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-course-06",
+          "personId": "fake-person-13",
+          "code": "FAKE 150",
+          "title": "Reinforcement Learning",
+          "institutionName": "Georgia Institute of Technology",
+          "termDisplay": "Spring 2025"
+        },
+        "covers": [
+          "institutionName-fallback",
+          "has-code"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-course-07",
+          "personId": "fake-person-14",
+          "title": "Data Structures and Algorithms",
+          "institutionId": "ub",
+          "termDisplay": "Multiple semesters"
+        },
+        "covers": [
+          "institutionId-set",
+          "no-code"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-course-08",
+          "personId": "fake-person-15",
+          "code": "FAKE 170",
+          "title": "AI Systems Design",
+          "institutionName": "Carnegie Mellon University",
+          "termDisplay": "Summer 2023"
+        },
+        "covers": [
+          "institutionName-fallback",
+          "has-code"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-course-09",
+          "personId": "fake-person-16",
+          "code": "FAKE 180",
+          "title": "Robotics and Perception",
+          "institutionId": "uiuc",
+          "termDisplay": "Fall 2024"
+        },
+        "covers": [
+          "institutionId-set",
+          "has-code"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-course-10",
+          "personId": "fake-person-17",
+          "title": "Applied Statistics for AI",
+          "institutionName": "Columbia University",
+          "termDisplay": "Spring 2025"
+        },
+        "covers": [
+          "institutionName-fallback",
+          "no-code"
+        ]
+      }
+    ],
+    "sponsor": [
+      {
+        "record": {
+          "id": "fake-sponsor-01",
+          "name": "IBM Research",
+          "logo": "/images/sponsors/fake-0.png"
+        },
+        "covers": [
+          "no-url",
+          "grantNumbers-count-0"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-sponsor-02",
+          "name": "Google",
+          "logo": "/images/sponsors/fake-1.png",
+          "url": "https://google.example.com",
+          "grantNumbers": [
+            "FAKE-5655352"
+          ]
+        },
+        "covers": [
+          "has-url",
+          "grantNumbers-count-1"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-sponsor-03",
+          "name": "National Science Foundation",
+          "logo": "/images/sponsors/fake-2.png",
+          "url": "https://nationalsciencefoundation.example.com",
+          "grantNumbers": [
+            "FAKE-1740101",
+            "FAKE-7616317",
+            "FAKE-3549029"
+          ]
+        },
+        "covers": [
+          "has-url",
+          "grantNumbers-count-3"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-sponsor-04",
+          "name": "NVIDIA",
+          "logo": "/images/sponsors/fake-3.png"
+        },
+        "covers": [
+          "no-url",
+          "grantNumbers-count-0"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-sponsor-05",
+          "name": "Microsoft Research",
+          "logo": "/images/sponsors/fake-4.png",
+          "url": "https://microsoftresearch.example.com",
+          "grantNumbers": [
+            "FAKE-5655352"
+          ]
+        },
+        "covers": [
+          "has-url",
+          "grantNumbers-count-1"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-sponsor-06",
+          "name": "DARPA",
+          "logo": "/images/sponsors/fake-5.png",
+          "url": "https://darpa.example.com",
+          "grantNumbers": [
+            "FAKE-1740101",
+            "FAKE-7616317",
+            "FAKE-3549029"
+          ]
+        },
+        "covers": [
+          "has-url",
+          "grantNumbers-count-3"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-sponsor-07",
+          "name": "IBM Research",
+          "logo": "/images/sponsors/fake-6.png"
+        },
+        "covers": [
+          "no-url",
+          "grantNumbers-count-0"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-sponsor-08",
+          "name": "Google",
+          "logo": "/images/sponsors/fake-7.png",
+          "url": "https://google.example.com",
+          "grantNumbers": [
+            "FAKE-5655352"
+          ]
+        },
+        "covers": [
+          "has-url",
+          "grantNumbers-count-1"
+        ]
+      },
+      {
+        "record": {
+          "id": "fake-sponsor-09",
+          "name": "National Science Foundation",
+          "logo": "/images/sponsors/fake-8.png",
+          "url": "https://nationalsciencefoundation.example.com",
+          "grantNumbers": [
+            "FAKE-1740101",
+            "FAKE-7616317",
+            "FAKE-3549029"
+          ]
+        },
+        "covers": [
+          "has-url",
+          "grantNumbers-count-3"
+        ]
+      }
+    ]
+  },
+  "coverage": {
+    "institution": {
+      "totalRecords": 3,
+      "tagCounts": {
+        "real-institution": 3
+      }
+    },
+    "person": {
+      "totalRecords": 29,
+      "tagCounts": {
+        "personType=lab-lead": 3,
+        "single-affiliation": 17,
+        "typical-richness": 7,
+        "personType=postdoc": 3,
+        "personType=research-staff": 3,
+        "personType=phd-student": 3,
+        "personType=masters-student": 3,
+        "personType=undergrad-student": 3,
+        "personType=grad-collaborator": 3,
+        "minimal-record": 1,
+        "no-optional-fields": 1,
+        "0-affiliations": 5,
+        "no-labTenure": 1,
+        "multi-institution-3": 1,
+        "mixed-affiliation-types": 1,
+        "cross-institution": 1,
+        "overlapping-affiliation-history": 1,
+        "4-affiliations": 1,
+        "founder-no-labTenure": 1,
+        "rich-links": 1,
+        "full-profile": 1,
+        "profile-on-non-lead": 1,
+        "rich-richness": 1,
+        "alumni": 1,
+        "affiliation-also-ended": 1,
+        "labTenure-and-affiliation-both-end": 1,
+        "labTenure-leftYear-explicit-null": 1,
+        "current-member": 1,
+        "unicode-name": 1,
+        "cjk-characters": 1,
+        "many-secondary-titles-4": 1,
+        "long-tenure-7yr": 1,
+        "filler": 14
+      }
+    },
+    "research-theme": {
+      "totalRecords": 8,
+      "tagCounts": {
+        "all-fields": 2,
+        "minimal-fields": 1,
+        "no-longDescription": 2,
+        "no-icon": 1,
+        "no-order": 3,
+        "long-description": 1,
+        "short-description": 1,
+        "zero-linked-projects": 1
+      }
+    },
+    "project": {
+      "totalRecords": 24,
+      "tagCounts": {
+        "status=active": 8,
+        "theme-set": 12,
+        "link-pattern-0": 4,
+        "no-links": 4,
+        "0-contributors": 8,
+        "theme-null": 12,
+        "link-pattern-1": 4,
+        "has-links": 20,
+        "contributors-count-1": 8,
+        "link-pattern-2": 4,
+        "contributors-count-2": 8,
+        "link-pattern-3": 4,
+        "link-pattern-4": 4,
+        "link-pattern-5": 4,
+        "status=deployed": 8,
+        "status=archived": 8
+      }
+    },
+    "publication": {
+      "totalRecords": 90,
+      "tagCounts": {
+        "category=patent": 16,
+        "featured": 22,
+        "has-note": 48,
+        "has-doi": 23,
+        "international-jurisdiction": 3,
+        "has-pdfUrl": 16,
+        "has-url": 13,
+        "not-featured": 68,
+        "no-doi": 67,
+        "us-docket-style": 13,
+        "no-note": 42,
+        "category=journal": 16,
+        "no-volumeIssue": 4,
+        "has-volumeIssue": 12,
+        "category=conference": 18,
+        "has-location": 12,
+        "no-location": 22,
+        "category=workshop": 16,
+        "category=invited-paper": 12,
+        "category=book-chapter": 12,
+        "has-editors": 6,
+        "no-editors": 6
+      }
+    },
+    "post": {
+      "totalRecords": 14,
+      "tagCounts": {
+        "kind=news": 7,
+        "has-body": 8,
+        "has-author": 6,
+        "kind=blog": 7,
+        "no-author": 6,
+        "no-body": 4,
+        "minimal-record": 1,
+        "maximal-record": 1,
+        "links-to-featured-publication": 1
+      }
+    },
+    "site-meta": {
+      "totalRecords": 1,
+      "tagCounts": {
+        "maximal-record": 1,
+        "every-optional-field-populated": 1
+      }
+    },
+    "recognition": {
+      "totalRecords": 20,
+      "tagCounts": {
+        "category=best-paper-award": 4,
+        "linked-to-publication": 10,
+        "person-is-not-lab-lead-example": 7,
+        "no-publication-link": 10,
+        "varied-person": 13,
+        "category=best-paper-nomination": 4,
+        "category=best-poster-award": 4,
+        "category=international-competition-award": 4,
+        "category=professional-honor-award": 4
+      }
+    },
+    "service-record": {
+      "totalRecords": 20,
+      "tagCounts": {
+        "category=editorial": 4,
+        "period-pattern-0": 4,
+        "period-pattern-1": 4,
+        "period-pattern-2": 4,
+        "period-pattern-3": 4,
+        "category=conference-leadership": 4,
+        "period-pattern-4": 4,
+        "category=technical-program-committee": 4,
+        "category=community-service": 4,
+        "category=university-service": 4
+      }
+    },
+    "course": {
+      "totalRecords": 10,
+      "tagCounts": {
+        "institutionId-set": 5,
+        "no-code": 4,
+        "institutionName-fallback": 5,
+        "has-code": 6
+      }
+    },
+    "sponsor": {
+      "totalRecords": 9,
+      "tagCounts": {
+        "no-url": 3,
+        "grantNumbers-count-0": 3,
+        "has-url": 6,
+        "grantNumbers-count-1": 3,
+        "grantNumbers-count-3": 3
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+id: conference-2021-mlharness-a-scalable-benchmarking-system
+category: conference
+thumbnail: /images/publications/conference-2021-mlharness-a-scalable-benchmarking-system/thumbnail.png
+title: "MLHarness: A Scalable Benchmarking System for MLCommons"
+authors:
+  - name: Y. Chang et al.
+venue: Bench'21
+year: 2021
+dateDisplay: November 2021
+themeIds:
+  - ai-tools

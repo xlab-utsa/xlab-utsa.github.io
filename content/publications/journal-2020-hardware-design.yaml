@@ -1,0 +1,20 @@
+id: journal-2020-hardware-design
+category: journal
+title: Hardware Design and the Competency Awareness of a Neural Network
+authors:
+  - name: Y. Ding
+  - name: W. Jiang
+  - name: Q. Lou
+  - name: J. Liu
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: X. Hu
+  - name: X. Xu
+  - name: Y. Shi
+venue: Nature Electronics
+volumeIssue: Vol. 3
+year: 2020
+month: September
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-journals.yaml
+  note: 40 journal articles, 2003-2021, verbatim from https://www.xlab-ub.com/publication/journals. authors[].personId is only set for "J. Xiong" -> jinjun-xiong; all other co-authors are name-only (no Person record to confidently match).

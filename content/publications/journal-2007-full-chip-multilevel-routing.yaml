@@ -1,0 +1,13 @@
+id: journal-2007-full-chip-multilevel-routing
+category: journal
+title: Full-chip Multilevel Routing for Power and Signal Integrity
+authors:
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: L. He
+venue: Integration - the VLSI Journal
+volumeIssue: Vol. 40, pp. 226-234
+year: 2007
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-journals.yaml
+  note: 40 journal articles, 2003-2021, verbatim from https://www.xlab-ub.com/publication/journals. authors[].personId is only set for "J. Xiong" -> jinjun-xiong; all other co-authors are name-only (no Person record to confidently match).

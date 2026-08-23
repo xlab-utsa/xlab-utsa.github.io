@@ -1,0 +1,9 @@
+id: ub
+name: University at Buffalo
+shortName: UB
+url: https://www.buffalo.edu
+city: Buffalo
+state: NY
+country: United States
+_meta:
+  note: "Institutions the lab's people are (or have been) affiliated with. Scope: only workplaces/affiliations — NOT a general org registry. Education-only schools (e.g. UCLA, Tsinghua) live as free text on Person.profile.education instead, since they're never referenced by a live Affiliation record."

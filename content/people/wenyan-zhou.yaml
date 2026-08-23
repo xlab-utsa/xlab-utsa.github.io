@@ -1,0 +1,15 @@
+id: wenyan-zhou
+name: Wenyan Zhou
+personType: phd-student
+roleTitle: PhD Student, 1st Year, Computer Science & Engineering
+links:
+  email: wzhou37@buffalo.edu
+affiliations:
+  - institutionId: ub
+    department: Computer Science & Engineering
+    roleTitle: PhD Student
+    type: primary
+photo: /images/people/wenyan-zhou.png
+_meta:
+  source: data-extraction/sources/01-xlab-test-web-hugo-site/extracted/team-phd.yaml
+  note: "No joined/left year in source — labTenure left absent per SPEC.md §7 rather than invented. photo omitted: public/images/people/wenyan-zhou.png is a generated cartoon illustration, not a real headshot — falls back to the initials tile instead."

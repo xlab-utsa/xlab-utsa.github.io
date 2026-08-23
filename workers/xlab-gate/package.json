@@ -1,0 +1,19 @@
+{
+  "name": "xlab-gate",
+  "private": true,
+  "type": "module",
+  "description": "Auth + repo-write gateway for X-Lab Studio. Deployed to Cloudflare Workers.",
+  "scripts": {
+    "dev": "wrangler dev",
+    "predeploy": "tsc --noEmit",
+    "deploy": "wrangler deploy && node -e \"setTimeout(()=>{},9000)\" && npm run smoke",
+    "smoke": "node smoke.mjs",
+    "typecheck": "tsc --noEmit",
+    "tail": "wrangler tail"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260811.1",
+    "typescript": "^5.9.2",
+    "wrangler": "^4.123.0"
+  }
+}

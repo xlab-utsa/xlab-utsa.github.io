@@ -1,0 +1,11 @@
+id: conference-2021-why-lottery-ticket-wins
+category: conference
+thumbnail: /images/publications/conference-2021-why-lottery-ticket-wins/thumbnail.png
+title: Why Lottery Ticket Wins? A Theoretical Perspective of Sample Complexity on Sparse Neural Networks
+authors:
+  - name: S. Zhang et al.
+venue: NeurIPS
+year: 2021
+dateDisplay: December 2021
+themeIds:
+  - ai-algorithms

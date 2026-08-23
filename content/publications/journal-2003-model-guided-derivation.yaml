@@ -1,0 +1,14 @@
+id: journal-2003-model-guided-derivation
+category: journal
+title: Model-guided derivation of lumbar vertebral kinematics in vivo reveals the difference between external marker-defined and internal segmental rotations
+authors:
+  - name: X. Zhang
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: Journal of Biomechanics
+volumeIssue: Vol. 36, No. 1, pp. 9-17
+year: 2003
+month: January
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-journals.yaml
+  note: 40 journal articles, 2003-2021, verbatim from https://www.xlab-ub.com/publication/journals. authors[].personId is only set for "J. Xiong" -> jinjun-xiong; all other co-authors are name-only (no Person record to confidently match).

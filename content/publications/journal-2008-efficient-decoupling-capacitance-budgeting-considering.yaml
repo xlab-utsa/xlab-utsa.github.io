@@ -1,0 +1,16 @@
+id: journal-2008-efficient-decoupling-capacitance-budgeting-considering
+category: journal
+title: Efficient Decoupling Capacitance Budgeting Considering Operation and Process Variations
+authors:
+  - name: Y. Shi
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: C. Liu
+  - name: L. He
+venue: IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems
+volumeIssue: Vol. 27, No. 7, pp. 1253-1263
+year: 2008
+month: July
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-journals.yaml
+  note: 40 journal articles, 2003-2021, verbatim from https://www.xlab-ub.com/publication/journals. authors[].personId is only set for "J. Xiong" -> jinjun-xiong; all other co-authors are name-only (no Person record to confidently match).

@@ -1,0 +1,11 @@
+id: nomination-2007-compact-modeling
+category: best-paper-nomination
+personId: jinjun-xiong
+award: Best Paper Award Nomination
+year: 2007
+title: Compact Modeling of Variational Waveforms
+venue: ACM/IEEE International Conference on Computer Aided Design (ICCAD)
+publicationId: conference-2007-compact-modeling
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/recognitions.yaml
+  note: (best_paper_award_nominations). All 8 belong to the lab lead. publicationId matched by title+venue+year against content/publications/conferences.yaml — one title ("Statistical Path Selection for At-Speed Test" vs. the matched pub's "...At-speed Testing") differs by a word, kept anyway since venue+year match exactly and no better candidate exists. Per-person attribution deferred, see SPEC.md §7.

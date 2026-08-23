@@ -1,0 +1,8 @@
+id: conference-2020-benanza-automatic-ubenchmark-generation
+category: conference
+title: "Benanza: Automatic uBenchmark Generation to Compute Lower-bound Latency and Inform Optimizations of Deep Learning Models on GPUs"
+authors:
+  - name: C. Li et al.
+venue: IPDPS
+year: 2020
+dateDisplay: May 2020

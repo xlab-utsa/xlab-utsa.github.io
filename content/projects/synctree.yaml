@@ -1,0 +1,9 @@
+id: synctree
+title: SyncTREE
+tagline: Fast timing analysis for integrated circuit design through physics-informed tree-based graph neural networks.
+thumbnail: /images/projects/synctree/thumbnail.png
+links:
+  code: https://www.google.com/search?q=SyncTREE+GitHub
+themeIds:
+  - ai-accelerators
+projectStatus: active

@@ -1,0 +1,18 @@
+id: journal-2021-quantum-neural-network-codesign
+category: journal
+thumbnail: /images/publications/journal-2021-quantum-neural-network-codesign/thumbnail.png
+title: A Co-Design Framework of Neural Networks and Quantum Circuits Towards Quantum Advantage
+authors:
+  - name: W. Jiang
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: Y. Shi
+venue: Nature Communications
+volumeIssue: Vol. 12, No. 579
+year: 2021
+month: January
+themeIds:
+  - ai-algorithms
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-journals.yaml
+  note: 40 journal articles, 2003-2021, verbatim from https://www.xlab-ub.com/publication/journals. authors[].personId is only set for "J. Xiong" -> jinjun-xiong; all other co-authors are name-only (no Person record to confidently match).

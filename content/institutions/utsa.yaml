@@ -1,0 +1,9 @@
+id: utsa
+name: The University of Texas at San Antonio
+shortName: UTSA
+url: https://www.utsa.edu
+city: San Antonio
+state: TX
+country: United States
+_meta:
+  note: "Institutions the lab's people are (or have been) affiliated with. Scope: only workplaces/affiliations — NOT a general org registry. Education-only schools (e.g. UCLA, Tsinghua) live as free text on Person.profile.education instead, since they're never referenced by a live Affiliation record."

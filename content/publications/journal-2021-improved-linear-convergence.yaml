@@ -1,0 +1,17 @@
+id: journal-2021-improved-linear-convergence
+category: journal
+title: Improved Linear Convergence of Training CNNs with Generalizability Guarantees
+authors:
+  - name: S. Zhang
+  - name: M. Wang
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: S. Liu
+  - name: P. Chen
+venue: IEEE Transactions on Neural Networks and Learning Systems (TNNLS)
+volumeIssue: Vol. 32, Issue 6, pp. 2622-2635
+year: 2021
+month: June
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-journals.yaml
+  note: 40 journal articles, 2003-2021, verbatim from https://www.xlab-ub.com/publication/journals. authors[].personId is only set for "J. Xiong" -> jinjun-xiong; all other co-authors are name-only (no Person record to confidently match).

@@ -1,0 +1,17 @@
+id: journal-2021-enabling-design-methodologies
+category: journal
+title: "Enabling Design Methodologies and Future Trends for Edge AI: Specialization and Co-design"
+authors:
+  - name: C. Hao
+  - name: J. Dotzel
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: L. Benini
+  - name: Z. Zhang
+  - name: D. Chen
+venue: IEEE Design & Test
+year: 2021
+note: in press
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-journals.yaml
+  note: 40 journal articles, 2003-2021, verbatim from https://www.xlab-ub.com/publication/journals. authors[].personId is only set for "J. Xiong" -> jinjun-xiong; all other co-authors are name-only (no Person record to confidently match).

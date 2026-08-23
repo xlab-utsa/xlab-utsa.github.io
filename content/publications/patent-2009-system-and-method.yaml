@@ -1,0 +1,13 @@
+id: patent-2009-system-and-method
+category: patent
+title: System and Method for Generating Test Patterns for Use in At-Speed Testing
+authors:
+  - name: C. Visweswariah
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: V. Zolotov
+docketNo: YOR920090044US1
+filedDate: 2009-05
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-patents.yaml
+  note: "58 patents, 2000-2021, verbatim from https://www.xlab-ub.com/publication/patents. Verification finding: source data's \"date\" field is ambiguous (not clearly filed vs. issued for older/China-patent entries) -- mapped to filedDate as a best guess wherever only a bare \"date\" key was given. Every explicit \"filed: ...\" key was mapped straight to filedDate, and every explicit \"issued: ...\" key straight to issuedDate; three entries give both and get both fields. One entry (\"Optimized Asset Maintenance and Replacement Schedule\") has no date/filed/issued field in the source at all -- its id year is inferred from its position in the list; it carries no filedDate/issuedDate since there's nothing to map. authors[].personId is only set for \"J. Xiong\" -> jinjun-xiong, the one author we can confidently match to a real content/people/ record from the initials alone. All other co-inventors are external (IBM/UB/other collaborator names) with no Person record -- left as name-only entries, not guessed at."

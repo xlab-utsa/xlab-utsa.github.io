@@ -1,0 +1,15 @@
+id: book-chapter-2019-machine-learning
+category: book-chapter
+title: Machine Learning for VLSI Chip Testing
+authors:
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: Y. Zhu
+  - name: J. He
+book: Machine Learning in VLSI Computer-Aided Design
+editors: I. Elfadel, D. Boning, X. Li
+publisher: Springer
+year: 2019
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-book-chapters.yaml
+  note: 3 book chapters, 2011-2019, verbatim from https://www.xlab-ub.com/publication/book-chapters. A 4th source entry ("Mastering Flash 4, Illustrated", 2000) is excluded -- it's a full authored book, not a chapter (flagged as excluded_ambiguous_entry in the source). One entry's source uses "isbn" rather than "online_isbn" -- mapped to onlineIsbn anyway, the closest schema field (no better fit exists).

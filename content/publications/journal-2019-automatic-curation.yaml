@@ -1,0 +1,22 @@
+id: journal-2019-automatic-curation
+category: journal
+title: Automatic Curation of Sports Highlights using Multimodal Excitement Features
+authors:
+  - name: M. Merler
+  - name: K. Mac
+  - name: D. Joshi
+  - name: Q. Nguyen
+  - name: S. Hammer
+  - name: J. Kent
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: M. Do
+  - name: J. Smith
+  - name: R. Feris
+venue: IEEE Transactions on MultiMedia (TMM)
+volumeIssue: Vol. 21, Issue 5
+year: 2019
+month: May
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-journals.yaml
+  note: 40 journal articles, 2003-2021, verbatim from https://www.xlab-ub.com/publication/journals. authors[].personId is only set for "J. Xiong" -> jinjun-xiong; all other co-authors are name-only (no Person record to confidently match).

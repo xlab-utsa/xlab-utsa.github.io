@@ -1,0 +1,10 @@
+id: best-paper-2006-spatial-correlation
+category: best-paper-award
+personId: jinjun-xiong
+award: Best Paper Award
+year: 2006
+title: Robust Extraction of Spatial Correlation
+venue: ACM/IEEE International Symposium on Physical Design (ISPD)
+publicationId: conference-2006-robust-extraction
+_meta:
+  note: "DRY-RUN: only 1 of 7 real best-paper awards mapped here to validate the Publication/Recognition cross-link (publicationId) against a real record. Full list: data-extraction/sources/02-xlab-ub-com-live-site/extracted/recognitions.yaml Verification finding: the source page lists this award under Dr. Xiong's own \"Recognitions\" page even though the paper's listed authors are \"C. Li et al.\" (he's not first author). personId is set to him here because that matches how the source presented it (his personal accomplishments page), but this is worth a real decision during the merge pass: should team achievements like this actually be attributed to the paper's actual authors instead, once those authors have Person records?"

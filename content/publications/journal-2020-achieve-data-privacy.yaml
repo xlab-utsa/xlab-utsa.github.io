@@ -1,0 +1,14 @@
+id: journal-2020-achieve-data-privacy
+category: journal
+title: Achieve Data Privacy and Clustering Accuracy Simultaneously Through Quantized Data Recovery
+authors:
+  - name: R. Wang
+  - name: M. Wang
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: EURASIP Journal on Advances in Signal Processing
+year: 2020
+month: May
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-journals.yaml
+  note: 40 journal articles, 2003-2021, verbatim from https://www.xlab-ub.com/publication/journals. authors[].personId is only set for "J. Xiong" -> jinjun-xiong; all other co-authors are name-only (no Person record to confidently match).

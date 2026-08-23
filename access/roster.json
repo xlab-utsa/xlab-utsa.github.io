@@ -1,0 +1,33 @@
+{
+  "_comment": [
+    "Who may sign in to X-Lab Studio, and as what. Managed through Studio's roster screen.",
+    "",
+    "Deliberately OUTSIDE content/ so it never lands in public/content-snapshot.json.",
+    "It lives in the repo (not a database) so that 'who had access when' stays answerable",
+    "forever from git history.",
+    "",
+    "role:     admin  - full write access, can approve submissions, manages the roster",
+    "          editor - full content write access, can approve submissions",
+    "          member - edits only their own person record; may CREATE publications,",
+    "                   recognitions and posts, which then wait for approval",
+    "personId: the content/people/<id>.yaml this person owns. Required for members.",
+    "githubLogin: only needed for admins who sign in with GitHub instead of email.",
+    "active:   set false to revoke access without losing the historical record."
+  ],
+  "members": [
+    {
+      "email": "sribhargava2002@gmail.com",
+      "name": "Sri Bhargava Bhamidi",
+      "role": "admin",
+      "githubLogin": "Bhargava1424",
+      "active": true
+    },
+    {
+      "email": "jinjun@utsa.edu",
+      "name": "Jinjun Xiong",
+      "role": "admin",
+      "active": true,
+      "personId": "jinjun-xiong"
+    }
+  ]
+}

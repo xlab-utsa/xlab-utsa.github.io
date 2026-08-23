@@ -1,0 +1,16 @@
+id: ziyue-bai
+name: Ziyue Bai
+personType: phd-student
+roleTitle: PhD Student, 1st Year, Computer Science & Engineering
+links:
+  email: ziyuebai@buffalo.edu
+  scholar: https://scholar.google.com/citations?user=srLdbVoAAAAJ&hl=zh-CN
+affiliations:
+  - institutionId: ub
+    department: Computer Science & Engineering
+    roleTitle: PhD Student
+    type: primary
+photo: /images/people/ziyue-bai.png
+_meta:
+  source: data-extraction/sources/01-xlab-test-web-hugo-site/extracted/team-phd.yaml
+  note: "No joined/left year in source — labTenure left absent per SPEC.md §7 rather than invented. photo omitted: public/images/people/ziyue-bai.png is a generated cartoon illustration (identical file to meihuan-liu.png), not a real headshot — falls back to the initials tile instead."

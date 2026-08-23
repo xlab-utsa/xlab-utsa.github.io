@@ -1,0 +1,11 @@
+id: comp-2018-triangle-truss-fpga
+category: international-competition-award
+personId: jinjun-xiong
+award: Student Innovation Award
+year: 2018
+title: Triangle Counting and Truss Decomposition using FPGA
+org: IEEE-HPEC MIT and Amazon GraphChallenge
+publicationId: conference-2018-triangle-counting
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/recognitions.yaml
+  note: (international_competition_awards). All 14 belong to the lab lead. publicationId set only where a matching title exists in content/publications/ — competition/contest submissions (DAC Systems Design Contest drone-detection entries, CVPR Challenge human parsing tasks) generally aren't in the 301-entry formal publication list and are left unlinked rather than guessed. Per-person attribution deferred, see SPEC.md §7.

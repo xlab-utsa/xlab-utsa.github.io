@@ -1,0 +1,11 @@
+id: conference-2019-on-the-universal-approximability
+category: conference
+thumbnail: /images/publications/conference-2019-on-the-universal-approximability/thumbnail.png
+title: On the Universal Approximability and Complexity Bounds of Quantized ReLU Neural Networks
+authors:
+  - name: Y. Ding et al.
+venue: ICLR
+year: 2019
+dateDisplay: May 2019
+themeIds:
+  - ai-algorithms

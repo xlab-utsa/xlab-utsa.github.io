@@ -1,0 +1,17 @@
+id: journal-2004-cee-gr-a-global-router
+category: journal
+title: "CEE-Gr: A Global Router with Performance Optimization under Multi-Constraints"
+authors:
+  - name: L. Zhang
+  - name: T. Jing
+  - name: X. Hong
+  - name: J. Xu
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: L. He
+venue: Chinese Journal of Semiconductors
+volumeIssue: Vol. 25, No. 5, pp. 508-515
+year: 2004
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-journals.yaml
+  note: 40 journal articles, 2003-2021, verbatim from https://www.xlab-ub.com/publication/journals. authors[].personId is only set for "J. Xiong" -> jinjun-xiong; all other co-authors are name-only (no Person record to confidently match).

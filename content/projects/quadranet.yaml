@@ -1,0 +1,9 @@
+id: quadranet
+title: QuadraNet
+tagline: Hardware-aware quadratic neural networks for improving high-order neural interaction efficiency.
+thumbnail: /images/projects/quadranet/thumbnail.png
+links:
+  code: https://www.google.com/search?q=QuadraNet+GitHub
+themeIds:
+  - ai-algorithms
+projectStatus: active

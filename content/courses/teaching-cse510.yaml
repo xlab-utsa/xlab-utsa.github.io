@@ -1,0 +1,9 @@
+id: teaching-cse510
+personId: jinjun-xiong
+code: CSE 510
+title: Enterprise-Scale AI Systems and Solutions
+institutionId: ub
+termDisplay: Fall 2021
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/teaching.yaml
+  note: All 3 courses belong to the lab lead — no course descriptions or enrollment data exist in the source beyond code/title/institution/term (see SPEC.md's Course entity note).

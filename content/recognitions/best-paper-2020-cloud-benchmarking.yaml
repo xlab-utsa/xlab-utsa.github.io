@@ -1,0 +1,10 @@
+id: best-paper-2020-cloud-benchmarking
+category: best-paper-award
+personId: jinjun-xiong
+award: Best Student Paper Award
+year: 2020
+title: The Design and Implementation of a Scalable DL Benchmarking Platform
+venue: IEEE International Conference on Cloud Computing (CLOUD)
+publicationId: conference-2020-design-and-implementation
+_meta:
+  note: "DRY-RUN: only 1 of 7 real best-paper awards mapped here to validate the Publication/Recognition cross-link (publicationId) against a real record. Full list: data-extraction/sources/02-xlab-ub-com-live-site/extracted/recognitions.yaml Verification finding: the source page lists this award under Dr. Xiong's own \"Recognitions\" page even though the paper's listed authors are \"C. Li et al.\" (he's not first author). personId is set to him here because that matches how the source presented it (his personal accomplishments page), but this is worth a real decision during the merge pass: should team achievements like this actually be attributed to the paper's actual authors instead, once those authors have Person records?"

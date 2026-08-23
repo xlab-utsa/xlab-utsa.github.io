@@ -1,0 +1,19 @@
+id: zhaohui-li
+name: Zhaohui Li
+personType: postdoc
+roleTitle: Postdoctoral Fellow, Institute for Artificial Intelligence and Data Science
+office: 215 Lockwood
+photo: /images/people/zhaohui-li.png
+links:
+  email: zli253@buffalo.edu
+  scholar: https://scholar.google.com/citations?user=FuS676UAAAAJ&hl=zh-CN
+  website: http://zhaohuilee.com/
+  universityProfile: https://www.buffalo.edu/ai-data-science/people/ub-affiliated-faculty.host.html/content/shared/www/ai-data-science/faculty/li-zhaohui.html
+affiliations:
+  - institutionId: ub
+    department: Institute for Artificial Intelligence and Data Science
+    roleTitle: Postdoctoral Fellow
+    type: primary
+_meta:
+  source: data-extraction/sources/01-xlab-test-web-hugo-site/extracted/team-staff.yaml
+  note: No joined/left year in source — labTenure left absent per SPEC.md §7 rather than invented.

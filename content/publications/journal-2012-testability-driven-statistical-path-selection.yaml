@@ -1,0 +1,16 @@
+id: journal-2012-testability-driven-statistical-path-selection
+category: journal
+title: Testability Driven Statistical Path Selection
+authors:
+  - name: J. Chung
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: V. Zolotov
+  - name: J. Abraham
+venue: IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems
+volumeIssue: Vol. 31, No. 8
+year: 2012
+month: August
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-journals.yaml
+  note: 40 journal articles, 2003-2021, verbatim from https://www.xlab-ub.com/publication/journals. authors[].personId is only set for "J. Xiong" -> jinjun-xiong; all other co-authors are name-only (no Person record to confidently match).

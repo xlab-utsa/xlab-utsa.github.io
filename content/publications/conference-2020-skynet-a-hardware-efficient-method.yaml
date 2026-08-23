@@ -1,0 +1,11 @@
+id: conference-2020-skynet-a-hardware-efficient-method
+category: conference
+thumbnail: /images/publications/conference-2020-skynet-a-hardware-efficient-method/thumbnail.png
+title: "SkyNet: a Hardware-Efficient Method for Object Detection and Tracking on Embedded Systems"
+authors:
+  - name: X. Zhang et al.
+venue: MLSys
+year: 2020
+dateDisplay: May 2020
+themeIds:
+  - ai-accelerators

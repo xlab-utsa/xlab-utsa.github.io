@@ -1,0 +1,21 @@
+{
+  // Standalone from the root Next.js tsconfig: this code targets the Workers runtime, not
+  // the browser or Node, so it needs @cloudflare/workers-types and must never be pulled
+  // into `next build`. The root tsconfig and eslint config both exclude workers/.
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "ES2022",
+    "moduleResolution": "bundler",
+    "types": ["@cloudflare/workers-types"],
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "noUncheckedIndexedAccess": false,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}

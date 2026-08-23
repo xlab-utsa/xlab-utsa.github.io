@@ -1,0 +1,60 @@
+{
+  // X-Lab Studio Gate — the only component in the system that holds a GitHub credential.
+  //
+  // Deployed once with `npx wrangler deploy` from this directory. It is deliberately
+  // SCHEMA-BLIND: it validates who you are, what path you may write, and how big the
+  // payload is, but knows nothing about the content model. That is what lets the content
+  // schema evolve forever without ever redeploying this Worker.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "xlab-gate",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": { "enabled": true },
+
+  // Short-lived state only: magic-link nonces (single-use enforcement) and rate-limit
+  // counters. The source of truth for content and for the member roster is the git repo,
+  // never this namespace — so losing it costs nothing but active sign-in links.
+  "kv_namespaces": [
+    {
+      "binding": "SESSIONS",
+      "id": "b16e0aa2b9f5469da24fd80f0463a7ea"
+    }
+  ],
+
+  // Non-secret configuration. Secrets are set separately via `wrangler secret put` and
+  // never appear in this file or the repo — see README.md.
+  "vars": {
+    // The site is an org ROOT Pages site (repo name matches the org name), so there is
+    // no path prefix. SITE_ORIGIN is the bare origin because it is echoed straight back
+    // as Access-Control-Allow-Origin, which must not carry a path.
+    // Must stay in sync with GITHUB_OWNER/REPO_NAME in ../../lib/base-path.ts — the
+    // Worker deploys separately and cannot import TypeScript from the app.
+    "SITE_ORIGIN": "https://xlab-utsa.github.io",
+    "STUDIO_URL": "https://xlab-utsa.github.io/studio/",
+    "REPO_OWNER": "xlab-utsa",
+    "REPO_NAME": "xlab-utsa.github.io",
+    "REPO_BRANCH": "main",
+
+    // EMAIL IS DELIBERATELY UNCONFIGURED (2026-08-23). The EMAIL_API_KEY secret is not
+    // set, so sendEmail() throws and both callers swallow it: /auth/email silently does
+    // nothing, and approve/reject still merges but skips the "your change is live" notice.
+    // Nothing else depends on it — sign-in is via admin-minted /invite links, and no UI
+    // calls /auth/email at all. Studio's health screen will show email as off; that is
+    // expected, not a fault.
+    //
+    // To turn it on: verify a sender address in Brevo (a single ADDRESS, no domain needed),
+    // set EMAIL_FROM to it, and run `npx wrangler secret put EMAIL_API_KEY`. Switching to
+    // Resend instead is a one-word change here plus a new key — see src/email.ts.
+    "EMAIL_PROVIDER": "brevo",
+    "EMAIL_FROM": "",
+    "EMAIL_FROM_NAME": "X-Lab Studio",
+
+    // Paths the Worker will write to. Anything outside this list is rejected before a
+    // GitHub token is ever minted. `access/` is included so admins can manage the roster
+    // from Studio; canWritePath() still restricts it to admins alone, and .github/ remains
+    // unreachable to everyone so nothing here can alter what CI runs.
+    "ALLOWED_WRITE_PREFIXES": "content/,public/images/,access/",
+    "MAX_PAYLOAD_BYTES": "5242880"
+  }
+}

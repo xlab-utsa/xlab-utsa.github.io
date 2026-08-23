@@ -1,0 +1,14 @@
+id: conference-2020-xsp-across-stack-profiling
+category: conference
+thumbnail: /images/publications/conference-2020-xsp-across-stack-profiling/thumbnail.png
+title: "XSP: Across-Stack Profiling and Analysis of Machine Learning Models on GPUs"
+authors:
+  - name: C. Li et al.
+venue: 34th IEEE International Parallel and Distributed Processing Symposium (IPDPS)
+year: 2020
+dateDisplay: May 2020
+featured: true
+themeIds:
+  - ai-tools
+_meta:
+  note: "Source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-conferences.yaml 141 conference papers, 2000-2022, verbatim from https://www.xlab-ub.com/publication/conferences. authors here is always a single \"X et al.\" shorthand string per the source (never a full author list) -- never split; each entry gets exactly one unlinked AuthorRef, e.g. {name: \"C. Li et al.\"}. No personId is ever set for conference authors since the source never spells out individual names. note is populated only for \"Spotlight\" -- every \"Best ... Paper Award[/Nomination]\" note in the source was deliberately dropped here; that's award info and belongs on Recognition (see content/recognitions/), not duplicated in Publication.note. Entry 1 below was the original dry-run pick, chosen because it won a Best Paper Award, to validate the Publication/Recognition boundary decision in docs/SCHEMA.md. authors is a single \"C. Li et al.\" entry, not personId-linked -- the source data never spelled out the individual names, so unlike the patent/journal entries above, there's no way to confidently match a specific name to jinjun-xiong here without guessing. Don't invent an author list we don't have; leave it as one unlinked entry."

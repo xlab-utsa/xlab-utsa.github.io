@@ -1,0 +1,14 @@
+id: journal-2003-effects-of-load
+category: journal
+title: The effects of load and speed on lumbar vertebral kinematics during lifting motions
+authors:
+  - name: X. Zhang
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: A. Bishop
+venue: Human Factors
+volumeIssue: Vol. 45, No. 2, pp. 296-306
+year: 2003
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-journals.yaml
+  note: 40 journal articles, 2003-2021, verbatim from https://www.xlab-ub.com/publication/journals. authors[].personId is only set for "J. Xiong" -> jinjun-xiong; all other co-authors are name-only (no Person record to confidently match).

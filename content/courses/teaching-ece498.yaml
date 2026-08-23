@@ -1,0 +1,9 @@
+id: teaching-ece498
+personId: jinjun-xiong
+code: ECE498
+title: Internet-of-Things and Cognitive Computing
+institutionId: uiuc
+termDisplay: Three semesters
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/teaching.yaml
+  note: All 3 courses belong to the lab lead — no course descriptions or enrollment data exist in the source beyond code/title/institution/term (see SPEC.md's Course entity note).

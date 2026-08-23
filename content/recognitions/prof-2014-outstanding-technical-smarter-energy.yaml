@@ -1,0 +1,10 @@
+id: prof-2014-outstanding-technical-smarter-energy
+category: professional-honor-award
+personId: jinjun-xiong
+award: Outstanding Technical Achievement Award for Contribution to Smarter Energy Research
+dateDisplay: "2014"
+year: 2014
+org: IBM Research
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/recognitions.yaml
+  note: (professional_awards). All 19 belong to the lab lead; none are paper-specific, so no publicationId on any entry here (unlike the other recognition category files).

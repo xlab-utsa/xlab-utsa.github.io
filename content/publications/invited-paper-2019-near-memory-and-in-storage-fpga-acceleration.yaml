@@ -1,0 +1,20 @@
+id: invited-paper-2019-near-memory-and-in-storage-fpga-acceleration
+category: invited-paper
+title: Near-Memory and In-Storage FPGA Acceleration for Emerging Cognitive Computing Workloads
+authors:
+  - name: A. Dhar
+  - name: S. Huang
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: D. Jamsek
+  - name: B. Mesnet
+  - name: J. Huang
+  - name: N. Kim
+  - name: W. Hwu
+  - name: D. Chen
+venue: IEEE Computer Society Annual Symposium on VLSI (ISVLSI)
+year: 2019
+location: Miami, Florida, July 15-17
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-invited-papers.yaml
+  note: 12 invited papers, 2004-2021, verbatim from https://www.xlab-ub.com/publication/invited-papers. The source has no separate date field for this category -- "location" already contains date/place info combined (e.g. "San Diego, CA, Nov 2-5", or just a bare month like "October" when no venue city was given) and is copied verbatim into location as-is.

@@ -1,0 +1,10 @@
+id: prof-2016-master-inventor
+category: professional-honor-award
+personId: jinjun-xiong
+award: Master Inventor Award
+dateDisplay: "2016"
+year: 2016
+org: IBM Research
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/recognitions.yaml
+  note: (professional_awards). All 19 belong to the lab lead; none are paper-specific, so no publicationId on any entry here (unlike the other recognition category files).

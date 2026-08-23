@@ -1,0 +1,17 @@
+id: chenhui-xu
+name: Chenhui Xu
+personType: phd-student
+roleTitle: PhD Candidate, 3rd Year, Computer Science & Engineering
+photo: /images/people/chenhui-xu.png
+links:
+  email: cxu26@buffalo.edu
+  scholar: https://scholar.google.com/citations?user=SjjiXpYAAAAJ&hl=zh-CN
+  website: https://minihuihui.github.io/
+affiliations:
+  - institutionId: ub
+    department: Computer Science & Engineering
+    roleTitle: PhD Candidate
+    type: primary
+_meta:
+  source: data-extraction/sources/01-xlab-test-web-hugo-site/extracted/team-phd.yaml
+  note: No joined/left year in source — labTenure left absent per SPEC.md §7 rather than invented.

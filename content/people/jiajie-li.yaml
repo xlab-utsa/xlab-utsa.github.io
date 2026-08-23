@@ -1,0 +1,17 @@
+id: jiajie-li
+name: Jiajie Li
+personType: phd-student
+roleTitle: PhD Candidate, 4th Year, Computer Science & Engineering
+photo: /images/people/jiajie-li.png
+links:
+  email: jli433@buffalo.edu
+  scholar: https://scholar.google.com/citations?user=oMCzOmoAAAAJ&hl=en
+  website: https://jiajie.li/
+affiliations:
+  - institutionId: ub
+    department: Computer Science & Engineering
+    roleTitle: PhD Candidate
+    type: primary
+_meta:
+  source: data-extraction/sources/01-xlab-test-web-hugo-site/extracted/team-phd.yaml
+  note: No joined/left year in source — labTenure left absent per SPEC.md §7 rather than invented.

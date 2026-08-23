@@ -1,0 +1,11 @@
+id: service-editorial-1
+personId: jinjun-xiong
+category: editorial
+role: Associate Editor
+org: ACM Transactions on Reconfigurable Technology and Systems (TRETS)
+periodDisplay: March 2019–present
+startYear: 2019
+isOngoing: true
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/services.yaml
+  note: "All entries belong to the lab lead. Per that source's own note: all \"–present\"/open-ended periods reflect the live site as fetched 2026-08-10 — verify ongoing roles' current status before publishing, some (e.g. UB committee memberships dated \"2021–present\") may have changed or ended since. periodDisplay is always the required source-of-truth text; startYear/endYear are only set when a period cleanly parses as one range (per Course/ ServiceRecord design — irregular multi-range periods like \"2010–2012, 2015, 2018–2019\" stay text-only). --- Editorial ---"

@@ -1,0 +1,8 @@
+id: ai-algorithms
+title: AI Algorithms
+shortDescription: Probing limits of state-of-the-art models while innovating for modern architectures.
+longDescription: |
+  X-Lab's AI algorithm research probes the limits of state-of-the-art models while innovating for modern architectures. Grounded in advanced deep learning mathematics and systems design, our work spans high-order neural networks, large language models, and adaptive learning techniques.
+order: 1
+_meta:
+  note: "Full population (only 6 records, unambiguous) — source: data-extraction/sources/01-xlab-test-web-hugo-site/extracted/research-themes.yaml None of these had a project linked in the source data; see content/projects/ — all 3 current open-source projects have themeId: null since the old site never cross-referenced them to a theme. That's a real gap to fill during the merge pass, not a schema limitation (Project.themeId is fully able to point at any of these)."

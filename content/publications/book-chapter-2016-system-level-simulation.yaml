@@ -1,0 +1,14 @@
+id: book-chapter-2016-system-level-simulation
+category: book-chapter
+title: System-Level Simulation for Smarter Grids
+authors:
+  - name: J. Xiong
+    personId: jinjun-xiong
+book: Smart Grid Handbook
+editors: C. Liu, S. McArthur, S. Lee
+publisher: John Wiley & Sons, Ltd.
+year: 2016
+onlineIsbn: "9781118755471"
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-book-chapters.yaml
+  note: 3 book chapters, 2011-2019, verbatim from https://www.xlab-ub.com/publication/book-chapters. A 4th source entry ("Mastering Flash 4, Illustrated", 2000) is excluded -- it's a full authored book, not a chapter (flagged as excluded_ambiguous_entry in the source). One entry's source uses "isbn" rather than "online_isbn" -- mapped to onlineIsbn anyway, the closest schema field (no better fit exists).

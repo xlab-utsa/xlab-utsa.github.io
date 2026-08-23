@@ -1,0 +1,11 @@
+id: conference-2020-dnnexplorer-a-framework
+category: conference
+thumbnail: /images/publications/conference-2020-dnnexplorer-a-framework/thumbnail.png
+title: "DNNExplorer: A Framework for Modeling and Exploring a Novel Paradigm of FPGA-based DNN Accelerator"
+authors:
+  - name: X. Zhang et al.
+venue: ICCAD
+year: 2020
+dateDisplay: November 2020
+themeIds:
+  - ai-accelerators

@@ -1,0 +1,16 @@
+id: journal-2018-data-recovery
+category: journal
+title: Data Recovery and Subspace Clustering from Quantized and Corrupted Measurements
+authors:
+  - name: R. Wang
+  - name: M. Wang
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: IEEE Journal of Selected Topics in Signal Processing
+volumeIssue: Vol. 12, Issue 6
+year: 2018
+month: December
+note: cover featured
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-journals.yaml
+  note: 40 journal articles, 2003-2021, verbatim from https://www.xlab-ub.com/publication/journals. authors[].personId is only set for "J. Xiong" -> jinjun-xiong; all other co-authors are name-only (no Person record to confidently match).

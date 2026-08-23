@@ -1,0 +1,11 @@
+id: conference-2018-dnnbuilder-an-automated-tool
+category: conference
+thumbnail: /images/publications/conference-2018-dnnbuilder-an-automated-tool/thumbnail.png
+title: "DNNBuilder: an Automated Tool for Building High-Performance DNN Hardware Accelerators for FPGAs"
+authors:
+  - name: X. Zhang et al.
+venue: ICCAD
+year: 2018
+dateDisplay: November 2018
+themeIds:
+  - ai-accelerators

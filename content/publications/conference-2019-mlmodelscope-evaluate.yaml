@@ -1,0 +1,11 @@
+id: conference-2019-mlmodelscope-evaluate
+category: conference
+thumbnail: /images/publications/conference-2019-mlmodelscope-evaluate/thumbnail.png
+title: "MLModelScope: Evaluate and Measure ML Models within AI Pipelines"
+authors:
+  - name: A. Dakkak et al.
+venue: Hotchips
+year: 2019
+dateDisplay: August 2019
+themeIds:
+  - ai-tools

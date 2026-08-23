@@ -1,0 +1,10 @@
+id: comp-2018-human-parsing-single
+category: international-competition-award
+personId: jinjun-xiong
+award: First Place Award
+year: 2018
+title: Single-Person Human Parsing Task
+org: 2018 CVPR Challenge on Look Into Person (LIP), 30th IEEE/CVF CVPR
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/recognitions.yaml
+  note: (international_competition_awards). All 14 belong to the lab lead. publicationId set only where a matching title exists in content/publications/ — competition/contest submissions (DAC Systems Design Contest drone-detection entries, CVPR Challenge human parsing tasks) generally aren't in the 301-entry formal publication list and are left unlinked rather than guessed. Per-person attribution deferred, see SPEC.md §7.

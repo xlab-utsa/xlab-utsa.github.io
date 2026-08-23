@@ -1,0 +1,19 @@
+id: qingxiao-zheng
+name: Qingxiao Zheng
+personType: postdoc
+roleTitle: Postdoctoral Fellow, Computer Science & Engineering
+office: 215 Lockwood
+photo: /images/people/qingxiao-zheng.png
+links:
+  email: qingxiao@buffalo.edu
+  scholar: https://scholar.google.com/citations?user=9EsqxyoAAAAJ&hl=en
+  website: https://qingxiaozheng.com/
+  universityProfile: https://www.buffalo.edu/ai-data-science/people/external-faculty.host.html/content/shared/www/ai-data-science/faculty/zheng-qingxiao.html
+affiliations:
+  - institutionId: ub
+    department: Computer Science & Engineering
+    roleTitle: Postdoctoral Fellow
+    type: primary
+_meta:
+  source: data-extraction/sources/01-xlab-test-web-hugo-site/extracted/team-staff.yaml
+  note: No joined/left year in source — labTenure left absent per SPEC.md §7 rather than invented.

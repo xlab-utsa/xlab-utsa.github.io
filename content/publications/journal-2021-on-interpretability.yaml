@@ -1,0 +1,18 @@
+id: journal-2021-on-interpretability
+category: journal
+thumbnail: /images/publications/journal-2021-on-interpretability/thumbnail.png
+title: "On Interpretability of Artificial Neural Networks: A Survey"
+authors:
+  - name: F. Fan
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: M. Li
+  - name: G. Wang
+venue: IEEE Transactions on Radiation and Plasma Medical Sciences
+year: 2021
+note: in press
+themeIds:
+  - ai-security
+_meta:
+  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-journals.yaml
+  note: 40 journal articles, 2003-2021, verbatim from https://www.xlab-ub.com/publication/journals. authors[].personId is only set for "J. Xiong" -> jinjun-xiong; all other co-authors are name-only (no Person record to confidently match).
