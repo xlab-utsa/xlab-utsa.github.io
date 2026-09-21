@@ -502,7 +502,6 @@ export const SiteMetaSchema = z.strictObject({
     .optional(),
   /** Convenience only (e.g. reusing a logo) — never a source of truth. */
   primaryInstitutionId: Slug.optional(),
-  recruitingNotice: z.string().optional(),
   socialLinks: z
     .strictObject({
       github: Url.nullable().optional(),

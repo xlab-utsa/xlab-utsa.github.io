@@ -150,8 +150,7 @@ writer destroys — moving it into the data is what allows Studio to write recor
                       this is the entire News presence on the site (decision #2).
   ├─ Featured Publications   Publication (featured=true), highlight strip
   ├─ #sponsors        Sponsor × all — logo grid + grantNumbers blurb, plus an
-                      inverted CTA panel carrying recruitingNotice (moved here from
-                      next-to-#team in Phase 5, matching the mockup's layout)
+                      (recruiting panel removed — lab is not hiring)
   └─ Footer           SiteMeta.contact / socialLinks / copyright
 
 /publications         Publication, 6 category tabs (Patents / Journals /

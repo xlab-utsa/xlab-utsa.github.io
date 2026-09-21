@@ -16,8 +16,6 @@ nav:
     path: /blog
   - label: Sponsors
     path: /#sponsors
-  - label: Join
-    path: /#sponsors
 contact:
   email: jinjun@buffalo.edu
   address:
@@ -27,7 +25,6 @@ contact:
     zip: "78249"
     country: United States
 primaryInstitutionId: utsa
-recruitingNotice: We are recruiting PhD students and postdoctoral fellows to conduct cutting-edge AI systems and solutions research!
 socialLinks:
   github: https://github.com/xlab-utsa
   linkedin: https://www.linkedin.com/in/jinjun-xiong/

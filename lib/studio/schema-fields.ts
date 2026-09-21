@@ -93,7 +93,6 @@ const OVERRIDES: Record<string, Partial<FieldSpec>> = {
   researchPhilosophy: { kind: "text" },
   futureVision: { kind: "text" },
   quote: { kind: "text" },
-  recruitingNotice: { kind: "text" },
   note: { kind: "text" },
   photo: { asset: true },
   thumbnail: { asset: true },
