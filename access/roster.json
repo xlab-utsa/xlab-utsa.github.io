@@ -28,6 +28,13 @@
       "role": "admin",
       "active": true,
       "personId": "jinjun-xiong"
+    },
+    {
+      "email": "aashish.dhakal@utsa.edu",
+      "name": "Aashish Dhakal",
+      "role": "member",
+      "active": true,
+      "personId": "aashish-dhakal"
     }
   ]
 }
