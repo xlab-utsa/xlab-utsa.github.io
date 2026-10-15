@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
+    "dev:mock": "node scripts/mock-gate.mjs",
     "prebuild": "tsx scripts/build-snapshot.ts",
     "build": "next build",
     "snapshot": "tsx scripts/build-snapshot.ts",
@@ -12,8 +13,9 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "validate:content": "tsx scripts/validate-content.ts",
+    "test": "tsx --test \"lib/**/*.test.ts\" \"workers/xlab-gate/src/*.test.mts\"",
     "migrate:content": "node scripts/migrate-content-v2.mjs",
-    "check": "npm run typecheck && npm run validate:content && npm run lint"
+    "check": "npm run typecheck && npm run validate:content && npm run lint && npm test"
   },
   "repository": {
     "type": "git",

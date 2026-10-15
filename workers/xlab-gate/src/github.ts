@@ -259,6 +259,68 @@ export async function listQueue(env: Env): Promise<QueueItem[]> {
   );
 }
 
+export interface ReturnedItem {
+  number: number;
+  title: string;
+  body: string;
+  closedAt: string;
+  url: string;
+  /** The reviewer's note, as left by rejectPR; empty if none was given. */
+  reason: string;
+}
+
+/** Marker rejectPR() puts in front of the reviewer's note, so it can be found again here. */
+export const REJECT_PREFIX = "Rejected via Studio: ";
+
+/**
+ * Recently returned (closed, not merged) submissions with the reviewer's note.
+ *
+ * One comments call per returned PR, bounded by `limit` — the list is short by nature and
+ * read only when someone opens their page, so this stays well inside rate limits.
+ */
+export async function listReturned(env: Env, limit = 15): Promise<ReturnedItem[]> {
+  const token = await installationToken(env);
+  const prs = await gh<
+    {
+      number: number;
+      title: string;
+      body: string | null;
+      closed_at: string | null;
+      merged_at: string | null;
+      html_url: string;
+      labels: { name: string }[];
+    }[]
+  >(repoPath(env, "/pulls?state=closed&sort=updated&direction=desc&per_page=40"), token);
+
+  const returned = prs
+    .filter((pr) => !pr.merged_at && pr.labels.some((l) => l.name === "studio-submission"))
+    .slice(0, limit);
+
+  return Promise.all(
+    returned.map(async (pr) => {
+      let reason = "";
+      try {
+        const comments = await gh<{ body: string }[]>(
+          repoPath(env, `/issues/${pr.number}/comments?per_page=30`),
+          token
+        );
+        const note = [...comments].reverse().find((c) => c.body.startsWith(REJECT_PREFIX));
+        if (note) reason = note.body.slice(REJECT_PREFIX.length).trim();
+      } catch {
+        /* best-effort; a missing note must not hide the fact that it was returned */
+      }
+      return {
+        number: pr.number,
+        title: pr.title,
+        body: pr.body ?? "",
+        closedAt: pr.closed_at ?? "",
+        url: pr.html_url,
+        reason,
+      };
+    })
+  );
+}
+
 /** The diff for one submission, as unified patch text per file. */
 export async function prFiles(env: Env, number: number) {
   const token = await installationToken(env);
@@ -324,7 +386,7 @@ export async function rejectPR(
   if (reason.trim()) {
     await gh(repoPath(env, `/issues/${number}/comments`), token, {
       method: "POST",
-      body: JSON.stringify({ body: `Rejected via Studio: ${reason}` }),
+      body: JSON.stringify({ body: `${REJECT_PREFIX}${reason}` }),
     });
   }
   await gh(repoPath(env, `/pulls/${number}`), token, {

@@ -7,6 +7,7 @@
 
 import { GATE_URL, SNAPSHOT_PATH, TOKEN_KEY } from "./config";
 import { withBasePath } from "@/lib/base-path";
+import type { RosterEntry } from "@/lib/access/roster";
 import type { SnapshotReport } from "@/lib/content/report";
 import type {
   Course,
@@ -88,12 +89,21 @@ async function call<T>(path: string, init?: RequestInit): Promise<T> {
   });
   const data = await res.json().catch(() => ({}));
   if (!res.ok) {
+    const message = (data as { error?: string }).error ?? `request failed (${res.status})`;
     // A dead session should sign the user out rather than leave the UI in a broken state.
-    if (res.status === 401) clearToken();
-    throw new GateError((data as { error?: string }).error ?? `request failed (${res.status})`, res.status);
+    // The gate answers 401 "access_removed" when the roster no longer lists this person —
+    // it re-checks on every request — so the shell is told, not just the one caller.
+    if (res.status === 401) {
+      clearToken();
+      window.dispatchEvent(new CustomEvent(SIGNED_OUT_EVENT, { detail: message }));
+    }
+    throw new GateError(message, res.status);
   }
   return data as T;
 }
+
+/** Fired on window when the gate rejects the session; detail is the gate's error code. */
+export const SIGNED_OUT_EVENT = "xlab-studio:signed-out";
 
 export const api = {
   me: () => call<Identity>("/me"),
@@ -104,6 +114,9 @@ export const api = {
   queue: () => call<{ queue: QueueItem[] }>("/queue"),
 
   queueFiles: (n: number) => call<{ files: DiffFile[] }>(`/queue/${n}/files`),
+
+  /** Submissions sent back with the reviewer's note (members see only their own). */
+  returned: () => call<{ returned: ReturnedItem[] }>("/returned"),
 
   submit: (payload: SubmitPayload) =>
     call<{ ok: true; pr: { number: number; url: string; branch: string } }>("/submit", {
@@ -144,16 +157,9 @@ export const api = {
     }),
 };
 
-export interface RosterEntry {
-  email: string;
-  name: string;
-  role: "admin" | "editor" | "member";
-  personId?: string;
-  githubLogin?: string;
-  active: boolean;
-}
-
-export const ROSTER_PATH = "access/roster.json";
+// The roster's shape lives in lib/access/roster.ts (shared with CI); re-exported so callers
+// keep one import.
+export { ROSTER_PATH, type RosterEntry } from "@/lib/access/roster";
 
 export interface QueueItem {
   number: number;
@@ -165,6 +171,16 @@ export interface QueueItem {
   branch: string;
   labels: string[];
   checks: "success" | "failure" | "pending" | "unknown";
+}
+
+export interface ReturnedItem {
+  number: number;
+  title: string;
+  body: string;
+  closedAt: string;
+  url: string;
+  /** The reviewer's note; empty when none was left. */
+  reason: string;
 }
 
 export interface DiffFile {

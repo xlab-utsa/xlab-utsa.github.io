@@ -36,3 +36,6 @@ yarn-error.log*
 # Editor
 .vscode/
 .idea/
+
+# The PI's CV, cited as _meta.source by publication records. Personal document; never committed.
+JinjunXiong_CV.pdf

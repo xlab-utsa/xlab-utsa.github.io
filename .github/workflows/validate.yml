@@ -54,6 +54,10 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      # Roster rules, Studio submission helpers, and the Worker's path authorization matrix.
+      - name: Tests
+        run: npm test
+
       - name: Build (static export)
         env:
           NODE_ENV: production

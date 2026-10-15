@@ -5,9 +5,27 @@
 //   CONTENT_DIR=content-v2 npm run validate:content
 //
 // Exit code 1 on any error, so CI can gate merges on it. Warnings never fail the build.
+import fs from "fs";
 import { validateContent } from "../lib/content/validate";
+import { ROSTER_PATH, rosterIssues } from "../lib/access/roster";
 
 const { errors, warnings, counts } = validateContent();
+
+// The roster is not content, but it is the one file whose corruption locks everyone out of
+// Studio — so it is checked here, on the same gate every submission passes through.
+// Checked only when present: a checkout without it (CONTENT_DIR runs, forks) is not an error.
+if (fs.existsSync(ROSTER_PATH)) {
+  try {
+    const roster: unknown = JSON.parse(fs.readFileSync(ROSTER_PATH, "utf-8"));
+    for (const issue of rosterIssues(roster)) {
+      const where =
+        issue.index === undefined ? "" : ` at members[${issue.index}]${issue.field ? `.${issue.field}` : ""}`;
+      errors.push(`${ROSTER_PATH}${where}: ${issue.message}`);
+    }
+  } catch (err) {
+    errors.push(`${ROSTER_PATH}: not valid JSON — ${err instanceof Error ? err.message : String(err)}`);
+  }
+}
 
 const dir = process.env.CONTENT_DIR ?? "content";
 console.log(`\nValidating ${dir}/\n`);

@@ -8,7 +8,8 @@
 // paper already exists. See lib/studio/submission-review.ts for why that is presentation and
 // not a second rulebook.
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { api, type DiffFile, type QueueItem, type Snapshot } from "@/lib/studio/api";
+import { api, type DiffFile, type QueueItem, type ReturnedItem, type Snapshot } from "@/lib/studio/api";
+import { relativeTime } from "@/lib/studio/submissions";
 import {
   loadChangedRecords,
   reviewSubmission,
@@ -16,6 +17,7 @@ import {
   type FindingLevel,
   type SubmissionReview,
 } from "@/lib/studio/submission-review";
+import { Notice } from "./notice";
 
 const CHECK_LABEL: Record<QueueItem["checks"], { text: string; className: string }> = {
   success: { text: "validated", className: "text-brand-strong" },
@@ -33,6 +35,7 @@ const FINDING_STYLE: Record<FindingLevel, { mark: string; className: string }> =
 
 export function ReviewQueue({ canApprove, snapshot }: { canApprove: boolean; snapshot: Snapshot }) {
   const [items, setItems] = useState<QueueItem[]>();
+  const [returned, setReturned] = useState<ReturnedItem[]>([]);
   const [error, setError] = useState<string>();
   const [open, setOpen] = useState<number>();
   const [files, setFiles] = useState<DiffFile[]>();
@@ -42,7 +45,13 @@ export function ReviewQueue({ canApprove, snapshot }: { canApprove: boolean; sna
 
   const refresh = useCallback(async () => {
     try {
-      setItems((await api.queue()).queue);
+      const [q, r] = await Promise.all([
+        api.queue(),
+        // Best-effort: a hiccup listing returned items must not hide the live queue.
+        api.returned().catch(() => ({ returned: [] as ReturnedItem[] })),
+      ]);
+      setItems(q.queue);
+      setReturned(r.returned);
       setError(undefined);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Could not load the queue.");
@@ -104,18 +113,24 @@ export function ReviewQueue({ canApprove, snapshot }: { canApprove: boolean; sna
     }
   }
 
+  /** Which submission has the "why is this being returned?" box open, and what is typed. */
+  const [returning, setReturning] = useState<number>();
+  const [reason, setReason] = useState("");
+  const [actionError, setActionError] = useState<{ number: number; message: string }>();
+
   async function act(n: number, action: "approve" | "reject") {
-    const reason =
-      action === "reject" ? (prompt("Why is this being returned? The submitter will see this.") ?? "") : "";
     if (action === "reject" && !reason.trim()) return;
     setBusy(true);
+    setActionError(undefined);
     try {
       if (action === "approve") await api.approve(n);
-      else await api.reject(n, reason);
+      else await api.reject(n, reason.trim());
       setOpen(undefined);
+      setReturning(undefined);
+      setReason("");
       await refresh();
     } catch (err) {
-      alert(err instanceof Error ? err.message : "Action failed.");
+      setActionError({ number: n, message: err instanceof Error ? err.message : "Action failed." });
     } finally {
       setBusy(false);
     }
@@ -124,11 +139,35 @@ export function ReviewQueue({ canApprove, snapshot }: { canApprove: boolean; sna
   if (error) return <p className="text-sm text-brand-orange">{error}</p>;
   if (!items) return <p className="text-sm text-text-faint">Loading queue…</p>;
 
+  const returnedSection = returned.length > 0 && (
+    <div className="space-y-2 pt-2">
+      <h3 className="font-mono text-[10.5px] font-bold tracking-wider text-text-faint uppercase">
+        Recently returned
+      </h3>
+      {returned.map((r) => (
+        <div key={r.number} className="rounded-sm border border-hairline px-3 py-2">
+          <p className="text-sm text-foreground">
+            {r.title}
+            <span className="ml-2 font-mono text-[11px] text-text-faint">
+              #{r.number} · {r.closedAt ? relativeTime(r.closedAt) : "returned"}
+            </span>
+          </p>
+          <p className="mt-0.5 text-[12.5px] text-text-faint">
+            {r.reason ? <>Note: “{r.reason}”</> : "No note was left."}
+          </p>
+        </div>
+      ))}
+    </div>
+  );
+
   if (items.length === 0) {
     return (
-      <div className="rounded-sm border border-dashed border-border py-12 text-center">
-        <p className="text-sm font-medium text-foreground">Nothing waiting for review</p>
-        <p className="mt-1 text-[12.5px] text-text-faint">Submissions appear here the moment they are made.</p>
+      <div className="space-y-3">
+        <div className="rounded-sm border border-dashed border-border py-12 text-center">
+          <p className="text-sm font-medium text-foreground">Nothing waiting for review</p>
+          <p className="mt-1 text-[12.5px] text-text-faint">Submissions appear here the moment they are made.</p>
+        </div>
+        {returnedSection}
       </div>
     );
   }
@@ -175,7 +214,10 @@ export function ReviewQueue({ canApprove, snapshot }: { canApprove: boolean; sna
                       Approve
                     </button>
                     <button
-                      onClick={() => void act(item.number, "reject")}
+                      onClick={() => {
+                        setReturning(returning === item.number ? undefined : item.number);
+                        setReason("");
+                      }}
                       disabled={busy}
                       className="font-mono text-[11px] text-brand-orange hover:underline disabled:opacity-40"
                     >
@@ -185,6 +227,46 @@ export function ReviewQueue({ canApprove, snapshot }: { canApprove: boolean; sna
                 )}
               </div>
             </div>
+
+            {actionError?.number === item.number && (
+              <div className="px-3 pb-3">
+                <Notice kind="error" title={actionError.message} onDismiss={() => setActionError(undefined)} />
+              </div>
+            )}
+
+            {returning === item.number && (
+              <div className="border-t border-hairline bg-brand-orange-soft-bg/40 p-3">
+                <label className="block font-mono text-[10.5px] font-bold tracking-wider text-text-faint uppercase">
+                  Why is this being returned?
+                </label>
+                <p className="mt-0.5 text-[11.5px] text-text-faint">
+                  The submitter sees this. Say what to change so they can fix it in one go.
+                </p>
+                <textarea
+                  autoFocus
+                  rows={3}
+                  value={reason}
+                  onChange={(e) => setReason(e.target.value)}
+                  placeholder="e.g. The venue should be the full conference name, and the year looks off."
+                  className="mt-2 w-full rounded-sm border border-border bg-background px-2.5 py-1.5 text-sm outline-none focus:border-brand"
+                />
+                <div className="mt-2 flex items-center gap-3">
+                  <button
+                    onClick={() => void act(item.number, "reject")}
+                    disabled={busy || !reason.trim()}
+                    className="rounded-sm bg-invert-bg px-2.5 py-1 font-mono text-[11px] font-bold tracking-wider text-invert-fg uppercase disabled:opacity-40"
+                  >
+                    Send back
+                  </button>
+                  <button
+                    onClick={() => setReturning(undefined)}
+                    className="font-mono text-[11px] text-text-faint hover:text-foreground"
+                  >
+                    Keep it
+                  </button>
+                </div>
+              </div>
+            )}
 
             {review && review.findings.length > 0 && <ReviewPanel review={review} />}
 
@@ -234,6 +316,7 @@ export function ReviewQueue({ canApprove, snapshot }: { canApprove: boolean; sna
           </div>
         );
       })}
+      {returnedSection}
     </div>
   );
 }

@@ -2,8 +2,8 @@
 "use client";
 
 import { stringify } from "yaml";
-import type { EntityDef } from "./entities";
-import type { SnapshotContent } from "./api";
+import { filePathFor, type EntityDef } from "./entities";
+import type { FileChange, SnapshotContent } from "./api";
 
 // --- serialization -------------------------------------------------------------
 
@@ -40,6 +40,26 @@ export function serializeRecord(entity: EntityDef, record: Record<string, unknow
     return `---\n${yaml}\n---\n\n${(body ?? "").trim()}\n`;
   }
   return stringify(cleaned, { lineWidth: 0 });
+}
+
+/**
+ * The file set a submission sends for one record: the serialized record plus any images
+ * chosen for it, in ONE payload — so a reviewer never sees a record pointing at a file that
+ * does not exist yet, and CI's asset check cannot fail spuriously.
+ *
+ * Shared by the generic form and the member profile form so the two can never diverge in
+ * what they commit.
+ */
+export function buildRecordFiles(
+  entity: EntityDef,
+  record: Record<string, unknown>,
+  /** Uploaded images not yet committed, keyed by repo path (public/images/...). */
+  assets: Record<string, string>
+): FileChange[] {
+  return [
+    { path: filePathFor(entity, String(record.id)), content: serializeRecord(entity, record) },
+    ...Object.entries(assets).map(([path, contentBase64]) => ({ path, contentBase64 })),
+  ];
 }
 
 // --- image preparation ---------------------------------------------------------
@@ -90,16 +110,33 @@ export async function prepareImage(
 // time and its findings ship inside the snapshot as `report`, so there is exactly one place
 // a rule is written. See scripts/build-snapshot.ts.
 
-/** 0–100 completeness for a person, used for the roster nudge list. */
-export function personCompleteness(person: SnapshotContent["people"][number]): number {
-  const checks = [
-    Boolean(person.photo),
-    Boolean(person.bio),
-    Boolean(person.roleTitle),
-    Boolean(person.links?.email),
-    Boolean(person.links?.scholar || person.links?.website),
-    Boolean(person.affiliations?.length),
-    person.labTenure?.joinedYear !== undefined,
+export interface ProfileTodo {
+  key: "photo" | "title" | "bio" | "email" | "scholarOrSite" | "affiliation" | "joinedYear";
+  /** Imperative, as shown in a to-do list. */
+  label: string;
+  done: boolean;
+}
+
+/**
+ * What a profile still lacks, in the order it matters to a visitor. ONE list, used by the
+ * member's home page, the card editor's to-do rail and the roster nudge — so "71 %" means
+ * the same thing everywhere.
+ */
+export function profileTodos(person: Partial<SnapshotContent["people"][number]> | Record<string, unknown>): ProfileTodo[] {
+  const p = person as Partial<SnapshotContent["people"][number]>;
+  return [
+    { key: "photo", label: "Add a photo", done: Boolean(p.photo) },
+    { key: "title", label: "Write your title line", done: Boolean(p.roleTitle) },
+    { key: "bio", label: "Write a short bio", done: Boolean(p.bio) },
+    { key: "scholarOrSite", label: "Link your Scholar profile or website", done: Boolean(p.links?.scholar || p.links?.website) },
+    { key: "email", label: "Add a contact email", done: Boolean(p.links?.email) },
+    { key: "affiliation", label: "Add your affiliation", done: Boolean(p.affiliations?.length) },
+    { key: "joinedYear", label: "Add the year you joined", done: p.labTenure?.joinedYear !== undefined },
   ];
-  return Math.round((checks.filter(Boolean).length / checks.length) * 100);
+}
+
+/** 0–100 completeness for a person, from the same list as profileTodos(). */
+export function personCompleteness(person: SnapshotContent["people"][number] | Record<string, unknown>): number {
+  const todos = profileTodos(person);
+  return Math.round((todos.filter((t) => t.done).length / todos.length) * 100);
 }

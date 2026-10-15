@@ -76,7 +76,19 @@ for (const [method, path] of [
   );
 }
 
-// 3. Dependencies still wired up.
+// 3. A sign-in link must NOT be redeemed by a plain GET — that is what link previews and
+//    mail scanners send, and it used to burn single-use member links before the human
+//    clicked. GET shows a page; only the page's POST redeems.
+{
+  const res = await fetch(`${GATE}/auth/verify?token=definitely-not-valid`, { redirect: "manual" });
+  check(
+    "GET /auth/verify shows a page instead of redirecting",
+    res.status === 200 && (res.headers.get("content-type") ?? "").includes("text/html"),
+    `status ${res.status}, type ${res.headers.get("content-type")}`
+  );
+}
+
+// 4. Dependencies still wired up.
 const health = await fetch(`${GATE}/health`).then((r) => r.json());
 check("github app credential", health.checks?.github === "ok", health.checks?.github);
 check("roster readable", health.checks?.roster === "ok", health.checks?.roster);

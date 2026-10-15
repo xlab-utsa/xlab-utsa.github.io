@@ -15,6 +15,7 @@ import {
   clearToken,
   getToken,
   loadSnapshot,
+  SIGNED_OUT_EVENT,
   signInWithGitHubUrl,
   type Identity,
   type Snapshot,
@@ -69,6 +70,16 @@ export default function StudioPage() {
     // continuations after network round trips, not synchronously during render.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     void boot();
+
+    // Any call the gate answers with 401 ends the session everywhere at once, with a reason
+    // — rather than one screen showing an error while the header still says "Hello".
+    const onSignedOut = (e: Event) => {
+      const code = String((e as CustomEvent<string>).detail ?? "");
+      setIdentity(null);
+      setAuthError(errorMessage(code === "access_removed" ? "access_removed" : "session_ended"));
+    };
+    window.addEventListener(SIGNED_OUT_EVENT, onSignedOut);
+    return () => window.removeEventListener(SIGNED_OUT_EVENT, onSignedOut);
   }, [boot]);
 
   if (loading) {
@@ -185,9 +196,16 @@ export default function StudioPage() {
         <main className="min-w-0">
           {toast && (
             <div className="mb-4 rounded-sm border border-brand-soft-border bg-brand-soft-bg px-3 py-2 text-sm">
-              <span className="text-brand-strong">Submitted for review.</span>{" "}
+              <span className="text-brand-strong">
+                {isMember ? "Sent for review." : "Submitted for review."}
+              </span>{" "}
+              <span className="text-text-faint">
+                {isMember
+                  ? "An admin will approve it; it appears on the site a few minutes after that."
+                  : ""}
+              </span>{" "}
               <button onClick={() => setView({ kind: "queue" })} className="underline">
-                Open the review queue
+                {isMember ? "See my submissions" : "Open the review queue"}
               </button>{" "}
               <button onClick={() => setToast(undefined)} className="float-right text-text-faint">
                 ✕
@@ -198,7 +216,13 @@ export default function StudioPage() {
           {!snapshot ? (
             <p className="text-sm text-text-faint">Loading content…</p>
           ) : current.kind === "me" ? (
-            <MemberHome identity={identity} snapshot={snapshot} onSubmitted={(pr) => setToast(pr)} />
+            <MemberHome
+              identity={identity}
+              snapshot={snapshot}
+              onSubmitted={(pr) => setToast(pr)}
+              onIdentityChange={setIdentity}
+              onOpenQueue={() => setView({ kind: "queue" })}
+            />
           ) : current.kind === "dashboard" ? (
             <Dashboard snapshot={snapshot} onNavigate={setView} />
           ) : current.kind === "queue" ? (
@@ -208,7 +232,7 @@ export default function StudioPage() {
           ) : current.kind === "linker" ? (
             <AuthorLinker snapshot={snapshot} onSubmitted={(pr) => setToast(pr)} />
           ) : current.kind === "roster" ? (
-            <RosterManager snapshot={snapshot} />
+            <RosterManager snapshot={snapshot} onOpenQueue={() => setView({ kind: "queue" })} />
           ) : (
             (() => {
               const entity = entityByKey(current.key);
@@ -423,7 +447,8 @@ function SignIn({ error }: { error?: string }) {
           Sign in with GitHub
         </a>
         <p className="text-[11.5px] leading-snug text-text-faint">
-          Lab members sign in with an emailed link instead — ask an admin to add you.
+          Lab members sign in with the link an admin sent you — just open it. Links expire
+          after 14 days; if yours has, or you never got one, ask an admin for a new one.
         </p>
       </div>
     </Centered>
@@ -462,9 +487,13 @@ function errorMessage(code: string): string {
     case "not_authorized":
       return "That account is not on the roster. An admin needs to add you first.";
     case "already_used":
-      return "That sign-in link was already used. Request a new one.";
+      return "That sign-in link was already used — each one works once. Ask an admin for a new link.";
     case "invalid_or_expired":
-      return "That sign-in link expired. Request a new one.";
+      return "That sign-in link has expired. Ask an admin for a new one.";
+    case "access_removed":
+      return "Your access was removed or your session has ended. If that's a surprise, ask an admin for a new link.";
+    case "session_ended":
+      return "Your session has ended. Sign in again — admins with GitHub, members with a fresh link from an admin.";
     case "bad_oauth_state":
       return "Sign-in could not be verified. Please try again.";
     default:

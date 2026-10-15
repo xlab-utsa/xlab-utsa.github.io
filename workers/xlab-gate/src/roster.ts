@@ -56,7 +56,11 @@ export function invalidateRosterCache(): void {
 export async function findByEmail(env: Env, email: string): Promise<RosterEntry | undefined> {
   const { members } = await loadRoster(env);
   const needle = email.trim().toLowerCase();
-  return members.find((m) => m.active && m.email.trim().toLowerCase() === needle);
+  // Guarded on the email being a string: one malformed entry must not throw here and lock
+  // everyone out. (CI validates the file's shape; this is the belt to that suspender.)
+  return members.find(
+    (m) => m.active && typeof m.email === "string" && m.email.trim().toLowerCase() === needle
+  );
 }
 
 export async function findByGithubLogin(
@@ -94,14 +98,21 @@ export function canApprove(id: Identity): boolean {
  * Anything subtler than this is caught by admin review, which every submission passes
  * through regardless of role.
  */
-export function canWritePath(id: Identity, path: string, isCreate: boolean): boolean {
+export function canWritePath(
+  id: Identity,
+  path: string,
+  isCreate: boolean,
+  /** Current contents of the file when it exists — lets a member edit records they are on. */
+  existing?: string
+): boolean {
   if (id.role === "admin") return true;
   if (id.role === "editor") {
     return path.startsWith("content/") || path.startsWith("public/images/");
   }
 
-  // Members: their own person record, plus create-only in the collections they contribute
-  // to. They may never edit or delete another person's record.
+  // Members: their own person record, plus the collections they contribute to — create
+  // freely, edit only records that already name them. They may never touch another
+  // person's record.
   //
   // Every rule here is guarded on personId being present. Without the guard, a member whose
   // roster entry has no linked profile would be authorized for the literal path
@@ -115,12 +126,23 @@ export function canWritePath(id: Identity, path: string, isCreate: boolean): boo
   if (path === `public/images/people/${id.personId}.png`) return true;
   if (path === `public/images/people/${id.personId}.jpg`) return true;
 
-  if (isCreate) {
-    return (
-      path.startsWith("content/publications/") ||
-      path.startsWith("content/recognitions/") ||
-      path.startsWith("content/posts/")
-    );
-  }
-  return false;
+  const contribution =
+    path.startsWith("content/publications/") ||
+    path.startsWith("content/recognitions/") ||
+    path.startsWith("content/posts/");
+  if (!contribution) return false;
+  if (isCreate) return true;
+  return existing !== undefined && ownsRecord(existing, id.personId);
+}
+
+/**
+ * Does this record name the member — as a publication author, award recipient, or post
+ * author? A textual test rather than a parse, so this Worker stays schema-blind: it only
+ * knows that ownership is spelled `personId:` or `authorId:` followed by the id, on its own
+ * line, possibly as a list item. Review still happens; this merely lets a member fix a typo
+ * in their own paper without a round trip through an admin.
+ */
+export function ownsRecord(content: string, personId: string): boolean {
+  const id = personId.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return new RegExp(`^\\s*(?:-\\s+)?(?:personId|authorId):\\s*["']?${id}["']?\\s*(?:#.*)?$`, "m").test(content);
 }

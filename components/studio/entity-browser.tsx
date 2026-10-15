@@ -3,8 +3,10 @@
 // Browse and edit one entity type. The form is generated from the Zod schema, so this file
 // contains no per-entity field knowledge at all — adding a content type needs an entry in
 // lib/studio/entities.ts and nothing here.
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { api, type Snapshot } from "@/lib/studio/api";
+import { relativeTime } from "@/lib/studio/submissions";
+import { ActionButton, Notice } from "./notice";
 import {
   assetPathFor,
   filePathFor,
@@ -20,7 +22,8 @@ import {
   validateRecord,
   type FieldSpec,
 } from "@/lib/studio/schema-fields";
-import { prepareImage, serializeRecord } from "@/lib/studio/records";
+import { buildRecordFiles, prepareImage, serializeRecord } from "@/lib/studio/records";
+import { draftKeyFor, forgetDraft, markSent, readDraft, writeDraft } from "@/lib/studio/drafts";
 import { fetchByDoi } from "@/lib/studio/crossref";
 import { COLLECTION_KEY, labelOf, referencesTo, refFieldTargets } from "@/lib/content/relations";
 import type { EntityKind } from "@/lib/content/schema";
@@ -58,26 +61,45 @@ export function EntityBrowser({
   entity,
   snapshot,
   canEdit,
+  canDelete,
   onSubmitted,
   startCreating,
+  startEditing,
+  createSeed,
+  onClose,
   scopeTo,
   readOnly,
+  lockedLabel = "Locked",
 }: {
   entity: EntityDef;
   snapshot: Snapshot;
   canEdit: (record: Rec | undefined) => boolean;
+  /** Whether "Request deletion" is offered. Defaults to canEdit. Members never get it — the Worker refuses it anyway. */
+  canDelete?: (record: Rec) => boolean;
   onSubmitted: (pr: { number: number; url: string }) => void;
   /** Open straight into a create form seeded with these values (member onboarding). */
   startCreating?: Rec;
+  /** Open straight into the edit form for this record ("Edit my profile"). */
+  startEditing?: Rec;
+  /**
+   * Values every NEW record starts with when "New …" is clicked — e.g. the signed-in member
+   * as the author. Without it a member's own paper is not linked to them and never shows
+   * up under "My publications".
+   */
+  createSeed?: Rec;
+  /** Called when a form opened via startCreating/startEditing is closed (cancel or submit). */
+  onClose?: () => void;
   /** Narrow the list to a subset — "my publications" rather than all 301. */
   scopeTo?: (record: Rec) => boolean;
   /** Browse-only: hide create, delete and bulk actions entirely. */
   readOnly?: boolean;
+  /** Wording on a row the current user may not edit. */
+  lockedLabel?: string;
 }) {
   const all = snapshot.content[entity.snapshotKey] as unknown as Rec[];
   const records = useMemo(() => (scopeTo ? all.filter(scopeTo) : all), [all, scopeTo]);
   const [query, setQuery] = useState("");
-  const [editing, setEditing] = useState<Rec | undefined>();
+  const [editing, setEditing] = useState<Rec | undefined>(startEditing);
   const [creating, setCreating] = useState(Boolean(startCreating));
   const [selected, setSelected] = useState<Set<string>>(new Set());
 
@@ -88,22 +110,25 @@ export function EntityBrowser({
   }, [records, query]);
 
   if (editing || creating) {
+    const opened = Boolean(startCreating || startEditing);
+    const close = () => {
+      setEditing(undefined);
+      setCreating(false);
+      if (opened) onClose?.();
+    };
     return (
       <RecordForm
         entity={entity}
         snapshot={snapshot}
-        initial={editing ?? (creating ? startCreating : undefined)}
+        initial={editing ?? (creating ? (startCreating ?? createSeed) : undefined)}
         isNew={creating}
         // A seeded id came from the roster and must not be edited — the Worker authorizes
         // exactly that one path, so changing it here would produce a confusing 403.
         lockId={Boolean(creating && startCreating?.id)}
-        onCancel={() => {
-          setEditing(undefined);
-          setCreating(false);
-        }}
+        canDelete={editing ? (canDelete ?? canEdit)(editing) : false}
+        onCancel={close}
         onSubmitted={(pr) => {
-          setEditing(undefined);
-          setCreating(false);
+          close();
           onSubmitted(pr);
         }}
       />
@@ -201,7 +226,7 @@ export function EntityBrowser({
                     disabled={!canEdit(r)}
                     className="font-mono text-[11px] text-brand-strong hover:underline disabled:text-text-placeholder disabled:no-underline"
                   >
-                    {canEdit(r) ? "Edit" : "Locked"}
+                    {canEdit(r) ? "Edit" : lockedLabel}
                   </button>
                 </td>
               </tr>
@@ -426,6 +451,7 @@ function RecordForm({
   initial,
   isNew,
   lockId,
+  canDelete = true,
   onCancel,
   onSubmitted,
 }: {
@@ -434,6 +460,7 @@ function RecordForm({
   initial?: Rec;
   isNew: boolean;
   lockId?: boolean;
+  canDelete?: boolean;
   onCancel: () => void;
   onSubmitted: (pr: { number: number; url: string }) => void;
 }) {
@@ -444,6 +471,17 @@ function RecordForm({
   const [failure, setFailure] = useState<string>();
   /** Images chosen but not yet committed, keyed by their repo path. */
   const [assets, setAssets] = useState<Record<string, string>>({});
+
+  // Unsaved edits survive a closed tab, a lost session, or a mis-click on "Back". A
+  // researcher who typed a bio and lost it will not type it twice. Images are not kept —
+  // they are large and re-picking one is a single click.
+  const baseline = useMemo<Rec>(() => initial ?? { status: "published" }, [initial]);
+  const draftKey = draftKeyFor(entity.key, isNew, initial?.id === undefined ? undefined : String(initial.id));
+  const [draft, setDraft] = useState(() => readDraft(draftKey, baseline));
+  useEffect(() => {
+    const t = setTimeout(() => writeDraft(draftKey, record, baseline), 600);
+    return () => clearTimeout(t);
+  }, [draftKey, record, baseline]);
 
   /** Record id, derived from the title for records that do not have one yet. */
   const currentId = String(
@@ -474,9 +512,9 @@ function RecordForm({
   async function save(deleteRecord = false) {
     setFailure(undefined);
 
-    const id = String(record.id ?? "");
+    // Work on a copy: `record` is React state and must not be mutated in place.
+    const candidate: Rec = { ...record };
     if (!deleteRecord) {
-      const candidate = { ...record };
       // New records derive their id from the title/name, matching the schema's slug rule.
       if (isNew && !candidate.id) {
         const source = String(candidate.title ?? candidate.name ?? candidate.award ?? candidate.role ?? "");
@@ -490,20 +528,20 @@ function RecordForm({
       }
       setErrors({});
       setRecord(candidate);
-      Object.assign(record, candidate);
     }
-    if (!record.id) {
+    const id = String(candidate.id ?? "");
+    if (!id) {
       setFailure("This record needs an id.");
       return;
     }
 
     setBusy(true);
     try {
-      const path = filePathFor(entity, String(record.id));
+      const path = filePathFor(entity, id);
       const res = await api.submit({
         title: deleteRecord
           ? `Delete ${entity.label.toLowerCase()}: ${id}`
-          : `${isNew ? "Add" : "Update"} ${entity.label.toLowerCase()}: ${record.title ?? record.name ?? id}`,
+          : `${isNew ? "Add" : "Update"} ${entity.label.toLowerCase()}: ${candidate.title ?? candidate.name ?? id}`,
         summary: `Submitted from Studio.`,
         files: deleteRecord
           ? [
@@ -512,22 +550,17 @@ function RecordForm({
               // leaves an orphaned file behind — harmless individually, but it accumulates
               // over years of members joining and leaving, and the validator has to keep
               // warning about files nothing will ever reference again.
-              ...assetPathsOf(fields, record).map((assetPath) => ({
+              ...assetPathsOf(fields, candidate).map((assetPath) => ({
                 path: repoAssetPath(assetPath),
                 delete: true,
               })),
             ]
-          : [
-              { path, content: serializeRecord(entity, record) },
-              // Uploaded images ride along in the same commit as the record that
-              // references them, so a reviewer never sees a record pointing at a file that
-              // does not exist yet — and CI's asset check cannot fail spuriously.
-              ...Object.entries(assets).map(([assetPath, contentBase64]) => ({
-                path: assetPath,
-                contentBase64,
-              })),
-            ],
+          : // Record plus its uploaded images in ONE commit — see buildRecordFiles.
+            buildRecordFiles(entity, candidate, assets),
       });
+      // Keep what was sent: if a reviewer returns it, the fix starts from here, not from zero.
+      if (deleteRecord) forgetDraft(draftKey);
+      else markSent(draftKey, candidate);
       onSubmitted(res.pr);
     } catch (err) {
       setFailure(err instanceof Error ? err.message : "Submission failed.");
@@ -552,7 +585,43 @@ function RecordForm({
         </button>
       </div>
 
-      {entity.key === "publications" && <DoiLookup onFill={(patch) => setRecord((r) => ({ ...patch, ...r, ...patch }))} />}
+      {draft && (
+        <Notice
+          kind="info"
+          title={
+            draft.sent
+              ? `Start from the version you sent ${relativeTime(draft.savedAt)}?`
+              : `You have unsaved edits from ${relativeTime(draft.savedAt)}`
+          }
+          actions={
+            <>
+              <ActionButton
+                primary
+                onClick={() => {
+                  setRecord(draft.record);
+                  setDraft(undefined);
+                }}
+              >
+                {draft.sent ? "Yes, start from it" : "Restore them"}
+              </ActionButton>
+              <ActionButton
+                onClick={() => {
+                  forgetDraft(draftKey);
+                  setDraft(undefined);
+                }}
+              >
+                {draft.sent ? "No, start fresh" : "Discard"}
+              </ActionButton>
+            </>
+          }
+        >
+          {draft.sent
+            ? "It was kept in this browser so a returned submission can be fixed instead of retyped."
+            : "They were kept in this browser when you left without submitting."}
+        </Notice>
+      )}
+
+      {entity.key === "publications" && <DoiLookup onFill={(patch) => setRecord((r) => ({ ...r, ...patch }))} />}
 
       <div className="grid gap-4 md:grid-cols-2">
         {fields.map((f) => (
@@ -583,7 +652,7 @@ function RecordForm({
         >
           {busy ? "Submitting…" : "Submit for review"}
         </button>
-        {!isNew && (
+        {!isNew && canDelete && (
           <button
             onClick={() => {
               // What else points at this record. CI rejects a deletion that leaves a dangling

@@ -212,10 +212,12 @@ function FieldControl({
           value={(value as string) ?? ""}
           onChange={(e) => onChange(e.target.value || undefined)}
         >
-          {spec.optional && <option value="">— none —</option>}
+          {(spec.optional || value === undefined) && (
+            <option value="">{spec.optional ? "— none —" : "— choose —"}</option>
+          )}
           {(spec.options ?? []).map((o) => (
             <option key={o} value={o}>
-              {o}
+              {spec.optionLabels?.[o] ?? o}
             </option>
           ))}
         </select>
@@ -240,6 +242,7 @@ function FieldControl({
           type="number"
           className={inputClass}
           disabled={disabled}
+          placeholder={spec.placeholder}
           value={value === undefined || value === null ? "" : String(value)}
           onChange={(e) => onChange(e.target.value === "" ? undefined : Number(e.target.value))}
         />
@@ -251,6 +254,7 @@ function FieldControl({
           rows={6}
           className={`${inputClass} font-sans leading-relaxed`}
           disabled={disabled}
+          placeholder={spec.placeholder}
           value={(value as string) ?? ""}
           onChange={(e) => onChange(e.target.value || undefined)}
         />
@@ -285,6 +289,7 @@ function FieldControl({
           type="text"
           className={inputClass}
           disabled={disabled}
+          placeholder={spec.placeholder}
           value={typeof value === "string" ? value : value === undefined ? "" : JSON.stringify(value)}
           onChange={(e) => onChange(e.target.value || undefined)}
         />

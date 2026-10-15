@@ -13,6 +13,7 @@ import {
   deployStatus,
   installationToken,
   listQueue,
+  listReturned,
   prFiles,
   readFile,
   rejectPR,
@@ -116,19 +117,51 @@ async function handleAuthEmail(req: Request, env: Env): Promise<Response> {
   return ok;
 }
 
+/**
+ * Redeem a sign-in link.
+ *
+ * GET shows a confirmation page and redeems NOTHING. POST (the page's one button) does the
+ * redemption. The split exists because chat apps, mail scanners and link-preview bots fetch
+ * every URL they see with a GET — and a single-use link that is redeemed on GET is burned
+ * before the human ever clicks it. That happened; the member then saw "already used" and the
+ * admin had to mint another. A form POST is something only a person does.
+ *
+ * Old links keep working: they were always GET URLs, and the page now does the rest.
+ */
 async function handleAuthVerify(req: Request, env: Env): Promise<Response> {
-  const token = new URL(req.url).searchParams.get("token") ?? "";
+  const redirect = (params: string) =>
+    new Response(null, { status: 302, headers: { Location: `${env.STUDIO_URL}#${params}` } });
+
+  let token = "";
+  if (req.method === "POST") {
+    const form = await req.formData().catch(() => undefined);
+    token = String(form?.get("token") ?? "");
+  } else {
+    token = new URL(req.url).searchParams.get("token") ?? "";
+  }
+
   const payload = await verifyToken<{ jti: string; email: string; exp: number }>(
     token,
     env.SESSION_SECRET
   );
-  const redirect = (params: string) =>
-    new Response(null, { status: 302, headers: { Location: `${env.STUDIO_URL}#${params}` } });
-
-  if (!payload) return redirect("error=invalid_or_expired");
+  if (!payload) {
+    return req.method === "POST"
+      ? redirect("error=invalid_or_expired")
+      : confirmPage(env, { problem: "This sign-in link has expired or is not valid. Ask an admin for a new one." });
+  }
 
   const stored = await env.SESSIONS.get(`magic:${payload.jti}`);
-  if (stored !== payload.email) return redirect("error=already_used");
+  if (stored !== payload.email) {
+    return req.method === "POST"
+      ? redirect("error=already_used")
+      : confirmPage(env, { problem: "This sign-in link was already used — each one works once. Ask an admin for a new one." });
+  }
+
+  if (req.method !== "POST") {
+    // Peek at the roster only to greet by name; nothing is spent here.
+    const who = await findByEmail(env, payload.email);
+    return confirmPage(env, { token, name: who?.name });
+  }
 
   // Roster lookup happens BEFORE the nonce is spent, because whether it gets spent depends
   // on the role.
@@ -151,6 +184,31 @@ async function handleAuthVerify(req: Request, env: Env): Promise<Response> {
   }
 
   return redirect(`token=${encodeURIComponent(await issueSession(env, toIdentity(entry)))}`);
+}
+
+/** The one HTML page this Worker serves: "continue to Studio as <name>", or why it cannot. */
+function confirmPage(env: Env, opts: { token?: string; name?: string; problem?: string }): Response {
+  const esc = (s: string) =>
+    s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  const body = opts.problem
+    ? `<p class="muted">${esc(opts.problem)}</p>
+       <a class="btn" href="${esc(env.STUDIO_URL)}">Go to Studio</a>`
+    : `<p class="muted">Sign in to X-Lab Studio${opts.name ? ` as <strong>${esc(opts.name)}</strong>` : ""}.
+        This link works once; nothing happens until you continue.</p>
+       <form method="post"><input type="hidden" name="token" value="${esc(opts.token ?? "")}">
+       <button class="btn" type="submit">Continue to Studio</button></form>`;
+  const page = `<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>X-Lab Studio — sign in</title>
+<style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font:15px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;color:#111;background:#fff}
+main{max-width:420px;padding:32px 24px;text-align:center}h1{font-size:22px;margin:0 0 8px;letter-spacing:-.01em}
+.muted{color:#555;margin:0 0 20px}.btn{display:inline-block;padding:11px 20px;background:#111;color:#fff;border:0;border-radius:4px;
+font:700 12px/1 ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;cursor:pointer}</style></head>
+<body><main><h1>X-Lab Studio</h1>${body}</main></body></html>`;
+  return new Response(page, {
+    status: 200,
+    headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" },
+  });
 }
 
 /** Admin sign-in via GitHub, so admin access rests on GitHub's 2FA rather than an inbox. */
@@ -235,10 +293,15 @@ async function handleSubmit(req: Request, env: Env, id: Identity): Promise<Respo
     if (!prefixes.some((p) => f.path.startsWith(p))) {
       return fail(env, 403, `path not writable: ${f.path}`);
     }
-    // Existence is resolved server-side rather than trusted from the client, so a member
-    // cannot claim "this is a create" to slip past the edit restriction.
-    const exists = id.role === "admin" ? true : Boolean(await readFile(env, f.path));
-    if (!canWritePath(id, f.path, !exists)) {
+    // Existence — and, for members, the current contents — is resolved server-side rather
+    // than trusted from the client, so a member cannot claim "this is a create" to slip past
+    // the edit restriction, nor claim to be on a record they are not.
+    const existing = id.role === "admin" ? undefined : await readFile(env, f.path);
+    const exists = id.role === "admin" ? true : Boolean(existing);
+    if (f.delete && id.role === "member") {
+      return fail(env, 403, `members cannot delete records — ask an admin to remove ${f.path}`);
+    }
+    if (!canWritePath(id, f.path, !exists, existing?.content)) {
       return fail(env, 403, `you are not allowed to modify ${f.path}`);
     }
   }
@@ -410,13 +473,22 @@ async function route(req: Request, env: Env, ctx: RequestContext): Promise<Respo
   // and because that page carries no CORS headers the browser reports a misleading
   // "blocked by CORS policy" instead of the actual error.
   if (path === "/auth/email" && req.method === "POST") return await handleAuthEmail(req, env);
-  if (path === "/auth/verify") return await handleAuthVerify(req, env);
+  if (path === "/auth/verify" && (req.method === "GET" || req.method === "POST"))
+    return await handleAuthVerify(req, env);
   if (path === "/auth/github/start") return await handleGithubStart(req, env);
   if (path === "/auth/github/callback") return await handleGithubCallback(req, env);
 
   // --- authenticated ---
-  const id = await currentIdentity(req, env);
-  if (!id) return fail(env, 401, "not signed in");
+  const session = await currentIdentity(req, env);
+  if (!session) return fail(env, 401, "not signed in");
+
+  // The token proves who signed in; the ROSTER decides what they are now. Re-reading it on
+  // every request (it is cached for a minute) is what makes two things true that a 90-day
+  // token alone cannot: deactivating someone actually signs them out, and an admin fixing a
+  // member's role or profile id takes effect without minting them a new link.
+  const entry = await findByEmail(env, session.email);
+  if (!entry) return fail(env, 401, "access_removed");
+  const id = toIdentity(entry, session.sub);
   ctx.identity = id;
 
   if (path === "/me") return json(env, id);
@@ -491,6 +563,15 @@ async function route(req: Request, env: Env, ctx: RequestContext): Promise<Respo
       ? queue
       : queue.filter((q) => q.body.includes(`"email":"${id.email}"`));
     return json(env, { queue: visible });
+  }
+  // Submissions that were sent back, with the reviewer's note — so a member learns WHY
+  // from inside Studio instead of from a GitHub notification they may never see.
+  if (path === "/returned") {
+    const returned = await listReturned(env);
+    const visible = canApprove(id)
+      ? returned
+      : returned.filter((q) => q.body.includes(`"email":"${id.email}"`));
+    return json(env, { returned: visible });
   }
   if (path.startsWith("/queue/") && path.endsWith("/files")) {
     if (!canApprove(id)) return fail(env, 403, "not allowed");

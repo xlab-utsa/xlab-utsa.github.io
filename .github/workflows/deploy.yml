@@ -45,6 +45,9 @@ jobs:
       - name: Typecheck
         run: npm run typecheck
 
+      - name: Tests
+        run: npm test
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5

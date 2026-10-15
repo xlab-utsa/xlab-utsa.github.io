@@ -4,8 +4,17 @@
 // lib/content/loader.ts — those use fs and would break the browser bundle. Import
 // lib/content/schema.ts instead; it is pure Zod.
 
-/** The xlab-gate Worker. Holds the only GitHub credential; see workers/xlab-gate/. */
-export const GATE_URL = "https://xlab-gate.xlab-studio.workers.dev";
+/**
+ * The xlab-gate Worker. Holds the only GitHub credential; see workers/xlab-gate/.
+ *
+ * Overridable at build time so Studio can be exercised locally against the mock gate
+ * (`npm run dev:mock`, scripts/mock-gate.mjs) — put `NEXT_PUBLIC_GATE_URL=http://localhost:8787`
+ * in `.env.local` (gitignored). CI and the Pages build never set it, so production always
+ * points at the real Worker.
+ */
+export const GATE_URL =
+  process.env.NEXT_PUBLIC_GATE_URL?.replace(/\/+$/, "") ||
+  "https://xlab-gate.xlab-studio.workers.dev";
 
 /**
  * Build-time snapshot of all content, published as a static asset by

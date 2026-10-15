@@ -7,7 +7,7 @@
 //
 // It includes draft and hidden records (Studio must be able to see and edit them); the site
 // itself filters to published-only via lib/content/index.ts. Everything here is already
-// public information — access/roster.yaml, which holds member identities and roles, is
+// public information — access/roster.json, which holds member identities and roles, is
 // deliberately NOT part of content/ and never appears in this file.
 //
 // Runs automatically via the `prebuild` npm script.

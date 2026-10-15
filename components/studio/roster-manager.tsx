@@ -3,17 +3,26 @@
 // Who can sign in, and how they get in.
 //
 // Because no email provider is configured, onboarding works by handing someone a link:
-// add them here, generate a link, send it however you already talk to them. The link is
-// single-use and expires, so it is safe to send over chat.
+// add them here, get the change approved, generate a link, send it however you already talk
+// to them. Member links are single-use and expire, so they are safe to send over chat.
 //
 // Roster edits go through the same review flow as content — they are a pull request, not a
 // direct write — which is what keeps "who had access when" answerable from git history.
-import { useCallback, useEffect, useState } from "react";
-import { api, ROSTER_PATH, type RosterEntry, type Snapshot } from "@/lib/studio/api";
+// Two consequences this screen has to be honest about:
+//
+//   - A change takes effect only once its PR is approved. Until then the person is not on
+//     the roster the Worker reads, so "Invite link" cannot work for them yet.
+//   - Each PR rewrites the whole file. Two open roster PRs would conflict, so while one is
+//     waiting this screen refuses to open another.
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { api, ROSTER_PATH, type QueueItem, type RosterEntry, type Snapshot } from "@/lib/studio/api";
+import { rosterIssues, type RosterIssue } from "@/lib/access/roster";
 import { slugify } from "@/lib/studio/entities";
+import { pendingFor, relativeTime } from "@/lib/studio/submissions";
+import { ActionButton, Notice, type NoticeKind } from "./notice";
 
 const input =
-  "w-full rounded-sm border border-border bg-background px-2.5 py-1.5 text-sm outline-none focus:border-brand";
+  "w-full rounded-sm border border-border bg-background px-2.5 py-1.5 text-sm outline-none focus:border-brand disabled:opacity-60";
 const ROLES = ["admin", "editor", "member"] as const;
 
 const ROLE_HELP: Record<RosterEntry["role"], string> = {
@@ -22,10 +31,24 @@ const ROLE_HELP: Record<RosterEntry["role"], string> = {
   member: "Edits only their own profile; can propose new publications, awards and posts.",
 };
 
-export function RosterManager({ snapshot }: { snapshot: Snapshot }) {
+type Flash = { kind: NoticeKind; title: string; body?: string };
+
+export function RosterManager({ snapshot, onOpenQueue }: { snapshot: Snapshot; onOpenQueue: () => void }) {
+  /** What the gate returned — the roster that is actually in force. */
+  const [loaded, setLoaded] = useState<RosterEntry[]>();
+  /** The rows as edited on screen. */
   const [members, setMembers] = useState<RosterEntry[]>();
+  const [pendingPr, setPendingPr] = useState<QueueItem>();
+  /**
+   * Rows that exist only in a submission made from this screen, so a just-added person is
+   * visible as "waiting for approval" rather than vanishing until the PR merges. Known only
+   * for this page load — after a reload the banner above still says a change is pending.
+   */
+  const [pendingRows, setPendingRows] = useState<RosterEntry[]>([]);
   const [error, setError] = useState<string>();
+  const [flash, setFlash] = useState<Flash>();
   const [busy, setBusy] = useState(false);
+  const [rowIssues, setRowIssues] = useState<RosterIssue[]>([]);
   const [invite, setInvite] = useState<{
     name: string;
     email: string;
@@ -42,7 +65,13 @@ export function RosterManager({ snapshot }: { snapshot: Snapshot }) {
 
   const load = useCallback(async () => {
     try {
-      setMembers((await api.roster()).members);
+      const [roster, queue] = await Promise.all([api.roster(), api.queue()]);
+      setLoaded(roster.members);
+      setMembers(roster.members);
+      const pending = pendingFor(queue.queue, ROSTER_PATH);
+      setPendingPr(pending);
+      if (!pending) setPendingRows([]);
+      setRowIssues([]);
       setError(undefined);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Could not load the roster.");
@@ -54,62 +83,91 @@ export function RosterManager({ snapshot }: { snapshot: Snapshot }) {
     void load();
   }, [load]);
 
-  async function saveRoster(next: RosterEntry[], title: string) {
+  const dirty = useMemo(
+    () => Boolean(loaded && members && JSON.stringify(loaded) !== JSON.stringify(members)),
+    [loaded, members]
+  );
+
+  /** Validate, and if clean, open the PR. Returns true on success. */
+  async function saveRoster(next: RosterEntry[], title: string): Promise<boolean> {
+    const issues = rosterIssues({ _comment: ROSTER_COMMENT, members: next });
+    if (issues.length) {
+      setRowIssues(issues);
+      setFlash({
+        kind: "error",
+        title: "Fix the highlighted rows before submitting",
+        body: issues.filter((i) => i.index === undefined).map((i) => i.message).join(" "),
+      });
+      return false;
+    }
+    setRowIssues([]);
     setBusy(true);
     try {
       // Preserve the explanatory _comment block that documents what each role means —
       // it is the only in-repo documentation of this file.
-      const body = {
-        _comment: ROSTER_COMMENT,
-        members: next,
-      };
-      await api.submit({
+      const body = { _comment: ROSTER_COMMENT, members: next };
+      const res = await api.submit({
         title,
         summary: "Roster change submitted from Studio.",
         files: [{ path: ROSTER_PATH, content: JSON.stringify(body, null, 2) + "\n" }],
       });
-      setMembers(next);
-      alert("Submitted for review. Approve it in the review queue, then the change takes effect within a minute.");
+      setFlash({
+        kind: "ok",
+        title: `Submitted as #${res.pr.number}`,
+        body: "Approve it in the review queue once the automatic checks pass. The change takes effect within a minute of approval; invite links work from then on.",
+      });
+      setPendingRows(next.filter((m) => !loaded?.some((x) => x.email.toLowerCase() === m.email.toLowerCase())));
+      await load();
+      return true;
     } catch (err) {
-      alert(err instanceof Error ? err.message : "Could not save the roster.");
+      setFlash({ kind: "error", title: "Could not submit the roster change", body: err instanceof Error ? err.message : undefined });
+      return false;
     } finally {
       setBusy(false);
     }
   }
 
   async function makeInvite(entry: RosterEntry) {
+    setFlash(undefined);
     try {
       const res = await api.invite(entry.email);
-      setInvite({
-        name: res.name,
-        email: entry.email,
-        link: res.link,
-        days: res.expiresInDays,
-        reusable: res.reusable,
-      });
+      setInvite({ name: res.name, email: entry.email, link: res.link, days: res.expiresInDays, reusable: res.reusable });
     } catch (err) {
-      alert(err instanceof Error ? err.message : "Could not create an invite link.");
+      setFlash({
+        kind: "error",
+        title: `Could not create a link for ${entry.name}`,
+        body: err instanceof Error ? err.message : undefined,
+      });
     }
   }
 
   async function revokeInvites(entry: RosterEntry) {
-    if (!confirm(`Invalidate every outstanding sign-in link for ${entry.name}?\n\nAnyone still holding one will not be able to use it. Sessions already signed in are unaffected.`))
+    if (
+      !confirm(
+        `Invalidate every outstanding sign-in link for ${entry.name}?\n\nAnyone still holding one will not be able to use it. Sessions already signed in are unaffected.`
+      )
+    )
       return;
     try {
       const res = await api.revokeInvites(entry.email);
       setInvite(undefined);
-      alert(res.revoked === 0 ? "There were no outstanding links." : `Revoked ${res.revoked} link(s).`);
+      setFlash({
+        kind: "ok",
+        title: res.revoked === 0 ? `No outstanding links for ${entry.name}` : `Revoked ${res.revoked} link${res.revoked === 1 ? "" : "s"} for ${entry.name}`,
+      });
     } catch (err) {
-      alert(err instanceof Error ? err.message : "Could not revoke links.");
+      setFlash({ kind: "error", title: "Could not revoke links", body: err instanceof Error ? err.message : undefined });
     }
   }
 
   if (error) return <p className="text-sm text-brand-orange">{error}</p>;
-  if (!members) return <p className="text-sm text-text-faint">Loading roster…</p>;
+  if (!members || !loaded) return <p className="text-sm text-text-faint">Loading roster…</p>;
 
-  const unlinked = snapshot.content.people.filter(
-    (p) => !members.some((m) => m.personId === p.id)
-  );
+  const locked = Boolean(pendingPr) || busy;
+  const unlinked = snapshot.content.people.filter((p) => !members.some((m) => m.personId === p.id));
+  const issueFor = (index: number, field: string) =>
+    rowIssues.find((i) => i.index === index && i.field === field)?.message;
+  const rowHasIssue = (index: number) => rowIssues.some((i) => i.index === index);
 
   return (
     <div className="space-y-6">
@@ -119,6 +177,28 @@ export function RosterManager({ snapshot }: { snapshot: Snapshot }) {
           Anyone listed here can sign in. Changes go through review like everything else.
         </p>
       </div>
+
+      {pendingPr && (
+        <Notice
+          kind="warn"
+          title={`Roster change #${pendingPr.number} is waiting for approval`}
+          actions={
+            <button type="button" onClick={onOpenQueue} className="font-mono text-[11px] text-brand-strong hover:underline">
+              Open the review queue →
+            </button>
+          }
+        >
+          Sent {relativeTime(pendingPr.createdAt)}. Approve it (or return it) before making
+          another change — each change rewrites the whole roster, and two at once would
+          conflict. Invite links for people added in that change work once it is approved.
+        </Notice>
+      )}
+
+      {flash && (
+        <Notice kind={flash.kind} title={flash.title} onDismiss={() => setFlash(undefined)}>
+          {flash.body}
+        </Notice>
+      )}
 
       {invite && (
         <div className="rounded-sm border border-brand-soft-border bg-brand-soft-bg p-3">
@@ -132,7 +212,8 @@ export function RosterManager({ snapshot }: { snapshot: Snapshot }) {
             </p>
           ) : (
             <p className="mt-1 text-[12px] text-text-faint">
-              Single use, expires in {invite.days} days. Send it however you normally contact them.
+              Works once, expires in {invite.days} days. Send it however you normally contact them
+              — they open it, and they are in.
             </p>
           )}
           <div className="mt-2 flex gap-2">
@@ -162,91 +243,126 @@ export function RosterManager({ snapshot }: { snapshot: Snapshot }) {
             </tr>
           </thead>
           <tbody>
-            {members.map((m, i) => (
-              <tr key={m.email} className="border-b border-hairline">
-                <td className="py-2 pr-3">
-                  <span className={m.active ? "text-foreground" : "text-text-placeholder line-through"}>{m.name}</span>
-                </td>
-                <td className="py-2 pr-3 font-mono text-[11.5px] text-text-faint">{m.email}</td>
-                <td className="py-2 pr-3">
-                  <select
-                    value={m.role}
-                    disabled={busy}
-                    onChange={(e) => {
-                      const next = members.map((x, j) =>
-                        j === i ? { ...x, role: e.target.value as RosterEntry["role"] } : x
-                      );
-                      setMembers(next);
-                    }}
-                    className="rounded-sm border border-border bg-background px-1.5 py-1 text-[12.5px]"
-                  >
-                    {ROLES.map((r) => (
-                      <option key={r} value={r}>
-                        {r}
-                      </option>
-                    ))}
-                  </select>
-                </td>
-                <td className="py-2 pr-3">
-                  {/*
-                    A free-text id, not a dropdown of existing people: a member's profile
-                    legitimately does not exist yet — they create it themselves on first
-                    sign-in — so a picker over current records could not express it.
-                  */}
-                  <input
-                    value={m.personId ?? ""}
-                    disabled={busy}
-                    placeholder="—"
-                    onChange={(e) =>
-                      setMembers(
-                        members.map((x, j) =>
-                          j === i ? { ...x, personId: e.target.value || undefined } : x
-                        )
-                      )
-                    }
-                    className="w-[170px] rounded-sm border border-border bg-background px-1.5 py-1 font-mono text-[12px]"
-                  />
-                  {m.personId && !profileExists(snapshot, m.personId) && (
-                    <span className="ml-1.5 font-mono text-[10px] text-text-placeholder">not created yet</span>
-                  )}
-                </td>
-                <td className="py-2 text-right whitespace-nowrap">
-                  <button
-                    onClick={() => void makeInvite(m)}
-                    disabled={!m.active}
-                    className="font-mono text-[11px] text-brand-strong hover:underline disabled:text-text-placeholder"
-                  >
-                    Invite link
-                  </button>
-                  <button
-                    onClick={() => void revokeInvites(m)}
-                    title="Invalidate every outstanding sign-in link for this person"
-                    className="ml-3 font-mono text-[11px] text-text-faint hover:text-brand-orange"
-                  >
-                    Revoke links
-                  </button>
-                  <button
-                    onClick={() =>
-                      setMembers(members.map((x, j) => (j === i ? { ...x, active: !x.active } : x)))
-                    }
-                    className="ml-3 font-mono text-[11px] text-text-faint hover:text-brand-orange"
-                  >
-                    {m.active ? "Deactivate" : "Reactivate"}
-                  </button>
-                </td>
-              </tr>
-            ))}
+            {members.map((m, i) => {
+              const saved = loaded.find((x) => x.email.toLowerCase() === m.email.toLowerCase());
+              const changed = JSON.stringify(saved) !== JSON.stringify(m);
+              return (
+                <tr key={m.email} className={`border-b border-hairline ${rowHasIssue(i) ? "bg-brand-orange/5" : ""}`}>
+                  <td className="py-2 pr-3">
+                    <span className={m.active ? "text-foreground" : "text-text-placeholder line-through"}>{m.name}</span>
+                    {changed && <span className="ml-1.5 font-mono text-[10px] text-brand-orange">unsaved</span>}
+                  </td>
+                  <td className="py-2 pr-3 font-mono text-[11.5px] text-text-faint">{m.email}</td>
+                  <td className="py-2 pr-3">
+                    <select
+                      value={m.role}
+                      disabled={locked}
+                      onChange={(e) =>
+                        setMembers(members.map((x, j) => (j === i ? { ...x, role: e.target.value as RosterEntry["role"] } : x)))
+                      }
+                      className="rounded-sm border border-border bg-background px-1.5 py-1 text-[12.5px] disabled:opacity-60"
+                    >
+                      {ROLES.map((r) => (
+                        <option key={r} value={r}>
+                          {r}
+                        </option>
+                      ))}
+                    </select>
+                    {issueFor(i, "role") && <p className="mt-0.5 text-[11px] text-brand-orange">{issueFor(i, "role")}</p>}
+                  </td>
+                  <td className="py-2 pr-3">
+                    {/*
+                      A free-text id, not a dropdown of existing people: a member's profile
+                      legitimately does not exist yet — they create it themselves on first
+                      sign-in — so a picker over current records could not express it.
+                    */}
+                    <input
+                      value={m.personId ?? ""}
+                      disabled={locked}
+                      placeholder="—"
+                      onChange={(e) =>
+                        setMembers(members.map((x, j) => (j === i ? { ...x, personId: e.target.value.trim() || undefined } : x)))
+                      }
+                      className="w-[170px] rounded-sm border border-border bg-background px-1.5 py-1 font-mono text-[12px] disabled:opacity-60"
+                    />
+                    {m.personId && !profileExists(snapshot, m.personId) && !issueFor(i, "personId") && (
+                      <span className="ml-1.5 font-mono text-[10px] text-text-placeholder">not created yet</span>
+                    )}
+                    {issueFor(i, "personId") && <p className="mt-0.5 text-[11px] text-brand-orange">{issueFor(i, "personId")}</p>}
+                  </td>
+                  <td className="py-2 text-right whitespace-nowrap">
+                    <button
+                      onClick={() => void makeInvite(m)}
+                      disabled={!m.active || !saved || changed}
+                      title={
+                        !saved
+                          ? "Approve the roster change first — this person is not on the roster the gate reads yet"
+                          : changed
+                            ? "Submit (and approve) the change to this row first"
+                            : !m.active
+                              ? "Reactivate this person to invite them"
+                              : "Create a sign-in link to send them"
+                      }
+                      className="font-mono text-[11px] text-brand-strong hover:underline disabled:text-text-placeholder disabled:no-underline"
+                    >
+                      Invite link
+                    </button>
+                    <button
+                      onClick={() => void revokeInvites(m)}
+                      title="Invalidate every outstanding sign-in link for this person"
+                      className="ml-3 font-mono text-[11px] text-text-faint hover:text-brand-orange"
+                    >
+                      Revoke links
+                    </button>
+                    <button
+                      disabled={locked}
+                      onClick={() => setMembers(members.map((x, j) => (j === i ? { ...x, active: !x.active } : x)))}
+                      className="ml-3 font-mono text-[11px] text-text-faint hover:text-brand-orange disabled:opacity-60"
+                    >
+                      {m.active ? "Deactivate" : "Reactivate"}
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+            {pendingPr &&
+              pendingRows.map((m) => (
+                <tr key={`pending:${m.email}`} className="border-b border-hairline opacity-70">
+                  <td className="py-2 pr-3 text-foreground">{m.name}</td>
+                  <td className="py-2 pr-3 font-mono text-[11.5px] text-text-faint">{m.email}</td>
+                  <td className="py-2 pr-3 font-mono text-[12.5px] text-text-faint">{m.role}</td>
+                  <td className="py-2 pr-3 font-mono text-[12px] text-text-faint">{m.personId ?? "—"}</td>
+                  <td className="py-2 text-right font-mono text-[11px] whitespace-nowrap text-brand-orange">
+                    waiting for approval (#{pendingPr.number})
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
 
-      <button
-        onClick={() => void saveRoster(members, "Update Studio roster")}
-        disabled={busy}
-        className="rounded-sm bg-invert-bg px-4 py-2 font-mono text-[11px] font-bold tracking-wider text-invert-fg uppercase disabled:opacity-50"
-      >
-        {busy ? "Submitting…" : "Submit roster changes"}
-      </button>
+      <div className="flex flex-wrap items-center gap-3">
+        <ActionButton
+          primary
+          onClick={() => void saveRoster(members, "Update Studio roster")}
+          disabled={locked || !dirty}
+          title={!dirty ? "Nothing has changed" : undefined}
+        >
+          {busy ? "Submitting…" : "Submit roster changes"}
+        </ActionButton>
+        {dirty && !busy && (
+          <button
+            type="button"
+            onClick={() => {
+              setMembers(loaded);
+              setRowIssues([]);
+            }}
+            className="font-mono text-[11px] text-text-faint hover:text-foreground"
+          >
+            Discard edits
+          </button>
+        )}
+      </div>
 
       <div className="space-y-3 border-t border-border pt-5">
         <h3 className="font-mono text-[10.5px] font-bold tracking-wider text-text-faint uppercase">Add someone</h3>
@@ -254,6 +370,7 @@ export function RosterManager({ snapshot }: { snapshot: Snapshot }) {
           <input
             className={input}
             placeholder="Name"
+            disabled={locked}
             value={draft.name}
             onChange={(e) => {
               const name = e.target.value;
@@ -267,11 +384,13 @@ export function RosterManager({ snapshot }: { snapshot: Snapshot }) {
             className={input}
             placeholder="Email"
             type="email"
+            disabled={locked}
             value={draft.email}
             onChange={(e) => setDraft({ ...draft, email: e.target.value })}
           />
           <select
             className={input}
+            disabled={locked}
             value={draft.role}
             onChange={(e) => setDraft({ ...draft, role: e.target.value as RosterEntry["role"] })}
           >
@@ -284,8 +403,9 @@ export function RosterManager({ snapshot }: { snapshot: Snapshot }) {
           <input
             className={`${input} font-mono text-[12px]`}
             placeholder="profile-id (auto)"
+            disabled={locked}
             value={draft.personId ?? ""}
-            onChange={(e) => setDraft({ ...draft, personId: e.target.value || undefined })}
+            onChange={(e) => setDraft({ ...draft, personId: e.target.value.trim() || undefined })}
           />
         </div>
         <p className="text-[11.5px] text-text-faint">{ROLE_HELP[draft.role]}</p>
@@ -299,8 +419,7 @@ export function RosterManager({ snapshot }: { snapshot: Snapshot }) {
           <p className="text-[11.5px] text-text-faint">
             {profileExists(snapshot, draft.personId) ? (
               <>
-                Links to the existing profile{" "}
-                <span className="font-mono">{draft.personId}</span>.
+                Links to the existing profile <span className="font-mono">{draft.personId}</span>.
               </>
             ) : (
               <>
@@ -315,25 +434,45 @@ export function RosterManager({ snapshot }: { snapshot: Snapshot }) {
             {unlinked.length} existing profile{unlinked.length === 1 ? "" : "s"} not linked to anyone yet — type its id above to link instead of creating a new one.
           </p>
         )}
-        <button
+        <ActionButton
+          disabled={locked}
           onClick={() => {
-            if (!draft.email.trim() || !draft.name.trim()) return alert("Name and email are required.");
-            if (members.some((m) => m.email.toLowerCase() === draft.email.trim().toLowerCase()))
-              return alert("That email is already on the roster.");
-            if (draft.role === "member" && !draft.personId)
-              return alert("A member needs a profile id — it is normally filled in from their name.");
-            // Two roster entries pointing at one profile would let each overwrite the other's
-            // edits, with the second submission silently winning.
-            if (draft.personId && members.some((m) => m.personId === draft.personId))
-              return alert(`Someone on the roster already owns the profile "${draft.personId}".`);
-            void saveRoster([...members, { ...draft, email: draft.email.trim() }], `Add ${draft.name} to the roster`);
-            setDraft({ email: "", name: "", role: "member", active: true });
+            const entry: RosterEntry = {
+              ...draft,
+              name: draft.name.trim(),
+              email: draft.email.trim(),
+              personId: draft.personId?.trim() || undefined,
+            };
+            if (!entry.email || !entry.name) {
+              setFlash({ kind: "error", title: "Name and email are required" });
+              return;
+            }
+            if (dirty) {
+              setFlash({
+                kind: "warn",
+                title: "Submit or discard your row edits first",
+                body: "Adding someone sends the roster as it is on the server plus the new person; unsaved row edits would be left behind.",
+              });
+              return;
+            }
+            // Validate the would-be roster so a bad id or duplicate is caught here, not by CI.
+            const issues = rosterIssues({ _comment: ROSTER_COMMENT, members: [...loaded, entry] });
+            const mine = issues.filter((i) => i.index === loaded.length);
+            if (mine.length) {
+              setFlash({ kind: "error", title: "Check the new entry", body: mine.map((i) => `${i.field ?? "entry"}: ${i.message}`).join(" · ") });
+              return;
+            }
+            void saveRoster([...loaded, entry], `Add ${entry.name} to the roster`).then((ok) => {
+              if (ok) setDraft({ email: "", name: "", role: "member", active: true });
+            });
           }}
-          disabled={busy}
-          className="rounded-sm border border-border px-3 py-1.5 font-mono text-[11px] tracking-wider uppercase disabled:opacity-50"
         >
           Add to roster
-        </button>
+        </ActionButton>
+        <p className="text-[11.5px] leading-snug text-text-faint">
+          Next: approve the change in the review queue, come back here, click <strong>Invite link</strong>
+          next to their name and send it to them.
+        </p>
       </div>
     </div>
   );

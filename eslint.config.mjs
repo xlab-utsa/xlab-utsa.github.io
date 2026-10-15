@@ -10,6 +10,10 @@ const eslintConfig = [
       "workers/**",
       "out/**",
       ".next/**",
+      // Editor/agent worktree copies of this repo that may sit inside it locally. Linting
+      // them double-counts every file and reports problems that are not in this checkout.
+      ".kilo/**",
+      ".claude/**",
     ],
   },
 ];

@@ -43,6 +43,10 @@ export interface FieldSpec {
   readOnly?: boolean;
   /** An image path — the UI offers a picker/upload rather than a text box. */
   asset?: boolean;
+  /** Example value shown in an empty input. */
+  placeholder?: string;
+  /** Human wording for enum values ("phd-student" → "PhD student"). Values are unchanged. */
+  optionLabels?: Record<string, string>;
 }
 
 // Zod does not publish types for its internal `def` structure, so walking a schema means
@@ -256,7 +260,28 @@ export function validateRecord(
   if (result.success) return { ok: true };
   const errors: Record<string, string> = {};
   for (const issue of result.error.issues) {
-    errors[issue.path.join(".") || "_"] = issue.message;
+    const key = issue.path.join(".") || "_";
+    // Keep the first problem per field; later ones are usually consequences of it.
+    if (errors[key]) continue;
+    // Zod's wording for a missing value ("Invalid input: expected string, received
+    // undefined", "Invalid option: expected one of …") is accurate and useless to a person
+    // filling in a form. Say what they can act on. Format messages written in the schema
+    // ("must be a valid email address") are already human and pass through.
+    const missing = getAt(value, issue.path) === undefined;
+    errors[key] = missing
+      ? issue.code === "invalid_value"
+        ? "Choose one"
+        : "Required"
+      : issue.message;
   }
   return { ok: false, errors };
+}
+
+function getAt(obj: unknown, path: PropertyKey[]): unknown {
+  let cur: unknown = obj;
+  for (const key of path) {
+    if (cur === null || typeof cur !== "object") return undefined;
+    cur = (cur as Record<PropertyKey, unknown>)[key];
+  }
+  return cur;
 }

@@ -130,11 +130,13 @@ npx wrangler deploy
 | Method | Path | Auth | Purpose |
 |---|---|---|---|
 | POST | `/auth/email` | — | Request a magic link. Always returns the same response whether or not the address is on the roster, so it cannot be used to enumerate lab members |
-| GET | `/auth/verify` | — | Redeem a magic link (single-use, 15 min) and issue a session |
+| GET | `/auth/verify` | — | Show a "Continue to Studio" page for a sign-in link. Redeems **nothing** — link previews and mail scanners GET every URL they see, and used to burn single-use links before the human clicked |
+| POST | `/auth/verify` | — | Redeem the link (the page's one button; single-use for members, reusable for admins) and issue a session |
 | GET | `/auth/github/start` · `/callback` | — | Admin sign-in via GitHub, so admin access rests on GitHub 2FA rather than an inbox |
 | GET | `/me` | session | Current identity and role |
 | POST | `/submit` | session | Open a submission PR |
 | GET | `/queue` | session | Open submissions (members see only their own) |
+| GET | `/returned` | session | Recently returned submissions with the reviewer's note (members see only their own) |
 | GET | `/queue/:n/files` | admin/editor | Field-level diff for one submission |
 | POST | `/approve` · `/reject` | admin/editor | Merge or close, and email the submitter |
 | GET | `/status` | session | Latest deploy run |
@@ -144,10 +146,17 @@ npx wrangler deploy
 - No GitHub credential ever reaches a browser. Sessions are HMAC-signed bearer tokens.
 - Path allowlist (`content/`, `public/images/`) plus traversal rejection is applied *before*
   any GitHub token is minted.
-- Members may edit only their own person record; "is this a create?" is resolved
-  server-side, never trusted from the client.
+- Members may edit their own person record, create publications/awards/posts, and edit
+  only those that already name them (`personId:`/`authorId:` in the current file). "Is
+  this a create?" and "does it name them?" are resolved server-side from the repo, never
+  trusted from the client. Members can never delete.
 - Magic links are single-use — the nonce is burned in KV on redemption, so a replayed link
-  fails even inside its validity window.
+  fails even inside its validity window. Redemption happens only on a form POST, never on
+  the GET a link-preview bot sends.
+- Every authenticated request re-checks the caller against the live roster (cached 60 s):
+  deactivating someone signs them out within a minute, and a role or `personId` change
+  reaches them on their next request without a new link. The session token only proves
+  who signed in; the roster decides what they are now.
 - OAuth uses single-use `state` values for CSRF protection.
 - Approval refuses to merge a submission whose CI gate is failing.
 - Rate limiting per email and per IP on the magic-link endpoint.
@@ -158,6 +167,6 @@ npx wrangler deploy
 ```bash
 npm run dev        # wrangler dev
 npm run typecheck
-npx tsx src/crypto.test.mts   # token forgery/expiry + PKCS#1 key import
+npm test           # (from the REPO ROOT) token forgery/expiry, PKCS#1 key import, path authorization matrix
 npm run tail       # live production logs
 ```
