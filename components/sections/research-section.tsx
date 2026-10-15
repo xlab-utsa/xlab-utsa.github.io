@@ -17,20 +17,30 @@ import {
 // content data itself, only the already-rendered panels. Every publication carries a
 // research area, so each panel shows only that area's `featured` picks and links out to
 // the full, filtered list on /publications.
+
+/** Cards (projects + featured papers) shown per thrust before "All N publications ›". */
+const MAX_CARDS_PER_THEME = 6;
+
 export function ResearchSection() {
   const themes = getResearchThemes();
   const publicationCount = getPublications().length;
 
   const panels = themes.map((theme, i) => {
-    const projects = [...getProjectsByTheme(theme.id)].sort(
-      (a, b) => (a.order ?? 0) - (b.order ?? 0)
-    );
+    const projects = [...getProjectsByTheme(theme.id)]
+      .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+      .slice(0, MAX_CARDS_PER_THEME);
     const allPublications = getPublicationsByTheme(theme.id);
     // themeIds[0] is the primary area; a paper is featured only there, so one with a
-    // secondary tag does not repeat across panels.
-    const publications = allPublications.filter(
-      (p) => p.featured && p.themeIds[0] === theme.id
-    );
+    // secondary tag does not repeat across panels. Projects take their slots first; the
+    // featured papers fill the rest in featuredOrder (unranked last, newest first).
+    const publications = allPublications
+      .filter((p) => p.featured && p.themeIds[0] === theme.id)
+      .sort(
+        (a, b) =>
+          (a.featuredOrder ?? Number.MAX_SAFE_INTEGER) -
+          (b.featuredOrder ?? Number.MAX_SAFE_INTEGER)
+      )
+      .slice(0, MAX_CARDS_PER_THEME - projects.length);
     const itemCount = projects.length + publications.length;
 
     return {
