@@ -2,7 +2,17 @@ id: conference-2003-performance-optimization-global-routing
 category: conference
 title: Performance optimization global routing with RLC crosstalk constraints
 authors:
-  - name: L. Zhang et al.
-venue: ASIC
+  - name: L. Zhang
+  - name: T. Jing
+  - name: X. Hong
+  - name: J. Xu
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: L. He
+venue: International Conference on ASIC
 year: 2003
 dateDisplay: October 2003
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #5"

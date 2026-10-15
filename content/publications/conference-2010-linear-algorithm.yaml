@@ -2,7 +2,14 @@ id: conference-2010-linear-algorithm
 category: conference
 title: A linear algorithm for full-chip statistical leakage power analysis considering weak spatial correlation
 authors:
-  - name: R. Shen et al.
-venue: DAC
+  - name: R. Shen
+  - name: S. X.-D. Tan
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: IEEE/ACM Design Automation Conference (DAC)
 year: 2010
-dateDisplay: June 2010
+location: Anaheim, CA
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #43"

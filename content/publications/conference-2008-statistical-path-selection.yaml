@@ -2,7 +2,16 @@ id: conference-2008-statistical-path-selection
 category: conference
 title: Statistical Path Selection for At-speed Testing
 authors:
-  - name: V. Zolotov et al.
-venue: ICCAD
+  - name: V. Zolotov
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: H. Fatemi
+  - name: C. Visweswariah
+venue: ACM International Conference on Computer-Aided Design (ICCAD)
 year: 2008
 dateDisplay: November 2008
+location: San Jose
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #33"

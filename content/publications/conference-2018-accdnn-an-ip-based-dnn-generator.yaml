@@ -2,7 +2,19 @@ id: conference-2018-accdnn-an-ip-based-dnn-generator
 category: conference
 title: "AccDNN: an IP-based DNN Generator for FPGAs"
 authors:
-  - name: X. Zhang et al.
-venue: FCCM
+  - name: X. Zhang
+  - name: J. Wang
+  - name: C. Zhu
+  - name: Y. Lin
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: W. Hwu
+  - name: D. Chen
+venue: The 26th IEEE International Symposium on Field-Programmable Custom Computing Machines (FCCM)
 year: 2018
-dateDisplay: April 2018
+dateDisplay: April 29 – May 1, 2018
+location: Boulder, CO, USA
+themeIds:
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #78"

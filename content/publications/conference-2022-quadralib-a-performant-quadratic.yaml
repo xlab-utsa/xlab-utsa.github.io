@@ -1,0 +1,18 @@
+id: conference-2022-quadralib-a-performant-quadratic
+category: conference
+title: "QuadraLib: A Performant Quadratic Neural Network Library for Architecture Optimization and Design Exploration"
+authors:
+  - name: Z. Xu
+  - name: F. Yu
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: X. Chen
+venue: Fifth Conference on Machine Learning and Systems (MLSys)
+year: 2022
+dateDisplay: Aug 29 – Sep 1, 2022
+location: Santa Clara, CA, USA
+themeIds:
+  - ai-algorithms
+featured: true
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #161"

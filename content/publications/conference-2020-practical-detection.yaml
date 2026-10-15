@@ -3,9 +3,18 @@ category: conference
 thumbnail: /images/publications/conference-2020-practical-detection/thumbnail.png
 title: "Practical Detection of Trojan Neural Networks: Data-Limited and Data-Free Cases"
 authors:
-  - name: R. Wang et al.
-venue: ECCV
+  - name: R. Wang
+  - name: G. Zhang
+  - name: S. Liu
+  - name: P. Chen
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: M. Wang
+venue: The 16th European Conference on Computer Vision (ECCV)
 year: 2020
-dateDisplay: August 2020
+dateDisplay: Aug 23–28, 2020
+location: Online
 themeIds:
-  - ai-security
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #124"

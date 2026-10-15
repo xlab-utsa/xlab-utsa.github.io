@@ -2,7 +2,21 @@ id: conference-2019-spgnet-semantic-prediction-guidance
 category: conference
 title: "SPGNet: Semantic Prediction Guidance for Scene Parsing"
 authors:
-  - name: B. Cheng et al.
-venue: ICCV
+  - name: B. Cheng
+  - name: L. Chen
+  - name: Y. Wei
+  - name: Y. Zhu
+  - name: Z. Huang
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: T. Huang
+  - name: W. Hwu
+  - name: H. Shi
+venue: International Conference on Computer Vision (ICCV)
 year: 2019
-dateDisplay: October 2019
+dateDisplay: Oct 27 – Nov 2, 2019
+location: Seoul, Korea
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #108"

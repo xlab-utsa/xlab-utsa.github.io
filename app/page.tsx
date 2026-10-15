@@ -1,4 +1,3 @@
-import { FeaturedPublicationsSection } from "@/components/sections/featured-publications-section";
 import { Hero } from "@/components/sections/hero";
 import { NewsSection } from "@/components/sections/news-section";
 import { ResearchSection } from "@/components/sections/research-section";
@@ -12,7 +11,6 @@ export default function Home() {
       <NewsSection />
       <ResearchSection />
       <TeamSection />
-      <FeaturedPublicationsSection />
       <SponsorsSection />
     </>
   );

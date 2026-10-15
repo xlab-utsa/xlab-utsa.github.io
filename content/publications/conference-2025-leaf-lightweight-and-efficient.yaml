@@ -1,0 +1,17 @@
+id: conference-2025-leaf-lightweight-and-efficient
+category: conference
+title: "LEAF: Lightweight and Efficient Hardware Accelerator for Signature Verification of FALCON"
+authors:
+  - name: S. Coulon
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: J. Xie
+venue: The 44th ACM/IEEE International Conference on Computer-Aided Design (ICCAD)
+year: 2025
+dateDisplay: Oct 26–30, 2025
+location: Munich, Germany
+note: "Acceptance rate: 24.7%"
+themeIds:
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #205"

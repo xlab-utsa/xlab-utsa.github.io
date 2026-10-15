@@ -2,7 +2,18 @@ id: conference-2020-micro-gage-a-low-power-compact-gage
 category: conference
 title: "MICRO-GAGE: A Low-power Compact GAGE Hash Function Processor for IoT Applications"
 authors:
-  - name: M. El-Hadedy et al.
-venue: ICECS
+  - name: M. El-Hadedy
+  - name: M. Margala
+  - name: S. Mosanu
+  - name: D. Gligoroski
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: W. Hwu
+venue: The 27th IEEE International Conference on Electronics Circuits and Systems (ICECS)
 year: 2020
-dateDisplay: November 2020
+dateDisplay: Nov 23–25, 2020
+location: Online
+themeIds:
+  - systems
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #135"

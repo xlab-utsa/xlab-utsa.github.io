@@ -2,7 +2,16 @@ id: conference-2020-benanza-automatic-ubenchmark-generation
 category: conference
 title: "Benanza: Automatic uBenchmark Generation to Compute Lower-bound Latency and Inform Optimizations of Deep Learning Models on GPUs"
 authors:
-  - name: C. Li et al.
-venue: IPDPS
+  - name: C. Li
+  - name: A. Dakkak
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: W. Hwu
+venue: The 34th IEEE International Parallel and Distributed Processing Symposium (IPDPS)
 year: 2020
-dateDisplay: May 2020
+dateDisplay: May 18–22, 2020
+location: Online, New Orleans, Louisiana, USA
+themeIds:
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #117"

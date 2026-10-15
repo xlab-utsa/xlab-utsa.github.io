@@ -73,7 +73,7 @@ What is kept, because the site must still build:
 |---|---|
 | `content/site.yaml` | Title, nav, contact. The site cannot render without it |
 | `content/institutions/*` | Referenced by people's affiliations and `site.primaryInstitutionId` |
-| `content/themes/*` | The six research thrusts — structural, not per-person data |
+| `content/themes/*` | The research thrusts — structural, not per-person data |
 | `content/people/jinjun-xiong.yaml` | So the site is not a blank page while members re-enter theirs |
 
 Keep different people with `--keep-people=id-one,id-two`.

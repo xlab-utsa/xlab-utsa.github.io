@@ -2,7 +2,7 @@ import { ExternalLink as ExternalLinkIcon, FileText, Link2 } from "lucide-react"
 
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink } from "@/components/external-link";
-import { getPersonById, type Publication } from "@/lib/content";
+import { getPersonById, getResearchThemeById, type Publication } from "@/lib/content";
 import { getCategoryMetaLine } from "@/lib/publications";
 import { resolvePersonRedirectUrl } from "@/lib/team";
 
@@ -51,6 +51,10 @@ export function PublicationEntry({ publication }: { publication: Publication }) 
     (publication.category === "conference" || publication.category === "workshop") &&
     !!publication.location;
   const metaLine = getCategoryMetaLine(publication);
+  const areas = publication.themeIds
+    .map((id) => getResearchThemeById(id)?.title)
+    .filter(Boolean)
+    .join(" · ");
 
   return (
     <li className="space-y-1.5 border-b border-hairline py-4 first:pt-0 last:border-b-0">
@@ -71,6 +75,11 @@ export function PublicationEntry({ publication }: { publication: Publication }) 
         <p className="font-mono text-[12.5px] text-text-faint">{metaLine}</p>
       )}
       <div className="flex flex-wrap items-center gap-3 pt-1">
+        {areas && (
+          <span className="font-mono text-[11px] tracking-wide text-text-faint uppercase">
+            {areas}
+          </span>
+        )}
         {publication.note && <Badge variant="outline">{publication.note}</Badge>}
         {publication.doi && (
           <ExternalLink

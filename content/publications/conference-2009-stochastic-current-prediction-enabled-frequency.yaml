@@ -2,7 +2,15 @@ id: conference-2009-stochastic-current-prediction-enabled-frequency
 category: conference
 title: Stochastic Current Prediction Enabled Frequency Actuator for Runtime Resonance Noise Reduction
 authors:
-  - name: Y. Shi et al.
-venue: ASP-DAC
+  - name: Y. Shi
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: H. Chen
+  - name: L. He
+venue: IEEE/ACM Asia South Pacific Design Automation Conference (ASP-DAC)
 year: 2009
 dateDisplay: January 2009
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #34"

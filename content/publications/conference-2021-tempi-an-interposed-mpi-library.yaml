@@ -2,7 +2,17 @@ id: conference-2021-tempi-an-interposed-mpi-library
 category: conference
 title: "TEMPI: An Interposed MPI Library with a Canonical Representation of CUDA-aware Datatypes"
 authors:
-  - name: C. Pearson et al.
-venue: HPDC
+  - name: C. Pearson
+  - name: K. Wu
+  - name: I. Chung
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: W. Hwu
+venue: The 30th ACM International Symposium on High-Performance Parallel and Distributed Computing (HPDC)
 year: 2021
-dateDisplay: June 2021
+dateDisplay: June 21–25, 2021
+location: Stockholm, Sweden
+themeIds:
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #139"

@@ -3,9 +3,16 @@ category: conference
 thumbnail: /images/publications/conference-2019-mlmodelscope-evaluate/thumbnail.png
 title: "MLModelScope: Evaluate and Measure ML Models within AI Pipelines"
 authors:
-  - name: A. Dakkak et al.
-venue: Hotchips
+  - name: A. Dakkak
+  - name: C. Li
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: W. Hwu
+venue: "Hot Chips: A Symposium on High Performance Chips (Hotchips)"
 year: 2019
-dateDisplay: August 2019
+dateDisplay: August 18–20, 2019
+location: Palo Alto, California, USA
 themeIds:
-  - ai-tools
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #101"

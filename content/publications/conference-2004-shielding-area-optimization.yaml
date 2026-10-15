@@ -2,7 +2,17 @@ id: conference-2004-shielding-area-optimization
 category: conference
 title: Shielding Area Optimization under the Solution of Interconnect Crosstalk
 authors:
-  - name: X. Zhao et al.
-venue: ISCAS
+  - name: X. Zhao
+  - name: Y. Cai
+  - name: Q. Zhou
+  - name: X. Hong
+  - name: L. He
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: International Symposium on Circuits and Systems
 year: 2004
 dateDisplay: May 2004
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #9"

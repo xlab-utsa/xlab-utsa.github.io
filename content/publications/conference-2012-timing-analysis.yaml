@@ -2,7 +2,19 @@ id: conference-2012-timing-analysis
 category: conference
 title: Timing Analysis with Nonseparable Statistical and Deterministic Variations
 authors:
-  - name: V. Zolotov et al.
-venue: DAC
+  - name: V. Zolotov
+  - name: D. Sinha
+  - name: J. Hemmett
+  - name: E. Foreman
+  - name: C. Visweswariah
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: J. Leitzen
+  - name: N. Venkateswaran
+venue: IEEE/ACM Design Automation Conference (DAC)
 year: 2012
-dateDisplay: June 2012
+location: San Francisco, CA
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #53"

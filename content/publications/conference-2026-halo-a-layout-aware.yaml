@@ -1,0 +1,17 @@
+id: conference-2026-halo-a-layout-aware
+category: conference
+title: "HALO: A Layout-aware Framework for Efficient and Scalable Homomorphic Transformer Inference"
+authors:
+  - name: Z. Gong
+  - name: R. Ran
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: W. Wen
+venue: The 45th ACM/IEEE International Conference on Computer-Aided Design (ICCAD)
+year: 2026
+dateDisplay: Nov 8–12, 2026
+location: San Jose, California
+themeIds:
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #223"

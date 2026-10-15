@@ -2,7 +2,21 @@ id: conference-2013-case-study
 category: conference
 title: A Case Study of Applying a Novel Asset Maintenance Optimization Methodology to Electricity Distribution Utilities using Simulation Strengthened Analytics
 authors:
-  - name: J.D. Schuddebeurs et al.
-venue: IET Asset Management
+  - name: J.D. Schuddebeurs
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: R. van Hees
+  - name: T. Gu
+  - name: G. Ditlow
+  - name: D. Phan
+  - name: G. Janssen
+  - name: E. Acar
+  - name: Y.Zhu
+venue: IET Asset Management Conference
 year: 2013
 dateDisplay: November 2013
+location: St Paul’s, London, UK
+themeIds:
+  - smart-energy
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #59"

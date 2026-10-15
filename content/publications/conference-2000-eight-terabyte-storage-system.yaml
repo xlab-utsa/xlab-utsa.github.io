@@ -2,7 +2,14 @@ id: conference-2000-eight-terabyte-storage-system
 category: conference
 title: Eight-terabyte storage system by a new file system
 authors:
-  - name: J. Xiong et al.
-venue: SPIE Optical Storage Symposium
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: L. Pan
+  - name: J. Pei
+  - name: D. Meng
+venue: International Society for Optical Engineering Symposium (SPIE) on Optical Storage
 year: 2000
-dateDisplay: "2000"
+themeIds:
+  - systems
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #1"

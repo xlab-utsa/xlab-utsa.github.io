@@ -45,8 +45,8 @@ function AuthorsLine({ authors }: { authors: Publication["authors"] }) {
   );
 }
 
-// The orange-toned sibling of project-card.tsx, same card shape, for Publications
-// tagged with a themeId (SPEC.md — an inferred subset, not all 301 entries). Distinct
+// The orange-toned sibling of project-card.tsx, same card shape, for the featured
+// Publications of a research area (SPEC.md). Distinct
 // from publication-entry.tsx (the dense list row used on /publications) — this is a
 // card matching the research browser's grid, not a list.
 export function ResearchPublicationCard({ publication }: { publication: Publication }) {

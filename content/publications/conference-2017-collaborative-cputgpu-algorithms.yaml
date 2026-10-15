@@ -2,7 +2,17 @@ id: conference-2017-collaborative-cputgpu-algorithms
 category: conference
 title: Collaborative (CPUT+GPU) algorithms for triangle counting and truss decomposition on the Minsky architecture
 authors:
-  - name: K. Date et al.
-venue: HPEC
+  - name: K. Date
+  - name: K. Feng
+  - name: R. Nagi
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: N. Kim
+  - name: W. Hwu
+venue: IEEE High Performance Extreme Computing Conference (HPEC)
 year: 2017
 dateDisplay: September 2017
+themeIds:
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #74"

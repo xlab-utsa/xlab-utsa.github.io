@@ -2,7 +2,18 @@ id: conference-2017-interpretable-and-globally-optimal-prediction
 category: conference
 title: Interpretable and Globally Optimal Prediction for Textual Grounding using Image Concepts
 authors:
-  - name: R. Yeh et al.
-venue: NIPS
+  - name: R. Yeh
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: W. Hwu
+  - name: M. Do
+  - name: A. Schwing
+venue: Neural Information Processing Systems (NIPS)
 year: 2017
-dateDisplay: December 2017
+dateDisplay: December 4–9, 2017
+location: Long Beach, CA, USA
+note: Oral, 1.8%
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #76"

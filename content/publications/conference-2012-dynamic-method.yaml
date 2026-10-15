@@ -2,7 +2,19 @@ id: conference-2012-dynamic-method
 category: conference
 title: A Dynamic Method for Efficient Random Mismatch Characterization of Standard Cells
 authors:
-  - name: W. Zhang et al.
-venue: ICCAD
+  - name: W. Zhang
+  - name: A. Singhee
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: P. Habitz
+  - name: A. Joshi
+  - name: C. Visweswariah
+  - name: J. Sunduist
+venue: ACM International Conference on Computer-Aided Design (ICCAD)
 year: 2012
 dateDisplay: November 2012
+location: San Jose, CA
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #56"

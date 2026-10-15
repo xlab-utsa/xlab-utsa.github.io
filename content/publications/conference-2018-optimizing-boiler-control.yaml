@@ -2,7 +2,19 @@ id: conference-2018-optimizing-boiler-control
 category: conference
 title: Optimizing Boiler Control in Real-Time with Machine Learning for Sustainability
 authors:
-  - name: Y. Ding et al.
-venue: CIKM
+  - name: Y. Ding
+  - name: J. Liu
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: M. Jiang
+  - name: Y. Shi
+venue: International Conference on Information and Knowledge Management (CIKM)
 year: 2018
-dateDisplay: October 2018
+dateDisplay: Oct 22–26, 2018
+location: Turin, Italy
+themeIds:
+  - smart-energy
+  - ai-algorithms
+featured: true
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #86"

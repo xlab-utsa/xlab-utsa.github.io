@@ -1,0 +1,24 @@
+id: conference-2023-synctree-fast-timing-analysis
+category: conference
+title: "SyncTREE: Fast Timing Analysis for Integrated Circuit Design through a Physics-informed Tree-based Graph Neural Network"
+authors:
+  - name: Y. Hu
+    personId: yuting-hu
+  - name: J. Li
+    personId: jiajie-li
+  - name: F. Klemme
+  - name: G. Nam
+  - name: T. Ma
+  - name: H. Amrouch
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: Thirty-seventh Conference on Neural Information Processing Systems (NeurIPS)
+year: 2023
+dateDisplay: Dec 10–16, 2023
+location: New Orleans, Louisiana, USA
+themeIds:
+  - eda
+  - ai-algorithms
+featured: true
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #171"

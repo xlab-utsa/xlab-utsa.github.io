@@ -1,0 +1,19 @@
+id: conference-2023-a-moral-and-event
+category: conference
+title: A Moral- and Event-Centric Discovery of Gender Bias in Fairy Tales at A Large Scale
+authors:
+  - name: Z. Zhou
+  - name: J. Sun
+  - name: J. Pei
+  - name: N. Peng
+  - name: Y. Wang
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: International Conference on Computational Social Science (IC2S2)
+year: 2023
+dateDisplay: July 17–20, 2023
+location: Copenhagen, Denmark
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #167"

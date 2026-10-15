@@ -2,7 +2,19 @@ id: conference-2014-msim-a-general-cycle-accurate
 category: conference
 title: "MSim: a General Cycle Accurate Simulation Platform for Memcomputing Studies"
 authors:
-  - name: C. Zhang et al.
-venue: DATE
+  - name: C. Zhang
+  - name: P. Deng
+  - name: H. Geng
+  - name: J. Liu
+  - name: Q. Zhu
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: Y. Shi
+venue: Design, Automation and Test in Europe Conference and Exhibition (DATE)
 year: 2014
 dateDisplay: March 2014
+location: Dresden
+themeIds:
+  - systems
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #61"

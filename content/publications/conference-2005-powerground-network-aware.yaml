@@ -2,7 +2,16 @@ id: conference-2005-powerground-network-aware
 category: conference
 title: Power/Ground Network Aware and Row-Based Solutions to the Crosstalk Driven Routing Problem
 authors:
-  - name: J. Liang et al.
-venue: ASIC
+  - name: J. Liang
+  - name: T. Jing
+  - name: X. Hong
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: L. He
+venue: International Conference on Application Specific Integrated Circuits
 year: 2005
 dateDisplay: October 2005
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #16"

@@ -2,7 +2,15 @@ id: conference-2006-criticality-computation
 category: conference
 title: Criticality Computation in Parameterized Statistical Timing
 authors:
-  - name: J. Xiong et al.
-venue: DAC
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: V. Zolotov
+  - name: N. Venkateswaran
+  - name: C. Visweswariah
+venue: IEEE/ACM Design Automation Conference (DAC)
 year: 2006
 dateDisplay: July 2006
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #20"

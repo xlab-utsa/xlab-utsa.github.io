@@ -1,0 +1,22 @@
+id: conference-2025-ensembler-protect-collaborative-inference
+category: conference
+title: "Ensembler: Protect Collaborative Inference Privacy from Model Inversion Attack via Selective Ensemble"
+authors:
+  - name: D. Liu
+    personId: dancheng-liu
+  - name: C. Xu
+    personId: chenhui-xu
+  - name: J. Li
+    personId: jiajie-li
+  - name: A. Nassereldine
+    personId: amir-nassereldine
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: The 62nd Design Automation Conference (DAC)
+year: 2025
+dateDisplay: June 22–25, 2025
+location: San Francisco, CA, USA
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #193"

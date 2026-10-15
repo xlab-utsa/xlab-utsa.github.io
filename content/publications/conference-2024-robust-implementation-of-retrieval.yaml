@@ -1,0 +1,27 @@
+id: conference-2024-robust-implementation-of-retrieval
+category: conference
+title: Robust Implementation of Retrieval-Augmented Generation on Edge-based Computing-in-Memory Architectures
+authors:
+  - name: R. Qin
+  - name: Z. Yan
+  - name: D. Zeng
+  - name: Z. Jia
+  - name: D. Liu
+    personId: dancheng-liu
+  - name: J. Liu
+  - name: A. Abbasi
+  - name: Z. Zheng
+  - name: N. Cao
+  - name: K. Ni
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: Y. Shi
+venue: The 43rd ACM/IEEE International Conference on Computer-Aided Design (ICCAD)
+year: 2024
+dateDisplay: Oct 27–31, 2024
+location: New Jersey, USA
+themeIds:
+  - ai-acceleration
+featured: true
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #182"

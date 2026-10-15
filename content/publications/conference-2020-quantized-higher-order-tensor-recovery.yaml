@@ -2,7 +2,15 @@ id: conference-2020-quantized-higher-order-tensor-recovery
 category: conference
 title: Quantized Higher-Order Tensor Recovery by Exploring Low-Dimensional Structures
 authors:
-  - name: R. Wang et al.
-venue: Asilomar Conference
+  - name: R. Wang
+  - name: M. Wang
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: The 54th Asilomar Conference on Signals, Systems and Computers
 year: 2020
-dateDisplay: November 2020
+dateDisplay: Nov 1–2, 2020
+location: Online
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #131"

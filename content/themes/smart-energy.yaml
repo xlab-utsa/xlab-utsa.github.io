@@ -1,0 +1,5 @@
+id: smart-energy
+title: Smart Energy
+shortDescription: Analytics and optimization for the electric power grid.
+longDescription: We apply modeling, optimization, and data analytics to the electric grid. This work includes power line outage detection with limited measurements, large-scale grid simulation, asset health management for utilities, demand-side load management, and electric vehicle charging.
+order: 6

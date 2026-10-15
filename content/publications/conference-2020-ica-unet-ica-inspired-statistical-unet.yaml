@@ -2,7 +2,20 @@ id: conference-2020-ica-unet-ica-inspired-statistical-unet
 category: conference
 title: "ICA-UNet: ICA Inspired Statistical UNet for Real-time 3D Cardiac Cine MRI Segmentation"
 authors:
-  - name: T. Wang et al.
-venue: MICCAI
+  - name: T. Wang
+  - name: X. Xu
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: Q. Jia
+  - name: H. Yuan
+  - name: M. Huang
+  - name: J. Zhuang
+  - name: Y. Shi
+venue: The 23rd International Conference on Medical Image Computing and Computer Assisted Interventions (MICCAI)
 year: 2020
-dateDisplay: October 2020
+dateDisplay: Oct 4–8, 2020
+location: Online
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #128"

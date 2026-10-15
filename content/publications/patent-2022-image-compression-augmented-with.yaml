@@ -1,0 +1,17 @@
+id: patent-2022-image-compression-augmented-with
+category: patent
+title: Image Compression Augmented with a Learning-based Super Resolution Model
+authors:
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: N. Chen
+  - name: J. Wei
+  - name: V. Mailthody
+applicationNo: 18/051,545
+jurisdiction: US
+filedDate: 2022-11
+year: 2022
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), patent #60"

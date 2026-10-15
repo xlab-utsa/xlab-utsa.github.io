@@ -2,7 +2,16 @@ id: conference-2015-multi-threading-based-parallel-dynamic-simulator
 category: conference
 title: Multi-Threading Based Parallel Dynamic Simulator for Transient Behavior Analysis of Power Systems
 authors:
-  - name: J. Wu et al.
-venue: SmartGridComm
+  - name: J. Wu
+  - name: P. Feldmann
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: Y. Shi
+venue: IEEE International Conference on Smart Grid Communications (SmartGridComm)
 year: 2015
-dateDisplay: November 2015
+dateDisplay: Nov 2–5, 2015
+location: Miami, FL
+themeIds:
+  - smart-energy
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #71"

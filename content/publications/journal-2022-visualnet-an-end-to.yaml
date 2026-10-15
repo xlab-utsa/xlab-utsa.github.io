@@ -1,0 +1,24 @@
+id: journal-2022-visualnet-an-end-to
+category: journal
+title: "VisualNet: An End-to-End Human Visual System Inspired Framework to Reduce Inference Latency of Deep Neural Networks"
+authors:
+  - name: T. Wang
+  - name: J. Zhang
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: S. Bian
+  - name: Z. Yan
+  - name: M. Huang
+  - name: J. Zhuang
+  - name: T. Sato
+  - name: X. Xu
+  - name: Y. Shi
+venue: IEEE Transactions on Computers
+volumeIssue: "Volume: 71, Issue: 11"
+year: 2022
+dateDisplay: Nov 2022
+themeIds:
+  - ai-algorithms
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), journal #41"

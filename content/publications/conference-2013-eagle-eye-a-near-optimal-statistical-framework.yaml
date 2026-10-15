@@ -2,7 +2,15 @@ id: conference-2013-eagle-eye-a-near-optimal-statistical-framework
 category: conference
 title: "Eagle-Eye: A Near-Optimal Statistical Framework for Noise Sensor Placement"
 authors:
-  - name: T. Wang et al.
-venue: ICCAD
+  - name: T. Wang
+  - name: Y. Shi
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: ACM International Conference on Computer-Aided Design (ICCAD)
 year: 2013
 dateDisplay: November 2013
+location: San Jose, CA
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #58"

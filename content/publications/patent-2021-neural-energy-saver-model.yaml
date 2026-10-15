@@ -1,0 +1,18 @@
+id: patent-2021-neural-energy-saver-model
+category: patent
+title: "Neural Energy Saver: Model-Agnostic Input Transformation Learning for Adjusting Accuracy-Energy Tradeoff in Neural Networks"
+authors:
+  - name: P. Chen
+  - name: N. Chandramoorthy
+  - name: K. Swaminathan
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: D. Shah
+  - name: B. Li
+docketNo: P202102795
+filedDate: 2021-07
+year: 2021
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), patent #59"

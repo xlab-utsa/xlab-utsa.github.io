@@ -2,7 +2,15 @@ id: conference-2015-resource-supply-demand
 category: conference
 title: A Resource Supply-demand based Approach for Automatic MapReduce Job Optimization
 authors:
-  - name: J. Xiong et al.
-venue: HPCC
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: D. Phan
+  - name: D. Kung
+venue: The 17th International Conference on High Performance Computing and Communications (HPCC)
 year: 2015
-dateDisplay: August 2015
+dateDisplay: Aug 2015
+location: New York, NY
+themeIds:
+  - cloud-computing
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #69"

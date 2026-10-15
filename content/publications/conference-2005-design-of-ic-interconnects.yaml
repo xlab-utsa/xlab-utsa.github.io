@@ -2,7 +2,15 @@ id: conference-2005-design-of-ic-interconnects
 category: conference
 title: Design of IC Interconnects with Accurate Modeling of CMP
 authors:
-  - name: L. He et al.
-venue: SPIE Symposium
+  - name: L. He
+  - name: A. Kahng
+  - name: K. Tam
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: International Society for Optical Engineering Symposium (SPIE) on Microlithography
 year: 2005
 dateDisplay: February 2005
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #13"

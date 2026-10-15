@@ -1,0 +1,24 @@
+id: conference-2025-towards-ai-enhanced-speech
+category: conference
+title: "Towards AI-Enhanced Speech-Language Intervention Documentation: Opportunities and Design Goals"
+authors:
+  - name: Q. Zheng
+    personId: qingxiao-zheng
+  - name: A. Choudhry
+  - name: Z. Liu
+  - name: P. Rabbani
+  - name: Y. Hu
+    personId: yuting-hu
+  - name: A. Olszewski
+  - name: Y. Huang
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: The 26th International Conference on Artificial Intelligence in Education (AIED)
+year: 2025
+dateDisplay: July 22–26, 2025
+location: Palermo, Italy
+themeIds:
+  - ai-education
+featured: true
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #196"

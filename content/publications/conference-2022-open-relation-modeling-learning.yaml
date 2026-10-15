@@ -1,0 +1,16 @@
+id: conference-2022-open-relation-modeling-learning
+category: conference
+title: "Open Relation Modeling: Learning to Define Relations between Entities"
+authors:
+  - name: J. Huang
+  - name: K. Chang
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: W. Hwu
+venue: Findings of the Association for Computational Linguistics (ACL’22)
+year: 2022
+dateDisplay: May 22–27, 2022
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #153"

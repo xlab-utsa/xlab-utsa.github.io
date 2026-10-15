@@ -2,7 +2,14 @@ id: conference-2008-nongaussian-statistical-timing-analysis
 category: conference
 title: NonGaussian Statistical Timing Analysis Using Second Order Polynomial Fitting
 authors:
-  - name: L. Cheng et al.
-venue: ASP-DAC
+  - name: L. Cheng
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: L. He
+venue: IEEE/ACM Asia South Pacific Design Automation Conference (ASP-DAC)
 year: 2008
 dateDisplay: January 2008
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #28"

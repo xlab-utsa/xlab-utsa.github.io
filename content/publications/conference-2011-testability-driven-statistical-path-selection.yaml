@@ -2,7 +2,15 @@ id: conference-2011-testability-driven-statistical-path-selection
 category: conference
 title: Testability Driven Statistical Path Selection
 authors:
-  - name: J. Chung et al.
-venue: DAC
+  - name: J. Chung
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: V. Zolotov
+  - name: J. Abraham
+venue: IEEE/ACM Design Automation Conference (DAC)
 year: 2011
-dateDisplay: June 2011
+location: San Diego, CA
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #46"

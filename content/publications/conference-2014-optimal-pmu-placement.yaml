@@ -2,7 +2,15 @@ id: conference-2014-optimal-pmu-placement
 category: conference
 title: Optimal PMU Placement for Identification of Multiple Power Line Outages in Smart Grids
 authors:
-  - name: J. Wu et al.
-venue: MWSCAS
+  - name: J. Wu
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: Y. Shi
+venue: IEEE 57th International Midwest Symposium on Circuits and Systems
 year: 2014
-dateDisplay: August 2014
+dateDisplay: Aug 2014
+location: College Station, Tx
+themeIds:
+  - smart-energy
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #62"

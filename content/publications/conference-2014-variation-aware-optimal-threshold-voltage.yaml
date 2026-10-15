@@ -2,7 +2,19 @@ id: conference-2014-variation-aware-optimal-threshold-voltage
 category: conference
 title: Variation Aware Optimal Threshold Voltage Computation for On-chip Noise Sensors
 authors:
-  - name: T. Wang et al.
-venue: ICCAD
+  - name: T. Wang
+  - name: C. Zhang
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: P. Luo
+  - name: L. Cheng
+  - name: Y. Shi
+venue: ACM International Conference on Computer-Aided Design (ICCAD)
 year: 2014
 dateDisplay: November 2014
+location: San Jose, CA
+themeIds:
+  - eda
+featured: true
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #64"

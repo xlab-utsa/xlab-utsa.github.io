@@ -2,7 +2,16 @@ id: conference-2020-dlbricks-composable-benchmark-generation
 category: conference
 title: "DLBricks: Composable Benchmark Generation to Reduce Deep Learning Benchmarking Effort on CPUs"
 authors:
-  - name: C. Li et al.
-venue: ICPE
+  - name: C. Li
+  - name: A. Dakkak
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: W. Hwu
+venue: The 11th ACM/SPEC International Conference on Performance Engineering (ICPE)
 year: 2020
-dateDisplay: April 2020
+dateDisplay: April 20–24, 2020
+location: Online, Edmonton, Canada
+themeIds:
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #114"

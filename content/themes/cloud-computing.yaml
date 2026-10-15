@@ -1,0 +1,5 @@
+id: cloud-computing
+title: Cloud Computing
+shortDescription: Serverless inference, cloud-native AI platforms, and cloud infrastructure.
+longDescription: Our cloud research studies how AI services are deployed and operated at scale. Topics include low-latency model serving in function-as-a-service environments, cloud-native multi-tenant AIoT platforms, container networking in IaaS clouds, and automatic resource optimization for data-processing jobs.
+order: 4

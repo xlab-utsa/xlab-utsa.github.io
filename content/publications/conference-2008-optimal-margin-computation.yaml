@@ -2,7 +2,16 @@ id: conference-2008-optimal-margin-computation
 category: conference
 title: Optimal margin computation for at-speed test
 authors:
-  - name: J. Xiong et al.
-venue: DATE
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: V. Zolotov
+  - name: C. Visweswariah
+  - name: P. A. Habitz
+venue: International Conference on Design, Automation and Test in Europe (DATE)
 year: 2008
 dateDisplay: March 2008
+location: Munich, Germany
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #31"

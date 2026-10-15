@@ -2,7 +2,14 @@ id: conference-2009-statistical-ordering
 category: conference
 title: Statistical Ordering of Correlated Timing Quantities and its Application for Path Ranking
 authors:
-  - name: J. Xiong et al.
-venue: DAC
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: C. Visweswariah
+  - name: V. Zolotov
+venue: IEEE/ACM Design Automation Conference (DAC)
 year: 2009
 dateDisplay: July 2009
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #38"

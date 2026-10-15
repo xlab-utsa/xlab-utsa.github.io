@@ -2,7 +2,16 @@ id: conference-2009-pre-atpg-path-selection
 category: conference
 title: Pre-ATPG Path Selection for Near Optimal Post-ATPG Process Space Coverage
 authors:
-  - name: J. Xiong et al.
-venue: ICCAD
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: Y. Shi
+  - name: V. Zolotov
+  - name: C. Visweswariah
+venue: ACM International Conference on Computer-Aided Design (ICCAD)
 year: 2009
 dateDisplay: November 2009
+location: San Jose
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #40"

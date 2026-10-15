@@ -2,7 +2,18 @@ id: conference-2011-acceleration-of-multi-agent-simulation
 category: conference
 title: Acceleration of Multi-agent Simulation on FPGA
 authors:
-  - name: L. Cui et al.
-venue: FPL
+  - name: L. Cui
+  - name: J. Chen
+  - name: Y. Hu
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: Z. Feng
+  - name: L. He
+venue: International Conference on Field Programmable Logic and Applications (FPL)
 year: 2011
-dateDisplay: September 2011
+dateDisplay: "\x01 \x02"
+location: Greece
+themeIds:
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #48"

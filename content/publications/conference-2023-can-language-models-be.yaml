@@ -1,0 +1,17 @@
+id: conference-2023-can-language-models-be
+category: conference
+title: Can Language Models Be Specific? How?
+authors:
+  - name: J. Huang
+  - name: K. Chang
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: W. Hwu
+venue: Findings of the 61st Annual Meeting of the Association for Computational Linguistics (ACL)
+year: 2023
+dateDisplay: July 9–14, 2023
+location: Toronto, Canada
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #166"

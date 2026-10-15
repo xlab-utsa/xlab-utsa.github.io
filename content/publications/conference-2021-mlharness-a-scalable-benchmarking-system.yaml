@@ -3,9 +3,16 @@ category: conference
 thumbnail: /images/publications/conference-2021-mlharness-a-scalable-benchmarking-system/thumbnail.png
 title: "MLHarness: A Scalable Benchmarking System for MLCommons"
 authors:
-  - name: Y. Chang et al.
-venue: Bench'21
+  - name: Y. Chang
+  - name: J. Pu
+  - name: W. Hwu
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: The 2021 BenchCouncil International Symposium on Benchmarking, Measuring and Optimizing (Bench’21)
 year: 2021
-dateDisplay: November 2021
+dateDisplay: Nov 14–16, 2021
+location: Virtual
 themeIds:
-  - ai-tools
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #147"

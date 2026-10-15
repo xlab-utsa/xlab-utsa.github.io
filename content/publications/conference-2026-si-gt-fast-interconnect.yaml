@@ -1,0 +1,24 @@
+id: conference-2026-si-gt-fast-interconnect
+category: conference
+title: "Si-GT: Fast Interconnect Signal Integrity Analysis for Integrated Circuit Design via Graph Transformers"
+authors:
+  - name: Y. Hu
+    personId: yuting-hu
+  - name: T. Mohamed
+  - name: C. Xu
+    personId: chenhui-xu
+  - name: H. Xiang
+  - name: H. Amrouch
+  - name: G. Nam
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: The 14th International Conference on Learning Representations (ICLR)
+year: 2026
+dateDisplay: April 23–27, 2026
+location: Rio de Janeiro, Brazil
+themeIds:
+  - eda
+  - ai-algorithms
+featured: true
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #212"

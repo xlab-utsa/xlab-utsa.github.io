@@ -2,7 +2,20 @@ id: conference-2018-biomedical-image-segmentation
 category: conference
 title: Biomedical Image Segmentation using Fully Convolutional Networks on TrueNorth
 authors:
-  - name: I. Palit et al.
-venue: CBMS
+  - name: I. Palit
+  - name: L. Yang
+  - name: Y. Ma
+  - name: D. Chen
+  - name: M. Niemier
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: X. S. Hu
+venue: The 31st International Symposium on Computer-Based Medical Systems (CBMS)
 year: 2018
-dateDisplay: June 2018
+dateDisplay: June 18–21, 2018
+location: Karlstad, Sweden
+themeIds:
+  - ai-acceleration
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #80"

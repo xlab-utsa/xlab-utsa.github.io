@@ -3,9 +3,19 @@ category: conference
 thumbnail: /images/publications/conference-2020-dnnexplorer-a-framework/thumbnail.png
 title: "DNNExplorer: A Framework for Modeling and Exploring a Novel Paradigm of FPGA-based DNN Accelerator"
 authors:
-  - name: X. Zhang et al.
-venue: ICCAD
+  - name: X. Zhang
+  - name: H. Ye
+  - name: J. Wang
+  - name: Y. Lin
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: W. Hwu
+  - name: D. Chen
+venue: The 2020 International Conference on Computer Aided Design (ICCAD)
 year: 2020
-dateDisplay: November 2020
+dateDisplay: Nov 2–5, 2020
+location: Online, San Diego, CA, USA
 themeIds:
-  - ai-accelerators
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #133"

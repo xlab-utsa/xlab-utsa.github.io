@@ -1,0 +1,18 @@
+id: conference-2023-beep-balanced-efficient-subgraph
+category: conference
+title: "BEEP: Balanced Efficient subgraph Enumeration in Parallel"
+authors:
+  - name: S. Kawtikwar
+  - name: M. Almasri
+  - name: W. Hwu
+  - name: R. Nagi
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: The 52nd International Conference on Parallel Processing (ICPP)
+year: 2023
+dateDisplay: Aug 7–10, 2023
+location: Salt Lake City, Utah, USA
+themeIds:
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #168"

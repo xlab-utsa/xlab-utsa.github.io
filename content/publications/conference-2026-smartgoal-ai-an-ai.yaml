@@ -1,0 +1,22 @@
+id: conference-2026-smartgoal-ai-an-ai
+category: conference
+title: "Smartgoal.AI: An AI-supported Evidence-based Session Planning Tool for School SLPs"
+authors:
+  - name: Q. Zheng
+    personId: qingxiao-zheng
+  - name: Y. Liu
+  - name: Y. Hu
+    personId: yuting-hu
+  - name: V. Charugundla
+  - name: Y. Du
+  - name: S. B. Bhamidi
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: The Annual Convention of the American Speech-Language-Hearing Association (ASHA)
+year: 2026
+dateDisplay: Nov 19–21, 2026
+location: Indianapolis, IN, USA
+themeIds:
+  - ai-education
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #225"

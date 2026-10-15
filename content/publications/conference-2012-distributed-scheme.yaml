@@ -2,7 +2,15 @@ id: conference-2012-distributed-scheme
 category: conference
 title: A Distributed Scheme for Fair EV Charging under Transmission Constraints
 authors:
-  - name: D. Phan et al.
-venue: ACC
+  - name: D. Phan
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: S. Ghosh
+venue: The 2012 American Control Conference (ACC)
 year: 2012
 dateDisplay: June 2012
+location: Montreal, Canada
+themeIds:
+  - smart-energy
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #55"

@@ -2,7 +2,16 @@ id: conference-2004-performance-and-rlc-crosstalk-driven
 category: conference
 title: Performance and RLC Crosstalk Driven Global Routing
 authors:
-  - name: L. Zhang et al.
-venue: ISCAS
+  - name: L. Zhang
+  - name: T. Jing
+  - name: X. Hong
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: L. He
+venue: International Symposium on Circuits and Systems
 year: 2004
 dateDisplay: May 2004
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #8"

@@ -2,7 +2,18 @@ id: conference-2018-revisiting-rcnn
 category: conference
 title: "Revisiting RCNN: On Awakening the Classification Power of Faster RCNN"
 authors:
-  - name: B. Cheng et al.
-venue: ECCV
+  - name: B. Cheng
+  - name: Y. Wei
+  - name: H. Shi
+  - name: R. Feris
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: T. Huang
+venue: European Conference on Computer Vision (ECCV)
 year: 2018
-dateDisplay: September 2018
+dateDisplay: September 8–14, 2018
+location: Munich, Germany
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #84"

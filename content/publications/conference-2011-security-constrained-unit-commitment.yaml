@@ -2,7 +2,13 @@ id: conference-2011-security-constrained-unit-commitment
 category: conference
 title: "Security Constrained Unit Commitment and Economic Dispatch through Benders Decomposition: A Comparative Study"
 authors:
-  - name: S. Cvijic et al.
-venue: PES General Meeting
+  - name: S. Cvijic
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: IEEE Power & Energy Society (PES) General Meeting
 year: 2011
-dateDisplay: "2011"
+location: Detroit, Michigan
+themeIds:
+  - smart-energy
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #47"

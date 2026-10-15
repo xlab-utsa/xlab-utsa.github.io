@@ -2,7 +2,16 @@ id: conference-2021-helios-heterogeneity-aware-federated-learning
 category: conference
 title: "Helios: Heterogeneity-Aware Federated Learning with Dynamically Balanced Collaboration"
 authors:
-  - name: Z. Xu et al.
-venue: DAC
+  - name: Z. Xu
+  - name: F. Yu
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: X. Chen
+venue: The 58th Design Automation Conference (DAC)
 year: 2021
-dateDisplay: December 2021
+dateDisplay: Dec 5–9, 2021
+location: San Francisco, CA, USA
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #148"

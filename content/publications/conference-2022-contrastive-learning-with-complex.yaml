@@ -1,0 +1,17 @@
+id: conference-2022-contrastive-learning-with-complex
+category: conference
+title: Contrastive Learning with Complex Heterogeneity
+authors:
+  - name: L. Zheng
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: Y. Zhu
+  - name: J. He
+venue: The 28th ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD)
+year: 2022
+dateDisplay: Aug 14–18, 2022
+location: Washington DC, USA
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #159"

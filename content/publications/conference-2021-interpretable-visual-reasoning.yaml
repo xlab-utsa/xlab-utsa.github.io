@@ -2,7 +2,19 @@ id: conference-2021-interpretable-visual-reasoning
 category: conference
 title: Interpretable Visual Reasoning via Induced Symbolic Space
 authors:
-  - name: Z. Wang et al.
-venue: ICCV
+  - name: Z. Wang
+  - name: M. Yu
+  - name: K. Wang
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: W. Hwu
+  - name: M. Hasegawa-Johnson
+  - name: H. Shi
+venue: International Conference on Computer Vision (ICCV)
 year: 2021
-dateDisplay: October 2021
+dateDisplay: Oct 11–17, 2021
+location: Online
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #146"

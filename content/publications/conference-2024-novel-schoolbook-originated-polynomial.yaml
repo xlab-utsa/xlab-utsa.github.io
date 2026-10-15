@@ -1,0 +1,17 @@
+id: conference-2024-novel-schoolbook-originated-polynomial
+category: conference
+title: Novel Schoolbook-Originated Polynomial Multiplication Accelerators for NTRU-based PQC
+authors:
+  - name: Y. Tu
+  - name: S. Bai
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: J. Xie
+venue: The 5th NIST Post-Quantum Cryptography (PQC) Standardization Conference
+year: 2024
+dateDisplay: April 10–12, 2024
+location: Rockville, Maryland, USA
+themeIds:
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #175"

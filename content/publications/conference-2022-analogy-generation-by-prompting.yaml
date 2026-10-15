@@ -1,0 +1,16 @@
+id: conference-2022-analogy-generation-by-prompting
+category: conference
+title: "Analogy Generation by Prompting Large Language Models: A Case Study of InstructGPT"
+authors:
+  - name: B. Bhayva
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: C. Zhai
+venue: The 15th International Natural Language Generation Conference (NLG)
+year: 2022
+dateDisplay: July 18–22, 2022
+location: Maine, USA
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #158"

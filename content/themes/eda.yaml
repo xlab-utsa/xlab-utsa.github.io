@@ -1,0 +1,5 @@
+id: eda
+title: Electronic Design Automation
+shortDescription: Statistical timing, yield, test, routing, and machine learning for chip design.
+longDescription: This is the lab's longest-running line of work. It covers statistical static timing analysis, process-variation modeling, yield optimization, at-speed test, global routing, and power and signal integrity, and more recently machine learning for circuit timing, signal integrity, and reliability analysis.
+order: 5

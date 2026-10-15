@@ -2,7 +2,18 @@ id: conference-2022-hikonv-high-throughput-quantized-convolution
 category: conference
 title: "HiKonv: High Throughput Quantized Convolution With Novel Bit-wise Management And Computation"
 authors:
-  - name: Y. Chen et al.
-venue: ASP-DAC
+  - name: Y. Chen
+  - name: X. Liu
+  - name: P. Ganesh
+  - name: J. Pan
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: D. Chen
+venue: The 27th Asia and South Pacific Design Automation Conference (ASP-DAC)
 year: 2022
-dateDisplay: January 2022
+dateDisplay: Jan 17–22, 2022
+location: Virtual
+themeIds:
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #151"

@@ -1,0 +1,23 @@
+id: journal-2026-a-new-workflow-for
+category: journal
+title: A new workflow for materials discovery bridging the gap between experimental databases and Graph Neural Networks
+authors:
+  - name: B. Schoener
+  - name: Y. Hu
+    personId: yuting-hu
+  - name: P. Wanlapha
+  - name: A. Rengarajan
+  - name: I. Moog
+  - name: M. Wang
+  - name: P. Zhang
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: H. Zeng
+venue: Journal of Magnetism and Magnetic Materials
+volumeIssue: Vol 650
+year: 2026
+dateDisplay: July 15, 2026
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), journal #58"

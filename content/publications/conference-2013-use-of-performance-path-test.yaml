@@ -2,7 +2,14 @@ id: conference-2013-use-of-performance-path-test
 category: conference
 title: Use of performance path test to optimize yield
 authors:
-  - name: J. Bickford et al.
-venue: ASMC
+  - name: J. Bickford
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: The 24th Annual SEMI Advanced Semiconductor Manufacturing Conference (ASMC)
 year: 2013
 dateDisplay: May 2013
+location: Saratoga Springs, NY
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #57"

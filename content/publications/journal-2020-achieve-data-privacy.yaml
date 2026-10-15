@@ -8,7 +8,8 @@ authors:
     personId: jinjun-xiong
 venue: EURASIP Journal on Advances in Signal Processing
 year: 2020
-month: May
+dateDisplay: May 7, 2020
+themeIds:
+  - ai-algorithms
 _meta:
-  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-journals.yaml
-  note: 40 journal articles, 2003-2021, verbatim from https://www.xlab-ub.com/publication/journals. authors[].personId is only set for "J. Xiong" -> jinjun-xiong; all other co-authors are name-only (no Person record to confidently match).
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), journal #34"

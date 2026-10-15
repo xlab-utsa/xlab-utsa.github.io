@@ -1,0 +1,21 @@
+id: invited-paper-2024-fl-nas-towards-fairness
+category: invited-paper
+title: "FL-NAS: Towards Fairness of NAS for Resource Constrained Devices via Large Language Models"
+authors:
+  - name: R. Qin
+  - name: Y. Hu
+    personId: yuting-hu
+  - name: Z. Yan
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: A. Abbasi
+  - name: Y. Shi
+venue: The 29th Asia and South Pacific Design Automation Conference (ASP-DAC)
+year: 2024
+dateDisplay: Jan. 22–25, 2024
+location: Incheon, South Korea
+themeIds:
+  - ai-algorithms
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #173"

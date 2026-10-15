@@ -3,9 +3,18 @@ category: conference
 thumbnail: /images/publications/conference-2021-why-lottery-ticket-wins/thumbnail.png
 title: Why Lottery Ticket Wins? A Theoretical Perspective of Sample Complexity on Sparse Neural Networks
 authors:
-  - name: S. Zhang et al.
-venue: NeurIPS
+  - name: S. Zhang
+  - name: M. Wang
+  - name: S. Liu
+  - name: P. Chen
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: Thirty-fifth Conference on Neural Information Processing Systems (NeurIPS)
 year: 2021
-dateDisplay: December 2021
+dateDisplay: Dec 6–14, 2021
+location: Virtual
+note: "Acceptance rate: 26%"
 themeIds:
   - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #149"

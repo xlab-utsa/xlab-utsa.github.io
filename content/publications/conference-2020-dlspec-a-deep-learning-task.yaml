@@ -2,7 +2,16 @@ id: conference-2020-dlspec-a-deep-learning-task
 category: conference
 title: "DLSpec: A Deep Learning Task Exchange Specification"
 authors:
-  - name: A. Dakkak et al.
-venue: OpML
+  - name: A. Dakkak
+  - name: C. Li
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: W. Hwu
+venue: 2020 USENIX Conference on Operational Machine Learning (OpML)
 year: 2020
-dateDisplay: July 2020
+dateDisplay: July 30, 2020
+location: Online, Santa Clara, CA, USA
+themeIds:
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #123"

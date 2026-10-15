@@ -1,0 +1,21 @@
+id: journal-2024-ethics-governance-and-user
+category: journal
+title: Ethics, Governance, and User Mental Models for Large Language Models in Computing Education
+authors:
+  - name: K. Z. Zhou
+  - name: Z. Kilhoffer
+  - name: M. R. Sanfilippo
+  - name: T. Underwood
+  - name: E. Gumusel
+  - name: M. Wei
+  - name: A. Choudhry
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: "XRDS: Crossroads, The ACM Magazine for Students"
+volumeIssue: Volume 31, Issue 1, Pages 46-51
+year: 2024
+dateDisplay: Oct 2024
+themeIds:
+  - ai-education
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), journal #44"

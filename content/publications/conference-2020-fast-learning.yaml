@@ -2,7 +2,18 @@ id: conference-2020-fast-learning
 category: conference
 title: "Fast Learning of Graph Neural Networks with Guaranteed Generalizability: One-hidden-layer Case"
 authors:
-  - name: S. Zhang et al.
-venue: ICML
+  - name: S. Zhang
+  - name: M. Wang
+  - name: S. Liu
+  - name: P. Chen
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: Thirty-seventh International Conference on Machine Learning (ICML)
 year: 2020
-dateDisplay: July 2020
+dateDisplay: Jul 12–18, 2020
+location: Online, Vienna, Austria
+note: "Acceptance rate: 22%"
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #121"

@@ -9,7 +9,8 @@ authors:
 venue: The European Journal for the Informatics Professional
 volumeIssue: Vol. 12, No. 4, pp. 28-40
 year: 2011
-month: October
+dateDisplay: October 2011
+themeIds:
+  - smart-energy
 _meta:
-  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-journals.yaml
-  note: 40 journal articles, 2003-2021, verbatim from https://www.xlab-ub.com/publication/journals. authors[].personId is only set for "J. Xiong" -> jinjun-xiong; all other co-authors are name-only (no Person record to confidently match).
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), journal #16"

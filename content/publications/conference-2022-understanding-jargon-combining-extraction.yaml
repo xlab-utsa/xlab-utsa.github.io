@@ -1,0 +1,18 @@
+id: conference-2022-understanding-jargon-combining-extraction
+category: conference
+title: "Understanding Jargon: Combining Extraction and Generation for Definition Modeling"
+authors:
+  - name: J. Huang
+  - name: H. Shao
+  - name: K. Chang
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: W. Hwu
+venue: The 2022 Conference on Empirical Methods in Natural Language Processing (EMNLP)
+year: 2022
+dateDisplay: December 7–11, 2022
+location: Abu Dhabi
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #163"

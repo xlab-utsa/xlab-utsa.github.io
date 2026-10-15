@@ -2,7 +2,15 @@ id: conference-2006-techniques-of-power-gating
 category: conference
 title: Techniques of Power-gating to Kill Sub-Threshold Leakage
 authors:
-  - name: C. Long et al.
-venue: APCCAS
+  - name: C. Long
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: Y. Liu
+venue: IEEE Asia Pacific Conference on Circuits and Systems (APCCAS)
 year: 2006
-dateDisplay: December 2006
+dateDisplay: December 4–7, 2006
+location: Singapore
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #22"

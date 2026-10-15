@@ -1,0 +1,19 @@
+id: conference-2022-a-word-is-worth
+category: conference
+title: "A Word is Worth A Thousand Dollars: Adversarial Attack on Tweets Fools Stock Prediction"
+authors:
+  - name: Y. Xie
+  - name: D. Wang
+  - name: P. Chen
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: S. Liu
+  - name: O. Koyejo
+venue: 2022 Annual Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)
+year: 2022
+dateDisplay: July 10–15, 2022
+location: "Hybrid: Seattle, Washington, USA and Online"
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #157"

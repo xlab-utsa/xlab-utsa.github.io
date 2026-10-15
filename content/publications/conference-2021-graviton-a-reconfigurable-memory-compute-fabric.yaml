@@ -2,7 +2,17 @@ id: conference-2021-graviton-a-reconfigurable-memory-compute-fabric
 category: conference
 title: "Graviton: A Reconfigurable Memory-Compute Fabric for Data Intensive Applications"
 authors:
-  - name: A. Dhar et al.
-venue: ARC
+  - name: A. Dhar
+  - name: P. Reckamp
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: W. Hwu
+  - name: D. Chen
+venue: The international symposium on Applied Reconfigurable Computing (ARC)
 year: 2021
-dateDisplay: June 2021
+dateDisplay: June 29 – July 1, 2021
+location: Rennes, France, Online
+themeIds:
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #140"

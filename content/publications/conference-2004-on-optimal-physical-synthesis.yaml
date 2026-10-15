@@ -2,7 +2,15 @@ id: conference-2004-on-optimal-physical-synthesis
 category: conference
 title: On Optimal Physical Synthesis of Sleep Transistors
 authors:
-  - name: C. Long et al.
-venue: ISPD
+  - name: C. Long
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: L. He
+venue: ACM International Symposium on Physical Design (ISPD)
 year: 2004
 dateDisplay: March 2004
+location: Tucson, Arizona
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #7"

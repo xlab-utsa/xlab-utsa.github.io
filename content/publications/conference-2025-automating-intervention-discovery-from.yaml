@@ -1,0 +1,25 @@
+id: conference-2025-automating-intervention-discovery-from
+category: conference
+title: "Automating Intervention Discovery from Scientific Literature: A Progressive Ontology Prompting and Dual-LLM Framework"
+authors:
+  - name: Y. Hu
+    personId: yuting-hu
+  - name: D. Liu
+    personId: dancheng-liu
+  - name: Q. Wang
+  - name: C. Yu
+  - name: C. Xu
+    personId: chenhui-xu
+  - name: Q. Zheng
+    personId: qingxiao-zheng
+  - name: H. Ji
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: The 34th International Joint Conference on Artificial Intelligence (IJCAI)
+year: 2025
+dateDisplay: Aug 16–22, 2025
+location: Montreal, Canada
+themeIds:
+  - ai-education
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #199"

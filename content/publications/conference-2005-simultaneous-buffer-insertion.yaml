@@ -2,7 +2,15 @@ id: conference-2005-simultaneous-buffer-insertion
 category: conference
 title: Simultaneous Buffer Insertion and Wire Sizing Considering Systematic CMP Variation and Random Leff Variation
 authors:
-  - name: L. He et al.
-venue: ISPD
+  - name: L. He
+  - name: A. Kahng
+  - name: K. Tam
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: ACM International Symposium on Physical Design (ISPD)
 year: 2005
 dateDisplay: April 2005
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #15"

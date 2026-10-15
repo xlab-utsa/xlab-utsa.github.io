@@ -2,7 +2,15 @@ id: conference-2005-buffer-insertion-considering-process-variation
 category: conference
 title: Buffer insertion considering process variation
 authors:
-  - name: J. Xiong et al.
-venue: DATE
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: K. Tam
+  - name: L. He
+venue: Design Automation and Test in Europe (DATE)
 year: 2005
 dateDisplay: March 2005
+location: Munich, Germany
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #14"

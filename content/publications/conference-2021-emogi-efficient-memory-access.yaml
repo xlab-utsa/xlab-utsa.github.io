@@ -2,7 +2,18 @@ id: conference-2021-emogi-efficient-memory-access
 category: conference
 title: "EMOGI: Efficient Memory-access for Out-of-memory Graph-traversal In GPUs"
 authors:
-  - name: S. Min et al.
-venue: VLDB
+  - name: S. Min
+  - name: V. Mailthody
+  - name: Z. Qureshi
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: E. Ebrahimi
+  - name: W. Hwu
+venue: The 47th International Conference on Very Large Data Bases (VLDB)
 year: 2021
-dateDisplay: August 2021
+dateDisplay: August 16–20, 2021
+location: Copenhagen, Denmark
+themeIds:
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #143"

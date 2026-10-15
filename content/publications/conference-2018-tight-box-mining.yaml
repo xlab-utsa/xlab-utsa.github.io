@@ -2,7 +2,19 @@ id: conference-2018-tight-box-mining
 category: conference
 title: Tight Box Mining with Surrounding Segmentation Context for Weakly Supervised Object Detection
 authors:
-  - name: Y. Wei et al.
-venue: ECCV
+  - name: Y. Wei
+  - name: Z. Shen
+  - name: B. Cheng
+  - name: H. Shi
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: J. Feng
+  - name: T. Huang
+venue: European Conference on Computer Vision (ECCV)
 year: 2018
-dateDisplay: September 2018
+dateDisplay: September 8–14, 2018
+location: Munich, Germany
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #83"

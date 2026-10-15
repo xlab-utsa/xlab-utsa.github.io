@@ -2,7 +2,14 @@ id: conference-2011-contingency-constrained-economic-dispatch
 category: conference
 title: Contingency Constrained Economic Dispatch in Smart Grids with Correlated Demands
 authors:
-  - name: Y. Shi et al.
-venue: SmartGridComm
+  - name: Y. Shi
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: 2nd IEEE International Conference on Smart Grid Communications (SmartGridComm)
 year: 2011
 dateDisplay: October 2011
+location: Brussels, Belgium
+themeIds:
+  - smart-energy
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #49"

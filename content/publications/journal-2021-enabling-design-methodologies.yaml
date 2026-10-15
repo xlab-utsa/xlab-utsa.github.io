@@ -10,8 +10,10 @@ authors:
   - name: Z. Zhang
   - name: D. Chen
 venue: IEEE Design & Test
+volumeIssue: Vol 38, Issue 4
 year: 2021
-note: in press
+dateDisplay: Aug 2021
+themeIds:
+  - ai-acceleration
 _meta:
-  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-journals.yaml
-  note: 40 journal articles, 2003-2021, verbatim from https://www.xlab-ub.com/publication/journals. authors[].personId is only set for "J. Xiong" -> jinjun-xiong; all other co-authors are name-only (no Person record to confidently match).
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), journal #38"

@@ -2,7 +2,16 @@ id: conference-2018-document-similarity
 category: conference
 title: Document Similarity for Texts of Varying Lengths via Hidden Topics
 authors:
-  - name: H. Gong et al.
-venue: ACL
+  - name: H. Gong
+  - name: T. Sakakini
+  - name: S. Bhat
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: The 56th Annual Meeting of the Association for Computational Linguistics (ACL)
 year: 2018
-dateDisplay: July 2018
+dateDisplay: July 15–20, 2018
+location: Melbourne, Australia
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #82"

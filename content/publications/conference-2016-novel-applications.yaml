@@ -2,7 +2,15 @@ id: conference-2016-novel-applications
 category: conference
 title: Novel Applications of Deep Learning Hidden Features for Adaptive Testing
 authors:
-  - name: B. Xiao et al.
-venue: ASP-DAC
+  - name: B. Xiao
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: Y. Shi
+venue: IEEE/ACM Asia South Pacific Design Automation Conference (ASP-DAC)
 year: 2016
 dateDisplay: January 2016
+themeIds:
+  - eda
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #72"

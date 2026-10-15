@@ -10,7 +10,8 @@ authors:
 venue: ACM Transactions on Design Automation of Electronic Systems
 volumeIssue: Vol. 18, No. 3
 year: 2013
-month: July
+dateDisplay: July 2013
+themeIds:
+  - eda
 _meta:
-  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-journals.yaml
-  note: 40 journal articles, 2003-2021, verbatim from https://www.xlab-ub.com/publication/journals. authors[].personId is only set for "J. Xiong" -> jinjun-xiong; all other co-authors are name-only (no Person record to confidently match).
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), journal #23"

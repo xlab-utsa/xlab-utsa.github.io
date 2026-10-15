@@ -1,0 +1,20 @@
+id: conference-2023-extensible-and-efficient-proxy
+category: conference
+title: Extensible and Efficient Proxy for Neural Architecture Search
+authors:
+  - name: Y. Li
+  - name: J. Li
+    personId: jiajie-li
+  - name: C. Hao
+  - name: P. Li
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: D. Chen
+venue: International Conference on Computer Vision (ICCV)
+year: 2023
+dateDisplay: October 2–6, 2023
+location: Paris, France
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #169"

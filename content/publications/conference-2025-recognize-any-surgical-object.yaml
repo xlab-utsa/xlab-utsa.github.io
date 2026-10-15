@@ -1,0 +1,26 @@
+id: conference-2025-recognize-any-surgical-object
+category: conference
+title: "Recognize Any Surgical Object: Unleashing the Power of Weakly-Supervised Data"
+authors:
+  - name: J. Li
+    personId: jiajie-li
+  - name: B. R Quaranto
+  - name: C. Xu
+    personId: chenhui-xu
+  - name: I. Mishra
+  - name: R. Qin
+  - name: D. Liu
+    personId: dancheng-liu
+  - name: P. C W Kim
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: The Thirteenth International Conference on Learning Representations (ICLR)
+year: 2025
+dateDisplay: Apr 24–28, 2025
+location: Singapore
+note: Spotlight, 5.1%
+themeIds:
+  - ai-algorithms
+featured: true
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #191"

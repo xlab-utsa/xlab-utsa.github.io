@@ -2,7 +2,18 @@ id: conference-2018-face-recognition
 category: conference
 title: Face Recognition with Hybrid Efficient Convolution Algorithms on FPGAs
 authors:
-  - name: C. Zhuge et al.
-venue: GLSVLSI
+  - name: C. Zhuge
+  - name: X. Liu
+  - name: X. Zhang
+  - name: S. Gummadi
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: D. Chen
+venue: The 28th edition of the ACM Great Lakes Symposium on VLSI (GLSVLSI)
 year: 2018
-dateDisplay: May 2018
+dateDisplay: May 23–25, 2018
+location: Chicago, Illinois, USA
+themeIds:
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #79"

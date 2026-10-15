@@ -2,7 +2,18 @@ id: conference-2019-analysis-and-optimization
 category: conference
 title: Analysis and Optimization of I/O Cache Coherency Strategies for SoC-FPGA Device
 authors:
-  - name: S. Min et al.
-venue: FPL
+  - name: S. Min
+  - name: S. Huang
+  - name: M. Aly
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: D. Chen
+  - name: W. Hwu
+venue: The International Conference on Field-Programmable Logic and Applications (FPL)
 year: 2019
-dateDisplay: September 2019
+dateDisplay: Sept 9–11, 2019
+location: Barcelona, Spain
+themeIds:
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #102"

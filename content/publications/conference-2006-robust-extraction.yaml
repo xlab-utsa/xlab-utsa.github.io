@@ -2,7 +2,16 @@ id: conference-2006-robust-extraction
 category: conference
 title: Robust Extraction of Spatial Correlation
 authors:
-  - name: J. Xiong et al.
-venue: ISPD
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: V. Zolotov
+  - name: L. He
+venue: ACM International Symposium on Physical Design (ISPD)
 year: 2006
 dateDisplay: April 2006
+location: San Jose, California
+themeIds:
+  - eda
+featured: true
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #19"

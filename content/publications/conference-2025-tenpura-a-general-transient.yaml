@@ -1,0 +1,22 @@
+id: conference-2025-tenpura-a-general-transient
+category: conference
+title: "Tenpura: A General Transient Fault Evaluation and Scope Narrowing Platform for Ultra-fast Reliability Analysis"
+authors:
+  - name: Q. Cheng
+  - name: H. Zhang
+  - name: C. Liang
+  - name: M. Zhang
+  - name: J. Liou
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: L. Lin
+  - name: M. Hashimoto
+venue: The 44th ACM/IEEE International Conference on Computer-Aided Design (ICCAD)
+year: 2025
+dateDisplay: Oct 26–30, 2025
+location: Munich, Germany
+note: "Acceptance rate: 24.7%"
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #203"

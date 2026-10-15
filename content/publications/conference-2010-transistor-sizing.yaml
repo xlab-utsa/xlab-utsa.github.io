@@ -2,7 +2,16 @@ id: conference-2010-transistor-sizing
 category: conference
 title: Transistor Sizing of Custom High-Performance Digital Circuits With Parametric Yield Considerations
 authors:
-  - name: D. Beece et al.
-venue: DAC
+  - name: D. Beece
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: C. Visweswariah
+  - name: V. Zolotov
+  - name: Y. Liu
+venue: IEEE/ACM Design Automation Conference (DAC)
 year: 2010
-dateDisplay: June 2010
+location: Anaheim, CA
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #44"

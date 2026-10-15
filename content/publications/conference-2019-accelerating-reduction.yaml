@@ -2,7 +2,17 @@ id: conference-2019-accelerating-reduction
 category: conference
 title: Accelerating Reduction and Scan Using Tensor Core Units
 authors:
-  - name: A. Dakkak et al.
-venue: ICS
+  - name: A. Dakkak
+  - name: C. Li
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: I. Gelado
+  - name: W. Hwu
+venue: The 33rd International Conference on Supercomputing (ICS)
 year: 2019
-dateDisplay: June 2019
+dateDisplay: June 26–28, 2019
+location: Phoenix, AZ, USA
+themeIds:
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #97"

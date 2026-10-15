@@ -3,9 +3,16 @@ category: conference
 thumbnail: /images/publications/conference-2019-on-the-universal-approximability/thumbnail.png
 title: On the Universal Approximability and Complexity Bounds of Quantized ReLU Neural Networks
 authors:
-  - name: Y. Ding et al.
-venue: ICLR
+  - name: Y. Ding
+  - name: J. Liu
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: Y. Shi
+venue: The Seventh International Conference on Learning Representations (ICLR)
 year: 2019
-dateDisplay: May 2019
+dateDisplay: May 6–9, 2019
+location: New Orleans, Louisiana, USA
 themeIds:
   - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #94"

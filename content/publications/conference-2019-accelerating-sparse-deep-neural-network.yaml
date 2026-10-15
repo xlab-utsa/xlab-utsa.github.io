@@ -2,7 +2,18 @@ id: conference-2019-accelerating-sparse-deep-neural-network
 category: conference
 title: Accelerating Sparse Deep Neural Network on FPGAs
 authors:
-  - name: S. Huang et al.
-venue: HPEC
+  - name: S. Huang
+  - name: C. Pearson
+  - name: R. Nagi
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: D. Chen
+  - name: W. Hwu
+venue: IEEE High Performance Extreme Computing Conference (HPEC)
 year: 2019
-dateDisplay: September 2019
+dateDisplay: September 24–26, 2019
+location: Waltham, MA, USA
+themeIds:
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #103"

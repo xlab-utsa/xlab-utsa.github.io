@@ -1,0 +1,23 @@
+id: conference-2026-phonix-automating-speech-sound
+category: conference
+title: "Phonix: Automating Speech Sound Disorder Related Therapies and Data Tracking for Speech-Language Pathologists"
+authors:
+  - name: S. B. Bhamidi
+  - name: A. Nassereldine
+    personId: amir-nassereldine
+  - name: Q. Zheng
+    personId: qingxiao-zheng
+  - name: J. Li
+    personId: jiajie-li
+  - name: A. Hendricks
+  - name: A. Olszewski
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: The Annual Convention of the American Speech-Language-Hearing Association (ASHA)
+year: 2026
+dateDisplay: Nov 19–21, 2026
+location: Indianapolis, IN, USA
+themeIds:
+  - ai-education
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #224"

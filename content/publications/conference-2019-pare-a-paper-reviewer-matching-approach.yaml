@@ -2,7 +2,17 @@ id: conference-2019-pare-a-paper-reviewer-matching-approach
 category: conference
 title: "PaRe: A Paper-Reviewer Matching Approach Using a Common Topic Space"
 authors:
-  - name: O. Anjum et al.
-venue: EMNLP
+  - name: O. Anjum
+  - name: H. Gong
+  - name: S. Bhat
+  - name: W. Hwu
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: The 2019 Conference on Empirical Methods in Natural Language Processing (EMNLP)
 year: 2019
-dateDisplay: November 2019
+dateDisplay: Nov 3–7, 2019
+location: Hong Kong, China
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #110"

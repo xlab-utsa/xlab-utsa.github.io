@@ -241,11 +241,6 @@ export function getPublicationsByCategory(
     .publications.filter((p) => p.category === category)
     .sort((a, b) => (b.year ?? 0) - (a.year ?? 0));
 }
-export function getFeaturedPublications(): Publication[] {
-  return loadAll()
-    .publications.filter((p) => p.featured)
-    .sort((a, b) => (a.featuredOrder ?? 0) - (b.featuredOrder ?? 0));
-}
 export function getPublicationsByTheme(themeId: string): Publication[] {
   return loadAll()
     .publications.filter((p) => p.themeIds.includes(themeId))

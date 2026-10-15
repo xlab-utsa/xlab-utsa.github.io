@@ -3,9 +3,20 @@ category: conference
 thumbnail: /images/publications/conference-2020-uncertainty-aware-training/thumbnail.png
 title: Uncertainty-Aware Training of Neural Networks for Selective Medical Image Segmentation
 authors:
-  - name: Y. Ding et al.
-venue: MIDL
+  - name: Y. Ding
+  - name: J. Liu
+  - name: X. Xu
+  - name: M. Huang
+  - name: J. Zhuang
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: Y. Shi
+venue: The 3rd edition of Medical Imaging with Deep Learning (MIDL)
 year: 2020
-dateDisplay: July 2020
+dateDisplay: July 6–8, 2020
+location: Online, Montreal, Canada
+note: Oral presentation, 12%
 themeIds:
-  - ai-solutions
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #120"

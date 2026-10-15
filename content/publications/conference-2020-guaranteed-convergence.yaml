@@ -2,7 +2,17 @@ id: conference-2020-guaranteed-convergence
 category: conference
 title: Guaranteed Convergence of Training Convolutional Neural Networks via Accelerated Gradient Descent
 authors:
-  - name: S. Zhang et al.
-venue: CISS
+  - name: S. Zhang
+  - name: M. Wang
+  - name: S. Liu
+  - name: P. Chen
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: The 54th Annual Conference on Information Sciences and Systems (CISS)
 year: 2020
-dateDisplay: March 2020
+dateDisplay: March 18–20, 2020
+location: Princeton, NJ, USA
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #112"

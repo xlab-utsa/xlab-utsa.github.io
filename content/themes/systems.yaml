@@ -1,0 +1,5 @@
+id: systems
+title: Systems
+shortDescription: Memory, storage, and computing systems, and work beyond the categories above.
+longDescription: Our systems research covers memory and storage architectures for data-intensive computing, near-memory processing, large-scale graph processing, and quantum computing co-design. This category also holds publications that fall outside the other research areas.
+order: 7

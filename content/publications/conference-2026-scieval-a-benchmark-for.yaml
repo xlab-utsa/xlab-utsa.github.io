@@ -1,0 +1,21 @@
+id: conference-2026-scieval-a-benchmark-for
+category: conference
+title: "SciEval: A Benchmark for Automatic Evaluation of K–12 Science Instructional Materials"
+authors:
+  - name: Z. Li
+    personId: zhaohui-li
+  - name: P. He
+  - name: Z. Chen
+  - name: H. Liu
+  - name: Z. Wang
+  - name: T. Li
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: The 27th International Conference on AI in Education (AIED)
+year: 2026
+dateDisplay: June 27 – July 3, 2026
+location: Seoul, Republic of Korea
+themeIds:
+  - ai-education
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #216"

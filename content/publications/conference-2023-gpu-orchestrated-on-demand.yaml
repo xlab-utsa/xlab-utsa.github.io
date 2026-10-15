@@ -1,0 +1,28 @@
+id: conference-2023-gpu-orchestrated-on-demand
+category: conference
+title: GPU-Orchestrated On-Demand High-Throughput Storage Access in the Panda System Architecture
+authors:
+  - name: Z. Qureshi
+  - name: V. Mailthody
+  - name: I. Gelado
+  - name: S. Min
+  - name: A. Masood
+  - name: J. Park
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: CJ Newburn
+  - name: D. Vainbrand
+  - name: I. Chung
+  - name: M. Garland
+  - name: W. Dally
+  - name: W. Hwu
+venue: The 28th International Conference on Architectural Support for Programming Languages and Operating Systems (ASPLOS)
+year: 2023
+dateDisplay: March 25–29, 2023
+location: Vancouver, Canada
+themeIds:
+  - systems
+  - ai-acceleration
+featured: true
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #164"

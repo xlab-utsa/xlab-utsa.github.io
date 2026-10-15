@@ -1,0 +1,24 @@
+id: conference-2025-a-scalable-external-memory
+category: conference
+title: "A Scalable External Memory Access and On-Chip Storage Architecture for Edge-AI Accelerators: Multi-Path Rolling Data Refresh and Layer-Wise Bank Allocation"
+authors:
+  - name: Q. Cheng
+  - name: H. Zhang
+  - name: Q. Li
+  - name: Y. Liang
+  - name: M. Zhang
+  - name: Z. Chen
+  - name: R. Zhang
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: M. Huang
+  - name: L. Lin
+  - name: M. Hashimoto
+venue: The 2025 ACM/IEEE International Symposium on Low Power Electronics and Design (ISLPED)
+year: 2025
+dateDisplay: August 6–8, 2025
+location: University of Iceland, Iceland
+themeIds:
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #198"

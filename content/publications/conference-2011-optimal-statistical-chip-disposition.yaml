@@ -2,7 +2,14 @@ id: conference-2011-optimal-statistical-chip-disposition
 category: conference
 title: Optimal Statistical Chip Disposition
 authors:
-  - name: V. Zolotov et al.
-venue: ICCAD
+  - name: V. Zolotov
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: ACM International Conference on Computer-Aided Design (ICCAD)
 year: 2011
 dateDisplay: November 2011
+location: San Jose
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #50"

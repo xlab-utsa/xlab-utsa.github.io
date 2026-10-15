@@ -1,0 +1,24 @@
+id: conference-2026-llm4art-using-large-language
+category: conference
+title: "LLM4Art: Using Large Language Models for Art Interpretation"
+authors:
+  - name: N. Li
+  - name: D. Liu
+    personId: dancheng-liu
+  - name: Y. Hu
+    personId: yuting-hu
+  - name: C. Xu
+    personId: chenhui-xu
+  - name: S. Chao
+  - name: Z. Li
+    personId: zhaohui-li
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: The 16th International Conference on Learning Analytics and Knowledge (LAK26)
+year: 2026
+dateDisplay: April 27 – May 1, 2026
+location: Bergen, Norway
+themeIds:
+  - ai-education
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #213"

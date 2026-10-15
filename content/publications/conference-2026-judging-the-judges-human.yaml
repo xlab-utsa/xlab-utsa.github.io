@@ -1,0 +1,19 @@
+id: conference-2026-judging-the-judges-human
+category: conference
+title: "Judging the Judges: Human Validation of Multi-LLM Evaluation for High-Quality K–12 Science Instructional Materials"
+authors:
+  - name: P. He
+  - name: Z. Li
+    personId: zhaohui-li
+  - name: Z. Wang
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: Tingting Li
+venue: The Computing Conference
+year: 2026
+dateDisplay: July 9–10, 2026
+location: London, United Kingdom
+themeIds:
+  - ai-education
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #219"

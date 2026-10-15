@@ -2,7 +2,26 @@ id: conference-2018-application-transparent-near-memory-processing-architecture
 category: conference
 title: Application-Transparent Near-Memory Processing Architecture with Memory Channel Network
 authors:
-  - name: M. Alian et al.
-venue: MICRO'51
+  - name: M. Alian
+  - name: S. Min
+  - name: H. Asgharimoghaddam
+  - name: A. Dhar
+  - name: D. Wang
+  - name: T. Roewer
+  - name: A. McPadden
+  - name: O. OHalloran
+  - name: D. Chen
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: D. Kim
+  - name: W. Hwu
+  - name: N. Kim
+venue: The 51st Annual IEEE/ACM International Symposium on Microarchitecture (MICRO’51)
 year: 2018
-dateDisplay: October 2018
+dateDisplay: Oct 20–24, 2018
+location: Fukuoka City, Japan
+themeIds:
+  - systems
+featured: true
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #85"

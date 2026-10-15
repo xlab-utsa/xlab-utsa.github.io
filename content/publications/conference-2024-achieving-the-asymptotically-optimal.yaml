@@ -1,0 +1,16 @@
+id: conference-2024-achieving-the-asymptotically-optimal
+category: conference
+title: "Achieving the Asymptotically Optimal Sample Complexity of Offline Reinforcement Learning: A DRO-Based Approach"
+authors:
+  - name: Y. Wang
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: S. Zou
+venue: The 60th Annual Allerton Conference on Communication, Control, and Computing
+year: 2024
+dateDisplay: Sept 25–27, 2024
+location: Urbana, Illinois, USA
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #180"

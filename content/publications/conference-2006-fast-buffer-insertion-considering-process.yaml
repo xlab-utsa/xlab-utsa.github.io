@@ -2,7 +2,14 @@ id: conference-2006-fast-buffer-insertion-considering-process
 category: conference
 title: Fast Buffer Insertion Considering Process Variations
 authors:
-  - name: J. Xiong et al.
-venue: ISPD
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: L. He
+venue: ACM International Symposium on Physical Design (ISPD)
 year: 2006
 dateDisplay: April 2006
+location: San Jose, California
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #18"

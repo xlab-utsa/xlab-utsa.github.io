@@ -2,7 +2,18 @@ id: conference-2008-efficient-method
 category: conference
 title: An Efficient Method for Chip-Level Statistical Capacitance Extraction Considering Process Variations with Spatial Correlation
 authors:
-  - name: W. Zhang et al.
-venue: DATE
+  - name: W. Zhang
+  - name: W. Yu
+  - name: Z. Wang
+  - name: Z. Yu
+  - name: R. Jiang
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: International Conference on Design, Automation and Test in Europe (DATE)
 year: 2008
 dateDisplay: March 2008
+location: Munich, Germany
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #32"

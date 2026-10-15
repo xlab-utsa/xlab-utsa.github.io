@@ -2,7 +2,19 @@ id: conference-2007-variation-aware-performance-verification
 category: conference
 title: Variation-Aware Performance Verification Using At-Speed Structural Test And Statistical Timing
 authors:
-  - name: V. Iyengar et al.
-venue: ICCAD
+  - name: V. Iyengar
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: S. Venkatesan
+  - name: V. Zolotov
+  - name: D. Lackey
+  - name: P. Habitz
+  - name: C. Visweswariah
+venue: ACM International Conference on Computer-Aided Design (ICCAD)
 year: 2007
 dateDisplay: November 2007
+location: San Jose
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #26"

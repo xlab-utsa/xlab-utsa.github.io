@@ -1,0 +1,21 @@
+id: conference-2024-the-teachers-are-confused
+category: conference
+title: "The teachers are confused as well: A Multiple-Stakeholder Ethics Discussion on Large Language Models in Computing Education"
+authors:
+  - name: K. Z. Zhou
+  - name: Z. Kilhoffer
+  - name: M. R. Sanfilippo
+  - name: T. Underwood
+  - name: E. Gumusel
+  - name: M. Wei
+  - name: A. Choudhry
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: The 10th Annual Digital Pedagogy Institute Conference
+year: 2024
+dateDisplay: Aug 13–15, 2024
+location: Online
+themeIds:
+  - ai-education
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #179"

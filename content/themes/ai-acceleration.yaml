@@ -1,0 +1,5 @@
+id: ai-acceleration
+title: AI Acceleration
+shortDescription: FPGA and GPU acceleration, co-design, and benchmarking for AI workloads.
+longDescription: We make AI workloads run faster and more efficiently on real hardware. This includes automated DNN accelerator generation for FPGAs, algorithm and hardware co-design for edge devices, computing-in-memory, GPU acceleration of graph analytics and sparse inference, and across-stack benchmarking and profiling of machine learning systems.
+order: 3

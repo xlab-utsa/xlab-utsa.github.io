@@ -2,7 +2,16 @@ id: conference-2014-novel-grid-load-management-techniques
 category: conference
 title: A Novel Grid Load Management Techniques using Electric Water Heaters and Q-Learning
 authors:
-  - name: K. Al-Jabery et al.
-venue: SmartGridComm
+  - name: K. Al-Jabery
+  - name: D. Wunsch
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: Y. Shi
+venue: IEEE International Conference on Smart Grid Communications (SmartGridComm)
 year: 2014
-dateDisplay: November 2014
+dateDisplay: Nov. 2014
+location: Venice
+themeIds:
+  - smart-energy
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #66"

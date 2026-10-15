@@ -2,7 +2,15 @@ id: conference-2009-statistical-multilayer-process-space-coverage
 category: conference
 title: Statistical Multilayer Process Space Coverage for At-Speed Test
 authors:
-  - name: J. Xiong et al.
-venue: DAC
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: Y. Shi
+  - name: V. Zolotov
+  - name: C. Visweswariah
+venue: IEEE/ACM Design Automation Conference (DAC)
 year: 2009
 dateDisplay: July 2009
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #37"

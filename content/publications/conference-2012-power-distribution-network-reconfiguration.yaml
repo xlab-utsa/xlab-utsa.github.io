@@ -2,7 +2,18 @@ id: conference-2012-power-distribution-network-reconfiguration
 category: conference
 title: Power Distribution Network Reconfiguration for Bounded Transient Power Loss
 authors:
-  - name: Z. Li et al.
-venue: ISGT Asia
+  - name: Z. Li
+  - name: C. Wu
+  - name: J. Chen
+  - name: Y. Shi
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: Y. Wang
+venue: IEEE PES Innovative Smart Grid Technologies (ISGT) Asia 2012 Conference
 year: 2012
 dateDisplay: May 2012
+location: Tianjin, China
+themeIds:
+  - smart-energy
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #51"

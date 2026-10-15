@@ -2,7 +2,16 @@ id: conference-2002-post-global-routing-rlc-crosstalk
 category: conference
 title: Post Global Routing RLC Crosstalk Budgeting
 authors:
-  - name: J. Xiong et al.
-venue: ICCAD
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: J. Chen
+  - name: J. Ma
+  - name: L. He
+venue: ACM International Conference on Computer-Aided Design (ICCAD)
 year: 2002
 dateDisplay: November 2002
+location: San Jose
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #4"

@@ -1,0 +1,17 @@
+id: conference-2024-anade1-0-a-novel
+category: conference
+title: "AnaDE1.0: A Novel Data Set for Benchmarking Analogy Detection and Extraction"
+authors:
+  - name: B. Bhavya
+  - name: S. Sehgal
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: C. Zhai
+venue: The 18th Conference of the European Chapter of the Association for Computational Linguistics (EACL)
+year: 2024
+dateDisplay: March 17–22, 2024
+location: Malta
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #174"

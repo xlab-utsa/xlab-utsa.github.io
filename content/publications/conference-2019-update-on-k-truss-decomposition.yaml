@@ -2,7 +2,20 @@ id: conference-2019-update-on-k-truss-decomposition
 category: conference
 title: Update on k-truss Decomposition on GPU
 authors:
-  - name: M. Almasri et al.
-venue: HPEC
+  - name: M. Almasri
+  - name: O. Anjum
+  - name: C. Pearson
+  - name: Z. Qureshi
+  - name: V. Mailthody
+  - name: R. Nagi
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: W. Hwu
+venue: IEEE High Performance Extreme Computing Conference (HPEC)
 year: 2019
-dateDisplay: September 2019
+dateDisplay: September 24–26, 2019
+location: Waltham, MA, USA
+themeIds:
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #105"

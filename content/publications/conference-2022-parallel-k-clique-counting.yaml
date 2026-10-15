@@ -1,0 +1,18 @@
+id: conference-2022-parallel-k-clique-counting
+category: conference
+title: Parallel K-Clique Counting on GPUs
+authors:
+  - name: M. Almasri
+  - name: I. Hajj
+  - name: R. Nagi
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: W. Hwu
+venue: ACM International Conference on Supercomputing (ICS’22)
+year: 2022
+dateDisplay: June 27–30, 2022
+location: Online
+themeIds:
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #155"

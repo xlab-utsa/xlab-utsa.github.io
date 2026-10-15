@@ -8,9 +8,10 @@ authors:
     personId: jinjun-xiong
   - name: Y. Shi
 venue: IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems
-volumeIssue: Vol. 35, Issue 10
+volumeIssue: Volume 35, Issue 10
 year: 2016
-month: October
+dateDisplay: Oct 2016
+themeIds:
+  - eda
 _meta:
-  source: data-extraction/sources/02-xlab-ub-com-live-site/extracted/publications-journals.yaml
-  note: 40 journal articles, 2003-2021, verbatim from https://www.xlab-ub.com/publication/journals. authors[].personId is only set for "J. Xiong" -> jinjun-xiong; all other co-authors are name-only (no Person record to confidently match).
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), journal #26"

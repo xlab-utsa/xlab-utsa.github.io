@@ -3,9 +3,17 @@ category: conference
 thumbnail: /images/publications/conference-2015-optimal-selected-phasor-measurement-units/thumbnail.png
 title: Optimal Selected Phasor Measurement Units for Identifying Multiple Line Outages in Smart Grid
 authors:
-  - name: J. Wu et al.
-venue: ISGT
+  - name: J. Wu
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: P. Shil
+  - name: Y. Shi
+venue: IEEE Innovative Smart Grid Technology Conference (ISGT)
 year: 2015
-dateDisplay: February 2015
+dateDisplay: Feb. 2015
+location: Washington D.C., USA
 themeIds:
-  - ai-solutions
+  - smart-energy
+featured: true
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #67"

@@ -1,0 +1,25 @@
+id: conference-2025-genshin-a-generalized-framework
+category: conference
+title: "Genshin: A Generalized Framework with Software-Hardware Co-design and Pruned Fault Injection for Reliability Analysis"
+authors:
+  - name: Q. Cheng
+  - name: H. Chi
+  - name: C. Liang
+  - name: Y. Chao
+  - name: H. Zhang
+  - name: Y. Liang
+  - name: M. Zhang
+  - name: W. Liao
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: J. Liou
+  - name: M. Hashimoto
+  - name: L. Lin
+venue: International Test Conference (ITC)
+year: 2025
+dateDisplay: Sept 21–26, 2025
+location: San Diego, California, USA
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #201"

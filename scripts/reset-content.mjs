@@ -33,7 +33,7 @@ const apply = process.argv.includes("--apply");
 // records that everything else hangs off:
 //   site.yaml     — nav, title, contact. The site cannot render without it.
 //   institutions/ — referenced by people's affiliations and by site.primaryInstitutionId.
-//   themes/       — the six research thrusts; structural, not per-person data.
+//   themes/       — the research thrusts; structural, not per-person data.
 //   people/<pi>   — so the site is not a blank page while members are re-entering theirs.
 const KEEP_FILES = ["site.yaml"];
 const KEEP_DIRS = ["institutions", "themes"];

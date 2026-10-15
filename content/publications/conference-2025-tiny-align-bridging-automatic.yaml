@@ -1,0 +1,30 @@
+id: conference-2025-tiny-align-bridging-automatic
+category: conference
+title: "Tiny-Align: Bridging Automatic Speech Recognition and Large Language Model on Edge"
+authors:
+  - name: R. Qin
+  - name: D. Liu
+    personId: dancheng-liu
+  - name: G. Xu
+  - name: A. Nassereldine
+    personId: amir-nassereldine
+  - name: Z. Yan
+  - name: C. Xu
+    personId: chenhui-xu
+  - name: Y. Hu
+    personId: yuting-hu
+  - name: S. Wang
+  - name: X. Sharon Hu
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: Y. Shi
+venue: The 44th ACM/IEEE International Conference on Computer-Aided Design (ICCAD)
+year: 2025
+dateDisplay: Oct 26–30, 2025
+location: Munich, Germany
+note: "Acceptance rate: 24.7%"
+themeIds:
+  - ai-acceleration
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #204"

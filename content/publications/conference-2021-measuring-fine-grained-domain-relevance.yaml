@@ -2,7 +2,16 @@ id: conference-2021-measuring-fine-grained-domain-relevance
 category: conference
 title: "Measuring Fine-Grained Domain Relevance of Terms: A Hierarchical Core-Fringe Approach"
 authors:
-  - name: J. Huang et al.
-venue: ACL-IJCNLP
+  - name: J. Huang
+  - name: K. Chang
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: W. Hwu
+venue: The Joint Conference of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (ACL-IJCNLP)
 year: 2021
-dateDisplay: August 2021
+dateDisplay: Aug 1–6, 2021
+location: Online
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #142"

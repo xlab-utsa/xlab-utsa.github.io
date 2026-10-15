@@ -1,0 +1,19 @@
+id: workshop-2024-multimodal-video-understanding-system
+category: workshop
+title: Multimodal Video Understanding System for ESCS Assessment Context
+authors:
+  - name: J. Jain
+  - name: C. Yoon
+  - name: K. T. Aveiro
+  - name: H. Meadan
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: H. Shi
+venue: The 34th IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)
+year: 2024
+dateDisplay: Jun 17–21, 2024
+themeIds:
+  - ai-education
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), workshop #50"

@@ -2,7 +2,14 @@ id: conference-2006-fpga-performance-optimization
 category: conference
 title: FPGA Performance Optimization via Chipwise Placement Considering Process Variations
 authors:
-  - name: L. Cheng et al.
-venue: FPL
+  - name: L. Cheng
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: L. He
+venue: International Conference on Field Programmable Logic and Applications (FPL)
 year: 2006
 dateDisplay: August 2006
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #21"

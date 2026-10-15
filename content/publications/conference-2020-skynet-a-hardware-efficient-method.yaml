@@ -3,9 +3,26 @@ category: conference
 thumbnail: /images/publications/conference-2020-skynet-a-hardware-efficient-method/thumbnail.png
 title: "SkyNet: a Hardware-Efficient Method for Object Detection and Tracking on Embedded Systems"
 authors:
-  - name: X. Zhang et al.
-venue: MLSys
+  - name: X. Zhang
+  - name: H. Lu
+  - name: C. Hao
+  - name: J. Li
+  - name: B. Cheng
+  - name: Y. Li
+  - name: K. Rupnow
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: T. Huang
+  - name: H. Shi
+  - name: W. Hwu
+  - name: D. Chen
+venue: The Third Conference on Machine Learning and Systems (MLSys)
 year: 2020
-dateDisplay: May 2020
+dateDisplay: May 2–4, 2020
+location: Austin, TX, USA
 themeIds:
-  - ai-accelerators
+  - ai-acceleration
+  - ai-algorithms
+featured: true
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #115"

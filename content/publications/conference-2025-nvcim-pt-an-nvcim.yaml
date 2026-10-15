@@ -1,0 +1,25 @@
+id: conference-2025-nvcim-pt-an-nvcim
+category: conference
+title: "NVCiM-PT: An NVCiM-assisted Prompt Tuning Framework for Edge LLMs"
+authors:
+  - name: R. Qin
+  - name: P. Ren
+  - name: Z. Yan
+  - name: L. Liu
+  - name: D. Liu
+    personId: dancheng-liu
+  - name: A. Nassereldine
+    personId: amir-nassereldine
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: K. Ni
+  - name: S. Hu
+  - name: Y. Shi
+venue: The 28th Design, Automation and Test in Europe Conference (DATE)
+year: 2025
+dateDisplay: March 31 – April 2, 2025
+location: Lyon, France
+themeIds:
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #189"

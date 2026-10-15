@@ -2,7 +2,15 @@ id: conference-2021-trillion-scale-graph-processing-simulation
 category: conference
 title: Trillion-scale Graph Processing Simulation based on Top-Down Graph Upscaling
 authors:
-  - name: H. Park et al.
-venue: ICDE
+  - name: H. Park
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: M. Kim
+venue: The 37th IEEE International Conference on Data Engineering (ICDE)
 year: 2021
-dateDisplay: April 2021
+dateDisplay: April 19–22, 2021
+location: Online
+themeIds:
+  - systems
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #138"

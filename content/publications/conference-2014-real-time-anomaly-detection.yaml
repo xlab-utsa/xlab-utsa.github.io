@@ -2,7 +2,17 @@ id: conference-2014-real-time-anomaly-detection
 category: conference
 title: Real Time Anomaly Detection in Wide Area Monitoring of Smart Grids
 authors:
-  - name: J. Wu et al.
-venue: ICCAD
+  - name: J. Wu
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: P. Shil
+  - name: Y. Shi
+venue: ACM International Conference on Computer-Aided Design (ICCAD)
 year: 2014
 dateDisplay: November 2014
+location: San Jose, CA
+themeIds:
+  - smart-energy
+featured: true
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #65"

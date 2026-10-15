@@ -2,7 +2,15 @@ id: conference-2009-incremental-and-on-demand-random-walk
 category: conference
 title: Incremental and On-demand Random Walk for Iterative Power Distribution Network Analysis
 authors:
-  - name: Y. Shi et al.
-venue: ASP-DAC
+  - name: Y. Shi
+  - name: W. Yao
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: L. He
+venue: IEEE/ACM Asia South Pacific Design Automation Conference (ASP-DAC)
 year: 2009
 dateDisplay: January 2009
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #35"

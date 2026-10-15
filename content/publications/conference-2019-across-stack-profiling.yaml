@@ -2,7 +2,19 @@ id: conference-2019-across-stack-profiling
 category: conference
 title: Across-Stack Profiling and Characterization of State-of-the-Art Machine Learning Models on GPU
 authors:
-  - name: C. Li et al.
-venue: SC
+  - name: C. Li
+  - name: A. Dakkak
+  - name: W. Wei
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: L. Xu
+  - name: W. Zhang
+  - name: W. Hwu
+venue: The International Conference for High Performance Computing, Networking, Storage, and Analysis (SC)
 year: 2019
-dateDisplay: November 2019
+dateDisplay: Nov 12–17, 2019
+location: Denver, CO, USA
+themeIds:
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #111"

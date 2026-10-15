@@ -2,7 +2,19 @@ id: conference-2018-collaborative-cpu-gpu-algorithms
 category: conference
 title: Collaborative (CPU + GPU) Algorithms for Triangle Counting and Truss Decomposition
 authors:
-  - name: V. S. Mailthody et al.
-venue: HPEC
+  - name: V. S. Mailthody
+  - name: K. Date
+  - name: Z. Qureshi
+  - name: C. Pearson
+  - name: R. Nagi
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: W. Hwu
+venue: IEEE High Performance Extreme Computing Conference (HPEC)
 year: 2018
-dateDisplay: September 2018
+dateDisplay: September 25–27, 2018
+location: Waltham, MA, USA
+themeIds:
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #88"

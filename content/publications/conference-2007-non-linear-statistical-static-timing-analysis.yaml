@@ -2,7 +2,14 @@ id: conference-2007-non-linear-statistical-static-timing-analysis
 category: conference
 title: Non-Linear Statistical Static Timing Analysis for Non-Gaussian Variation Sources
 authors:
-  - name: L. Cheng et al.
-venue: DAC
+  - name: L. Cheng
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: L. He
+venue: IEEE/ACM Design Automation Conference (DAC)
 year: 2007
 dateDisplay: June 2007
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #24"

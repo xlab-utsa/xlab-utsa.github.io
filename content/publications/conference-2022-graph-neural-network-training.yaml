@@ -1,0 +1,19 @@
+id: conference-2022-graph-neural-network-training
+category: conference
+title: Graph Neural Network Training and Data Tiering
+authors:
+  - name: S. Min
+  - name: K. Wu
+  - name: M. Hidayetoglu
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: X. Song
+  - name: W. Hwu
+venue: The 28th ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD)
+year: 2022
+dateDisplay: Aug 14–18, 2022
+location: Washington DC, USA
+themeIds:
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #160"

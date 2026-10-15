@@ -2,7 +2,16 @@ id: conference-2019-scnn-a-general-distribution
 category: conference
 title: "SCNN: A General Distribution based Statistical Convolutional Neural Network with Application to Video Object Detection"
 authors:
-  - name: T. Wang et al.
-venue: AAAI
+  - name: T. Wang
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: X. Xu
+  - name: Y. Shi
+venue: The Thirty-Third AAAI Conference on Artificial Intelligence (AAAI)
 year: 2019
-dateDisplay: January 2019
+dateDisplay: January 27 – February 1, 2019
+location: Honolulu, Hawaii, USA
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #91"

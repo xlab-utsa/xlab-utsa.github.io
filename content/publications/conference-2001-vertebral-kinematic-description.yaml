@@ -2,7 +2,13 @@ id: conference-2001-vertebral-kinematic-description
 category: conference
 title: Vertebral Kinematic Description Based on In-Vivo Measurement of Surface Marker Motions
 authors:
-  - name: X. Zhang et al.
-venue: ASB Annual Meeting
+  - name: X. Zhang
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: A. Bishop
+venue: The 25th American Society of Biomechanics Annual Meeting
 year: 2001
-dateDisplay: "2001"
+themeIds:
+  - systems
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #2"

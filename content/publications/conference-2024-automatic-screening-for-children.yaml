@@ -1,0 +1,26 @@
+id: conference-2024-automatic-screening-for-children
+category: conference
+title: "Automatic Screening for Children with Speech Disorder Using Automatic Speech Recognition: Opportunities and Challenges"
+authors:
+  - name: D. Liu
+    personId: dancheng-liu
+  - name: J. Yang
+  - name: I. Albrecht-Buehler
+  - name: H. Qin
+  - name: S. Li
+  - name: Y. Hu
+    personId: yuting-hu
+  - name: A. Nassereldine
+    personId: amir-nassereldine
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: The Association for the Advancement of Artificial Intelligence’s Fall Symposium (AAAI)
+year: 2024
+dateDisplay: Nov. 7–9, 2024
+location: Arlington, Virginia
+themeIds:
+  - ai-education
+  - ai-algorithms
+featured: true
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #184"

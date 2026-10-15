@@ -1,0 +1,21 @@
+id: conference-2024-infinite-dimensional-feature-interaction
+category: conference
+title: Infinite-Dimensional Feature Interaction
+authors:
+  - name: C. Xu
+    personId: chenhui-xu
+  - name: F. Yu
+  - name: M. Li
+  - name: Z. Zheng
+  - name: Z. Xu
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: X. Chen
+venue: The Thirty-Eighth Annual Conference on Neural Information Processing Systems (NeurIPS)
+year: 2024
+dateDisplay: Dec 10–15, 2024
+location: Vancouver, Canada
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #187"

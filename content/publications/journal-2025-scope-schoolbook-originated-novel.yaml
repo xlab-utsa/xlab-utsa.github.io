@@ -1,0 +1,17 @@
+id: journal-2025-scope-schoolbook-originated-novel
+category: journal
+title: "SCOPE: Schoolbook-Originated Novel Polynomial Multiplication Accelerators for NTRU-Based PQC"
+authors:
+  - name: Y. Tu
+  - name: S. Bai
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: J. Xie
+venue: IEEE Transactions on Very Large Scale Integration System (TVLSI)
+volumeIssue: "Volume: 33, Issue: 2"
+year: 2025
+dateDisplay: February 2025
+themeIds:
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), journal #48"

@@ -1,0 +1,22 @@
+id: conference-2024-quadranet-improving-high-order
+category: conference
+title: "QuadraNet: Improving High-Order Neural Interaction Efficiency with Hardware-Aware Quadratic Neural Networks"
+authors:
+  - name: C. Xu
+    personId: chenhui-xu
+  - name: F. Yu
+  - name: Z. Xu
+  - name: C. Liu
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: Xiang Chen
+venue: The 29th Asia and South Pacific Design Automation Conference (ASP-DAC)
+year: 2024
+dateDisplay: Jan. 22–25, 2024
+location: Incheon, South Korea
+themeIds:
+  - ai-algorithms
+  - ai-acceleration
+featured: true
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #172"

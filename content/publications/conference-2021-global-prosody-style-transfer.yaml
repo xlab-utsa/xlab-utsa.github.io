@@ -2,7 +2,20 @@ id: conference-2021-global-prosody-style-transfer
 category: conference
 title: Global Prosody Style Transfer Without Text Transcriptions
 authors:
-  - name: K. Qian et al.
-venue: ICML
+  - name: K. Qian
+  - name: Y. Zhang
+  - name: S. Chang
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: C. Gan
+  - name: D. Cox
+  - name: M. Hasegawa-Johnson
+venue: Thirty-eighth International Conference on Machine Learning (ICML)
 year: 2021
-dateDisplay: July 2021
+dateDisplay: Jul 18–24, 2021
+location: Online
+note: Long presentation
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #141"

@@ -2,7 +2,19 @@ id: conference-2019-trims-transparent
 category: conference
 title: "TrIMS: Transparent and Isolated Model Sharing for Low Latency Deep Learning Inference in Function as a Service Environments"
 authors:
-  - name: A. Dakkak et al.
-venue: CLOUD
+  - name: A. Dakkak
+  - name: C. Li
+  - name: S. Garcia de Gonzalo
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: W. Hwu
+venue: The IEEE International Conference on Cloud Computing (CLOUD)
 year: 2019
-dateDisplay: July 2019
+dateDisplay: July 8–13, 2019
+location: Milan, Italy
+themeIds:
+  - cloud-computing
+  - ai-acceleration
+featured: true
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #98"

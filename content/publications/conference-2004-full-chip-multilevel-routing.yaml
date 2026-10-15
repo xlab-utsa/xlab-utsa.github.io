@@ -2,7 +2,14 @@ id: conference-2004-full-chip-multilevel-routing
 category: conference
 title: Full-chip Multilevel Routing for Power and Signal Integrity
 authors:
-  - name: J. Xiong et al.
-venue: DATE
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: L. He
+venue: International Conference on Design, Automation and Test in Europe (DATE)
 year: 2004
 dateDisplay: February 2004
+location: Paris, France
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #6"

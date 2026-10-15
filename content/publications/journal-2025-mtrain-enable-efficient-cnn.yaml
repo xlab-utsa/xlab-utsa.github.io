@@ -1,0 +1,18 @@
+id: journal-2025-mtrain-enable-efficient-cnn
+category: journal
+title: "MTrain: Enable Efficient CNN Training on Heterogeneous FPGA-based Edge Servers"
+authors:
+  - name: Y. Tang
+  - name: A. K. Jones
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: P. Zhou
+  - name: J. Hu
+venue: IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems (TCAD)
+volumeIssue: "Volume: 44, Issue: 9, Pages: 3395-3408"
+year: 2025
+dateDisplay: September 2025
+themeIds:
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), journal #47"

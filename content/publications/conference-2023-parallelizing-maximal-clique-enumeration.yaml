@@ -1,0 +1,19 @@
+id: conference-2023-parallelizing-maximal-clique-enumeration
+category: conference
+title: Parallelizing Maximal Clique Enumeration on GPUs
+authors:
+  - name: M. Almasri
+  - name: Y. Chang
+  - name: I. El Hajj
+  - name: R. Nagi
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: W. Hwu
+venue: The 32nd International Conference on Parallel Architectures and Compilation Techniques (PACT)
+year: 2023
+dateDisplay: October 21–25, 2023
+location: Vienna, Austria
+themeIds:
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #170"

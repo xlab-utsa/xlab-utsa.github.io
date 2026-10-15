@@ -2,7 +2,19 @@ id: conference-2019-learning-motion
 category: conference
 title: "Learning Motion in Feature Space: Locally-Consistent Deformable Convolution Networks for Fine-Grained Action Detection"
 authors:
-  - name: K. Mac et al.
-venue: ICCV
+  - name: K. Mac
+  - name: D. Joshi
+  - name: R. Yeh
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: R. Feris
+  - name: M. Do
+venue: International Conference on Computer Vision (ICCV)
 year: 2019
-dateDisplay: October 2019
+dateDisplay: Oct 27 – Nov 2, 2019
+location: Seoul, Korea
+note: Oral, 1.8%
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #109"

@@ -1,0 +1,17 @@
+id: conference-2022-parsec-parallel-subgraph-enumeration
+category: conference
+title: "PARSEC: PARallel Subgraph Enumeration in CUDA"
+authors:
+  - name: V. Dodeja
+  - name: M. Almasri
+  - name: Rakesh Nagi
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: W. Hwu
+venue: The 36th IEEE International Parallel and Distributed Processing Symposium (IPDPS)
+year: 2022
+dateDisplay: May 30 – June 3, 2022
+themeIds:
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #154"

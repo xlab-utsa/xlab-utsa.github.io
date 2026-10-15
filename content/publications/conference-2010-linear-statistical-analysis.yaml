@@ -2,7 +2,15 @@ id: conference-2010-linear-statistical-analysis
 category: conference
 title: A linear statistical analysis for full-chip leakage power with spatial correlation
 authors:
-  - name: R. Shen et al.
-venue: GLSVLSI
+  - name: R. Shen
+  - name: S. X.-D. Tan
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: IEEE/ACM International Great Lakes Symposium on VLSI (GLSVLSI)
 year: 2010
-dateDisplay: May 2010
+dateDisplay: "\x01 \x02"
+location: Providence, RI
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #42"

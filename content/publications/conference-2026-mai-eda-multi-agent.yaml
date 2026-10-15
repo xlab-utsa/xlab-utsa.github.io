@@ -1,0 +1,23 @@
+id: conference-2026-mai-eda-multi-agent
+category: conference
+title: "MAI-EDA: Multi-Agent AI Co-Pilot for RTL-to-GDSII EDA Education at Scale"
+authors:
+  - name: N. Goli
+  - name: X. Li
+  - name: Y. Hu
+    personId: yuting-hu
+  - name: D. Liu
+    personId: dancheng-liu
+  - name: U. R. Tida
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: R. Qin
+venue: The 69th IEEE International Midwest Symposium on Circuits and Systems (MWSCAS)
+year: 2026
+dateDisplay: August 9–12, 2026
+location: Cincinnati, Ohio, USA
+themeIds:
+  - ai-education
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #220"

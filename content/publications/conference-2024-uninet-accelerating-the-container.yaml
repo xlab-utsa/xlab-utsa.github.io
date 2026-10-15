@@ -1,0 +1,23 @@
+id: conference-2024-uninet-accelerating-the-container
+category: conference
+title: "UniNet: Accelerating the Container Network Data Plane in IaaS Clouds"
+authors:
+  - name: Y. Ma
+  - name: S. Smith
+  - name: B. Dai
+  - name: H. Franke
+  - name: B. Sukhwani
+  - name: S. Asaad
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: V. Kindratenko
+  - name: D. Chen
+venue: IEEE International Conference on Cloud Computing (CLOUD)
+year: 2024
+dateDisplay: July 7–13, 2024
+location: Shenzhen, China
+themeIds:
+  - cloud-computing
+featured: true
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #178"

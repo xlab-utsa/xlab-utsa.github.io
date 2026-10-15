@@ -2,7 +2,16 @@ id: conference-2019-mlmodelscope-evaluate-2
 category: conference
 title: "MLModelScope: Evaluate and Introspect Cognitive Pipelines"
 authors:
-  - name: C. Li et al.
-venue: SERVICES Doctoral Symposium
+  - name: C. Li
+  - name: A. Dakkak
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: W. Hwu
+venue: The Doctoral Symposium of the IEEE World Congress on Services (SERVICES)
 year: 2019
-dateDisplay: July 2019
+dateDisplay: July 8–13, 2019
+location: Milan, Italy
+themeIds:
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #99"

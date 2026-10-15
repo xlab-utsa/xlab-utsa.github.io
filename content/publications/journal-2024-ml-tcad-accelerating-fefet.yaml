@@ -1,0 +1,22 @@
+id: journal-2024-ml-tcad-accelerating-fefet
+category: journal
+title: "ML-TCAD: Accelerating FeFET Reliability Analysis Using Machine Learning"
+authors:
+  - name: S. Thomann
+  - name: R. Novkin
+  - name: J. Li
+    personId: jiajie-li
+  - name: Y. Hu
+    personId: yuting-hu
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: H. Amrouch
+venue: IEEE Transactions on Electron Devices
+volumeIssue: "pages 213-222, Volume: 71, Issue: 1"
+year: 2024
+dateDisplay: Jan 2024
+themeIds:
+  - eda
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), journal #43"

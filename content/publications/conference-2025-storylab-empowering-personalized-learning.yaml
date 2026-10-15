@@ -1,0 +1,22 @@
+id: conference-2025-storylab-empowering-personalized-learning
+category: conference
+title: "StoryLab: Empowering Personalized Learning for Children through Teacher-Guided Multimodal Story Generation"
+authors:
+  - name: Z. Li
+    personId: zhaohui-li
+  - name: F. Xiao
+  - name: J. Lin
+  - name: X. Zou
+  - name: Q. Zheng
+    personId: qingxiao-zheng
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: The 26th International Conference on Artificial Intelligence in Education (AIED)
+year: 2025
+dateDisplay: July 22–26, 2025
+location: Palermo, Italy
+themeIds:
+  - ai-education
+featured: true
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #195"

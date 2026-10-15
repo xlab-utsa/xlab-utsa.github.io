@@ -1,0 +1,16 @@
+id: conference-2023-cam-a-large-language
+category: conference
+title: "CAM: A Large Language Model-based Creative Analogy Mining Framework"
+authors:
+  - name: B. Bhavya
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: C. Zhai
+venue: The Web Conference (WWW)
+year: 2023
+dateDisplay: April 30 – May 4, 2023
+location: Austin Texas, USA
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #165"

@@ -2,7 +2,15 @@ id: conference-2008-incremental-criticality
 category: conference
 title: Incremental criticality and yield gradients
 authors:
-  - name: J. Xiong et al.
-venue: DATE
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: V. Zolotov
+  - name: C. Visweswariah
+venue: International Conference on Design, Automation and Test in Europe (DATE)
 year: 2008
 dateDisplay: March 2008
+location: Munich, Germany
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #30"

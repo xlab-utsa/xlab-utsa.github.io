@@ -1,0 +1,17 @@
+id: book-chapter-2023-on-improving-the-reliability
+category: book-chapter
+title: On improving the reliability of power grids for multiple power line outages and anomaly detection
+authors:
+  - name: J. Wu
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: Y. Shi
+book: "System Dependability and Analytics: Approaching System Dependability from Data, System and Analytics Perspectives"
+publisher: Springer Nature
+onlineIsbn: 978-3-031-02063-6
+year: 2023
+month: July
+themeIds:
+  - smart-energy
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), book-chapter #4"

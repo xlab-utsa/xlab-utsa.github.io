@@ -1,0 +1,21 @@
+id: conference-2024-ai-driven-support-for
+category: conference
+title: AI-Driven Support for People with Speech and Language Difficulties
+authors:
+  - name: A. Dangol
+  - name: Y. Huang
+  - name: S. Setlur
+  - name: A. Smolansky
+  - name: H. Subramonyam
+  - name: H. Suh
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: J. Kientz
+venue: Extended Abstracts of the CHI Conference on Human Factors in Computing Systems (CHI EA)
+year: 2024
+dateDisplay: May 11–16, 2024
+location: Honolulu, Hawaii, USA
+themeIds:
+  - ai-education
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #176"

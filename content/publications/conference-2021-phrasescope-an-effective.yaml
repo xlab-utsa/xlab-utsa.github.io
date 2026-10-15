@@ -2,7 +2,17 @@ id: conference-2021-phrasescope-an-effective
 category: conference
 title: "PhraseScope: An Effective and Unsupervised Framework for Mining High Quality Phrases"
 authors:
-  - name: O. Anjum et al.
-venue: SDM
+  - name: O. Anjum
+  - name: M. Almasri
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: W. Hwu
+venue: SIAM International Conference on Data Mining (SDM)
 year: 2021
-dateDisplay: April 2021
+dateDisplay: April 29 – May 1, 2021
+location: Online
+note: "Acceptance rate: 21%"
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #137"

@@ -2,7 +2,17 @@ id: conference-2019-reinforcement-learning
 category: conference
 title: Reinforcement Learning Based Text Style Transfer without Parallel Training Corpus
 authors:
-  - name: H. Gong et al.
-venue: NAACL-HLT
+  - name: H. Gong
+  - name: S. Bhat
+  - name: L Wu
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: W. Hwu
+venue: "The 2019 Annual Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL-HLT)"
 year: 2019
-dateDisplay: June 2019
+dateDisplay: June 2–7, 2019
+location: Minneapolis, USA
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #96"

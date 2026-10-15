@@ -1,0 +1,21 @@
+id: conference-2024-chef-a-framework-for
+category: conference
+title: "CHEF: A Framework for Deploying Heterogeneous Models on Clusters with Heterogeneous FPGAs"
+authors:
+  - name: Y. Tang
+  - name: Y. Song
+  - name: N. Elango
+  - name: S. R. Priya
+  - name: A. K. Jones
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: P. Zhou
+  - name: J. Hu
+venue: The International Conference on Hardware/Software Codesign and System Synthesis (CODES+ISSS)
+year: 2024
+dateDisplay: Sept 29 – Oct 4, 2024
+location: Raleigh, NC, USA
+themeIds:
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #181"

@@ -2,7 +2,17 @@ id: conference-2018-large-scale-short-term-urban-taxi-demand
 category: conference
 title: Large-scale Short-term Urban Taxi Demand Forecasting Using Deep Learning
 authors:
-  - name: S. Liao et al.
-venue: ASP-DAC
+  - name: S. Liao
+  - name: L. Zhou
+  - name: X. Di
+  - name: B. Yuan
+  - name: J. Xiong
+    personId: jinjun-xiong
+venue: 23rd Asia and South Pacific Design Automation Conference (ASP-DAC)
 year: 2018
 dateDisplay: January 2018
+location: Jeju Island, Korea
+themeIds:
+  - ai-algorithms
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #77"

@@ -2,7 +2,23 @@ id: conference-2019-deepstore-in-storage-acceleration
 category: conference
 title: "DeepStore: In-Storage Acceleration for Intelligent Queries"
 authors:
-  - name: V. Mailthody et al.
-venue: MICRO-52
+  - name: V. Mailthody
+  - name: Z. Qureshi
+  - name: W. Liang
+  - name: Z. Feng
+  - name: S. Garcia de Gonzalo
+  - name: Y. Li
+  - name: H. Franke
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: J. Huang
+  - name: W. Hwu
+venue: The IEEE/ACM International Symposium on Microarchitecture (MICRO-52)
 year: 2019
-dateDisplay: October 2019
+dateDisplay: October 12–16, 2019
+location: Columbus, Ohio, USA
+themeIds:
+  - ai-acceleration
+  - systems
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #106"

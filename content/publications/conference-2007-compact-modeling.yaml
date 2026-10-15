@@ -2,7 +2,17 @@ id: conference-2007-compact-modeling
 category: conference
 title: Compact Modeling of Variational Waveforms
 authors:
-  - name: V. Zolotov et al.
-venue: ICCAD
+  - name: V. Zolotov
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: S. Abbaspour
+  - name: D. J. Hathaway
+  - name: C. Visweswariah
+venue: ACM International Conference on Computer-Aided Design (ICCAD)
 year: 2007
 dateDisplay: November 2007
+location: San Jose
+themeIds:
+  - eda
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #25"

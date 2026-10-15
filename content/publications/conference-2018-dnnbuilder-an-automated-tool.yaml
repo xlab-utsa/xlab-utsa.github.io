@@ -3,9 +3,20 @@ category: conference
 thumbnail: /images/publications/conference-2018-dnnbuilder-an-automated-tool/thumbnail.png
 title: "DNNBuilder: an Automated Tool for Building High-Performance DNN Hardware Accelerators for FPGAs"
 authors:
-  - name: X. Zhang et al.
-venue: ICCAD
+  - name: X. Zhang
+  - name: J. Wang
+  - name: C. Zhu
+  - name: Y. Lin
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: W. Hwu
+  - name: D. Chen
+venue: 2018 International Conference On Computer Aided Design (ICCAD)
 year: 2018
-dateDisplay: November 2018
+dateDisplay: Nov 5–8, 2018
+location: San Diego, CA, USA
 themeIds:
-  - ai-accelerators
+  - ai-acceleration
+featured: true
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #89"

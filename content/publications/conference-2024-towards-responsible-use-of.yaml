@@ -1,0 +1,22 @@
+id: conference-2024-towards-responsible-use-of
+category: conference
+title: Towards Responsible Use of Large Multi-modal AI to Analyze Human Social Behaviors
+authors:
+  - name: Q. Zheng
+    personId: qingxiao-zheng
+  - name: X. Lu
+  - name: Q. Jin
+  - name: J. Jain
+  - name: M. Meadan-Kaplansky
+  - name: H. Shi
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: Y. Huang
+venue: Conference on Computer-Supported Cooperative Work and Social Computing (CSCW)
+year: 2024
+dateDisplay: Nov. 9–13, 2024
+location: San Jose, Costa Rica
+themeIds:
+  - ai-education
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #185"

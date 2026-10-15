@@ -2,7 +2,20 @@ id: conference-2019-fpgadnn-co-design
 category: conference
 title: "FPGA/DNN Co-Design: An Efficient Design Methodology for IoT Intelligence on the Edge"
 authors:
-  - name: C. Hao et al.
-venue: DAC
+  - name: C. Hao
+  - name: X. Zhang
+  - name: Y. Li
+  - name: S. Huang
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: K. Rupnow
+  - name: W. Hwu
+  - name: D. Chen
+venue: IEEE/ACM Design Automation Conference (DAC)
 year: 2019
-dateDisplay: June 2019
+dateDisplay: June 2–6, 2019
+location: Las Vegas, NV
+themeIds:
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #95"

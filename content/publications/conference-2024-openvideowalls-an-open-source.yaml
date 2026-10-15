@@ -1,0 +1,19 @@
+id: conference-2024-openvideowalls-an-open-source
+category: conference
+title: "OpenVideoWalls: an Open-Source System for Building Video Walls with Recycling Heterogeneous Displays"
+authors:
+  - name: Z. Zhu
+  - name: Z. Tang
+  - name: A. Nassereldine
+    personId: amir-nassereldine
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: S. Wei
+venue: ACM Multimedia Asia
+year: 2024
+dateDisplay: Dec 3–6, 2024
+location: Auckland, New Zealand
+themeIds:
+  - systems
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #186"

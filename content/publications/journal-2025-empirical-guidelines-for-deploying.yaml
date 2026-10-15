@@ -1,0 +1,28 @@
+id: journal-2025-empirical-guidelines-for-deploying
+category: journal
+title: Empirical Guidelines for Deploying LLMs onto Resource-constrained Edge Devices
+authors:
+  - name: R. Qin
+  - name: D. Liu
+    personId: dancheng-liu
+  - name: C. Xu
+    personId: chenhui-xu
+  - name: Z. Yan
+  - name: Z. Tan
+  - name: Z. Jia
+  - name: A. Nassereldine
+    personId: amir-nassereldine
+  - name: J. Li
+    personId: jiajie-li
+  - name: M. Jiang
+  - name: A. Abbasi
+  - name: J. Xiong
+    personId: jinjun-xiong
+  - name: Y. Shi
+venue: ACM Transactions on Design Automation of Electronic Systems (TODAES)
+volumeIssue: Volume 30, Issue 5, Pages 1-58
+year: 2025
+themeIds:
+  - ai-acceleration
+_meta:
+  source: "JinjunXiong_CV.pdf (last updated 2026-08-12), journal #50"
