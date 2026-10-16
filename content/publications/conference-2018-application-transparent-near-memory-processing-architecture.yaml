@@ -23,5 +23,6 @@ location: Fukuoka City, Japan
 themeIds:
   - systems
 featured: true
+featuredOrder: 1
 _meta:
   source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #85"

@@ -14,5 +14,6 @@ year: 2016
 themeIds:
   - smart-energy
 featured: true
+featuredOrder: 1
 _meta:
   source: "JinjunXiong_CV.pdf (last updated 2026-08-12), journal #27"

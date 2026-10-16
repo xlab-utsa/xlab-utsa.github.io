@@ -15,5 +15,6 @@ themeIds:
   - systems
   - ai-algorithms
 featured: true
+featuredOrder: 4
 _meta:
   source: "JinjunXiong_CV.pdf (last updated 2026-08-12), journal #35"

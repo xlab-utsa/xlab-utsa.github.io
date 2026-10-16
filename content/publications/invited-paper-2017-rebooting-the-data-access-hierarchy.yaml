@@ -17,5 +17,7 @@ dateDisplay: Nov 8–9, 2017
 location: Washington, DC, USA
 themeIds:
   - systems
+featured: true
+featuredOrder: 6
 _meta:
   source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #75"

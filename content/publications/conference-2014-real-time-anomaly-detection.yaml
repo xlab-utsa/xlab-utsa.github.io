@@ -14,5 +14,6 @@ location: San Jose, CA
 themeIds:
   - smart-energy
 featured: true
+featuredOrder: 2
 _meta:
   source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #65"

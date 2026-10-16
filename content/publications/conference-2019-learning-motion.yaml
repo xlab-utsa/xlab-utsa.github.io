@@ -16,5 +16,7 @@ location: Seoul, Korea
 note: Oral, 1.8%
 themeIds:
   - ai-algorithms
+featured: true
+featuredOrder: 4
 _meta:
   source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #109"

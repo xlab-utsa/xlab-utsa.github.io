@@ -13,5 +13,7 @@ dateDisplay: November 2008
 location: San Jose
 themeIds:
   - eda
+featured: true
+featuredOrder: 5
 _meta:
   source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #33"

@@ -17,5 +17,7 @@ dateDisplay: June 27 – July 3, 2026
 location: Seoul, Republic of Korea
 themeIds:
   - ai-education
+featured: true
+featuredOrder: 6
 _meta:
   source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #216"

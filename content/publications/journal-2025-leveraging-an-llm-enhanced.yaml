@@ -18,5 +18,6 @@ dateDisplay: December 2025
 themeIds:
   - ai-education
 featured: true
+featuredOrder: 1
 _meta:
   source: "JinjunXiong_CV.pdf (last updated 2026-08-12), journal #51"

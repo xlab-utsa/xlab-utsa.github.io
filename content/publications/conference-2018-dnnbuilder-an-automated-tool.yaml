@@ -18,5 +18,6 @@ location: San Diego, CA, USA
 themeIds:
   - ai-acceleration
 featured: true
+featuredOrder: 1
 _meta:
   source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #89"

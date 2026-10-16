@@ -16,5 +16,6 @@ themeIds:
   - smart-energy
   - ai-algorithms
 featured: true
+featuredOrder: 5
 _meta:
   source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #86"
