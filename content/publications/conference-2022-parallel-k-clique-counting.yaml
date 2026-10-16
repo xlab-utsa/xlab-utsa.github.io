@@ -1,5 +1,6 @@
 id: conference-2022-parallel-k-clique-counting
 category: conference
+thumbnail: /images/publications/conference-2022-parallel-k-clique-counting/thumbnail.webp
 title: Parallel K-Clique Counting on GPUs
 authors:
   - name: M. Almasri

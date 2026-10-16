@@ -1,5 +1,6 @@
 id: conference-2020-fast-learning
 category: conference
+thumbnail: /images/publications/conference-2020-fast-learning/thumbnail.webp
 title: "Fast Learning of Graph Neural Networks with Guaranteed Generalizability: One-hidden-layer Case"
 authors:
   - name: S. Zhang

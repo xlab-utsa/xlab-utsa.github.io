@@ -1,5 +1,6 @@
 id: conference-2018-face-recognition
 category: conference
+thumbnail: /images/publications/conference-2018-face-recognition/thumbnail.webp
 title: Face Recognition with Hybrid Efficient Convolution Algorithms on FPGAs
 authors:
   - name: C. Zhuge

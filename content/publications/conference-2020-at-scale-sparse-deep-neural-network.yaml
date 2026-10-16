@@ -1,5 +1,6 @@
 id: conference-2020-at-scale-sparse-deep-neural-network
 category: conference
+thumbnail: /images/publications/conference-2020-at-scale-sparse-deep-neural-network/thumbnail.webp
 title: At-Scale Sparse Deep Neural Network Inference With Efficient GPU Implementation
 authors:
   - name: M. Hidayetoglu

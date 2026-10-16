@@ -1,5 +1,6 @@
 id: conference-2021-emogi-efficient-memory-access
 category: conference
+thumbnail: /images/publications/conference-2021-emogi-efficient-memory-access/thumbnail.webp
 title: "EMOGI: Efficient Memory-access for Out-of-memory Graph-traversal In GPUs"
 authors:
   - name: S. Min

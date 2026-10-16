@@ -1,5 +1,6 @@
 id: conference-2020-differential-treatment
 category: conference
+thumbnail: /images/publications/conference-2020-differential-treatment/thumbnail.webp
 title: "Differential Treatment for Stuff and Things: A Simple Unsupervised Domain Adaptation Method for Semantic Segmentation"
 authors:
   - name: Z. Wang
