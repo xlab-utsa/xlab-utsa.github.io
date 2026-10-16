@@ -1,8 +1,10 @@
+import Image from "next/image";
 import { ExternalLink as ExternalLinkIcon, FileText, Link2 } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink } from "@/components/external-link";
 import { getPersonById, getResearchThemeById, type Publication } from "@/lib/content";
+import { publicFileExists, withBasePath } from "@/lib/content/assets";
 import { getCategoryMetaLine } from "@/lib/publications";
 import { resolvePersonRedirectUrl } from "@/lib/team";
 
@@ -56,58 +58,75 @@ export function PublicationEntry({ publication }: { publication: Publication }) 
     .filter(Boolean)
     .join(" · ");
 
+  const hasThumbnail = publicFileExists(publication.thumbnail);
+
   return (
-    <li className="space-y-1.5 border-b border-hairline py-4 first:pt-0 last:border-b-0">
-      <p className="text-[15.5px] font-semibold tracking-tight text-foreground">
-        {publication.title}
-      </p>
-      <AuthorsLine authors={publication.authors} />
-      <p className="text-sm text-muted-foreground">
-        {publication.venue && <em>{publication.venue}</em>}
-        {showLocation ? `, ${publication.location}` : ""}
-        {date ? (
-          <span className="font-mono text-[12.5px] text-text-faint"> · {date}</span>
-        ) : (
-          ""
-        )}
-      </p>
-      {metaLine && (
-        <p className="font-mono text-[12.5px] text-text-faint">{metaLine}</p>
+    <li className="flex flex-col gap-4 border-b border-hairline py-4 first:pt-0 last:border-b-0 sm:flex-row-reverse sm:items-start">
+      {hasThumbnail && (
+        // The paper's own central figure, shown whole (object-contain) on white so a
+        // diagram or plot is never cropped or recolored.
+        <div className="relative aspect-[16/10] w-full shrink-0 border border-hairline bg-white sm:w-48">
+          <Image
+            src={withBasePath(publication.thumbnail!)}
+            alt={`Central figure from “${publication.title}”`}
+            fill
+            sizes="(min-width: 640px) 12rem, 100vw"
+            className="object-contain p-1.5"
+          />
+        </div>
       )}
-      <div className="flex flex-wrap items-center gap-3 pt-1">
-        {areas && (
-          <span className="font-mono text-[11px] tracking-wide text-text-faint uppercase">
-            {areas}
-          </span>
+      <div className="min-w-0 flex-1 space-y-1.5">
+        <p className="text-[15.5px] font-semibold tracking-tight text-foreground">
+          {publication.title}
+        </p>
+        <AuthorsLine authors={publication.authors} />
+        <p className="text-sm text-muted-foreground">
+          {publication.venue && <em>{publication.venue}</em>}
+          {showLocation ? `, ${publication.location}` : ""}
+          {date ? (
+            <span className="font-mono text-[12.5px] text-text-faint"> · {date}</span>
+          ) : (
+            ""
+          )}
+        </p>
+        {metaLine && (
+          <p className="font-mono text-[12.5px] text-text-faint">{metaLine}</p>
         )}
-        {publication.note && <Badge variant="outline">{publication.note}</Badge>}
-        {publication.doi && (
-          <ExternalLink
-            href={doiHref(publication.doi)}
-            ariaLabel="DOI"
-            className="text-muted-foreground transition-colors hover:text-foreground"
-          >
-            <Link2 className="size-4" aria-hidden="true" />
-          </ExternalLink>
-        )}
-        {publication.url && (
-          <ExternalLink
-            href={publication.url}
-            ariaLabel="View publication"
-            className="text-muted-foreground transition-colors hover:text-foreground"
-          >
-            <ExternalLinkIcon className="size-4" aria-hidden="true" />
-          </ExternalLink>
-        )}
-        {publication.pdfUrl && (
-          <ExternalLink
-            href={publication.pdfUrl}
-            ariaLabel="PDF"
-            className="text-muted-foreground transition-colors hover:text-foreground"
-          >
-            <FileText className="size-4" aria-hidden="true" />
-          </ExternalLink>
-        )}
+        <div className="flex flex-wrap items-center gap-3 pt-1">
+          {areas && (
+            <span className="font-mono text-[11px] tracking-wide text-text-faint uppercase">
+              {areas}
+            </span>
+          )}
+          {publication.note && <Badge variant="outline">{publication.note}</Badge>}
+          {publication.doi && (
+            <ExternalLink
+              href={doiHref(publication.doi)}
+              ariaLabel="DOI"
+              className="text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <Link2 className="size-4" aria-hidden="true" />
+            </ExternalLink>
+          )}
+          {publication.url && (
+            <ExternalLink
+              href={publication.url}
+              ariaLabel="View publication"
+              className="text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <ExternalLinkIcon className="size-4" aria-hidden="true" />
+            </ExternalLink>
+          )}
+          {publication.pdfUrl && (
+            <ExternalLink
+              href={publication.pdfUrl}
+              ariaLabel="PDF"
+              className="text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <FileText className="size-4" aria-hidden="true" />
+            </ExternalLink>
+          )}
+        </div>
       </div>
     </li>
   );

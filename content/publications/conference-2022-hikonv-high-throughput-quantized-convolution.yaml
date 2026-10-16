@@ -1,5 +1,6 @@
 id: conference-2022-hikonv-high-throughput-quantized-convolution
 category: conference
+thumbnail: /images/publications/conference-2022-hikonv-high-throughput-quantized-convolution/thumbnail.webp
 title: "HiKonv: High Throughput Quantized Convolution With Novel Bit-wise Management And Computation"
 authors:
   - name: Y. Chen

@@ -1,5 +1,6 @@
 id: workshop-2023-generalization-guarantee-of-training
 category: workshop
+thumbnail: /images/publications/workshop-2023-generalization-guarantee-of-training/thumbnail.webp
 title: Generalization Guarantee of Training Graph Convolutional Networks with Graph Topology Sampling
 authors:
   - name: H. Li

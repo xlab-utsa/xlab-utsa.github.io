@@ -57,14 +57,21 @@ export function ResearchPublicationCard({ publication }: { publication: Publicat
 
   return (
     <div className="flex flex-col border border-t-[3px] border-brand-orange-soft-border border-t-brand-orange bg-brand-orange-soft-bg">
-      <div className="relative aspect-video border-b border-brand-orange-soft-border bg-[repeating-linear-gradient(135deg,var(--brand-orange-soft-border)_0_6px,var(--brand-orange-soft-bg)_6px_12px)]">
+      <div
+        className={
+          hasThumbnail
+            ? "relative aspect-video border-b border-brand-orange-soft-border bg-white"
+            : "relative aspect-video border-b border-brand-orange-soft-border bg-[repeating-linear-gradient(135deg,var(--brand-orange-soft-border)_0_6px,var(--brand-orange-soft-bg)_6px_12px)]"
+        }
+      >
         {hasThumbnail && publication.thumbnail && (
+          // A figure from the paper itself: shown whole, never cropped (object-contain).
           <Image
             src={withBasePath(publication.thumbnail!)}
-            alt={publication.title}
+            alt={`Central figure from “${publication.title}”`}
             fill
             sizes="(min-width: 1024px) 33vw, 100vw"
-            className="object-cover"
+            className="object-contain p-2"
           />
         )}
       </div>

@@ -1,0 +1,5 @@
+# Human corrections to the automatic central-figure pick: <publication id>: <figure number> | none
+conference-2025-nvcim-pt-an-nvcim: 3 # Fig. 3 is the framework overview; Fig. 1 is a results plot
+workshop-2019-faceted-hierarchy: 1 # Fig. 1 is the concept teaser; Fig. 8 is a dense full-page tree
+invited-paper-2024-fl-nas-towards-fairness: none # only figure is an LLM text/code listing
+conference-2021-tempi-an-interposed-mpi-library: none # figures are code fragments and bar charts; extraction can't isolate Fig. 1

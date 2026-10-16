@@ -1,5 +1,6 @@
 id: conference-2022-generalization-guarantee-of-training
 category: conference
+thumbnail: /images/publications/conference-2022-generalization-guarantee-of-training/thumbnail.webp
 title: Generalization Guarantee of Training Graph Convolutional Networks with Graph Topology Sampling
 authors:
   - name: H. Li

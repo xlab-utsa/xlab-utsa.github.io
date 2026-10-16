@@ -1,5 +1,6 @@
 id: conference-2023-parallelizing-maximal-clique-enumeration
 category: conference
+thumbnail: /images/publications/conference-2023-parallelizing-maximal-clique-enumeration/thumbnail.webp
 title: Parallelizing Maximal Clique Enumeration on GPUs
 authors:
   - name: M. Almasri

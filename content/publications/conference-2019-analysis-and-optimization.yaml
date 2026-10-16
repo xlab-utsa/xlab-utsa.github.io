@@ -1,5 +1,6 @@
 id: conference-2019-analysis-and-optimization
 category: conference
+thumbnail: /images/publications/conference-2019-analysis-and-optimization/thumbnail.webp
 title: Analysis and Optimization of I/O Cache Coherency Strategies for SoC-FPGA Device
 authors:
   - name: S. Min
