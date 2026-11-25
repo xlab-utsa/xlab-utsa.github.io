@@ -11,7 +11,6 @@ import {
   burnPasswordCheck,
   checkPassword,
   credentialVersion,
-  hashEmail,
   makePasswordRecord,
   passwordProblem,
   readPassword,
@@ -140,7 +139,7 @@ async function handleLogin(req: Request, env: Env): Promise<Response> {
   const entry = await findByEmail(env, email);
   const record = entry ? await readPassword(env.SESSIONS, entry.id) : undefined;
   if (!entry || !record) {
-    await burnPasswordCheck(password, env.PASSWORD_PEPPER);
+    await burnPasswordCheck(password);
     return denied();
   }
 
@@ -148,7 +147,7 @@ async function handleLogin(req: Request, env: Env): Promise<Response> {
   const failures = Number((await env.SESSIONS.get(failKey)) ?? "0");
   if (failures >= LOGIN_ACCOUNT_MAX) return fail(env, 429, "too_many_attempts");
 
-  if (!(await checkPassword(password, record, env.PASSWORD_PEPPER))) {
+  if (!(await checkPassword(password, record))) {
     await env.SESSIONS.put(failKey, String(failures + 1), { expirationTtl: WINDOW_S });
     return denied();
   }
@@ -207,7 +206,7 @@ async function handleSetPassword(req: Request, env: Env): Promise<Response> {
   if (problem) return page(env, { token, name: entry.name, error: `${problem[0].toUpperCase()}${problem.slice(1)}.` });
 
   const version = (await credentialVersion(env.SESSIONS, entry.id)) + 1;
-  await writePassword(env.SESSIONS, entry.id, await makePasswordRecord(password, env.PASSWORD_PEPPER, version));
+  await writePassword(env.SESSIONS, entry.id, await makePasswordRecord(password, version));
   await env.SESSIONS.delete(`setpw:${payload.jti}`);
   await env.SESSIONS.delete(`fail:${entry.id}`);
 
@@ -496,11 +495,6 @@ async function route(req: Request, env: Env, ctx: RequestContext): Promise<Respo
     } catch (err) {
       checks.roster = `fail — ${String(err).slice(0, 200)}`;
     }
-    // Reports whether the sign-in secrets exist, never their values.
-    checks.passwords =
-      env.EMAIL_HASH_SECRET && env.PASSWORD_PEPPER
-        ? "ok"
-        : "not configured — set EMAIL_HASH_SECRET and PASSWORD_PEPPER (README §4); password sign-in is refused until then";
     return json(env, { service: "xlab-gate", checks });
   }
   // NOTE: every handler call below is `return await`, never a bare `return`.
@@ -509,14 +503,9 @@ async function route(req: Request, env: Env, ctx: RequestContext): Promise<Respo
   // await, a failing handler escapes the catch, Cloudflare serves its own error page,
   // and because that page carries no CORS headers the browser reports a misleading
   // "blocked by CORS policy" instead of the actual error.
-  if (path === "/auth/login" && req.method === "POST") {
-    if (!env.EMAIL_HASH_SECRET || !env.PASSWORD_PEPPER) return fail(env, 503, "passwords_not_configured");
-    return await handleLogin(req, env);
-  }
-  if (path === "/auth/set-password" && (req.method === "GET" || req.method === "POST")) {
-    if (!env.EMAIL_HASH_SECRET || !env.PASSWORD_PEPPER) return handleRetiredLink(env);
+  if (path === "/auth/login" && req.method === "POST") return await handleLogin(req, env);
+  if (path === "/auth/set-password" && (req.method === "GET" || req.method === "POST"))
     return await handleSetPassword(req, env);
-  }
   if (path === "/auth/verify") return handleRetiredLink(env);
   if (path === "/auth/github/start") return await handleGithubStart(req, env);
   if (path === "/auth/github/callback") return await handleGithubCallback(req, env);
@@ -556,21 +545,11 @@ async function route(req: Request, env: Env, ctx: RequestContext): Promise<Respo
     return json(env, { path: filePath, content: file.content });
   }
 
-  // Roster read + set-password links. Admin only: these mint credentials, which an editor
-  // or member has no business doing.
+  // Roster read + set-password links. Admin only: these expose lab members' addresses and
+  // mint credentials, neither of which an editor or member has any business doing.
   if (path === "/roster") {
     if (id.role !== "admin") return fail(env, 403, "admins only");
     return json(env, await loadRoster(env));
-  }
-
-  // Hash an address for the roster. The roster screen calls this when an admin adds someone
-  // or converts legacy plain-text addresses; the secret never leaves this Worker.
-  if (path === "/hash-email" && req.method === "POST") {
-    if (id.role !== "admin") return fail(env, 403, "admins only");
-    if (!env.EMAIL_HASH_SECRET) return fail(env, 503, "EMAIL_HASH_SECRET is not set");
-    const { email } = (await req.json().catch(() => ({}))) as { email?: string };
-    if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.trim())) return fail(env, 400, "a valid email is required");
-    return json(env, { hash: await hashEmail(email, env.EMAIL_HASH_SECRET) });
   }
 
   // A one-time link the admin hands over; the person uses it to choose a password (first

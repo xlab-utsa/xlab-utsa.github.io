@@ -24,14 +24,6 @@ export interface Env {
   GITHUB_CLIENT_SECRET: string;
   /** SECRET — random 32+ byte string; signs session and set-password tokens. */
   SESSION_SECRET: string;
-  /**
-   * SECRET — random 32+ byte string; keys the HMAC that turns an address into the roster's
-   * emailHashes. Separate from SESSION_SECRET on purpose: rotating sessions must not change
-   * every stored hash. Rotating THIS one locks everyone out until the roster is re-hashed.
-   */
-  EMAIL_HASH_SECRET: string;
-  /** SECRET — random 32+ byte string mixed into every password hash (a "pepper"). Never rotate. */
-  PASSWORD_PEPPER: string;
 }
 
 export type Role = "admin" | "editor" | "member";

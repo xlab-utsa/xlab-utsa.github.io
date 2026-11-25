@@ -5,15 +5,10 @@
 // through the same review flow as everything else; and losing the KV namespace costs
 // nothing but passwords and in-flight links (an admin re-issues set-password links).
 //
-// The repo is public, so entries carry `emailHashes` — HMAC(EMAIL_HASH_SECRET, address) —
-// rather than addresses (SPEC.md §8.4). A legacy plaintext `email` is still honoured so the
-// switch can be made from Studio after this Worker is deployed with the secret.
-//
 // It is JSON rather than YAML specifically so this Worker needs no parser dependency.
 // It is deliberately OUTSIDE content/, so it never lands in the public content snapshot.
 import { readFile } from "./github";
 import type { Env, Identity, Role } from "./env";
-import { hashEmail } from "./passwords";
 
 export const ROSTER_PATH = "access/roster.json";
 
@@ -22,9 +17,8 @@ export interface RosterEntry {
   id: string;
   name: string;
   role: Role;
-  emailHashes?: string[];
-  /** LEGACY plaintext address, accepted until the roster is hashed. */
-  email?: string;
+  /** The address they sign in with. */
+  email: string;
   /** The content/people/<id>.yaml this person owns and may edit. */
   personId?: string;
   /** GitHub login, for admins who also sign in with GitHub. */
@@ -59,23 +53,18 @@ export function invalidateRosterCache(): void {
   cache = undefined;
 }
 
-/** Pure matching, so it can be tested without KV or GitHub. `hash` is hashEmail(email). */
-export function matchEmail(members: RosterEntry[], email: string, hash?: string): RosterEntry | undefined {
+/** Pure matching, so it can be tested without KV or GitHub. Case and spaces never matter. */
+export function matchEmail(members: RosterEntry[], email: string): RosterEntry | undefined {
   const needle = email.trim().toLowerCase();
   // Guarded on types: one malformed entry must not throw here and lock everyone out.
   return members.find(
-    (m) =>
-      m.active &&
-      typeof m.id === "string" &&
-      ((hash !== undefined && Array.isArray(m.emailHashes) && m.emailHashes.includes(hash)) ||
-        (typeof m.email === "string" && m.email.trim().toLowerCase() === needle))
+    (m) => m.active && typeof m.id === "string" && typeof m.email === "string" && m.email.trim().toLowerCase() === needle
   );
 }
 
 export async function findByEmail(env: Env, email: string): Promise<RosterEntry | undefined> {
   const { members } = await loadRoster(env);
-  const hash = env.EMAIL_HASH_SECRET ? await hashEmail(email, env.EMAIL_HASH_SECRET) : undefined;
-  return matchEmail(members, email, hash);
+  return matchEmail(members, email);
 }
 
 export async function findById(env: Env, id: string): Promise<RosterEntry | undefined> {

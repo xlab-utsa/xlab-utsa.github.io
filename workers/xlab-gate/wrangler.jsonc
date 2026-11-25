@@ -12,7 +12,7 @@
   "compatibility_flags": ["nodejs_compat"],
   "observability": { "enabled": true },
 
-  // Private state the repo must never hold: password hashes and credential versions
+  // Private state the repo must never hold: salted password hashes and credential versions
   // (pw:, cv:), one-time set-password links (setpw:), and rate-limit / lockout counters.
   // Content and the roster live in the git repo. Losing this namespace signs everyone out
   // and erases passwords — an admin then re-issues set-password links; nothing else is lost.
@@ -39,8 +39,7 @@
 
     // No email provider, by decision (SPEC.md §8.4): the system never sends email. People
     // sign in with an email + password; first passwords and resets go through one-time
-    // links an admin hands over. The sign-in secrets (EMAIL_HASH_SECRET, PASSWORD_PEPPER)
-    // are secrets, not vars — see README.md §4.
+    // links an admin hands over. Password sign-in needs no extra secrets or vars.
 
     // Paths the Worker will write to. Anything outside this list is rejected before a
     // GitHub token is ever minted. `access/` is included so admins can manage the roster

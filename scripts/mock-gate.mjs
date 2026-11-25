@@ -26,7 +26,7 @@ import fs from "node:fs";
 import http from "node:http";
 import path from "node:path";
 import { execSync } from "node:child_process";
-import { createHmac, pbkdf2Sync, randomBytes, timingSafeEqual } from "node:crypto";
+import { pbkdf2Sync, randomBytes, timingSafeEqual } from "node:crypto";
 
 const ROOT = process.cwd();
 const PORT = Number(process.env.MOCK_PORT ?? 8787);
@@ -53,18 +53,12 @@ const credVersions = new Map();
 const failures = new Map();
 const LOGIN_ACCOUNT_MAX = 10;
 
-// Mock secrets. The real ones exist only in Cloudflare; these only need to be stable here.
-const MOCK_EMAIL_HASH_SECRET = "mock-email-hash-secret";
-const MOCK_PASSWORD_PEPPER = "mock-password-pepper";
 /** Password of the two demo accounts. Anyone else needs a set-password link (as in production). */
 const DEMO_PASSWORD = "demo-password";
 
-function hashEmail(email) {
-  return "hmac-sha256:" + createHmac("sha256", MOCK_EMAIL_HASH_SECRET).update(String(email).trim().toLowerCase()).digest("base64url");
-}
+/** Same derivation as the Worker: PBKDF2-SHA256, 100 000 rounds, random salt. */
 function derivePassword(password, salt) {
-  const peppered = createHmac("sha256", MOCK_PASSWORD_PEPPER).update(password).digest();
-  return pbkdf2Sync(peppered, salt, 100_000, 32, "sha256").toString("base64url");
+  return pbkdf2Sync(password, salt, 100_000, 32, "sha256").toString("base64url");
 }
 function credentialVersion(account) {
   return Math.max(passwords.get(account)?.version ?? 0, credVersions.get(account) ?? 0);
@@ -94,8 +88,8 @@ const DEMO_PERSON = process.env.MOCK_DEMO_MEMBER ?? "yifan-yang";
 const DEMO_MEMBERS =
   DEMO_PERSON !== "none"
     ? [
-        { id: "demo-member", name: "Demo Member", role: "member", emailHashes: [hashEmail("demo.member@localhost")], personId: DEMO_PERSON, active: true },
-        { id: "demo-newcomer", name: "Demo Newcomer", role: "member", emailHashes: [hashEmail("demo.newcomer@localhost")], personId: "demo-newcomer", active: true },
+        { id: "demo-member", name: "Demo Member", email: "demo.member@localhost", role: "member", personId: DEMO_PERSON, active: true },
+        { id: "demo-newcomer", name: "Demo Newcomer", email: "demo.newcomer@localhost", role: "member", personId: "demo-newcomer", active: true },
       ]
     : [];
 for (const d of DEMO_MEMBERS) setPassword(d.id, DEMO_PASSWORD);
@@ -124,13 +118,8 @@ function readRepoFile(repoPath) {
 
 function findByEmail(email) {
   const needle = String(email ?? "").trim().toLowerCase();
-  const hash = hashEmail(needle);
   return loadRoster().members.find(
-    (m) =>
-      m.active &&
-      typeof m.id === "string" &&
-      ((Array.isArray(m.emailHashes) && m.emailHashes.includes(hash)) ||
-        (typeof m.email === "string" && m.email.trim().toLowerCase() === needle))
+    (m) => m.active && typeof m.id === "string" && typeof m.email === "string" && m.email.trim().toLowerCase() === needle
   );
 }
 
@@ -363,7 +352,7 @@ async function route(req, res) {
   if (p === "/health") {
     return json(req, res, {
       service: "xlab-gate (mock)",
-      checks: { github: "ok (mock)", roster: "ok", passwords: "ok (mock secrets)" },
+      checks: { github: "ok (mock)", roster: "ok" },
     });
   }
 
@@ -496,12 +485,6 @@ async function route(req, res) {
   if (p === "/roster") {
     if (id.role !== "admin") return fail(req, res, 403, "admins only");
     return json(req, res, loadRoster());
-  }
-  if (p === "/hash-email" && req.method === "POST") {
-    if (id.role !== "admin") return fail(req, res, 403, "admins only");
-    const { email } = (await readJson(req)) ?? {};
-    if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(String(email).trim())) return fail(req, res, 400, "a valid email is required");
-    return json(req, res, { hash: hashEmail(email) });
   }
   if (p === "/invite" && req.method === "POST") {
     if (id.role !== "admin") return fail(req, res, 403, "admins only");

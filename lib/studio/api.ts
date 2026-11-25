@@ -138,7 +138,7 @@ export const api = {
   me: () => call<Identity>("/me"),
 
   health: () =>
-    call<{ checks: { github: string; roster: string; passwords?: string } }>("/health"),
+    call<{ checks: { github: string; roster: string } }>("/health"),
 
   queue: () => call<{ queue: QueueItem[] }>("/queue"),
 
@@ -187,10 +187,6 @@ export const api = {
       method: "POST",
       body: JSON.stringify({ account }),
     }),
-
-  /** Admin only — the roster's stored form of an address. The secret stays in the gate. */
-  hashEmail: (email: string) =>
-    call<{ hash: string }>("/hash-email", { method: "POST", body: JSON.stringify({ email }) }),
 };
 
 // The roster's shape lives in lib/access/roster.ts (shared with CI); re-exported so callers

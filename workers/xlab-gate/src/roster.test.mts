@@ -180,7 +180,7 @@ describe("canApprove / toIdentity", () => {
 
   it("identity is rebuilt from the roster entry, keeping the sign-in subject and typed address", () => {
     const id = toIdentity(
-      { id: "jane-doe", name: "Jane", role: "member", personId: "jane-doe", active: true },
+      { id: "jane-doe", name: "Jane", email: "jane@x.edu", role: "member", personId: "jane-doe", active: true },
       "account:jane-doe",
       "jane@x.edu"
     );
@@ -195,23 +195,18 @@ describe("canApprove / toIdentity", () => {
   });
 });
 
-describe("matchEmail — hashed roster (SPEC.md §8.4)", () => {
+describe("matchEmail", () => {
   const members: RosterEntry[] = [
-    { id: "jane-doe", name: "Jane", role: "member", personId: "jane-doe", active: true, emailHashes: ["hmac-sha256:AAA", "hmac-sha256:BBB"] },
-    { id: "legacy", name: "Old", role: "admin", active: true, email: "Old@X.edu" },
-    { id: "gone", name: "Gone", role: "member", active: false, emailHashes: ["hmac-sha256:CCC"] },
+    { id: "jane-doe", name: "Jane", email: "Jane@X.edu", role: "member", personId: "jane-doe", active: true },
+    { id: "gone", name: "Gone", email: "gone@x.edu", role: "member", active: false },
   ];
 
-  it("finds an entry by any of its hashed addresses", () => {
-    assert.equal(matchEmail(members, "whatever@x.edu", "hmac-sha256:BBB")?.id, "jane-doe");
-  });
-
-  it("still honours a legacy plain-text address, case-insensitively", () => {
-    assert.equal(matchEmail(members, " old@x.EDU ", "hmac-sha256:ZZZ")?.id, "legacy");
+  it("finds an entry by address, ignoring case and surrounding space", () => {
+    assert.equal(matchEmail(members, " jane@x.EDU ")?.id, "jane-doe");
   });
 
   it("never matches an inactive entry or an unknown address", () => {
-    assert.equal(matchEmail(members, "gone@x.edu", "hmac-sha256:CCC"), undefined);
-    assert.equal(matchEmail(members, "nobody@x.edu", "hmac-sha256:ZZZ"), undefined);
+    assert.equal(matchEmail(members, "gone@x.edu"), undefined);
+    assert.equal(matchEmail(members, "nobody@x.edu"), undefined);
   });
 });

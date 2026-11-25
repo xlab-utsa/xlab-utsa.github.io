@@ -16,7 +16,7 @@
 //      CORS failure and the real message is invisible. Shipped once, via
 //      `try { return handler() }` without an await.
 //
-//   3. HEALTH — the GitHub App credential, the roster, and the sign-in secrets resolve.
+//   3. HEALTH — the GitHub App credential and the roster still resolve.
 import process from "node:process";
 
 const GATE = process.env.GATE_URL ?? "https://xlab-gate.xlab-studio.workers.dev";
@@ -28,7 +28,6 @@ const ENDPOINTS = [
   "/roster",
   "/invite",
   "/revoke-invites",
-  "/hash-email",
   "/auth/login",
   "/me",
   "/status",
@@ -105,7 +104,6 @@ for (const [method, path] of [
 const health = await fetch(`${GATE}/health`).then((r) => r.json());
 check("github app credential", health.checks?.github === "ok", health.checks?.github);
 check("roster readable", health.checks?.roster === "ok", health.checks?.roster);
-check("sign-in secrets set", health.checks?.passwords === "ok", health.checks?.passwords);
 
 console.log(failures === 0 ? "\nAll checks passed\n" : `\n${failures} CHECK(S) FAILED\n`);
 process.exit(failures === 0 ? 0 : 1);

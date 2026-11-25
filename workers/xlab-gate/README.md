@@ -88,36 +88,23 @@ npx wrangler secret put GITHUB_APP_PRIVATE_KEY  # paste the whole .pem, BEGIN/EN
 npx wrangler secret put GITHUB_CLIENT_ID
 npx wrangler secret put GITHUB_CLIENT_SECRET
 npx wrangler secret put SESSION_SECRET          # random 32+ chars — signs sessions and set-password links
-npx wrangler secret put EMAIL_HASH_SECRET       # random 32+ chars — turns addresses into the roster's emailHashes
-npx wrangler secret put PASSWORD_PEPPER         # random 32+ chars — mixed into every password hash
 ```
 
-Generate each with:
+Generate a session secret with:
 
 ```bash
 node -e "console.log(require('crypto').randomBytes(32).toString('base64url'))"
 ```
 
-What rotating each one does — read before you ever do it:
-
-| Secret | If rotated |
-|---|---|
-| `SESSION_SECRET` | Everyone is signed out and outstanding set-password links die. Passwords keep working. |
-| `EMAIL_HASH_SECRET` | **Nobody can sign in with a password** until every roster address is re-hashed (Roster → *+ address*, per person). Don't. |
-| `PASSWORD_PEPPER` | **Every password stops working**; everyone needs a new set-password link. Don't. |
-
-Store the last two somewhere safe (a password manager). Losing them is the same as rotating them.
+Rotating `SESSION_SECRET` signs everyone out and kills outstanding set-password links;
+passwords keep working. Password sign-in needs **no other secret**.
 
 ### 5. Roster
 
-`access/roster.json` in the repo root lists who may sign in. It holds no addresses — only
-`emailHashes`, which only this Worker can compute — and no passwords. Manage it from Studio
-(Roster & access): adding someone takes their email, the Worker hashes it, and the change
-goes through review like any other. Admins who also sign in with GitHub need `githubLogin`.
-
-**Switching an existing roster to hashes** (one time, after this Worker is deployed with
-`EMAIL_HASH_SECRET`): sign in as an admin with GitHub, open Roster, click **Hash them now**,
-approve the PR. Sign-in works throughout. Older plain-text versions remain in git history.
+`access/roster.json` in the repo root lists who may sign in: a stable account `id`, the
+`email` they sign in with, role, profile id, and `active`. It never holds passwords. Manage
+it from Studio (Roster & access); every change goes through review like any other. Admins who
+also sign in with GitHub need `githubLogin`.
 
 ### 6. Deploy
 
@@ -125,8 +112,7 @@ approve the PR. Sign-in works throughout. Older plain-text versions remain in gi
 npm run deploy      # typecheck, deploy, then the smoke test
 ```
 
-**Order when sign-in changes ship:** set the two new secrets → deploy this Worker → then
-merge the site change. A site built for passwords talking to an old Worker tells users that
+**Order when sign-in changes ship:** deploy this Worker first, then merge the site change. A site built for passwords talking to an old Worker tells users that
 password sign-in isn't switched on yet; admins can still use GitHub.
 
 ## Endpoints
@@ -146,7 +132,6 @@ password sign-in isn't switched on yet; admins can still use GitHub.
 | GET | `/queue/:n/files` | admin/editor | Field-level diff for one submission |
 | POST | `/approve` · `/reject` | admin/editor | Merge or close |
 | GET | `/roster` | admin | The roster in force |
-| POST | `/hash-email` | admin | Hash an address for the roster |
 | POST | `/invite` | admin | One-time set-password link for a roster account (`{ account }`) |
 | POST | `/revoke-invites` | admin | Cancel an account's links **and** sign it out everywhere |
 | GET | `/status` | session | Latest deploy run |
@@ -155,12 +140,13 @@ password sign-in isn't switched on yet; admins can still use GitHub.
 
 - No GitHub credential ever reaches a browser. Sessions are HMAC-signed bearer tokens.
 - Passwords exist only in KV, only as PBKDF2-SHA256 (100 000 rounds, the most Workers'
-  Web Crypto allows) over an HMAC with `PASSWORD_PEPPER`, with a random salt per record. A
-  copy of KV alone is not enough to start guessing.
+  Web Crypto allows) with a random salt per record — never in the repo, a log, or a response.
+  There is no extra secret mixed in, so the KV namespace is what to protect: a copy of it
+  would let someone start guessing offline.
 - Each account has a credential version. A new password, or *Sign out everywhere*, bumps it,
   and every older session is refused on its next request.
-- The public repo never holds an address: the roster stores HMACs, and PRs name the
-  submitter by account id.
+- Pull requests name the submitter by account id, never by address. (The roster itself does
+  list sign-in addresses, and the repo is public.)
 - Path allowlist (`content/`, `public/images/`, `access/`) plus traversal rejection is applied
   *before* any GitHub token is minted.
 - Members may edit their own person record; create publications, awards, posts and projects;

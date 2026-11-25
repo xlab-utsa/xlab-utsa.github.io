@@ -7,11 +7,6 @@
 // choose a password, and from then on sign in with their email and that password. Forgot it?
 // Same button. No email is ever sent by the system.
 //
-// The repo is public, so the roster never stores an address: the gate turns each one into a
-// hash (HMAC under a secret only it holds) and the roster keeps that. This screen therefore
-// cannot show anyone's address — only how many they have — and legacy plain-text entries are
-// flagged with a one-click fix.
-//
 // Roster edits go through the same review flow as content — they are a pull request, not a
 // direct write — which is what keeps "who had access when" answerable from git history.
 // Two consequences this screen has to be honest about:
@@ -41,8 +36,6 @@ type Flash = { kind: NoticeKind; title: string; body?: string };
 type Draft = { name: string; email: string; role: RosterEntry["role"]; personId?: string };
 const EMPTY_DRAFT: Draft = { name: "", email: "", role: "member" };
 
-const addressCount = (m: RosterEntry) => m.emailHashes.length + (m.email ? 1 : 0);
-
 export function RosterManager({ snapshot, onOpenQueue }: { snapshot: Snapshot; onOpenQueue: () => void }) {
   /** What the gate returned — the roster that is actually in force. */
   const [loaded, setLoaded] = useState<RosterEntry[]>();
@@ -64,10 +57,8 @@ export function RosterManager({ snapshot, onOpenQueue }: { snapshot: Snapshot; o
   const load = useCallback(async () => {
     try {
       const [roster, queue] = await Promise.all([api.roster(), api.queue()]);
-      // Older rosters have no emailHashes array; normalize so the screen can rely on it.
-      const rows = roster.members.map((m) => ({ ...m, emailHashes: m.emailHashes ?? [] }));
-      setLoaded(rows);
-      setMembers(rows);
+      setLoaded(roster.members);
+      setMembers(roster.members);
       const pending = pendingFor(queue.queue, ROSTER_PATH);
       setPendingPr(pending);
       if (!pending) setPendingRows([]);
@@ -156,43 +147,6 @@ export function RosterManager({ snapshot, onOpenQueue }: { snapshot: Snapshot; o
     }
   }
 
-  /** Add another sign-in address to a row (as a hash). Marks the row unsaved. */
-  async function addAddress(index: number) {
-    if (!members) return;
-    const email = prompt(`Another address ${members[index].name} may sign in with:`)?.trim();
-    if (!email) return;
-    try {
-      const { hash } = await api.hashEmail(email);
-      setMembers(members.map((m, j) => (j === index && !m.emailHashes.includes(hash) ? { ...m, emailHashes: [...m.emailHashes, hash] } : m)));
-    } catch (err) {
-      setFlash({ kind: "error", title: "Could not add that address", body: err instanceof Error ? err.message : undefined });
-    }
-  }
-
-  /** Replace every legacy plain-text address with its hash, in one roster change. */
-  async function hashLegacyAddresses() {
-    if (!loaded) return;
-    setBusy(true);
-    try {
-      const next: RosterEntry[] = [];
-      for (const m of loaded) {
-        if (!m.email) {
-          next.push(m);
-          continue;
-        }
-        const { hash } = await api.hashEmail(m.email);
-        const rest = { ...m };
-        delete rest.email;
-        next.push({ ...rest, emailHashes: rest.emailHashes.includes(hash) ? rest.emailHashes : [...rest.emailHashes, hash] });
-      }
-      setBusy(false);
-      await saveRoster(next, "Roster: store sign-in addresses as hashes");
-    } catch (err) {
-      setBusy(false);
-      setFlash({ kind: "error", title: "Could not hash the addresses", body: err instanceof Error ? err.message : undefined });
-    }
-  }
-
   async function addPerson() {
     if (!loaded) return;
     const name = draft.name.trim();
@@ -210,14 +164,7 @@ export function RosterManager({ snapshot, onOpenQueue }: { snapshot: Snapshot; o
       });
       return;
     }
-    let hash: string;
-    try {
-      ({ hash } = await api.hashEmail(email));
-    } catch (err) {
-      setFlash({ kind: "error", title: "Could not hash that address", body: err instanceof Error ? err.message : undefined });
-      return;
-    }
-    const entry: RosterEntry = { id: suggestAccountId(name, personId), name, role: draft.role, emailHashes: [hash], personId, active: true };
+    const entry: RosterEntry = { id: suggestAccountId(name, personId), name, email, role: draft.role, personId, active: true };
     // Validate the would-be roster so a bad id or duplicate is caught here, not by CI.
     const issues = rosterIssues({ _comment: ROSTER_COMMENT, members: [...loaded, entry] });
     const mine = issues.filter((i) => i.index === loaded.length);
@@ -232,7 +179,6 @@ export function RosterManager({ snapshot, onOpenQueue }: { snapshot: Snapshot; o
   if (!members || !loaded) return <p className="text-sm text-text-faint">Loading roster…</p>;
 
   const locked = Boolean(pendingPr) || busy;
-  const legacy = loaded.filter((m) => m.email);
   const unlinked = snapshot.content.people.filter((p) => !members.some((m) => m.personId === p.id));
   const issueFor = (index: number, field: string) => rowIssues.find((i) => i.index === index && i.field === field)?.message;
   const rowHasIssue = (index: number) => rowIssues.some((i) => i.index === index);
@@ -258,22 +204,6 @@ export function RosterManager({ snapshot, onOpenQueue }: { snapshot: Snapshot; o
         >
           Sent {relativeTime(pendingPr.createdAt)}. Approve it (or return it) before making another change — each change
           rewrites the whole roster, and two at once would conflict.
-        </Notice>
-      )}
-
-      {legacy.length > 0 && !pendingPr && (
-        <Notice
-          kind="warn"
-          title={`${legacy.length} sign-in address${legacy.length === 1 ? " is" : "es are"} stored in plain text`}
-          actions={
-            <ActionButton primary disabled={locked} onClick={() => void hashLegacyAddresses()}>
-              {busy ? "Hashing…" : "Hash them now"}
-            </ActionButton>
-          }
-        >
-          The repo is public, so anyone can read {legacy.map((m) => m.name).join(", ")}&apos;s address there. One click replaces
-          {legacy.length === 1 ? " it" : " them"} with a hash and opens a roster change for you to approve. Sign-in keeps working
-          throughout. (Earlier versions of the file stay in git history.)
         </Notice>
       )}
 
@@ -309,7 +239,7 @@ export function RosterManager({ snapshot, onOpenQueue }: { snapshot: Snapshot; o
         <table className="w-full min-w-[760px] border-collapse text-sm">
           <thead>
             <tr className="border-b border-border text-left">
-              {["Name", "Sign-in", "Role", "Owns profile", ""].map((h) => (
+              {["Name", "Email", "Role", "Owns profile", ""].map((h) => (
                 <th key={h} className="py-2 pr-3 font-mono text-[10.5px] font-bold tracking-wider text-text-faint uppercase">
                   {h}
                 </th>
@@ -320,7 +250,7 @@ export function RosterManager({ snapshot, onOpenQueue }: { snapshot: Snapshot; o
             {members.map((m, i) => {
               const saved = loaded.find((x) => x.id === m.id);
               const changed = JSON.stringify(saved) !== JSON.stringify(m);
-              const canLink = m.active && Boolean(saved) && !changed && addressCount(m) > 0;
+              const canLink = m.active && Boolean(saved) && !changed;
               return (
                 <tr key={m.id} className={`border-b border-hairline ${rowHasIssue(i) ? "bg-brand-orange/5" : ""}`}>
                   <td className="py-2 pr-3">
@@ -328,23 +258,10 @@ export function RosterManager({ snapshot, onOpenQueue }: { snapshot: Snapshot; o
                     {changed && <span className="ml-1.5 font-mono text-[10px] text-brand-orange">unsaved</span>}
                     <span className="block font-mono text-[10.5px] text-text-placeholder">{m.id}</span>
                   </td>
-                  <td className="py-2 pr-3 font-mono text-[11px] text-text-faint">
-                    {m.emailHashes.length > 0 && (
-                      <span className="block">
-                        {m.emailHashes.length} address{m.emailHashes.length === 1 ? "" : "es"}
-                      </span>
-                    )}
-                    {m.email && <span className="block text-brand-orange">1 in plain text</span>}
+                  <td className="py-2 pr-3 font-mono text-[11.5px] text-text-faint">
+                    {m.email}
                     {m.githubLogin && <span className="block">GitHub: {m.githubLogin}</span>}
-                    <button
-                      type="button"
-                      disabled={locked}
-                      onClick={() => void addAddress(i)}
-                      className="mt-0.5 text-text-faint hover:text-foreground hover:underline disabled:opacity-60"
-                    >
-                      + address
-                    </button>
-                    {issueFor(i, "emailHashes") && <p className="mt-0.5 font-sans text-[11px] text-brand-orange">{issueFor(i, "emailHashes")}</p>}
+                    {issueFor(i, "email") && <p className="mt-0.5 font-sans text-[11px] text-brand-orange">{issueFor(i, "email")}</p>}
                   </td>
                   <td className="py-2 pr-3">
                     <select
@@ -390,9 +307,7 @@ export function RosterManager({ snapshot, onOpenQueue }: { snapshot: Snapshot; o
                             ? "Submit (and approve) the change to this row first"
                             : !m.active
                               ? "Reactivate this person first"
-                              : addressCount(m) === 0
-                                ? "Add an address first — they sign in with it"
-                                : "A one-time link with which they choose a password (first time, or forgotten)"
+                              : "A one-time link with which they choose a password (first time, or forgotten)"
                       }
                       className="font-mono text-[11px] text-brand-strong hover:underline disabled:text-text-placeholder disabled:no-underline"
                     >
@@ -421,7 +336,7 @@ export function RosterManager({ snapshot, onOpenQueue }: { snapshot: Snapshot; o
               pendingRows.map((m) => (
                 <tr key={`pending:${m.id}`} className="border-b border-hairline opacity-70">
                   <td className="py-2 pr-3 text-foreground">{m.name}</td>
-                  <td className="py-2 pr-3 font-mono text-[11px] text-text-faint">{addressCount(m)} address(es)</td>
+                  <td className="py-2 pr-3 font-mono text-[11.5px] text-text-faint">{m.email}</td>
                   <td className="py-2 pr-3 font-mono text-[12.5px] text-text-faint">{m.role}</td>
                   <td className="py-2 pr-3 font-mono text-[12px] text-text-faint">{m.personId ?? "—"}</td>
                   <td className="py-2 text-right font-mono text-[11px] whitespace-nowrap text-brand-orange">waiting for approval (#{pendingPr.number})</td>
@@ -521,8 +436,8 @@ export function RosterManager({ snapshot, onOpenQueue }: { snapshot: Snapshot; o
           Add to roster
         </ActionButton>
         <p className="text-[11.5px] leading-snug text-text-faint">
-          The address is stored only as a hash. Next: approve the change in the review queue, come back here, click{" "}
-          <strong>Set-password link</strong> next to their name and send it to them.
+          Next: approve the change in the review queue, come back here, click <strong>Set-password link</strong> next to their name
+          and send it to them.
         </p>
       </div>
     </div>

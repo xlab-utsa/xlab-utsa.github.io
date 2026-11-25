@@ -1,14 +1,14 @@
-// Email hashing, password hashing, and the password store (SPEC.md §8.4).
+// Password hashing and the password store (SPEC.md §8.4).
 //
 // WHERE THINGS LIVE
-//   * The roster (public repo) holds only HMAC(EMAIL_HASH_SECRET, address) — never an address.
 //   * Passwords live ONLY in this Worker's KV namespace, and only as a slow salted hash:
-//       PBKDF2-SHA256( HMAC(PASSWORD_PEPPER, password), random 16-byte salt, 100 000 rounds )
-//     The pepper is a Worker secret, so a copy of KV alone is not enough to start guessing
-//     passwords offline. 100 000 is the most PBKDF2 rounds Cloudflare's Web Crypto allows.
-//   * Each account has a credential version. Setting a password, or an admin revoking
-//     access, bumps it; every session carries the version it was issued under and is
-//     refused once it is stale. That is how "change password" signs out other devices.
+//       PBKDF2-SHA256( password, random 16-byte salt, 100 000 rounds )
+//     100 000 is the most PBKDF2 rounds Cloudflare's Web Crypto allows. No extra secret is
+//     involved (decided 2026-11-25: going live must need no new secrets), so KV is the
+//     thing to protect — anyone with a copy could start guessing offline.
+//   * Each account has a credential version. Setting a password, or an admin choosing
+//     "Sign out everywhere", bumps it; every session carries the version it was issued
+//     under and is refused once it is stale. That is how a reset signs out other devices.
 //
 // Pure Web Crypto — no dependencies, no Node builtins.
 import { b64urlDecode, b64urlEncode } from "./crypto";
@@ -19,28 +19,15 @@ export const PBKDF2_ITERATIONS = 100_000;
 export const MIN_PASSWORD_LENGTH = 8;
 export const MAX_PASSWORD_LENGTH = 256;
 
-async function hmac(secret: string, message: string): Promise<ArrayBuffer> {
-  const key = await crypto.subtle.importKey("raw", enc.encode(secret), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
-  return crypto.subtle.sign("HMAC", key, enc.encode(message));
-}
-
-/** The roster's stored form of an address. Case and surrounding space never matter. */
-export async function hashEmail(email: string, secret: string): Promise<string> {
-  if (!secret) throw new Error("EMAIL_HASH_SECRET is not set");
-  return `hmac-sha256:${b64urlEncode(await hmac(secret, email.trim().toLowerCase()))}`;
-}
-
-async function derive(password: string, salt: Uint8Array, iterations: number, pepper: string): Promise<string> {
-  if (!pepper) throw new Error("PASSWORD_PEPPER is not set");
-  const peppered = await hmac(pepper, password);
-  const key = await crypto.subtle.importKey("raw", peppered, "PBKDF2", false, ["deriveBits"]);
+async function derive(password: string, salt: Uint8Array, iterations: number): Promise<string> {
+  const key = await crypto.subtle.importKey("raw", enc.encode(password), "PBKDF2", false, ["deriveBits"]);
   const bits = await crypto.subtle.deriveBits({ name: "PBKDF2", hash: "SHA-256", salt: salt as BufferSource, iterations }, key, 256);
   return b64urlEncode(bits);
 }
 
 export interface PasswordRecord {
   /** Scheme marker, so the hashing can be upgraded later without guessing. */
-  alg: "pbkdf2-sha256+pepper";
+  alg: "pbkdf2-sha256";
   iterations: number;
   salt: string;
   hash: string;
@@ -49,13 +36,13 @@ export interface PasswordRecord {
   updatedAt: string;
 }
 
-export async function makePasswordRecord(password: string, pepper: string, version: number): Promise<PasswordRecord> {
+export async function makePasswordRecord(password: string, version: number): Promise<PasswordRecord> {
   const salt = crypto.getRandomValues(new Uint8Array(16));
   return {
-    alg: "pbkdf2-sha256+pepper",
+    alg: "pbkdf2-sha256",
     iterations: PBKDF2_ITERATIONS,
     salt: b64urlEncode(salt),
-    hash: await derive(password, salt, PBKDF2_ITERATIONS, pepper),
+    hash: await derive(password, salt, PBKDF2_ITERATIONS),
     version,
     updatedAt: new Date().toISOString(),
   };
@@ -68,8 +55,8 @@ function safeEqual(a: string, b: string): boolean {
   return diff === 0;
 }
 
-export async function checkPassword(password: string, record: PasswordRecord, pepper: string): Promise<boolean> {
-  const hash = await derive(password, b64urlDecode(record.salt), record.iterations, pepper);
+export async function checkPassword(password: string, record: PasswordRecord): Promise<boolean> {
+  const hash = await derive(password, b64urlDecode(record.salt), record.iterations);
   return safeEqual(hash, record.hash);
 }
 
@@ -77,8 +64,8 @@ export async function checkPassword(password: string, record: PasswordRecord, pe
  * Spend the same time as a real check when there is no account to check against, so the
  * response time does not reveal whether an address is on the roster.
  */
-export async function burnPasswordCheck(password: string, pepper: string): Promise<void> {
-  await derive(password, new Uint8Array(16), PBKDF2_ITERATIONS, pepper || "x");
+export async function burnPasswordCheck(password: string): Promise<void> {
+  await derive(password, new Uint8Array(16), PBKDF2_ITERATIONS);
 }
 
 // --- policy --------------------------------------------------------------------------
@@ -123,7 +110,7 @@ export async function writePassword(kv: KVNamespace, accountId: string, record: 
 
 /**
  * The account's current credential version: the password record's, or a standalone counter
- * for accounts revoked before they ever set a password. 0 when nothing was ever recorded.
+ * for accounts signed out before they ever set a password. 0 when nothing was ever recorded.
  */
 export async function credentialVersion(kv: KVNamespace, accountId: string): Promise<number> {
   const record = await readPassword(kv, accountId);
