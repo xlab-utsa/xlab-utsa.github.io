@@ -4,7 +4,12 @@ import { PersonLinkIcons } from "@/components/person-link-icons";
 import { publicFileExists, withBasePath } from "@/lib/content/assets";
 import type { Person } from "@/lib/content";
 import { cn } from "@/lib/utils";
-import { resolvePersonRedirectUrl, roleShortLabel } from "@/lib/team";
+import { nowAt, primaryRole } from "@/lib/content/people";
+import {
+  getAffiliationInstitutionLabel,
+  resolvePersonRedirectUrl,
+  roleShortLabel,
+} from "@/lib/team";
 
 function initials(name: string): string {
   return name
@@ -36,13 +41,14 @@ const VARIANT = {
     initials: "text-[11px]",
     icons: "default" as const,
   },
+  // Same footprint as a member tile, round photo, plus a "now at" line (People page).
   alumni: {
-    root: "mx-auto w-full max-w-[88px] gap-1.5",
+    root: "mx-auto w-full max-w-48 gap-1.5",
     link: "gap-1.5",
-    name: "text-[11px] font-semibold",
-    role: "text-[8.5px]",
-    initials: "text-[10px]",
-    icons: "sm" as const,
+    name: "text-[13px] font-bold",
+    role: "text-[9px]",
+    initials: "text-[11px]",
+    icons: "default" as const,
   },
 } satisfies Record<
   TeamCardVariant,
@@ -72,6 +78,8 @@ export function TeamCard({
   const roleLabel = roleShortLabel(person);
   const style = VARIANT[variant];
   const circular = variant === "alumni";
+  // Where an alumnus is now — the first affiliation that has not ended.
+  const current = variant === "alumni" ? nowAt(person) : undefined;
 
   return (
     <div className={cn("flex flex-col", style.root)}>
@@ -117,8 +125,13 @@ export function TeamCard({
               "font-mono tracking-wide text-text-faint uppercase"
             )}
           >
-            {roleLabel}
+            {current ? `Former ${primaryRole(person)?.title ?? roleLabel}` : roleLabel}
           </span>
+          {current && (
+            <span className="text-[11.5px] leading-snug text-muted-foreground">
+              Now: {current.roleTitle}, {getAffiliationInstitutionLabel(current)}
+            </span>
+          )}
         </div>
       </a>
       {style.icons && <PersonLinkIcons person={person} size={style.icons} />}

@@ -239,3 +239,27 @@
   padding: 0.15em 0.4em;
   font-size: 0.875em;
 }
+
+/* Homepage photo banner (components/gallery-strip.tsx). The track holds the photo list
+   twice, so sliding it by exactly half its width loops seamlessly. Paused on hover/focus
+   so a visitor can look at a photo, and not animated at all under reduced motion. */
+@keyframes gallery-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.gallery-track {
+  animation: gallery-scroll var(--gallery-duration, 60s) linear infinite;
+}
+.gallery-strip:hover .gallery-track,
+.gallery-strip:focus-within .gallery-track {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .gallery-track {
+    animation: none;
+  }
+}

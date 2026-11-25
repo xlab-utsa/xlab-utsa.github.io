@@ -15,8 +15,8 @@ import {
 // hands it to the client-only ResearchBrowser as pre-rendered content (same pattern
 // as publications-tabs.tsx) — the interactive tab-switching shell never needs the raw
 // content data itself, only the already-rendered panels. Every publication carries a
-// research area, so each panel shows only that area's `featured` picks and links out to
-// the full, filtered list on /publications.
+// research area, so each panel shows only that area's `featured` picks and links down to
+// the full, filtered list further down /research.
 
 /** Cards (projects + featured papers) shown per thrust before "All N publications ›". */
 const MAX_CARDS_PER_THEME = 6;
@@ -72,7 +72,7 @@ export function ResearchSection() {
               ))}
             </div>
             <Link
-              href={`/publications?theme=${theme.id}`}
+              href={`/research?theme=${theme.id}#publications`}
               className="mt-6 inline-block text-[13.5px] font-semibold text-foreground hover:underline"
             >
               All {allPublications.length} {theme.title} publications ›
@@ -95,7 +95,7 @@ export function ResearchSection() {
               id="research-heading"
               className="font-mono text-[15px] font-bold tracking-widest text-foreground uppercase"
             >
-              Projects &amp; Publications
+              Research areas
             </h2>
             <span className="text-[13.5px] text-muted-foreground">
               One thrust in focus at a time — click to switch
@@ -111,7 +111,7 @@ export function ResearchSection() {
               Featured publication
             </span>
             <Link
-              href="/publications"
+              href="/research#publications"
               className="text-[13.5px] font-semibold text-foreground hover:underline"
             >
               All {publicationCount} publications ›

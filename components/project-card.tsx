@@ -56,8 +56,8 @@ function ContributorsLine({ ids }: { ids: string[] }) {
 }
 
 // No detail page, ever (SPEC.md §6) — this card is the entire presence a Project has
-// on the site. `description` is intentionally not rendered, matching the poloclub-
-// style card omission SPEC.md calls out. Fill-vs-outline (not hue) is how "Project"
+// on the site. `description` is not rendered on the card itself; the Projects page shows it
+// beside the card as the project's write-up. Fill-vs-outline (not hue) is how "Project"
 // is distinguished from "Publication" cards elsewhere in the B&W palette — see the
 // legend in research-browser.tsx.
 export function ProjectCard({ project }: { project: Project }) {

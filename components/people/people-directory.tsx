@@ -1,15 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { PersonLinkIcons } from "@/components/person-link-icons";
 import { TeamCard } from "@/components/team-card";
-import {
-  getAlumniPeople,
-  getCurrentPeople,
-  getRecognitionsByPerson,
-  type Person,
-} from "@/lib/content";
+import { getAllPeople, getRecognitionsByPerson, type Person } from "@/lib/content";
 import { publicFileExists, withBasePath } from "@/lib/content/assets";
-import { isLabLead } from "@/lib/content/people";
+import { isLabLead, PEOPLE_GROUPS, peopleGroup } from "@/lib/content/people";
 import {
   getAffiliationInstitutionLabel,
   sortPeople,
@@ -164,71 +160,99 @@ function PiLayer({ pi }: { pi: Person }) {
   );
 }
 
-// Three layers: the PI, the current lab (one flat grid), and alumni (hidden while empty).
-// Who is current vs alumni is decided by lib/content/people.ts from each person's labRoles.
-// The four-group People page layout replaces this in Phase 2 (SPEC.md §5).
-export function TeamSection() {
-  const current = getCurrentPeople();
-  const pi = current.find(isLabLead);
-  const rest = sortPeople(current.filter((p) => p.id !== pi?.id));
-  const alumni = sortPeople(getAlumniPeople());
+// The People page (SPEC.md §5): the PI's full profile, then four groups. Which group a
+// person lands in is decided by lib/content/people.ts from their labRoles — never here.
+export function PeopleDirectory() {
+  const people = sortPeople(getAllPeople());
+  const pi = people.find(isLabLead);
+  const groups = PEOPLE_GROUPS.map((group) => ({
+    ...group,
+    people: people.filter((p) => p.id !== pi?.id && peopleGroup(p) === group.key),
+  })).filter((group) => group.people.length > 0);
 
   return (
-    <section
-      id="team"
-      aria-labelledby="team-heading"
-      className="scroll-mt-16 border-b border-border"
-    >
-      <div className="mx-auto max-w-[1600px] px-6 py-12 sm:px-10">
-        <div className="mb-8 flex items-baseline gap-3">
-          <h2
-            id="team-heading"
-            className="font-mono text-[15px] font-bold tracking-widest text-foreground uppercase"
+    <div className="flex flex-col gap-12">
+      {pi && <PiLayer pi={pi} />}
+
+      {groups.map((group) => {
+        const alumni = group.key === "alumni";
+        return (
+          <section
+            key={group.key}
+            aria-labelledby={`group-${group.key}`}
+            className={alumni ? "flex flex-col gap-5 border-l border-hairline pl-8" : "flex flex-col gap-5 border-l border-border pl-8"}
           >
-            People
-          </h2>
-          <span className="text-[13.5px] text-muted-foreground">
-            Three layers: the PI, the lab, the alumni network
-          </span>
-        </div>
-
-        {pi && <PiLayer pi={pi} />}
-
-        {rest.length > 0 && (
-          <div className="mt-11 flex flex-col gap-5 border-l border-border pl-8">
             <div className="flex items-center gap-3.5">
-              <span className="border border-foreground px-2.5 py-0.5 font-mono text-[11px] font-bold tracking-widest text-foreground uppercase">
-                Current members
-              </span>
-              <span aria-hidden="true" className="h-px flex-1 bg-border" />
+              <h2
+                id={`group-${group.key}`}
+                className={
+                  alumni
+                    ? "border border-border px-2.5 py-0.5 font-mono text-[11px] font-bold tracking-widest text-muted-foreground uppercase"
+                    : "border border-foreground px-2.5 py-0.5 font-mono text-[11px] font-bold tracking-widest text-foreground uppercase"
+                }
+              >
+                {group.label}
+              </h2>
+              <span aria-hidden="true" className={alumni ? "h-px flex-1 bg-hairline" : "h-px flex-1 bg-border"} />
               <span className="font-mono text-[11.5px] text-muted-foreground">
-                {rest.length} {rest.length === 1 ? "member" : "members"}
+                {group.people.length} {group.people.length === 1 ? "person" : "people"}
               </span>
             </div>
             <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-              {rest.map((person) => (
-                <TeamCard key={person.id} person={person} variant="tile" />
+              {group.people.map((person) => (
+                <TeamCard key={person.id} person={person} variant={alumni ? "alumni" : "tile"} />
               ))}
             </div>
-          </div>
-        )}
+          </section>
+        );
+      })}
+    </div>
+  );
+}
 
-        {alumni.length > 0 && (
-          <div className="mt-10 flex flex-col gap-4 border-l border-hairline pl-16">
-            <div className="flex items-center gap-3.5">
-              <span className="border border-border px-2.5 py-0.5 font-mono text-[11px] font-bold tracking-widest text-muted-foreground uppercase">
-                Alumni
-              </span>
-              <span aria-hidden="true" className="h-px flex-1 bg-hairline" />
-            </div>
-            <div className="grid grid-cols-3 gap-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8">
-              {alumni.map((person) => (
-                <TeamCard key={person.id} person={person} variant="alumni" />
-              ))}
-            </div>
+/**
+ * The homepage's PI block: photo on the left, biography on the right, and the way through
+ * to the group (2026-11-23 meeting). Everything else about the PI lives on /people.
+ */
+export function PiSummary() {
+  const pi = getAllPeople().find(isLabLead);
+  if (!pi) return null;
+  const hasPhoto = publicFileExists(pi.photo);
+
+  return (
+    <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-[240px_1fr]">
+      <div className="border border-border bg-background p-2 justify-self-center md:justify-self-start">
+        {hasPhoto && pi.photo ? (
+          <Image
+            src={withBasePath(pi.photo!)}
+            alt={pi.name}
+            width={224}
+            height={280}
+            className="block h-[280px] w-[224px] object-cover"
+          />
+        ) : (
+          <div className="flex h-[280px] w-[224px] items-center justify-center bg-muted font-mono text-2xl text-muted-foreground">
+            {initials(pi.name)}
           </div>
         )}
       </div>
-    </section>
+      <div className="flex flex-col gap-3">
+        <span className="text-2xl font-bold tracking-tight text-foreground">{pi.name}</span>
+        <span className="font-mono text-[11px] font-bold tracking-wider text-brand-strong uppercase">
+          {pi.roleTitle}
+        </span>
+        {pi.bio && (
+          <p className="max-w-[75ch] text-[15px] leading-relaxed whitespace-pre-line text-muted-foreground">
+            {pi.bio.trim()}
+          </p>
+        )}
+        <Link
+          href="/people"
+          className="mt-2 inline-flex w-fit items-center gap-2 border border-foreground bg-invert-bg px-4 py-2 font-mono text-[12px] font-bold tracking-wider text-invert-fg uppercase transition-opacity hover:opacity-85"
+        >
+          Meet the group →
+        </Link>
+      </div>
+    </div>
   );
 }

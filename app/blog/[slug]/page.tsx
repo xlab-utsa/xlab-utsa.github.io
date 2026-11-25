@@ -92,7 +92,7 @@ export default async function BlogPostPage({
           {mentionedPublications.length === 1 ? "Related publication" : "Related publications"}:{" "}
           {mentionedPublications.map((pub, i) => (
             <span key={pub.id}>
-              <Link href="/publications" className="underline-offset-2 hover:underline">
+              <Link href="/research#publications" className="underline-offset-2 hover:underline">
                 {pub.title}
               </Link>
               {i < mentionedPublications.length - 1 ? "; " : ""}
