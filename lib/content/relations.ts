@@ -42,17 +42,21 @@ export interface RelationDef {
 export const RELATIONS: RelationDef[] = [
   { from: "site", path: "primaryInstitutionId", to: "institutions", strength: "optional", label: "primary institution" },
 
-  { from: "people", path: "affiliations[].institutionId", to: "institutions", strength: "required", label: "affiliation institution" },
+  // v3: optional — an affiliation may name a free-text `organization` instead.
+  { from: "people", path: "affiliations[].institutionId", to: "institutions", strength: "optional", label: "affiliation institution" },
 
   { from: "projects", path: "themeIds[]", to: "themes", strength: "optional", label: "research theme" },
   { from: "projects", path: "contributors[]", to: "people", strength: "optional", label: "contributor" },
-  { from: "projects", path: "links.publicationId", to: "publications", strength: "optional", label: "related publication" },
+  { from: "projects", path: "publicationIds[]", to: "publications", strength: "optional", label: "publication" },
 
   { from: "publications", path: "themeIds[]", to: "themes", strength: "optional", label: "research theme" },
   { from: "publications", path: "authors[].personId", to: "people", strength: "optional", label: "lab author" },
+  { from: "publications", path: "venueId", to: "venues", strength: "optional", label: "venue" },
 
-  { from: "posts", path: "authorId", to: "people", strength: "optional", label: "author" },
-  { from: "posts", path: "relatedPublicationId", to: "publications", strength: "optional", label: "related publication" },
+  { from: "posts", path: "authorIds[]", to: "people", strength: "optional", label: "author" },
+  { from: "posts", path: "mentions.personIds[]", to: "people", strength: "optional", label: "person mentioned" },
+  { from: "posts", path: "mentions.projectIds[]", to: "projects", strength: "optional", label: "project mentioned" },
+  { from: "posts", path: "mentions.publicationIds[]", to: "publications", strength: "optional", label: "publication mentioned" },
 
   { from: "recognitions", path: "personId", to: "people", strength: "required", label: "recipient" },
   { from: "recognitions", path: "publicationId", to: "publications", strength: "optional", label: "publication the award is for" },
@@ -61,6 +65,8 @@ export const RELATIONS: RelationDef[] = [
 
   { from: "courses", path: "personId", to: "people", strength: "required", label: "instructor" },
   { from: "courses", path: "institutionId", to: "institutions", strength: "optional", label: "institution" },
+
+  { from: "gallery", path: "personIds[]", to: "people", strength: "optional", label: "person in the photo" },
 ];
 
 /** Where each entity kind's records live in AllContent / SnapshotContent. */
@@ -75,6 +81,8 @@ export const COLLECTION_KEY: Record<EntityKind, string> = {
   service: "service",
   courses: "courses",
   sponsors: "sponsors",
+  venues: "venues",
+  gallery: "gallery",
 };
 
 /** Directory under content/ for each kind — used to map a changed file back to its entity. */
@@ -89,6 +97,8 @@ export const CONTENT_DIR: Record<EntityKind, string> = {
   service: "content/service",
   courses: "content/courses",
   sponsors: "content/sponsors",
+  venues: "content/venues",
+  gallery: "content/gallery",
 };
 
 type Rec = Record<string, unknown>;
@@ -161,7 +171,10 @@ export function labelOf(kind: EntityKind, record: Rec | undefined): string | und
     case "people":
       return pick("name");
     case "institutions":
+    case "venues":
       return pick("shortName", "name");
+    case "gallery":
+      return pick("caption", "id");
     case "recognitions":
       return pick("award");
     case "service":

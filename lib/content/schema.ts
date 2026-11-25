@@ -137,26 +137,102 @@ export const AffiliationTypeSchema = z.enum([
 ]);
 export type AffiliationType = z.infer<typeof AffiliationTypeSchema>;
 
-export const AffiliationSchema = z.strictObject({
-  institutionId: Slug,
-  department: z.string().optional(),
-  roleTitle: NonEmpty,
-  type: AffiliationTypeSchema.optional(),
-  startDate: YearMonth.optional(),
-  endDate: YearMonth.nullable().optional(),
-});
+/**
+ * A position at an institution — the person's career, inside or outside the lab.
+ *
+ * v3: `institutionId` became optional and `organization` (free text) was added, because an
+ * alumnus's next employer ("Penn State", "University of Maryland") rarely has an Institution
+ * record and creating one per employer is not worth it. Exactly one of the two names the
+ * place. By convention the FIRST entry is the person's current position — it is what an
+ * alumni tile shows as "now at".
+ */
+export const AffiliationSchema = z
+  .strictObject({
+    institutionId: Slug.optional(),
+    organization: z.string().trim().min(1).optional(),
+    department: z.string().optional(),
+    roleTitle: NonEmpty,
+    type: AffiliationTypeSchema.optional(),
+    startDate: YearMonth.optional(),
+    endDate: YearMonth.nullable().optional(),
+  })
+  .superRefine((a, ctx) => {
+    if (!a.institutionId && !a.organization) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["institutionId"],
+        message: "choose an institution, or type the organization's name",
+      });
+    }
+    if (a.institutionId && a.organization) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["organization"],
+        message: "set either an institution or an organization name, not both",
+      });
+    }
+  });
 export type Affiliation = z.infer<typeof AffiliationSchema>;
 
-export const PersonTypeSchema = z.enum([
+/**
+ * What someone was (or is) IN THE LAB. Declaration order is seniority order — it decides
+ * which role wins when a person holds two at once, and the group order on the People page.
+ *
+ * v3: replaces v2's `personType`. `grad-collaborator` was removed (2026-11-23 meeting:
+ * "everyone will fit one of those profiles"); `visiting-faculty` was added.
+ */
+export const LabRoleTypeSchema = z.enum([
   "lab-lead",
+  "visiting-faculty",
   "postdoc",
   "research-staff",
   "phd-student",
   "masters-student",
   "undergrad-student",
-  "grad-collaborator",
 ]);
-export type PersonType = z.infer<typeof PersonTypeSchema>;
+export type LabRoleType = z.infer<typeof LabRoleTypeSchema>;
+
+/**
+ * One stint in the lab. A person accumulates these: PhD student, then alumni; postdoc, then
+ * alumni. `current` is explicit rather than inferred from a missing `end`, because the real
+ * data is full of people who have left on a date nobody recorded — "ended, date unknown"
+ * has to be sayable without inventing a year.
+ */
+export const LabRoleSchema = z
+  .strictObject({
+    role: LabRoleTypeSchema,
+    current: z.boolean(),
+    start: YearMonth.optional(),
+    end: YearMonth.optional(),
+    /** Overrides the role's default wording for this stint, e.g. "Visiting Professor". */
+    title: z.string().optional(),
+    note: z.string().optional(),
+  })
+  .superRefine((r, ctx) => {
+    if (r.current && r.end) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["end"],
+        message: "a role with an end date cannot be current — untick current, or clear the end date",
+      });
+    }
+    if (r.start && r.end && r.end < r.start) {
+      ctx.addIssue({ code: "custom", path: ["end"], message: "ends before it starts" });
+    }
+  });
+export type LabRole = z.infer<typeof LabRoleSchema>;
+
+/** Identifiers that pin a person to their publication record elsewhere. */
+export const PersonIdsSchema = z.strictObject({
+  orcid: z
+    .string()
+    .regex(/^\d{4}-\d{4}-\d{4}-\d{3}[\dX]$/, 'must be an ORCID iD like "0000-0002-1825-0097"')
+    .optional(),
+  /** The `user=` value from a Google Scholar profile URL. */
+  scholarId: z.string().regex(/^[A-Za-z0-9_-]{12}$/, "must be the 12-character user= value from a Scholar profile URL").optional(),
+  /** DBLP person id, e.g. "13/3489" from dblp.org/pid/13/3489. */
+  dblpPid: z.string().regex(/^[0-9a-z]+\/[0-9A-Za-z-]+$/, 'must be a DBLP pid like "13/3489"').optional(),
+});
 
 export const EducationEntrySchema = z.strictObject({
   degree: NonEmpty,
@@ -191,20 +267,24 @@ export const PersonLinksSchema = z.strictObject({
   redirectUrl: Url.optional(),
 });
 
-export const LabTenureSchema = z.strictObject({
-  // Left optional rather than required: 16 existing records have no sourced joined year and
-  // the project's rule is never to invent data. validate.ts reports missing values as a
-  // WARNING, and the Studio form requires it for new records.
-  joinedYear: Year.optional(),
-  /** null/absent = still in the lab. Setting this is what moves someone to alumni. */
-  leftYear: Year.nullable().optional(),
-});
-
 export const PersonSchema = z.strictObject({
   id: Slug,
   name: NonEmpty,
-  personType: PersonTypeSchema,
+  /**
+   * v3: replaces `personType` + `labTenure`. Current member = has a `current` role; alumni =
+   * has roles, none current. Derived helpers live in lib/content/people.ts — never re-derive
+   * these rules inline.
+   */
+  labRoles: z.array(LabRoleSchema).min(1, "needs at least one lab role"),
+  /** Display title line under the name. Free text; the lab role is the structured fact. */
   roleTitle: NonEmpty,
+  /**
+   * Other spellings this person is published under ("C. Xu", "Xu, Chenhui"). The matcher
+   * treats an alias as strongly as the name itself, so list only spellings that really are
+   * this person.
+   */
+  aliases: z.array(NonEmpty).default([]),
+  ids: PersonIdsSchema.optional(),
   secondaryTitles: z.array(NonEmpty).optional(),
   photo: AssetPath.optional(),
   office: z.string().optional(),
@@ -212,7 +292,6 @@ export const PersonSchema = z.strictObject({
   profile: PersonProfileSchema.optional(),
   links: PersonLinksSchema.optional(),
   affiliations: z.array(AffiliationSchema).optional(),
-  labTenure: LabTenureSchema.optional(),
   sortWeight: z.number().int().optional(),
   ...envelope,
 });
@@ -238,7 +317,6 @@ export type ProjectStatus = z.infer<typeof ProjectStatusSchema>;
 
 export const ProjectLinksSchema = z.strictObject({
   paperUrl: Url.optional(),
-  publicationId: z.string().optional(),
   code: Url.optional(),
   demo: Url.optional(),
   video: Url.optional(),
@@ -250,8 +328,13 @@ export const ProjectSchema = z.strictObject({
   id: Slug,
   title: NonEmpty,
   tagline: NonEmpty,
+  /** Markdown write-up, rendered on the Projects page. */
   description: z.string().optional(),
   thumbnail: AssetPath.optional(),
+  /** Small square mark for the project, shown beside its title. */
+  icon: AssetPath.optional(),
+  /** v3: was `links.publicationId` (one). A project routinely has several papers. */
+  publicationIds: z.array(NonEmpty).default([]),
   // v2: was a single `themeId`. Projects and papers routinely span more than one research
   // thrust, and forcing a single tag is part of why only 17 of 301 publications were tagged.
   themeIds: z.array(Slug).default([]),
@@ -293,6 +376,9 @@ const publicationBase = {
   authors: z.array(AuthorRefSchema).min(1, "needs at least one author"),
   themeIds: z.array(Slug).default([]),
   thumbnail: AssetPath.optional(),
+  /** v3: the canonical venue record. Wins over `venue` for display once set. */
+  venueId: Slug.optional(),
+  /** Free-text venue as originally sourced. Kept as the display fallback until `venueId` is set. */
   venue: z.string().optional(),
   year: Year.optional(),
   dateDisplay: z.string().optional(),
@@ -303,6 +389,8 @@ const publicationBase = {
   doi: Doi.optional(),
   url: Url.optional(),
   pdfUrl: Url.optional(),
+  /** DBLP record key, e.g. "conf/iccad/HuXX24" — the stable link to DBLP's metadata. */
+  dblpKey: z.string().regex(/^[a-z]+\/[A-Za-z0-9_-]+\/[A-Za-z0-9_-]+$/, 'must be a DBLP key like "conf/iccad/HuXX24"').optional(),
   featured: z.boolean().default(false),
   featuredOrder: z.number().int().optional(),
   ...envelope,
@@ -368,6 +456,12 @@ export type Publication = z.infer<typeof PublicationSchema>;
 export const PostKindSchema = z.enum(["news", "blog"]);
 export type PostKind = z.infer<typeof PostKindSchema>;
 
+export const PostMentionsSchema = z.strictObject({
+  personIds: z.array(Slug).default([]),
+  projectIds: z.array(Slug).default([]),
+  publicationIds: z.array(NonEmpty).default([]),
+});
+
 export const PostSchema = z.strictObject({
   id: Slug,
   kind: PostKindSchema,
@@ -377,13 +471,58 @@ export const PostSchema = z.strictObject({
   /** Markdown body, read from the MDX file content rather than frontmatter. */
   body: z.string().optional(),
   image: AssetPath.optional(),
-  authorId: Slug.optional(),
+  /** v3: was a single `authorId`. */
+  authorIds: z.array(Slug).default([]),
   tags: z.array(NonEmpty).default([]),
   sourceUrl: Url.optional(),
-  relatedPublicationId: z.string().optional(),
+  /**
+   * v3: who and what the post is about — rendered as links, and counted on the other side
+   * ("news about this person"). Replaces v2's single `relatedPublicationId`.
+   */
+  mentions: PostMentionsSchema.optional(),
   ...envelope,
 });
 export type Post = z.infer<typeof PostSchema>;
+
+// --- Venue (v3) ----------------------------------------------------------------
+
+export const VenueKindSchema = z.enum(["conference", "journal", "workshop", "other"]);
+export type VenueKind = z.infer<typeof VenueKindSchema>;
+
+/**
+ * Where a paper appeared, once — instead of 235 free-text spellings across 405 papers. Ids
+ * follow the DBLP stream key where one exists (`conf/iccad` → `iccad`), so records seeded
+ * from DBLP and records added by hand share one naming scheme.
+ */
+export const VenueSchema = z.strictObject({
+  id: Slug,
+  /** Acronym or short form shown in charts and compact spots, e.g. "ICCAD". */
+  shortName: NonEmpty,
+  name: NonEmpty,
+  kind: VenueKindSchema,
+  /** DBLP stream key, e.g. "conf/iccad" or "journals/tcad". */
+  dblpKey: z.string().regex(/^(?:conf|journals|series)\/[A-Za-z0-9_-]+$/, 'must be a DBLP stream key like "conf/iccad"').optional(),
+  url: Url.optional(),
+  ...envelope,
+});
+export type Venue = z.infer<typeof VenueSchema>;
+
+// --- GalleryPhoto (v3) ---------------------------------------------------------
+
+/** A lab photo for the homepage banner. */
+export const GalleryPhotoSchema = z.strictObject({
+  id: Slug,
+  image: AssetPath,
+  caption: z.string().optional(),
+  date: IsoDate.optional(),
+  /** Lab members in the photo — optional, confirmed only. */
+  personIds: z.array(Slug).default([]),
+  /** Where the photo came from, e.g. a LinkedIn post URL or "lab group chat". */
+  source: z.string().optional(),
+  order: z.number().int().optional(),
+  ...envelope,
+});
+export type GalleryPhoto = z.infer<typeof GalleryPhotoSchema>;
 
 // --- Recognition ---------------------------------------------------------------
 
@@ -539,6 +678,8 @@ export const ENTITY_KINDS = [
   "service",
   "courses",
   "sponsors",
+  "venues",
+  "gallery",
 ] as const;
 
 export type EntityKind = (typeof ENTITY_KINDS)[number];

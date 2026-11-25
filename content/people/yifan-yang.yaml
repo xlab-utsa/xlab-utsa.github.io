@@ -1,6 +1,8 @@
 id: yifan-yang
 name: Yifan Yang
-personType: phd-student
+labRoles:
+  - role: phd-student
+    current: true
 roleTitle: PhD Student, 2nd Year, Computer Science & Engineering
 photo: /images/people/yifan-yang.png
 links:

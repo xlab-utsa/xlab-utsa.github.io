@@ -20,9 +20,11 @@ const STATUS_LABELS: Record<NonNullable<Project["projectStatus"]>, string> = {
 
 function resolvePaperLink(project: Project): string | undefined {
   if (project.links?.paperUrl) return project.links.paperUrl;
-  const pub = project.links?.publicationId
-    ? getPublicationById(project.links.publicationId)
-    : undefined;
+  // The first linked publication that resolves stands for the project's paper; the full
+  // list renders on the Projects page (Phase 2).
+  const pub = project.publicationIds
+    .map((id) => getPublicationById(id))
+    .find((p) => p !== undefined);
   if (!pub) return undefined;
   if (pub.pdfUrl) return pub.pdfUrl;
   if (pub.url) return pub.url;

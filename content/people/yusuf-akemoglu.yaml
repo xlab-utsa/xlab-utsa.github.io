@@ -1,0 +1,17 @@
+id: yusuf-akemoglu
+name: Yusuf Akemoğlu
+labRoles:
+  - role: visiting-faculty
+    current: false
+    title: Visiting Professor
+roleTitle: Associate Professor, Düzce University, Türkiye
+aliases:
+  - Yusuf Akemoglu
+  - Y. Akemoglu
+affiliations:
+  - organization: Düzce University
+    roleTitle: Associate Professor
+    type: primary
+_meta:
+  source: 2026-11-23 website meeting; DBLP (co-author on AIED 2025 "ASD-HI"); DergiPark journal listings naming "Doç. Dr. Yusuf Akemoğlu (Düzce Üniversitesi)", checked 2026-11-25
+  note: Visiting professor in the lab, now back in Turkey (meeting). The current position (Associate Professor, Düzce University) comes from journal editorial-board listings, not a university profile — CONFIRM before relying on it. No photo or links found yet.

@@ -3,7 +3,6 @@ import {
   Code2,
   GraduationCap,
   Globe,
-  Landmark,
   Mail,
 } from "lucide-react";
 
@@ -11,17 +10,19 @@ import { ExternalLink } from "@/components/external-link";
 import type { Person } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
+// The four links agreed in the 2026-11-23 meeting (SPEC.md §4.2). universityProfile and
+// github stay in the schema but are not shown as icons.
+//
 // lucide-react dropped brand/logo marks — LinkedIn/GitHub use generic stand-ins
 // (Briefcase/Code2), same convention used elsewhere on the site.
 const LINK_ICONS = [
   { key: "email", icon: Mail, label: "Email" },
   { key: "scholar", icon: GraduationCap, label: "Google Scholar" },
   { key: "website", icon: Globe, label: "Personal website" },
-  { key: "universityProfile", icon: Landmark, label: "University profile" },
   { key: "linkedin", icon: Briefcase, label: "LinkedIn" },
 ] as const;
 
-// Always renders all 6 possible link icons for every person, for visual consistency
+// Always renders all 4 link icons for every person, for visual consistency
 // across cards — icons with no data for this person render as inert, greyed-out
 // placeholders (no href, not a link, not in tab order) rather than being omitted.
 export function PersonLinkIcons({

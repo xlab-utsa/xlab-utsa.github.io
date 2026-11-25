@@ -6,30 +6,27 @@
 // CLIENT-SAFE: pure functions over the snapshot.
 "use client";
 
-import type { Person, SiteMeta } from "@/lib/content/schema";
+import { primaryRole } from "@/lib/content/people";
+import type { LabRole, LabRoleType, Person, SiteMeta } from "@/lib/content/schema";
 
 type Rec = Record<string, unknown>;
 
-export const PERSON_TYPE_LABELS: Record<string, string> = {
-  "lab-lead": "Lab lead / PI",
-  postdoc: "Postdoc",
-  "research-staff": "Research staff",
-  "phd-student": "PhD student",
-  "masters-student": "Master's student",
-  "undergrad-student": "Undergraduate",
-  "grad-collaborator": "Collaborator",
-};
-
 /** How that position is usually written on a title line. */
-const PERSON_TYPE_TITLE: Record<string, string> = {
+const ROLE_TITLE: Record<LabRoleType, string> = {
   "lab-lead": "Lab Lead",
+  "visiting-faculty": "Visiting Professor",
   postdoc: "Postdoctoral Researcher",
   "research-staff": "Research Staff",
   "phd-student": "PhD Student",
   "masters-student": "Master's Student",
   "undergrad-student": "Undergraduate Researcher",
-  "grad-collaborator": "Graduate Collaborator",
 };
+
+/** The role a (possibly half-filled) record represents, read safely from untyped form state. */
+export function roleOfRecord(record: Rec): LabRoleType | undefined {
+  const roles = Array.isArray(record.labRoles) ? (record.labRoles as LabRole[]) : [];
+  return roles.length ? primaryRole({ labRoles: roles })?.role : undefined;
+}
 
 export const LINK_KEYS = ["email", "scholar", "website", "linkedin", "github", "universityProfile"] as const;
 export type LinkKey = (typeof LINK_KEYS)[number];
@@ -66,8 +63,8 @@ export function profileRecommendations(
 ): ProfileRecommendations {
   const self = String(record.id ?? "");
   const others = content.people.filter((p) => p.id !== self);
-  const type = typeof record.personType === "string" ? record.personType : undefined;
-  const peers = others.filter((p) => p.personType === type);
+  const type = roleOfRecord(record);
+  const peers = type ? others.filter((p) => primaryRole(p)?.role === type) : [];
   // Peers first; the whole lab when there are none of this position yet.
   const pool = peers.length ? peers : others;
 
@@ -76,7 +73,7 @@ export function profileRecommendations(
     mostCommon(pool.map((p) => p.affiliations?.[0]?.institutionId)) ?? content.siteMeta?.primaryInstitutionId;
   const inst = content.institutions.find((i) => i.id === institutionId);
 
-  const titleBase = type ? PERSON_TYPE_TITLE[type] : undefined;
+  const titleBase = type ? ROLE_TITLE[type] : undefined;
   const titleLine = titleBase ? (department ? `${titleBase}, ${department}` : titleBase) : undefined;
 
   const withBio = others

@@ -1,6 +1,8 @@
 id: jinjun-xiong
 name: Jinjun Xiong
-personType: lab-lead
+labRoles:
+  - role: lab-lead
+    current: true
 roleTitle: Founding Dean, College of AI, Cyber and Computing
 secondaryTitles:
   - Scientific Director, National AI Institute for Exceptional Education

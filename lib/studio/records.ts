@@ -4,6 +4,7 @@
 import { stringify } from "yaml";
 import { filePathFor, type EntityDef } from "./entities";
 import type { FileChange, SnapshotContent } from "./api";
+import { joinedYear } from "@/lib/content/people";
 
 // --- serialization -------------------------------------------------------------
 
@@ -131,7 +132,7 @@ export function profileTodos(person: Partial<SnapshotContent["people"][number]> 
     { key: "scholarOrSite", label: "Link your Scholar profile or website", done: Boolean(p.links?.scholar || p.links?.website) },
     { key: "email", label: "Add a contact email", done: Boolean(p.links?.email) },
     { key: "affiliation", label: "Add your affiliation", done: Boolean(p.affiliations?.length) },
-    { key: "joinedYear", label: "Add the year you joined", done: p.labTenure?.joinedYear !== undefined },
+    { key: "joinedYear", label: "Add the year you joined", done: joinedYear({ labRoles: Array.isArray(p.labRoles) ? p.labRoles : [] }) !== undefined },
   ];
 }
 

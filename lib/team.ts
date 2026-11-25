@@ -1,5 +1,5 @@
 // Team-section helpers. `lib/content/index.ts`'s getters intentionally don't sort by
-// `sortWeight` or group by `personType` (that's presentation, not data-loading) — this
+// `sortWeight` or group by lab role (that's presentation, not data-loading) — this
 // module owns that, plus the card click-through resolution from SPEC.md decision #4.
 import {
   getInstitutionById,
@@ -8,8 +8,7 @@ import {
   type Recognition,
   type RecognitionCategory,
 } from "@/lib/content";
-
-type PersonType = Person["personType"];
+import { LAB_ROLE_SHORT_LABELS, primaryRole } from "@/lib/content/people";
 
 export function scholarSearchUrl(name: string): string {
   return `https://scholar.google.com/scholar?q=${encodeURIComponent(name)}`;
@@ -43,9 +42,16 @@ export function getPrimaryAffiliation(person: Person): Affiliation | undefined {
   );
 }
 
+/**
+ * The place an affiliation names, for display: the Institution record's short name (or full
+ * name), or — v3 — the free-text `organization` when there is no record.
+ */
 export function getAffiliationInstitutionLabel(affiliation: Affiliation): string {
-  const institution = getInstitutionById(affiliation.institutionId);
-  return institution?.shortName ?? institution?.name ?? affiliation.institutionId;
+  if (affiliation.organization) return affiliation.organization;
+  const institution = affiliation.institutionId
+    ? getInstitutionById(affiliation.institutionId)
+    : undefined;
+  return institution?.shortName ?? institution?.name ?? affiliation.institutionId ?? "";
 }
 
 export function sortPeople(people: Person[]): Person[] {
@@ -58,43 +64,12 @@ export function sortPeople(people: Person[]): Person[] {
   });
 }
 
-// Declaration order in types/content.ts's PersonType union is the intended seniority
-// order for #team groupings.
-export const PERSON_TYPE_GROUPS: { type: PersonType; label: string }[] = [
-  { type: "lab-lead", label: "Lab Lead" },
-  { type: "postdoc", label: "Postdoctoral Researchers" },
-  { type: "research-staff", label: "Research Staff" },
-  { type: "phd-student", label: "PhD Students" },
-  { type: "masters-student", label: "Master's Students" },
-  { type: "undergrad-student", label: "Undergraduate Students" },
-  { type: "grad-collaborator", label: "Graduate Collaborators" },
-];
-
-export function groupByPersonType(
-  people: Person[]
-): { type: PersonType; label: string; people: Person[] }[] {
-  const sorted = sortPeople(people);
-  return PERSON_TYPE_GROUPS.map(({ type, label }) => ({
-    type,
-    label,
-    people: sorted.filter((p) => p.personType === type),
-  })).filter((group) => group.people.length > 0);
-}
-
-// Short form for dense tiles (hero "lab, today" band, compact member grids) where
-// the full PERSON_TYPE_GROUPS label ("Postdoctoral Researchers") is too long.
-const PERSON_TYPE_SHORT_LABELS: Record<PersonType, string> = {
-  "lab-lead": "PI",
-  postdoc: "Postdoc",
-  "research-staff": "Staff",
-  "phd-student": "PhD",
-  "masters-student": "MS",
-  "undergrad-student": "Undergrad",
-  "grad-collaborator": "Collaborator",
-};
-
-export function personTypeShortLabel(type: PersonType): string {
-  return PERSON_TYPE_SHORT_LABELS[type];
+// Short role label for dense tiles ("PhD", "Postdoc"), taken from the person's primary lab
+// role — their most senior current role, or for alumni the role they last held. The role
+// rules themselves live in lib/content/people.ts.
+export function roleShortLabel(person: Person): string {
+  const role = primaryRole(person)?.role;
+  return role ? LAB_ROLE_SHORT_LABELS[role] : "";
 }
 
 const RECOGNITION_CATEGORY_LABELS: Record<RecognitionCategory, string> = {

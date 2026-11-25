@@ -1,19 +1,24 @@
 id: qingxiao-zheng
 name: Qingxiao Zheng
-personType: postdoc
-roleTitle: Postdoctoral Fellow, Computer Science & Engineering
-office: 215 Lockwood
+labRoles:
+  - role: postdoc
+    current: false
+roleTitle: Assistant Professor, College of Information Sciences and Technology, Penn State
 photo: /images/people/qingxiao-zheng.png
 links:
-  email: qingxiao@buffalo.edu
+  email: qpz5159@psu.edu
   scholar: https://scholar.google.com/citations?user=9EsqxyoAAAAJ&hl=en
   website: https://qingxiaozheng.com/
-  universityProfile: https://www.buffalo.edu/ai-data-science/people/external-faculty.host.html/content/shared/www/ai-data-science/faculty/zheng-qingxiao.html
+  universityProfile: https://ist.psu.edu/directory/qpz5159
+  redirectUrl: https://ist.psu.edu/directory/qpz5159
 affiliations:
+  - organization: The Pennsylvania State University
+    department: College of Information Sciences and Technology
+    roleTitle: Assistant Professor
+    type: primary
   - institutionId: ub
     department: Computer Science & Engineering
     roleTitle: Postdoctoral Fellow
-    type: primary
 _meta:
-  source: data-extraction/sources/01-xlab-test-web-hugo-site/extracted/team-staff.yaml
-  note: No joined/left year in source — labTenure left absent per SPEC.md §7 rather than invented.
+  source: data-extraction/sources/01-xlab-test-web-hugo-site/extracted/team-staff.yaml; Penn State IST directory (ist.psu.edu/directory/qpz5159), checked 2026-11-25
+  note: Moved to alumni per the 2026-11-23 website meeting — was a postdoc in the lab, now Assistant Professor at Penn State. Postdoc start/end years not in any source, so left unset rather than invented. Email and university profile updated from the Penn State directory; her card links to that profile as the meeting asked; office (215 Lockwood, UB) dropped as no longer current.

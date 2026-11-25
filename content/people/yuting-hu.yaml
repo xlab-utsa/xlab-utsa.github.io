@@ -1,6 +1,8 @@
 id: yuting-hu
 name: Yuting Hu
-personType: phd-student
+labRoles:
+  - role: phd-student
+    current: true
 roleTitle: PhD Candidate, 4th Year, Computer Science & Engineering
 photo: /images/people/yuting-hu.png
 links:

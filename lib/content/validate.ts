@@ -27,6 +27,7 @@ import path from "path";
 import { loadAllRecords, type AllContent } from "./index";
 import { ContentValidationError } from "./loader";
 import { titleKey } from "./matching";
+import { isLabLead, joinedYear } from "./people";
 import {
   COLLECTION_KEY,
   RELATIONS,
@@ -57,6 +58,8 @@ function referencedAssets(c: AllContent): Map<string, string[]> {
   add(c.siteMeta.logo?.dark, "site.yaml logo.dark");
   for (const x of c.people) add(x.photo, `people/${x.id}.yaml photo`);
   for (const x of c.projects) add(x.thumbnail, `projects/${x.id}.yaml thumbnail`);
+  for (const x of c.projects) add(x.icon, `projects/${x.id}.yaml icon`);
+  for (const x of c.gallery) add(x.image, `gallery/${x.id}.yaml image`);
   for (const x of c.publications) add(x.thumbnail, `publications/${x.id}.yaml thumbnail`);
   for (const x of c.posts) add(x.image, `posts/${x.id}.mdx image`);
   for (const x of c.institutions) add(x.logo, `institutions/${x.id}.yaml logo`);
@@ -244,10 +247,10 @@ export function validateContent(preloaded?: AllContent): ValidationReport {
 
   // --- data-quality warnings ---------------------------------------------------
   for (const p of content.people) {
-    if (p.personType !== "lab-lead" && p.labTenure?.joinedYear === undefined) {
-      // Not an error: 16 records have no sourced joined year and this project's rule is
-      // never to invent data. Studio requires it for new and edited records.
-      add({ level: "warning", code: "no-joined-year", entity: "people", id: p.id, message: `people/${p.id}.yaml: no labTenure.joinedYear` });
+    if (!isLabLead(p) && joinedYear(p) === undefined) {
+      // Not an error: most records have no sourced start year and this project's rule is
+      // never to invent data. Studio asks for it on new and edited records.
+      add({ level: "warning", code: "no-joined-year", entity: "people", id: p.id, message: `people/${p.id}.yaml: no lab role has a start year` });
     }
     if (!p.photo) {
       add({ level: "warning", code: "no-photo", entity: "people", id: p.id, message: `people/${p.id}.yaml: no photo` });
@@ -279,6 +282,20 @@ export function validateContent(preloaded?: AllContent): ValidationReport {
       covered: content.publications.filter((p) => p.themeIds.length > 0).length,
       total: content.publications.length,
       hint: "Untagged publications do not appear in the research browser.",
+    },
+    {
+      key: "publications-with-venue",
+      label: "Publications linked to a venue record",
+      covered: content.publications.filter((p) => p.venueId).length,
+      total: content.publications.filter((p) => p.category !== "patent").length,
+      hint: "Unlinked papers fall back to their free-text venue and are left out of venue charts. Patents have no venue.",
+    },
+    {
+      key: "publications-with-doi-or-url",
+      label: "Publications with a DOI or link",
+      covered: content.publications.filter((p) => p.doi || p.url).length,
+      total: content.publications.length,
+      hint: "Without one, a visitor has no way to reach the paper itself.",
     },
     {
       key: "projects-with-contributors",

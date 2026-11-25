@@ -4,7 +4,7 @@ import { PersonLinkIcons } from "@/components/person-link-icons";
 import { publicFileExists, withBasePath } from "@/lib/content/assets";
 import type { Person } from "@/lib/content";
 import { cn } from "@/lib/utils";
-import { personTypeShortLabel, resolvePersonRedirectUrl } from "@/lib/team";
+import { resolvePersonRedirectUrl, roleShortLabel } from "@/lib/team";
 
 function initials(name: string): string {
   return name
@@ -69,7 +69,7 @@ export function TeamCard({
 }) {
   const redirectUrl = resolvePersonRedirectUrl(person);
   const hasPhoto = publicFileExists(person.photo);
-  const roleLabel = personTypeShortLabel(person.personType);
+  const roleLabel = roleShortLabel(person);
   const style = VARIANT[variant];
   const circular = variant === "alumni";
 

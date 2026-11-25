@@ -1,17 +1,21 @@
 id: chenhui-xu
 name: Chenhui Xu
-personType: phd-student
-roleTitle: PhD Candidate, 3rd Year, Computer Science & Engineering
+labRoles:
+  - role: phd-student
+    current: false
+roleTitle: PhD Student, University of Maryland
 photo: /images/people/chenhui-xu.png
 links:
   email: cxu26@buffalo.edu
   scholar: https://scholar.google.com/citations?user=SjjiXpYAAAAJ&hl=zh-CN
   website: https://minihuihui.github.io/
 affiliations:
+  - organization: University of Maryland
+    roleTitle: PhD Student
+    type: primary
   - institutionId: ub
     department: Computer Science & Engineering
     roleTitle: PhD Candidate
-    type: primary
 _meta:
-  source: data-extraction/sources/01-xlab-test-web-hugo-site/extracted/team-phd.yaml
-  note: No joined/left year in source — labTenure left absent per SPEC.md §7 rather than invented.
+  source: data-extraction/sources/01-xlab-test-web-hugo-site/extracted/team-phd.yaml; 2026-11-23 website meeting
+  note: Moved to alumni per the 2026-11-23 website meeting — continuing his PhD at the University of Maryland. Kept as alumni (not removed) because he was in the lab longer and published with it. Lab start/end years not in any source, so left unset rather than invented.

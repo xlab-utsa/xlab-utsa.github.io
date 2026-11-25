@@ -6,7 +6,7 @@ import { personCompleteness, profileTodos } from "./records";
 import type { Person } from "@/lib/content/schema";
 
 const person = (over: Partial<Person>): Person =>
-  ({ id: "x", name: "X", personType: "phd-student", roleTitle: "PhD Student", status: "published", ...over }) as Person;
+  ({ id: "x", name: "X", labRoles: [{ role: "phd-student", current: true }], roleTitle: "PhD Student", status: "published", ...over }) as Person;
 
 const content = {
   institutions: [{ id: "utsa", name: "The University of Texas at San Antonio", shortName: "UTSA" }, { id: "ub", name: "University at Buffalo", shortName: "UB" }],
@@ -14,13 +14,13 @@ const content = {
   people: [
     person({ id: "a", name: "A One", affiliations: [{ institutionId: "ub", department: "Computer Science & Engineering", roleTitle: "PhD Student" }], links: { scholar: "https://s/a", email: "a@x" }, bio: "A One works on efficient inference for large models on edge devices, with a focus on compilers." }),
     person({ id: "b", name: "B Two", affiliations: [{ institutionId: "ub", department: "Computer Science & Engineering", roleTitle: "PhD Student" }], links: { scholar: "https://s/b" } }),
-    person({ id: "c", name: "C Three", personType: "postdoc", roleTitle: "Postdoc", affiliations: [{ institutionId: "utsa", department: "College of AI", roleTitle: "Postdoc" }], links: { website: "https://c" } }),
+    person({ id: "c", name: "C Three", labRoles: [{ role: "postdoc", current: true }], roleTitle: "Postdoc", affiliations: [{ institutionId: "utsa", department: "College of AI", roleTitle: "Postdoc" }], links: { website: "https://c" } }),
   ],
 };
 
 describe("profileRecommendations", () => {
   it("suggests the department and institution most peers of the same position use", () => {
-    const r = profileRecommendations({ id: "new", name: "New Person", personType: "phd-student" }, content);
+    const r = profileRecommendations({ id: "new", name: "New Person", labRoles: [{ role: "phd-student", current: true }] }, content);
     assert.equal(r.department, "Computer Science & Engineering");
     assert.equal(r.institutionId, "ub");
     assert.equal(r.institutionName, "UB");
@@ -28,7 +28,7 @@ describe("profileRecommendations", () => {
   });
 
   it("falls back to the whole lab, then the site's primary institution", () => {
-    const r = profileRecommendations({ id: "new", name: "New", personType: "research-staff" }, content);
+    const r = profileRecommendations({ id: "new", name: "New", labRoles: [{ role: "research-staff", current: true }] }, content);
     assert.equal(r.department, "Computer Science & Engineering");
     const empty = profileRecommendations({ id: "new", name: "New" }, { ...content, people: [] });
     assert.equal(empty.institutionId, "utsa");

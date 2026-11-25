@@ -15,6 +15,7 @@
     "validate:content": "tsx scripts/validate-content.ts",
     "test": "tsx --test \"lib/**/*.test.ts\" \"workers/xlab-gate/src/*.test.mts\"",
     "migrate:content": "node scripts/migrate-content-v2.mjs",
+    "migrate:content:v3": "node scripts/migrate-content-v3.mjs",
     "check": "npm run typecheck && npm run validate:content && npm run lint && npm test"
   },
   "repository": {

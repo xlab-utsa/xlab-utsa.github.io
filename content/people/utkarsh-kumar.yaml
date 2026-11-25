@@ -1,6 +1,8 @@
 id: utkarsh-kumar
 name: Utkarsh Kumar
-personType: phd-student
+labRoles:
+  - role: phd-student
+    current: true
 roleTitle: PhD Student, 2nd Year, Computer Science & Engineering
 photo: /images/people/utkarsh-kumar.jpg
 links:

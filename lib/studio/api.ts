@@ -11,6 +11,7 @@ import type { RosterEntry } from "@/lib/access/roster";
 import type { SnapshotReport } from "@/lib/content/report";
 import type {
   Course,
+  GalleryPhoto,
   Institution,
   Person,
   Post,
@@ -21,6 +22,7 @@ import type {
   ServiceRecord,
   SiteMeta,
   Sponsor,
+  Venue,
 } from "@/lib/content/schema";
 
 // --- session -------------------------------------------------------------------
@@ -218,6 +220,8 @@ export interface SnapshotContent {
   service: ServiceRecord[];
   courses: Course[];
   sponsors: Sponsor[];
+  venues: Venue[];
+  gallery: GalleryPhoto[];
 }
 
 export interface Snapshot {

@@ -53,10 +53,12 @@ export default async function BlogPostPage({
   const post = getPostById(slug);
   if (!post || post.kind !== "blog") notFound();
 
-  const author = post.authorId ? getPersonById(post.authorId) : undefined;
-  const relatedPublication = post.relatedPublicationId
-    ? getPublicationById(post.relatedPublicationId)
-    : undefined;
+  const authors = post.authorIds
+    .map((id) => getPersonById(id))
+    .filter((p) => p !== undefined);
+  const mentionedPublications = (post.mentions?.publicationIds ?? [])
+    .map((id) => getPublicationById(id))
+    .filter((p) => p !== undefined);
 
   return (
     <article className="mx-auto max-w-3xl px-6 py-14 sm:px-10">
@@ -68,7 +70,7 @@ export default async function BlogPostPage({
       </Link>
       <p className="mt-6 font-mono text-xs tracking-wide text-text-faint uppercase">
         {formatPostDate(post.date, { year: "numeric", month: "long", day: "numeric" })}
-        {author && ` · by ${author.name}`}
+        {authors.length > 0 && ` · by ${authors.map((a) => a.name).join(", ")}`}
       </p>
       <h1 className="mt-2 text-4xl font-bold tracking-tight text-foreground">
         {post.title}
@@ -85,12 +87,17 @@ export default async function BlogPostPage({
         </div>
       )}
       {post.body && <Markdown className="mt-8">{post.body}</Markdown>}
-      {relatedPublication && (
+      {mentionedPublications.length > 0 && (
         <p className="mt-8 text-sm text-muted-foreground">
-          Related publication:{" "}
-          <Link href="/publications" className="underline-offset-2 hover:underline">
-            {relatedPublication.title}
-          </Link>
+          {mentionedPublications.length === 1 ? "Related publication" : "Related publications"}:{" "}
+          {mentionedPublications.map((pub, i) => (
+            <span key={pub.id}>
+              <Link href="/publications" className="underline-offset-2 hover:underline">
+                {pub.title}
+              </Link>
+              {i < mentionedPublications.length - 1 ? "; " : ""}
+            </span>
+          ))}
         </p>
       )}
       {post.sourceUrl && (

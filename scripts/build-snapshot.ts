@@ -42,7 +42,7 @@ const snapshot = {
   // change has finished deploying yet.
   generatedAt: new Date().toISOString(),
   commit: gitRev(),
-  schemaVersion: 2,
+  schemaVersion: 3,
   counts: {
     institutions: content.institutions.length,
     people: content.people.length,
@@ -54,6 +54,8 @@ const snapshot = {
     service: content.service.length,
     courses: content.courses.length,
     sponsors: content.sponsors.length,
+    venues: content.venues.length,
+    gallery: content.gallery.length,
   },
   report: { issues: report.issues, coverage: report.coverage },
   content,

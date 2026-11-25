@@ -26,10 +26,12 @@ import { relativeTime } from "@/lib/studio/submissions";
 import {
   initialsOf,
   LINK_KEYS,
-  PERSON_TYPE_LABELS,
   profileRecommendations,
+  roleOfRecord,
   type LinkKey,
 } from "@/lib/studio/recommendations";
+import { editableRoleIndex, LAB_ROLE_LABELS } from "@/lib/content/people";
+import type { LabRole, LabRoleType } from "@/lib/content/schema";
 import { withBasePath } from "@/lib/base-path";
 import { FieldInput } from "./field-input";
 import { ActionButton, Notice } from "./notice";
@@ -227,12 +229,30 @@ export function ProfileForm({
 
   if (!entity) return null;
 
-  const position = typeof record.personType === "string" ? record.personType : "";
+  // v3: the card edits ONE lab role — the person's current one (or, for an alumnus, the last
+  // one they held). Earlier stints stay in labRoles untouched and are edited under "More".
+  const roles = Array.isArray(record.labRoles) ? (record.labRoles as LabRole[]) : [];
+  const roleIdx = Math.max(0, editableRoleIndex(roles));
+  const rolePath = (key: keyof LabRole): Path => ["labRoles", roleIdx, key];
+  const position = roleOfRecord(record) ?? "";
+  // The first edit to a record with no role yet creates its one current role.
+  const withRole = (r: Rec, role: LabRoleType = "phd-student"): Rec =>
+    Array.isArray(r.labRoles) && r.labRoles.length ? r : { ...r, labRoles: [{ role, current: true }] };
+  const setPosition = (role: LabRoleType) => setRecord((r) => setPath(withRole(r, role), rolePath("role"), role));
+  const roleStart = get(rolePath("start"));
+  const startYear = roles.length && typeof roleStart === "string" ? roleStart.slice(0, 4) : "";
+  const setStartYear = (year: string) => setRecord((r) => setPath(withRole(r), rolePath("start"), year || undefined));
+  const roleEnd = roles.length ? get(rolePath("end")) : undefined;
+  // Setting an end year makes the role past; clearing it makes the role current again.
+  const setEndYear = (year: unknown) =>
+    setRecord((r) => {
+      const y = year === undefined || year === null || year === "" ? undefined : String(year);
+      return setPath(setPath(withRole(r), rolePath("end"), y), rolePath("current"), y === undefined);
+    });
   const links = (record.links ?? {}) as Partial<Record<LinkKey, string>>;
   const openDef = openLink ? LINK_DEFS[openLink] : undefined;
   const institutionId = text(["affiliations", 0, "institutionId"]);
   const department = text(["affiliations", 0, "department"]);
-  const joinedYear = get(["labTenure", "joinedYear"]);
 
   // Recommendations: only ones that apply right now, most useful first, at most five.
   // `apply` only touches state; focusing a control is named by key and done in the click
@@ -244,7 +264,7 @@ export function ProfileForm({
   if (!text(["bio"])) tips.push({ id: "bio", text: rec.bioExample ? <>Two or three sentences, third person. {rec.bioExample.name}&apos;s reads: <span className="text-foreground">“{rec.bioExample.bio.length > 160 ? rec.bioExample.bio.slice(0, 160) + "…" : rec.bioExample.bio}”</span></> : <>Two or three sentences, in the third person: what {first} works on, and why it matters.</>, action: { label: `Start with “${rec.bioStarter.trim()}…”`, apply: () => set(["bio"])(rec.bioStarter), focus: "bio" } });
   if (rec.topLink && !links[rec.topLink] && rec.memberCount > 0) tips.push({ id: "link", text: <>{rec.linkCounts[rec.topLink]} of {rec.memberCount} lab members list {LINK_DEFS[rec.topLink].label} — it&apos;s what visitors look for first.</>, action: { label: `Add ${LINK_DEFS[rec.topLink].label}`, apply: () => setOpenLink(rec.topLink) } });
   if (!institutionId && rec.institutionId) tips.push({ id: "aff", text: <>Most of the lab lists <span className="text-foreground">{rec.institutionName ?? rec.institutionId}{rec.department ? ` · ${rec.department}` : ""}</span>.</>, action: { label: "Use that", apply: () => { setRecord((r) => { let next = setPath(r, ["affiliations", 0, "institutionId"], rec.institutionId); if (rec.department && !department) next = setPath(next, ["affiliations", 0, "department"], rec.department); return next; }); } } });
-  if (joinedYear === undefined) tips.push({ id: "year", text: <>Joined this year? One click. (The year is what moves you to alumni correctly later — not before.)</>, action: { label: `Set ${rec.currentYear}`, apply: () => set(["labTenure", "joinedYear"])(rec.currentYear) } });
+  if (!startYear) tips.push({ id: "year", text: <>Joined this year? One click. (Start and end years are what move you to alumni correctly later — not before.)</>, action: { label: `Set ${rec.currentYear}`, apply: () => setStartYear(String(rec.currentYear)) } });
   if (tips.length === 0) tips.push({ id: "done", text: <>Nothing left on the list. Education, office and other titles live under <em>More</em> whenever you feel like it.</> });
 
   return (
@@ -348,13 +368,15 @@ export function ProfileForm({
                 />
                 {err(["roleTitle"]) && <p className="text-[11px] text-brand-orange">{err(["roleTitle"])}</p>}
                 <div className="flex flex-wrap gap-1.5 pt-2" role="group" aria-label="Position">
-                  {Object.entries(PERSON_TYPE_LABELS).map(([value, label]) => (
-                    <button key={value} type="button" onClick={() => set(["personType"])(value)} aria-pressed={position === value} className={chip(position === value)}>
+                  {(Object.entries(LAB_ROLE_LABELS) as [LabRoleType, string][]).map(([value, label]) => (
+                    <button key={value} type="button" onClick={() => setPosition(value)} aria-pressed={position === value} className={chip(position === value)}>
                       {label}
                     </button>
                   ))}
                 </div>
-                {err(["personType"]) && <p className="text-[11px] text-brand-orange">{err(["personType"])}</p>}
+                {(err(["labRoles"]) || err(rolePath("role"))) && (
+                  <p className="text-[11px] text-brand-orange">{err(["labRoles"]) ?? err(rolePath("role"))}</p>
+                )}
 
                 {/* affiliation line */}
                 <div className="flex flex-wrap items-center gap-x-1 gap-y-1 pt-3 font-mono text-[12px] text-text-faint">
@@ -385,16 +407,16 @@ export function ProfileForm({
                   <input
                     ref={yearRef}
                     type="number"
-                    value={joinedYear === undefined || joinedYear === null ? "" : String(joinedYear)}
-                    onChange={(e) => set(["labTenure", "joinedYear"])(e.target.value === "" ? undefined : Number(e.target.value))}
+                    value={startYear}
+                    onChange={(e) => setStartYear(e.target.value.slice(0, 4))}
                     aria-label="Year you joined the lab"
                     placeholder={String(rec.currentYear)}
-                    className={`${inline} w-[72px] font-mono text-[12px] ${joinedYear !== undefined ? "text-foreground" : ""}`}
+                    className={`${inline} w-[72px] font-mono text-[12px] ${startYear ? "text-foreground" : ""}`}
                   />
                 </div>
-                {(err(["affiliations", 0, "institutionId"]) || err(["affiliations", 0, "department"]) || err(["labTenure", "joinedYear"])) && (
+                {(err(["affiliations", 0, "institutionId"]) || err(["affiliations", 0, "department"]) || err(rolePath("start"))) && (
                   <p className="text-[11px] text-brand-orange">
-                    {err(["affiliations", 0, "institutionId"]) ?? err(["affiliations", 0, "department"]) ?? err(["labTenure", "joinedYear"])}
+                    {err(["affiliations", 0, "institutionId"]) ?? err(["affiliations", 0, "department"]) ?? err(rolePath("start"))}
                   </p>
                 )}
               </div>
@@ -466,7 +488,7 @@ export function ProfileForm({
               <div className="space-y-4 border-t border-hairline p-3">
                 <div className="grid gap-4 md:grid-cols-2">
                   <FieldInput spec={{ ...spec("office"), placeholder: "NPB 3.210" }} value={get(["office"])} onChange={set(["office"])} error={err(["office"])} />
-                  <FieldInput spec={{ ...sub("labTenure", "leftYear"), label: "Year you left the lab", help: "Only if you have — this moves you to alumni." }} value={get(["labTenure", "leftYear"])} onChange={set(["labTenure", "leftYear"])} error={err(["labTenure", "leftYear"])} />
+                  <FieldInput spec={{ key: "end", label: "Year you left the lab", kind: "string", optional: true, nullable: false, placeholder: "YYYY", help: "Only if you have — this moves you to alumni." }} value={typeof roleEnd === "string" ? roleEnd : undefined} onChange={setEndYear} error={err(rolePath("end"))} />
                   <FieldInput spec={{ ...sub("links", "redirectUrl"), label: "Card click goes to", help: "Normally your website; set this only to override." }} value={get(["links", "redirectUrl"])} onChange={set(["links", "redirectUrl"])} error={err(["links", "redirectUrl"])} />
                   <FieldInput spec={{ ...sub("affiliations", "roleTitle"), label: "Role at your institution", help: "Left blank, your title line is used." }} value={get(["affiliations", 0, "roleTitle"])} onChange={set(["affiliations", 0, "roleTitle"])} error={err(["affiliations", 0, "roleTitle"])} />
                 </div>
@@ -553,7 +575,7 @@ export function ProfileForm({
 }
 
 /** Dotted-path prefixes of fields shown on the card; anything else lives under "More". */
-const CARD_PATHS = ["name", "personType", "roleTitle", "photo", "bio", "links.", "affiliations.0.institutionId", "affiliations.0.department", "labTenure.joinedYear"];
+const CARD_PATHS = ["name", "labRoles", "roleTitle", "photo", "bio", "links.", "affiliations.0.institutionId", "affiliations.0.department"];
 
 // --- tiny immutable path helpers ----------------------------------------------------
 

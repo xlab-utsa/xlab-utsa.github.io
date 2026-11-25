@@ -115,7 +115,7 @@ const ORDER = [
   "title",
   "kind",
   "category",
-  "personType",
+  "labRoles",
   "roleTitle",
   "tagline",
   "summary",

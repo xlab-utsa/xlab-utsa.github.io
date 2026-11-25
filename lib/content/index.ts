@@ -9,6 +9,7 @@
 // scripts/migrate-content-v2.mjs for why.
 import {
   CourseSchema,
+  GalleryPhotoSchema,
   InstitutionSchema,
   PersonSchema,
   PostSchema,
@@ -19,7 +20,9 @@ import {
   ServiceRecordSchema,
   SiteMetaSchema,
   SponsorSchema,
+  VenueSchema,
   type Course,
+  type GalleryPhoto,
   type Institution,
   type Person,
   type Post,
@@ -31,7 +34,9 @@ import {
   type ServiceRecord,
   type SiteMeta,
   type Sponsor,
+  type Venue,
 } from "./schema";
+import { isAlumni, isCurrentMember } from "./people";
 import {
   assertNoErrors,
   readMdxDir,
@@ -46,9 +51,11 @@ export type {
   AuthorRef,
   Course,
   EntityKind,
+  GalleryPhoto,
   Institution,
+  LabRole,
+  LabRoleType,
   Person,
-  PersonType,
   Post,
   PostKind,
   Project,
@@ -60,6 +67,7 @@ export type {
   ServiceRecord,
   SiteMeta,
   Sponsor,
+  Venue,
 } from "./schema";
 
 export interface AllContent {
@@ -74,6 +82,8 @@ export interface AllContent {
   service: ServiceRecord[];
   courses: Course[];
   sponsors: Sponsor[];
+  venues: Venue[];
+  gallery: GalleryPhoto[];
 }
 
 let rawCache: AllContent | undefined;
@@ -142,6 +152,8 @@ export function loadAllRecords(): AllContent {
     service: loadDir<ServiceRecord>("service", ServiceRecordSchema, errors),
     courses: loadDir<Course>("courses", CourseSchema, errors),
     sponsors: loadDir<Sponsor>("sponsors", SponsorSchema, errors),
+    venues: loadDir<Venue>("venues", VenueSchema, errors),
+    gallery: loadDir<GalleryPhoto>("gallery", GalleryPhotoSchema, errors),
   };
 
   assertNoErrors(errors, "content/**");
@@ -171,6 +183,8 @@ function loadAll(): AllContent {
     service: pub(all.service),
     courses: pub(all.courses),
     sponsors: pub(all.sponsors),
+    venues: pub(all.venues),
+    gallery: pub(all.gallery),
   };
   return publishedCache;
 }
@@ -195,15 +209,13 @@ export function getAllPeople(): Person[] {
 export function getPersonById(id: string): Person | undefined {
   return loadAll().people.find((p) => p.id === id);
 }
+/** In the lab today — see lib/content/people.ts for the rule. */
 export function getCurrentPeople(): Person[] {
-  return loadAll().people.filter(
-    (p) => p.labTenure?.leftYear === undefined || p.labTenure?.leftYear === null
-  );
+  return loadAll().people.filter(isCurrentMember);
 }
+/** Were in the lab, aren't now. */
 export function getAlumniPeople(): Person[] {
-  return loadAll().people.filter(
-    (p) => p.labTenure?.leftYear !== undefined && p.labTenure?.leftYear !== null
-  );
+  return loadAll().people.filter(isAlumni);
 }
 
 // --- ResearchTheme ------------------------------------------------------------
@@ -279,6 +291,23 @@ export function getAllCourses(): Course[] {
 // --- Sponsor ------------------------------------------------------------------
 export function getAllSponsors(): Sponsor[] {
   return loadAll().sponsors;
+}
+
+// --- Venue ------------------------------------------------------------------
+export function getAllVenues(): Venue[] {
+  return loadAll().venues;
+}
+export function getVenueById(id: string): Venue | undefined {
+  return loadAll().venues.find((v) => v.id === id);
+}
+
+// --- GalleryPhoto -------------------------------------------------------------
+export function getGalleryPhotos(): GalleryPhoto[] {
+  return [...loadAll().gallery].sort(
+    (a, b) =>
+      (a.order ?? Number.MAX_SAFE_INTEGER) - (b.order ?? Number.MAX_SAFE_INTEGER) ||
+      (b.date ?? "").localeCompare(a.date ?? "")
+  );
 }
 
 // --- Derived stats (avoid a stored "150+ publications" field that could drift) --

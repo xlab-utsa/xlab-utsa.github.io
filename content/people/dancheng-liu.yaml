@@ -1,6 +1,8 @@
 id: dancheng-liu
 name: Dancheng Liu
-personType: phd-student
+labRoles:
+  - role: phd-student
+    current: true
 roleTitle: PhD Candidate, 3rd Year, Computer Science & Engineering
 photo: /images/people/dancheng-liu.png
 links:

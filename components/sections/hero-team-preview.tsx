@@ -4,7 +4,8 @@ import Link from "next/link";
 import { TeamCard } from "@/components/team-card";
 import { getCurrentPeople } from "@/lib/content";
 import { publicFileExists, withBasePath } from "@/lib/content/assets";
-import { personTypeShortLabel, sortPeople } from "@/lib/team";
+import { isLabLead } from "@/lib/content/people";
+import { roleShortLabel, sortPeople } from "@/lib/team";
 
 // Live "lab, today" preview band: satellite member tiles flanking the PI.
 //
@@ -17,7 +18,7 @@ const MAX_TILES = 16;
 
 export function HeroTeamPreview() {
   const current = getCurrentPeople();
-  const pi = current.find((p) => p.personType === "lab-lead");
+  const pi = current.find(isLabLead);
   if (!pi) return null;
 
   const others = sortPeople(current.filter((p) => p.id !== pi.id)).slice(0, MAX_TILES);
@@ -66,7 +67,7 @@ export function HeroTeamPreview() {
           <div className="mt-2 flex flex-col items-center gap-0.5 text-center">
             <span className="text-sm font-bold text-foreground">{pi.name}</span>
             <span className="font-mono text-[9.5px] tracking-widest text-brand uppercase">
-              {personTypeShortLabel(pi.personType)}
+              {roleShortLabel(pi)}
             </span>
           </div>
         </div>

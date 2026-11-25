@@ -365,7 +365,7 @@ function MyRecords({
         p.authors?.some((a) => a.personId === personId)
       ),
       recognitions: snapshot.content.recognitions.filter((r) => r.personId === personId),
-      posts: snapshot.content.posts.filter((p) => p.authorId === personId),
+      posts: snapshot.content.posts.filter((p) => personId !== undefined && p.authorIds.includes(personId)),
     };
   }, [snapshot, personId]);
 
@@ -445,7 +445,7 @@ function createSeedFor(kind: string, identity: Identity): Rec {
     return { status: "published", authors: [{ name: identity.name, personId }] };
   }
   if (kind === "recognitions") return { status: "published", personId };
-  if (kind === "posts") return { status: "published", kind: "news", authorId: personId };
+  if (kind === "posts") return { status: "published", kind: "news", authorIds: personId ? [personId] : [] };
   return { status: "published" };
 }
 
@@ -476,6 +476,6 @@ function isMine(record: Rec | undefined, personId: string | undefined, kind: str
     return Boolean(authors?.some((a) => a.personId === personId));
   }
   if (kind === "recognitions") return record.personId === personId;
-  if (kind === "posts") return record.authorId === personId;
+  if (kind === "posts") return Array.isArray(record.authorIds) && record.authorIds.includes(personId);
   return false;
 }

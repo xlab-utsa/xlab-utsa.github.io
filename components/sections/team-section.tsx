@@ -5,12 +5,16 @@ import { TeamCard } from "@/components/team-card";
 import {
   getAlumniPeople,
   getCurrentPeople,
-  getInstitutionById,
   getRecognitionsByPerson,
   type Person,
 } from "@/lib/content";
 import { publicFileExists, withBasePath } from "@/lib/content/assets";
-import { sortPeople, summarizeRecognitions } from "@/lib/team";
+import { isLabLead } from "@/lib/content/people";
+import {
+  getAffiliationInstitutionLabel,
+  sortPeople,
+  summarizeRecognitions,
+} from "@/lib/team";
 
 function initials(name: string): string {
   return name
@@ -124,18 +128,14 @@ function PiLayer({ pi }: { pi: Person }) {
                     Appointments
                   </span>
                   <div className="flex flex-col gap-1">
-                    {affiliations.map((a, i) => {
-                      const institution = getInstitutionById(a.institutionId);
-                      return (
-                        <span
-                          key={i}
-                          className="border-l-2 border-hairline pl-2 text-[13px] leading-snug text-foreground"
-                        >
-                          {a.roleTitle},{" "}
-                          {institution?.shortName ?? institution?.name ?? a.institutionId}
-                        </span>
-                      );
-                    })}
+                    {affiliations.map((a, i) => (
+                      <span
+                        key={i}
+                        className="border-l-2 border-hairline pl-2 text-[13px] leading-snug text-foreground"
+                      >
+                        {a.roleTitle}, {getAffiliationInstitutionLabel(a)}
+                      </span>
+                    ))}
                   </div>
                 </div>
               )}
@@ -164,12 +164,12 @@ function PiLayer({ pi }: { pi: Person }) {
   );
 }
 
-// Three layers: the PI, the current lab (one flat grid, no personType sub-headers —
-// matches the mockup's own layout), and alumni (hidden entirely while empty, true of
-// all 17 people today — nobody has labTenure.leftYear set yet).
+// Three layers: the PI, the current lab (one flat grid), and alumni (hidden while empty).
+// Who is current vs alumni is decided by lib/content/people.ts from each person's labRoles.
+// The four-group People page layout replaces this in Phase 2 (SPEC.md §5).
 export function TeamSection() {
   const current = getCurrentPeople();
-  const pi = current.find((p) => p.personType === "lab-lead");
+  const pi = current.find(isLabLead);
   const rest = sortPeople(current.filter((p) => p.id !== pi?.id));
   const alumni = sortPeople(getAlumniPeople());
 

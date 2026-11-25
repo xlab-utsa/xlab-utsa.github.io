@@ -6,6 +6,7 @@
 
 import {
   CourseSchema,
+  GalleryPhotoSchema,
   InstitutionSchema,
   PersonSchema,
   PostSchema,
@@ -15,6 +16,7 @@ import {
   ResearchThemeSchema,
   ServiceRecordSchema,
   SponsorSchema,
+  VenueSchema,
 } from "@/lib/content/schema";
 import type { ZodType } from "zod";
 import type { SnapshotContent } from "./api";
@@ -48,7 +50,7 @@ export const ENTITIES: EntityDef[] = [
     snapshotKey: "people",
     dir: "content/people",
     ext: "yaml",
-    columns: ["name", "personType", "roleTitle", "status"],
+    columns: ["name", "roleTitle", "status"],
   },
   {
     key: "publications",
@@ -125,6 +127,26 @@ export const ENTITIES: EntityDef[] = [
     columns: ["name", "url", "status"],
   },
   {
+    key: "venues",
+    label: "Venue",
+    plural: "Venues",
+    schema: VenueSchema,
+    snapshotKey: "venues",
+    dir: "content/venues",
+    ext: "yaml",
+    columns: ["shortName", "name", "kind"],
+  },
+  {
+    key: "gallery",
+    label: "Gallery photo",
+    plural: "Gallery",
+    schema: GalleryPhotoSchema,
+    snapshotKey: "gallery",
+    dir: "content/gallery",
+    ext: "yaml",
+    columns: ["caption", "date", "status"],
+  },
+  {
     key: "service",
     label: "Service record",
     plural: "Service",
@@ -171,6 +193,10 @@ export function assetPathFor(
   switch (`${entity.key}.${fieldKey}`) {
     case "projects.thumbnail":
       return `/images/projects/${id}/thumbnail.${ext}`;
+    case "projects.icon":
+      return `/images/projects/${id}/icon.${ext}`;
+    case "gallery.image":
+      return `/images/gallery/${id}.${ext}`;
     case "publications.thumbnail":
       return `/images/publications/${id}/thumbnail.${ext}`;
     case "people.photo":

@@ -1,6 +1,8 @@
 id: zhaohui-li
 name: Zhaohui Li
-personType: postdoc
+labRoles:
+  - role: postdoc
+    current: true
 roleTitle: Postdoctoral Fellow, Institute for Artificial Intelligence and Data Science
 office: 215 Lockwood
 photo: /images/people/zhaohui-li.png

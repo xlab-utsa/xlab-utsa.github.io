@@ -15,9 +15,13 @@ describe("serializeRecord", () => {
       bio: "",
       secondaryTitles: [],
       links: { email: "", scholar: undefined },
-      labTenure: { joinedYear: 2024 },
+      labRoles: [{ role: "phd-student", current: false, start: "2024", note: "" }],
     });
-    assert.equal(yaml, "id: jane-doe\nname: Jane Doe\nlabTenure:\n  joinedYear: 2024\n");
+    // `current: false` is a real value, not an empty one — it must survive pruning.
+    assert.equal(
+      yaml,
+      'id: jane-doe\nname: Jane Doe\nlabRoles:\n  - role: phd-student\n    current: false\n    start: "2024"\n'
+    );
   });
 
   it("writes posts as frontmatter + markdown body", () => {
