@@ -6,13 +6,13 @@
 // matrix is pinned.
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { canApprove, canWritePath, isSelfLinkOnly, ownsRecord, toIdentity } from "./roster.js";
+import { canApprove, canWritePath, isSelfLinkOnly, matchEmail, ownsRecord, toIdentity, type RosterEntry } from "./roster.js";
 import type { Identity } from "./env.js";
 
-const admin: Identity = { sub: "a", email: "a@x.edu", name: "A", role: "admin" };
-const editor: Identity = { sub: "e", email: "e@x.edu", name: "E", role: "editor" };
-const member: Identity = { sub: "m", email: "m@x.edu", name: "M", role: "member", personId: "jane-doe" };
-const unlinked: Identity = { sub: "u", email: "u@x.edu", name: "U", role: "member" };
+const admin: Identity = { sub: "a", account: "a", email: "a@x.edu", name: "A", role: "admin" };
+const editor: Identity = { sub: "e", account: "e", email: "e@x.edu", name: "E", role: "editor" };
+const member: Identity = { sub: "m", account: "jane-doe", email: "m@x.edu", name: "M", role: "member", personId: "jane-doe" };
+const unlinked: Identity = { sub: "u", account: "u", email: "u@x.edu", name: "U", role: "member" };
 
 describe("canWritePath", () => {
   it("admins may write anything the Worker's prefix allowlist admits", () => {
@@ -178,12 +178,40 @@ describe("canApprove / toIdentity", () => {
     assert.equal(canApprove(member), false);
   });
 
-  it("identity is rebuilt from the roster entry, keeping the sign-in subject", () => {
+  it("identity is rebuilt from the roster entry, keeping the sign-in subject and typed address", () => {
     const id = toIdentity(
-      { email: "Jane@X.edu", name: "Jane", role: "member", personId: "jane-doe", active: true },
-      "github:jane"
+      { id: "jane-doe", name: "Jane", role: "member", personId: "jane-doe", active: true },
+      "account:jane-doe",
+      "jane@x.edu"
     );
-    assert.deepEqual(id, { sub: "github:jane", email: "Jane@X.edu", name: "Jane", role: "member", personId: "jane-doe" });
-    assert.equal(toIdentity({ email: "Jane@X.edu", name: "Jane", role: "admin", active: true }).sub, "jane@x.edu");
+    assert.deepEqual(id, {
+      sub: "account:jane-doe",
+      account: "jane-doe",
+      email: "jane@x.edu",
+      name: "Jane",
+      role: "member",
+      personId: "jane-doe",
+    });
+  });
+});
+
+describe("matchEmail — hashed roster (SPEC.md §8.4)", () => {
+  const members: RosterEntry[] = [
+    { id: "jane-doe", name: "Jane", role: "member", personId: "jane-doe", active: true, emailHashes: ["hmac-sha256:AAA", "hmac-sha256:BBB"] },
+    { id: "legacy", name: "Old", role: "admin", active: true, email: "Old@X.edu" },
+    { id: "gone", name: "Gone", role: "member", active: false, emailHashes: ["hmac-sha256:CCC"] },
+  ];
+
+  it("finds an entry by any of its hashed addresses", () => {
+    assert.equal(matchEmail(members, "whatever@x.edu", "hmac-sha256:BBB")?.id, "jane-doe");
+  });
+
+  it("still honours a legacy plain-text address, case-insensitively", () => {
+    assert.equal(matchEmail(members, " old@x.EDU ", "hmac-sha256:ZZZ")?.id, "legacy");
+  });
+
+  it("never matches an inactive entry or an unknown address", () => {
+    assert.equal(matchEmail(members, "gone@x.edu", "hmac-sha256:CCC"), undefined);
+    assert.equal(matchEmail(members, "nobody@x.edu", "hmac-sha256:ZZZ"), undefined);
   });
 });

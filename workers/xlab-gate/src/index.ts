@@ -5,8 +5,18 @@
 // know what a Person or a Publication is. Schema correctness is enforced in CI, on the pull
 // request this Worker opens — see .github/workflows/validate.yml.
 import { randomId, signToken, verifyToken } from "./crypto";
-import { magicLinkEmail, sendEmail, submissionStatusEmail } from "./email";
 import type { Env, Identity } from "./env";
+import {
+  bumpCredentialVersion,
+  burnPasswordCheck,
+  checkPassword,
+  credentialVersion,
+  hashEmail,
+  makePasswordRecord,
+  passwordProblem,
+  readPassword,
+  writePassword,
+} from "./passwords";
 import {
   approvePR,
   createSubmissionPR,
@@ -24,19 +34,22 @@ import {
   canWritePath,
   findByEmail,
   findByGithubLogin,
+  findById,
   invalidateRosterCache,
   loadRoster,
   toIdentity,
 } from "./roster";
 
-// 90 days. Deliberately long: with no email provider configured, a member whose session
-// expires needs an admin to hand them a fresh invite link. Long sessions keep that rare.
-// The cost is bounded — a session only ever permits submitting changes for review.
-const SESSION_TTL_S = 90 * 24 * 60 * 60;
-const MAGIC_TTL_S = 15 * 60; // emailed magic link — short, since it can be re-requested
-const INVITE_TTL_S = 14 * 24 * 60 * 60; // admin-issued invite — must survive being passed along
-const RATE_LIMIT_WINDOW_S = 15 * 60;
-const RATE_LIMIT_MAX = 5;
+// 30 days. A session only ever permits submitting changes for review, and signing in again
+// is just an email and a password — so there is no reason to make it longer.
+const SESSION_TTL_S = 30 * 24 * 60 * 60;
+// Admin-issued set-password link: must survive being passed along by hand.
+const SETPW_TTL_S = 14 * 24 * 60 * 60;
+const WINDOW_S = 15 * 60;
+/** Sign-in attempts per IP per window, across all accounts. */
+const LOGIN_IP_MAX = 30;
+/** Failed passwords per account before it is locked for the rest of the window. */
+const LOGIN_ACCOUNT_MAX = 10;
 
 // --- HTTP helpers --------------------------------------------------------------
 
@@ -63,149 +76,186 @@ function fail(env: Env, status: number, message: string): Response {
 
 // --- sessions ------------------------------------------------------------------
 
-async function currentIdentity(req: Request, env: Env): Promise<Identity | undefined> {
+interface Session {
+  sub: string;
+  /** Roster account id. Absent only on sessions minted before passwords existed. */
+  account?: string;
+  email: string;
+  /** How they signed in. "password" sessions are checked against the credential version. */
+  method?: "password" | "github";
+  /** Credential version the session was issued under (password sessions). */
+  cv?: number;
+  exp: number;
+}
+
+async function readSession(req: Request, env: Env): Promise<Session | undefined> {
   const header = req.headers.get("Authorization") ?? "";
   const token = header.startsWith("Bearer ") ? header.slice(7) : "";
   if (!token) return undefined;
-  return verifyToken<Identity & { exp: number }>(token, env.SESSION_SECRET);
+  return verifyToken<Session>(token, env.SESSION_SECRET);
 }
 
-async function issueSession(env: Env, id: Identity): Promise<string> {
-  return signToken({ ...id, exp: Math.floor(Date.now() / 1000) + SESSION_TTL_S }, env.SESSION_SECRET);
+async function issueSession(
+  env: Env,
+  entry: { id: string },
+  opts: { sub: string; email?: string; method: "password" | "github"; cv?: number }
+): Promise<string> {
+  const session: Session = {
+    sub: opts.sub,
+    account: entry.id,
+    email: opts.email ?? "",
+    method: opts.method,
+    cv: opts.cv,
+    exp: Math.floor(Date.now() / 1000) + SESSION_TTL_S,
+  };
+  return signToken(session, env.SESSION_SECRET);
+}
+
+/** Count one event against a rate-limit key; true when the limit was already reached. */
+async function overLimit(env: Env, key: string, max: number): Promise<boolean> {
+  const count = Number((await env.SESSIONS.get(key)) ?? "0");
+  if (count >= max) return true;
+  await env.SESSIONS.put(key, String(count + 1), { expirationTtl: WINDOW_S });
+  return false;
 }
 
 // --- handlers ------------------------------------------------------------------
 
 /**
- * Request a magic link.
+ * Email + password sign-in (SPEC.md §8.4).
  *
- * Always answers 200 with the same body, whether or not the address is on the roster —
- * otherwise this endpoint becomes an oracle for "who is in this lab".
+ * Every failure answers with the same message and takes the same time (a dummy PBKDF2 run
+ * when there is no account or no password yet), so this endpoint cannot be used to find out
+ * who is in the lab. Rate-limited per IP; an account locks for the rest of the window after
+ * repeated wrong passwords.
  */
-async function handleAuthEmail(req: Request, env: Env): Promise<Response> {
-  const { email } = (await req.json().catch(() => ({}))) as { email?: string };
-  const ok = json(env, { ok: true, message: "If that address is registered, a sign-in link is on its way." });
-  if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return ok;
+async function handleLogin(req: Request, env: Env): Promise<Response> {
+  const { email, password } = (await req.json().catch(() => ({}))) as { email?: string; password?: string };
+  const denied = () => fail(env, 401, "wrong_credentials");
+  if (!email || !password || password.length > 1024) return denied();
 
   const ip = req.headers.get("CF-Connecting-IP") ?? "unknown";
-  for (const key of [`rl:email:${email.toLowerCase()}`, `rl:ip:${ip}`]) {
-    const count = Number((await env.SESSIONS.get(key)) ?? "0");
-    if (count >= RATE_LIMIT_MAX) return ok;
-    await env.SESSIONS.put(key, String(count + 1), { expirationTtl: RATE_LIMIT_WINDOW_S });
-  }
+  if (await overLimit(env, `rl:login:ip:${ip}`, LOGIN_IP_MAX)) return fail(env, 429, "too_many_attempts");
 
   const entry = await findByEmail(env, email);
-  if (!entry) return ok;
-
-  // Single-use enforcement: the nonce is written now and deleted on redemption, so a
-  // replayed link fails even inside its 15-minute validity window.
-  const jti = randomId();
-  await env.SESSIONS.put(`magic:${jti}`, entry.email.toLowerCase(), { expirationTtl: MAGIC_TTL_S });
-
-  const token = await signToken(
-    { jti, email: entry.email.toLowerCase(), exp: Math.floor(Date.now() / 1000) + MAGIC_TTL_S },
-    env.SESSION_SECRET
-  );
-  const link = `${new URL(req.url).origin}/auth/verify?token=${encodeURIComponent(token)}`;
-  const mail = magicLinkEmail(link, entry.name);
-
-  try {
-    await sendEmail(env, { email: entry.email, name: entry.name }, mail.subject, mail.html, mail.text);
-  } catch (err) {
-    console.error("magic link send failed:", err);
+  const record = entry ? await readPassword(env.SESSIONS, entry.id) : undefined;
+  if (!entry || !record) {
+    await burnPasswordCheck(password, env.PASSWORD_PEPPER);
+    return denied();
   }
-  return ok;
+
+  const failKey = `fail:${entry.id}`;
+  const failures = Number((await env.SESSIONS.get(failKey)) ?? "0");
+  if (failures >= LOGIN_ACCOUNT_MAX) return fail(env, 429, "too_many_attempts");
+
+  if (!(await checkPassword(password, record, env.PASSWORD_PEPPER))) {
+    await env.SESSIONS.put(failKey, String(failures + 1), { expirationTtl: WINDOW_S });
+    return denied();
+  }
+  await env.SESSIONS.delete(failKey);
+
+  const token = await issueSession(env, entry, {
+    sub: `account:${entry.id}`,
+    email: email.trim().toLowerCase(),
+    method: "password",
+    cv: record.version,
+  });
+  return json(env, { token });
 }
 
 /**
- * Redeem a sign-in link.
+ * Set (or reset) a password from an admin-issued link.
  *
- * GET shows a confirmation page and redeems NOTHING. POST (the page's one button) does the
- * redemption. The split exists because chat apps, mail scanners and link-preview bots fetch
- * every URL they see with a GET — and a single-use link that is redeemed on GET is burned
- * before the human ever clicks it. That happened; the member then saw "already used" and the
- * admin had to mint another. A form POST is something only a person does.
- *
- * Old links keep working: they were always GET URLs, and the page now does the rest.
+ * GET shows the form and spends NOTHING — chat apps and mail scanners fetch every URL they
+ * see, and a link redeemed on GET is burned before the human clicks it. POST validates the
+ * new password, stores it, invalidates every older session for the account, burns the link,
+ * and signs the person in.
  */
-async function handleAuthVerify(req: Request, env: Env): Promise<Response> {
-  const redirect = (params: string) =>
-    new Response(null, { status: 302, headers: { Location: `${env.STUDIO_URL}#${params}` } });
-
+async function handleSetPassword(req: Request, env: Env): Promise<Response> {
   let token = "";
+  let password = "";
+  let confirm = "";
   if (req.method === "POST") {
     const form = await req.formData().catch(() => undefined);
     token = String(form?.get("token") ?? "");
+    password = String(form?.get("password") ?? "");
+    confirm = String(form?.get("confirm") ?? "");
   } else {
     token = new URL(req.url).searchParams.get("token") ?? "";
   }
 
-  const payload = await verifyToken<{ jti: string; email: string; exp: number }>(
-    token,
-    env.SESSION_SECRET
-  );
-  if (!payload) {
-    return req.method === "POST"
-      ? redirect("error=invalid_or_expired")
-      : confirmPage(env, { problem: "This sign-in link has expired or is not valid. Ask an admin for a new one." });
+  const payload = await verifyToken<{ jti: string; account: string; exp: number }>(token, env.SESSION_SECRET);
+  const stored = payload ? await env.SESSIONS.get(`setpw:${payload.jti}`) : null;
+  if (!payload || stored !== payload.account) {
+    return page(env, {
+      problem: payload
+        ? "This link was already used — each one works once. Ask an admin for a new one."
+        : "This link has expired or is not valid. Ask an admin for a new one.",
+    });
   }
+  const entry = await findById(env, payload.account);
+  if (!entry) return page(env, { problem: "This account is no longer active. Ask an admin." });
 
-  const stored = await env.SESSIONS.get(`magic:${payload.jti}`);
-  if (stored !== payload.email) {
-    return req.method === "POST"
-      ? redirect("error=already_used")
-      : confirmPage(env, { problem: "This sign-in link was already used — each one works once. Ask an admin for a new one." });
+  if (req.method !== "POST") return page(env, { token, name: entry.name });
+
+  const ip = req.headers.get("CF-Connecting-IP") ?? "unknown";
+  if (await overLimit(env, `rl:setpw:ip:${ip}`, LOGIN_IP_MAX)) {
+    return page(env, { token, name: entry.name, error: "Too many attempts. Wait a few minutes and try again." });
   }
+  if (password !== confirm) return page(env, { token, name: entry.name, error: "The two passwords don't match." });
+  const problem = passwordProblem(password, [entry.name, ...entry.name.split(/\s+/), entry.id]);
+  if (problem) return page(env, { token, name: entry.name, error: `${problem[0].toUpperCase()}${problem.slice(1)}.` });
 
-  if (req.method !== "POST") {
-    // Peek at the roster only to greet by name; nothing is spent here.
-    const who = await findByEmail(env, payload.email);
-    return confirmPage(env, { token, name: who?.name });
-  }
+  const version = (await credentialVersion(env.SESSIONS, entry.id)) + 1;
+  await writePassword(env.SESSIONS, entry.id, await makePasswordRecord(password, env.PASSWORD_PEPPER, version));
+  await env.SESSIONS.delete(`setpw:${payload.jti}`);
+  await env.SESSIONS.delete(`fail:${entry.id}`);
 
-  // Roster lookup happens BEFORE the nonce is spent, because whether it gets spent depends
-  // on the role.
-  const entry = await findByEmail(env, payload.email);
-  if (!entry) return redirect("error=not_authorized");
-
-  // Admin links are REUSABLE until they expire; everyone else's are single-use.
-  //
-  // Two practical reasons. An admin who burns their own link — by testing it, or because a
-  // mail scanner or chat app prefetched the URL before the human clicked — has no one to
-  // issue them a replacement, since issuing links is itself an admin action. And an admin is
-  // the person most likely to sign in from a second device.
-  //
-  // The cost is real and must not be understated: a reusable admin link is an admin
-  // password with an expiry date. Anyone holding it can sign in repeatedly until it lapses.
-  // POST /revoke-invites kills outstanding links for an address, and rotating
-  // SESSION_SECRET invalidates every link and session at once.
-  if (entry.role !== "admin") {
-    await env.SESSIONS.delete(`magic:${payload.jti}`);
-  }
-
-  return redirect(`token=${encodeURIComponent(await issueSession(env, toIdentity(entry)))}`);
+  const session = await issueSession(env, entry, { sub: `account:${entry.id}`, method: "password", cv: version });
+  return new Response(null, {
+    status: 302,
+    headers: { Location: `${env.STUDIO_URL}#token=${encodeURIComponent(session)}` },
+  });
 }
 
-/** The one HTML page this Worker serves: "continue to Studio as <name>", or why it cannot. */
-function confirmPage(env: Env, opts: { token?: string; name?: string; problem?: string }): Response {
+/** Sign-in links from before passwords. They no longer sign anyone in. */
+function handleRetiredLink(env: Env): Response {
+  return page(env, {
+    problem: "Studio now uses passwords instead of sign-in links. Ask an admin for a set-password link.",
+  });
+}
+
+/** The one HTML page this Worker serves: "choose a password", or why that can't be done. */
+function page(env: Env, opts: { token?: string; name?: string; problem?: string; error?: string }): Response {
   const esc = (s: string) =>
     s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  const who = opts.name ? ` as <strong>${esc(opts.name)}</strong>` : "";
+  const error = opts.error ? `<p class="err">${esc(opts.error)}</p>` : "";
   const body = opts.problem
     ? `<p class="muted">${esc(opts.problem)}</p>
        <a class="btn" href="${esc(env.STUDIO_URL)}">Go to Studio</a>`
-    : `<p class="muted">Sign in to X-Lab Studio${opts.name ? ` as <strong>${esc(opts.name)}</strong>` : ""}.
-        This link works once; nothing happens until you continue.</p>
-       <form method="post"><input type="hidden" name="token" value="${esc(opts.token ?? "")}">
-       <button class="btn" type="submit">Continue to Studio</button></form>`;
-  const page = `<!doctype html><html lang="en"><head><meta charset="utf-8">
+    : `<p class="muted">Choose a password for X-Lab Studio${who}. At least 8 characters.
+        From now on you'll sign in with your email and this password.</p>
+       ${error}
+       <form method="post">
+         <input type="hidden" name="token" value="${esc(opts.token ?? "")}">
+         <label>New password<input type="password" name="password" autocomplete="new-password" minlength="8" required autofocus></label>
+         <label>Type it again<input type="password" name="confirm" autocomplete="new-password" minlength="8" required></label>
+         <button class="btn" type="submit">Set password and continue</button>
+       </form>`;
+  const html = `<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
-<title>X-Lab Studio — sign in</title>
+<meta name="referrer" content="no-referrer">
+<title>X-Lab Studio — set your password</title>
 <style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font:15px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;color:#111;background:#fff}
-main{max-width:420px;padding:32px 24px;text-align:center}h1{font-size:22px;margin:0 0 8px;letter-spacing:-.01em}
-.muted{color:#555;margin:0 0 20px}.btn{display:inline-block;padding:11px 20px;background:#111;color:#fff;border:0;border-radius:4px;
-font:700 12px/1 ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;cursor:pointer}</style></head>
+main{width:100%;max-width:400px;padding:32px 24px;text-align:center}h1{font-size:22px;margin:0 0 8px;letter-spacing:-.01em}
+.muted{color:#555;margin:0 0 20px}.err{color:#b4430e;margin:0 0 14px;font-weight:600}
+form{display:flex;flex-direction:column;gap:12px;text-align:left}label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:#333}
+input[type=password]{font:inherit;padding:10px 12px;border:1px solid #bbb;border-radius:4px}input:focus{outline:2px solid #111;outline-offset:1px}
+.btn{display:inline-block;padding:12px 20px;background:#111;color:#fff;border:0;border-radius:4px;
+font:700 12px/1 ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;cursor:pointer;text-align:center}</style></head>
 <body><main><h1>X-Lab Studio</h1>${body}</main></body></html>`;
-  return new Response(page, {
+  return new Response(html, {
     status: 200,
     headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" },
   });
@@ -262,9 +312,8 @@ async function handleGithubCallback(req: Request, env: Env): Promise<Response> {
   const entry = await findByGithubLogin(env, user.login);
   if (!entry) return redirect("error=not_authorized");
 
-  return redirect(
-    `token=${encodeURIComponent(await issueSession(env, toIdentity(entry, `github:${user.login}`)))}`
-  );
+  const session = await issueSession(env, entry, { sub: `github:${user.login}`, method: "github" });
+  return redirect(`token=${encodeURIComponent(session)}`);
 }
 
 /** Open a submission PR. The only write path in the system. */
@@ -307,15 +356,16 @@ async function handleSubmit(req: Request, env: Env, id: Identity): Promise<Respo
   }
 
   const branch = `submission/${Date.now()}-${randomId(6).toLowerCase().replace(/[^a-z0-9]/g, "")}`;
-  // Machine-readable submitter block so /approve can notify them without a database.
-  const marker = `<!-- studio:${JSON.stringify({ email: id.email, name: id.name })} -->`;
+  // Machine-readable submitter block: lets members find their own submissions in the queue.
+  // The account id, NEVER an address — pull requests on this public repo are public.
+  const marker = `<!-- studio:${JSON.stringify({ account: id.account, name: id.name })} -->`;
   const pr = await createSubmissionPR(env, {
     branch,
-    message: `${body.title}\n\nSubmitted via X-Lab Studio by ${id.name} <${id.email}>`,
+    message: `${body.title}\n\nSubmitted via X-Lab Studio by ${id.name} (${id.account})`,
     title: body.title,
     body:
       `${body.summary ?? ""}\n\n---\n` +
-      `Submitted by **${id.name}** (${id.email}), role \`${id.role}\`.\n\n` +
+      `Submitted by **${id.name}** (account \`${id.account}\`), role \`${id.role}\`.\n\n` +
       `Files changed:\n${body.files.map((f) => `- \`${f.path}\`${f.delete ? " (delete)" : ""}`).join("\n")}\n\n` +
       marker,
     files: body.files,
@@ -364,17 +414,6 @@ async function handleApproveOrReject(
     invalidateRosterCache();
   } else {
     await rejectPR(env, number, reason ?? "", item.branch);
-  }
-
-  const match = item.body.match(/<!-- studio:(.*?) -->/);
-  if (match) {
-    try {
-      const who = JSON.parse(match[1]) as { email: string; name: string };
-      const mail = submissionStatusEmail(who.name, item.title, action === "approve", reason ?? "");
-      await sendEmail(env, { email: who.email, name: who.name }, mail.subject, mail.html, mail.text);
-    } catch (err) {
-      console.error("status notification failed:", err);
-    }
   }
 
   return json(env, { ok: true });
@@ -457,13 +496,11 @@ async function route(req: Request, env: Env, ctx: RequestContext): Promise<Respo
     } catch (err) {
       checks.roster = `fail — ${String(err).slice(0, 200)}`;
     }
-    // Mirrors sendEmail()'s own guard exactly (src/email.ts): it needs BOTH the key and
-    // a from-address, so checking only the key would report "configured" for a setup that
-    // throws on every send.
-    checks.email =
-      env.EMAIL_API_KEY && env.EMAIL_FROM
-        ? "configured"
-        : "not configured — magic-link email and submission notices disabled; admin GitHub sign-in and approve/reject are unaffected";
+    // Reports whether the sign-in secrets exist, never their values.
+    checks.passwords =
+      env.EMAIL_HASH_SECRET && env.PASSWORD_PEPPER
+        ? "ok"
+        : "not configured — set EMAIL_HASH_SECRET and PASSWORD_PEPPER (README §4); password sign-in is refused until then";
     return json(env, { service: "xlab-gate", checks });
   }
   // NOTE: every handler call below is `return await`, never a bare `return`.
@@ -472,23 +509,34 @@ async function route(req: Request, env: Env, ctx: RequestContext): Promise<Respo
   // await, a failing handler escapes the catch, Cloudflare serves its own error page,
   // and because that page carries no CORS headers the browser reports a misleading
   // "blocked by CORS policy" instead of the actual error.
-  if (path === "/auth/email" && req.method === "POST") return await handleAuthEmail(req, env);
-  if (path === "/auth/verify" && (req.method === "GET" || req.method === "POST"))
-    return await handleAuthVerify(req, env);
+  if (path === "/auth/login" && req.method === "POST") {
+    if (!env.EMAIL_HASH_SECRET || !env.PASSWORD_PEPPER) return fail(env, 503, "passwords_not_configured");
+    return await handleLogin(req, env);
+  }
+  if (path === "/auth/set-password" && (req.method === "GET" || req.method === "POST")) {
+    if (!env.EMAIL_HASH_SECRET || !env.PASSWORD_PEPPER) return handleRetiredLink(env);
+    return await handleSetPassword(req, env);
+  }
+  if (path === "/auth/verify") return handleRetiredLink(env);
   if (path === "/auth/github/start") return await handleGithubStart(req, env);
   if (path === "/auth/github/callback") return await handleGithubCallback(req, env);
 
   // --- authenticated ---
-  const session = await currentIdentity(req, env);
+  const session = await readSession(req, env);
   if (!session) return fail(env, 401, "not signed in");
 
   // The token proves who signed in; the ROSTER decides what they are now. Re-reading it on
-  // every request (it is cached for a minute) is what makes two things true that a 90-day
+  // every request (it is cached for a minute) is what makes two things true that a 30-day
   // token alone cannot: deactivating someone actually signs them out, and an admin fixing a
-  // member's role or profile id takes effect without minting them a new link.
-  const entry = await findByEmail(env, session.email);
+  // member's role or profile id takes effect without a new sign-in.
+  const entry = session.account ? await findById(env, session.account) : await findByEmail(env, session.email);
   if (!entry) return fail(env, 401, "access_removed");
-  const id = toIdentity(entry, session.sub);
+  // A password session is only as good as the password it was issued under: setting a new
+  // one, or an admin revoking access, bumps the version and ends every older session.
+  if (session.method === "password" && session.cv !== (await credentialVersion(env.SESSIONS, entry.id))) {
+    return fail(env, 401, "session_ended");
+  }
+  const id = toIdentity(entry, session.sub, session.email);
   ctx.identity = id;
 
   if (path === "/me") return json(env, id);
@@ -508,84 +556,82 @@ async function route(req: Request, env: Env, ctx: RequestContext): Promise<Respo
     return json(env, { path: filePath, content: file.content });
   }
 
-  // Roster read + invite issuing. Admin only: these expose lab members' email addresses
-  // and mint credentials, neither of which an editor or member has any business doing.
+  // Roster read + set-password links. Admin only: these mint credentials, which an editor
+  // or member has no business doing.
   if (path === "/roster") {
     if (id.role !== "admin") return fail(env, 403, "admins only");
     return json(env, await loadRoster(env));
   }
+
+  // Hash an address for the roster. The roster screen calls this when an admin adds someone
+  // or converts legacy plain-text addresses; the secret never leaves this Worker.
+  if (path === "/hash-email" && req.method === "POST") {
+    if (id.role !== "admin") return fail(env, 403, "admins only");
+    if (!env.EMAIL_HASH_SECRET) return fail(env, 503, "EMAIL_HASH_SECRET is not set");
+    const { email } = (await req.json().catch(() => ({}))) as { email?: string };
+    if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.trim())) return fail(env, 400, "a valid email is required");
+    return json(env, { hash: await hashEmail(email, env.EMAIL_HASH_SECRET) });
+  }
+
+  // A one-time link the admin hands over; the person uses it to choose a password (first
+  // time) or a new one (forgot it). No email is ever sent by this system.
   if (path === "/invite" && req.method === "POST") {
     if (id.role !== "admin") return fail(env, 403, "admins only");
-    const { email } = (await req.json().catch(() => ({}))) as { email?: string };
-    if (!email) return fail(env, 400, "email is required");
-    const entry = await findByEmail(env, email);
-    if (!entry) return fail(env, 404, "that address is not on the roster yet");
+    const { account } = (await req.json().catch(() => ({}))) as { account?: string };
+    if (!account) return fail(env, 400, "account is required");
+    const target = await findById(env, account);
+    if (!target) return fail(env, 404, "no active roster entry with that id — has the roster change been approved?");
 
-    // Same single-use mechanism as an emailed magic link — the only difference is that
-    // the admin delivers it by hand instead of a mail provider.
     const jti = randomId();
-    await env.SESSIONS.put(`magic:${jti}`, entry.email.toLowerCase(), {
-      expirationTtl: INVITE_TTL_S,
-    });
+    await env.SESSIONS.put(`setpw:${jti}`, target.id, { expirationTtl: SETPW_TTL_S });
     const token = await signToken(
-      {
-        jti,
-        email: entry.email.toLowerCase(),
-        exp: Math.floor(Date.now() / 1000) + INVITE_TTL_S,
-      },
+      { jti, account: target.id, exp: Math.floor(Date.now() / 1000) + SETPW_TTL_S },
       env.SESSION_SECRET
     );
     return json(env, {
-      link: `${new URL(req.url).origin}/auth/verify?token=${encodeURIComponent(token)}`,
-      expiresInDays: INVITE_TTL_S / 86400,
-      name: entry.name,
-      // Admin links stay valid until they expire, so the UI must say so plainly — the
-      // handling required of a one-shot link and a standing credential is different.
-      reusable: entry.role === "admin",
+      link: `${new URL(req.url).origin}/auth/set-password?token=${encodeURIComponent(token)}`,
+      expiresInDays: SETPW_TTL_S / 86400,
+      name: target.name,
     });
   }
 
-  // Kill every outstanding sign-in link for one address. The necessary counterpart to
-  // admin links being reusable: without it, a leaked admin link would stand for two weeks
-  // and the only remedy would be rotating SESSION_SECRET, which signs everyone out.
+  // Kill outstanding set-password links for one account AND sign it out everywhere (bumps the
+  // credential version). The response to a lost laptop or a link sent to the wrong person.
   if (path === "/revoke-invites" && req.method === "POST") {
-    if (ctx.identity?.role !== "admin") return fail(env, 403, "admins only");
-    const { email } = (await req.json().catch(() => ({}))) as { email?: string };
-    if (!email) return fail(env, 400, "email is required");
-    const target = email.trim().toLowerCase();
+    if (id.role !== "admin") return fail(env, 403, "admins only");
+    const { account } = (await req.json().catch(() => ({}))) as { account?: string };
+    if (!account) return fail(env, 400, "account is required");
 
     // Few keys ever exist at once (one per outstanding link), so a scan is cheap.
     let revoked = 0;
     let cursor: string | undefined;
     do {
-      const page = await env.SESSIONS.list({ prefix: "magic:", cursor });
-      for (const key of page.keys) {
-        if ((await env.SESSIONS.get(key.name)) === target) {
+      const list = await env.SESSIONS.list({ prefix: "setpw:", cursor });
+      for (const key of list.keys) {
+        if ((await env.SESSIONS.get(key.name)) === account) {
           await env.SESSIONS.delete(key.name);
           revoked++;
         }
       }
-      cursor = page.list_complete ? undefined : page.cursor;
+      cursor = list.list_complete ? undefined : list.cursor;
     } while (cursor);
+    await bumpCredentialVersion(env.SESSIONS, account);
 
-    return json(env, { ok: true, revoked });
+    return json(env, { ok: true, revoked, signedOut: true });
   }
+  // Members see only their own submissions. Older PRs carried an address instead of an
+  // account id; those still match for the person who signed in with that address.
+  const isMine = (body: string) =>
+    body.includes(`"account":"${id.account}"`) || (id.email !== "" && body.includes(`"email":"${id.email}"`));
   if (path === "/queue") {
     const queue = await listQueue(env);
-    // Members see only their own pending submissions.
-    const visible = canApprove(id)
-      ? queue
-      : queue.filter((q) => q.body.includes(`"email":"${id.email}"`));
-    return json(env, { queue: visible });
+    return json(env, { queue: canApprove(id) ? queue : queue.filter((q) => isMine(q.body)) });
   }
   // Submissions that were sent back, with the reviewer's note — so a member learns WHY
   // from inside Studio instead of from a GitHub notification they may never see.
   if (path === "/returned") {
     const returned = await listReturned(env);
-    const visible = canApprove(id)
-      ? returned
-      : returned.filter((q) => q.body.includes(`"email":"${id.email}"`));
-    return json(env, { returned: visible });
+    return json(env, { returned: canApprove(id) ? returned : returned.filter((q) => isMine(q.body)) });
   }
   if (path.startsWith("/queue/") && path.endsWith("/files")) {
     if (!canApprove(id)) return fail(env, 403, "not allowed");

@@ -4,37 +4,45 @@
     "",
     "Deliberately OUTSIDE content/ so it never lands in public/content-snapshot.json.",
     "It lives in the repo (not a database) so that 'who had access when' stays answerable",
-    "forever from git history.",
+    "forever from git history. The repo is public, so addresses are stored only as",
+    "emailHashes (HMAC under a secret the Worker holds) — never in plain text (SPEC.md §8.4).",
+    "Passwords are never here at all: they live, hashed, in the Worker's private store.",
     "",
+    "id:       stable account id (sessions and passwords key on it). Never reuse one.",
     "role:     admin  - full write access, can approve submissions, manages the roster",
     "          editor - full content write access, can approve submissions",
-    "          member - edits only their own person record; may CREATE publications,",
-    "                   recognitions and posts, which then wait for approval",
+    "          member - edits their own person record and work that names them; may create",
+    "                   publications, awards, posts and projects, which wait for approval",
+    "emailHashes: the hashed addresses this person signs in with (several are fine).",
+    "email:    LEGACY plain-text address — replace via Studio, Roster, Hash them now.",
     "personId: the content/people/<id>.yaml this person owns. Required for members.",
-    "githubLogin: only needed for admins who sign in with GitHub instead of email.",
+    "githubLogin: lets an admin also sign in with GitHub.",
     "active:   set false to revoke access without losing the historical record."
   ],
   "members": [
     {
-      "email": "sribhargava2002@gmail.com",
+      "id": "sri-bhargava-bhamidi",
       "name": "Sri Bhargava Bhamidi",
       "role": "admin",
+      "email": "sribhargava2002@gmail.com",
       "githubLogin": "Bhargava1424",
       "active": true
     },
     {
-      "email": "jinjun@utsa.edu",
+      "id": "jinjun-xiong",
       "name": "Jinjun Xiong",
       "role": "admin",
-      "active": true,
-      "personId": "jinjun-xiong"
+      "email": "jinjun@utsa.edu",
+      "personId": "jinjun-xiong",
+      "active": true
     },
     {
-      "email": "aashish.dhakal@utsa.edu",
+      "id": "aashish-dhakal",
       "name": "Aashish Dhakal",
       "role": "member",
-      "active": true,
-      "personId": "aashish-dhakal"
+      "email": "aashish.dhakal@utsa.edu",
+      "personId": "aashish-dhakal",
+      "active": true
     }
   ]
 }

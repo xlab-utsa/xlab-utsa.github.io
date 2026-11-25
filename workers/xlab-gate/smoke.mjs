@@ -16,7 +16,7 @@
 //      CORS failure and the real message is invisible. Shipped once, via
 //      `try { return handler() }` without an await.
 //
-//   3. HEALTH — the GitHub App credential and the roster still resolve.
+//   3. HEALTH — the GitHub App credential, the roster, and the sign-in secrets resolve.
 import process from "node:process";
 
 const GATE = process.env.GATE_URL ?? "https://xlab-gate.xlab-studio.workers.dev";
@@ -28,6 +28,8 @@ const ENDPOINTS = [
   "/roster",
   "/invite",
   "/revoke-invites",
+  "/hash-email",
+  "/auth/login",
   "/me",
   "/status",
   "/health",
@@ -76,22 +78,34 @@ for (const [method, path] of [
   );
 }
 
-// 3. A sign-in link must NOT be redeemed by a plain GET — that is what link previews and
-//    mail scanners send, and it used to burn single-use member links before the human
-//    clicked. GET shows a page; only the page's POST redeems.
+// 3. A set-password link must NOT be spent by a plain GET — that is what link previews and
+//    mail scanners send, and it used to burn single-use links before the human clicked.
+//    GET shows a page; only the page's POST spends the link.
 {
-  const res = await fetch(`${GATE}/auth/verify?token=definitely-not-valid`, { redirect: "manual" });
+  const res = await fetch(`${GATE}/auth/set-password?token=definitely-not-valid`, { redirect: "manual" });
   check(
-    "GET /auth/verify shows a page instead of redirecting",
+    "GET /auth/set-password shows a page instead of redirecting",
     res.status === 200 && (res.headers.get("content-type") ?? "").includes("text/html"),
     `status ${res.status}, type ${res.headers.get("content-type")}`
   );
+}
+
+// 3b. A wrong password is a plain 401 with the generic code — never a 500, never a hint.
+{
+  const res = await fetch(`${GATE}/auth/login`, {
+    method: "POST",
+    headers: { Origin: ORIGIN, "Content-Type": "application/json" },
+    body: JSON.stringify({ email: "nobody@example.invalid", password: "definitely-wrong" }),
+  });
+  const body = await res.json().catch(() => ({}));
+  check("POST /auth/login rejects generically", res.status === 401 && body.error === "wrong_credentials", `status ${res.status}, ${JSON.stringify(body)}`);
 }
 
 // 4. Dependencies still wired up.
 const health = await fetch(`${GATE}/health`).then((r) => r.json());
 check("github app credential", health.checks?.github === "ok", health.checks?.github);
 check("roster readable", health.checks?.roster === "ok", health.checks?.roster);
+check("sign-in secrets set", health.checks?.passwords === "ok", health.checks?.passwords);
 
 console.log(failures === 0 ? "\nAll checks passed\n" : `\n${failures} CHECK(S) FAILED\n`);
 process.exit(failures === 0 ? 0 : 1);

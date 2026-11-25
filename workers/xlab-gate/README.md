@@ -36,7 +36,7 @@ Register a `workers.dev` subdomain (once per account) at
 deploys successfully but its URL does not resolve.
 
 The KV namespace is already created and bound in `wrangler.jsonc`. It holds only
-short-lived state — magic-link nonces and rate-limit counters. The source of truth for
+short-lived state — password hashes, set-password links and rate-limit counters. The source of truth for
 content and roster is the git repo, so losing this namespace costs nothing but in-flight
 sign-in links.
 
@@ -69,25 +69,13 @@ The `.pem` GitHub gives you is PKCS#1. No conversion needed — the Worker wraps
 PKCS#8 at runtime (`src/crypto.ts`), because Web Crypto only imports PKCS#8 and an
 `openssl` step is easy to get wrong and easy to forget.
 
-### 3. Email — optional, currently OFF
+### 3. No email — by decision
 
-**As of 2026-08-23 email is deliberately not configured**: `EMAIL_FROM` is empty and
-`EMAIL_API_KEY` is unset. Nothing in Studio depends on it — sign-in is via admin-minted
-`/invite` links (Roster & access → *Invite link*), and no UI calls `/auth/email` at all.
-The only loss is the courtesy "your change is live" notice after approve/reject, which is
-wrapped in a caught, logged error so the merge still succeeds. `/health` will report
-`email: not configured`; that is expected.
-
-To turn it on: set `EMAIL_PROVIDER` in `wrangler.jsonc` to `brevo` or `resend`, set
-`EMAIL_FROM` to the sending address, and add the `EMAIL_API_KEY` secret (§4).
-
-- **brevo** — verifies a single sender *address* (a Gmail works). No domain required.
-  300/day free.
-- **resend** — requires a verified *domain you own* before it will mail arbitrary
-  recipients. 3,000/month free.
-
-Both are supported behind one interface (`src/email.ts`), so switching later is a config
-change plus a new secret — not a code change.
+The system never sends email (SPEC.md §8.4). People sign in with **email + password**.
+First passwords and resets go through a **one-time set-password link** that an admin
+creates in Studio (Roster → *Set-password link*) and hands over however they already talk
+to the person. Approve/reject sends no notice; members see returned submissions, with the
+reviewer's note, inside Studio.
 
 ### 4. Secrets
 
@@ -99,67 +87,92 @@ npx wrangler secret put GITHUB_APP_ID           # the numeric App ID
 npx wrangler secret put GITHUB_APP_PRIVATE_KEY  # paste the whole .pem, BEGIN/END lines included
 npx wrangler secret put GITHUB_CLIENT_ID
 npx wrangler secret put GITHUB_CLIENT_SECRET
-npx wrangler secret put SESSION_SECRET          # any random 32+ char string
-npx wrangler secret put EMAIL_API_KEY           # OPTIONAL — skip it; see §3
+npx wrangler secret put SESSION_SECRET          # random 32+ chars — signs sessions and set-password links
+npx wrangler secret put EMAIL_HASH_SECRET       # random 32+ chars — turns addresses into the roster's emailHashes
+npx wrangler secret put PASSWORD_PEPPER         # random 32+ chars — mixed into every password hash
 ```
 
-`SESSION_SECRET` signs session and magic-link tokens only, never anything at GitHub, so
-rotating the GitHub App does **not** require rotating it. Rotating it does sign everyone out.
-
-Generate a session secret with:
+Generate each with:
 
 ```bash
 node -e "console.log(require('crypto').randomBytes(32).toString('base64url'))"
 ```
 
+What rotating each one does — read before you ever do it:
+
+| Secret | If rotated |
+|---|---|
+| `SESSION_SECRET` | Everyone is signed out and outstanding set-password links die. Passwords keep working. |
+| `EMAIL_HASH_SECRET` | **Nobody can sign in with a password** until every roster address is re-hashed (Roster → *+ address*, per person). Don't. |
+| `PASSWORD_PEPPER` | **Every password stops working**; everyone needs a new set-password link. Don't. |
+
+Store the last two somewhere safe (a password manager). Losing them is the same as rotating them.
+
 ### 5. Roster
 
-Edit `access/roster.json` in the repo root so it lists you with `"role": "admin"` and your
-real email, then commit. Sign-in is checked against that file, so nobody can authenticate
-until it is committed to `main`. Admins who sign in with GitHub also need `githubLogin` set
-to their GitHub username — that, not the email, is what the OAuth callback matches on.
+`access/roster.json` in the repo root lists who may sign in. It holds no addresses — only
+`emailHashes`, which only this Worker can compute — and no passwords. Manage it from Studio
+(Roster & access): adding someone takes their email, the Worker hashes it, and the change
+goes through review like any other. Admins who also sign in with GitHub need `githubLogin`.
+
+**Switching an existing roster to hashes** (one time, after this Worker is deployed with
+`EMAIL_HASH_SECRET`): sign in as an admin with GitHub, open Roster, click **Hash them now**,
+approve the PR. Sign-in works throughout. Older plain-text versions remain in git history.
 
 ### 6. Deploy
 
 ```bash
-npx wrangler deploy
+npm run deploy      # typecheck, deploy, then the smoke test
 ```
+
+**Order when sign-in changes ship:** set the two new secrets → deploy this Worker → then
+merge the site change. A site built for passwords talking to an old Worker tells users that
+password sign-in isn't switched on yet; admins can still use GitHub.
 
 ## Endpoints
 
 | Method | Path | Auth | Purpose |
 |---|---|---|---|
-| POST | `/auth/email` | — | Request a magic link. Always returns the same response whether or not the address is on the roster, so it cannot be used to enumerate lab members |
-| GET | `/auth/verify` | — | Show a "Continue to Studio" page for a sign-in link. Redeems **nothing** — link previews and mail scanners GET every URL they see, and used to burn single-use links before the human clicked |
-| POST | `/auth/verify` | — | Redeem the link (the page's one button; single-use for members, reusable for admins) and issue a session |
-| GET | `/auth/github/start` · `/callback` | — | Admin sign-in via GitHub, so admin access rests on GitHub 2FA rather than an inbox |
+| POST | `/auth/login` | — | Email + password → session. Same answer and timing whether or not the address exists; rate-limited per IP; an account locks for 15 minutes after 10 wrong passwords |
+| GET | `/auth/set-password` | — | Show the "choose a password" form for a set-password link. Spends **nothing** — link previews and mail scanners GET every URL they see |
+| POST | `/auth/set-password` | — | Set the password (min 8 chars, common ones refused), burn the link, end the account's older sessions, sign in |
+| GET | `/auth/verify` | — | Retired (pre-password sign-in links). Shows a "ask for a set-password link" page |
+| GET | `/auth/github/start` · `/callback` | — | Admin sign-in via GitHub, so admin access can rest on GitHub 2FA |
 | GET | `/me` | session | Current identity and role |
 | POST | `/submit` | session | Open a submission PR |
+| GET | `/file?path=content/…` | session | Exact current text of one content file (for one-line self-link submissions) |
 | GET | `/queue` | session | Open submissions (members see only their own) |
 | GET | `/returned` | session | Recently returned submissions with the reviewer's note (members see only their own) |
 | GET | `/queue/:n/files` | admin/editor | Field-level diff for one submission |
-| POST | `/approve` · `/reject` | admin/editor | Merge or close, and email the submitter |
+| POST | `/approve` · `/reject` | admin/editor | Merge or close |
+| GET | `/roster` | admin | The roster in force |
+| POST | `/hash-email` | admin | Hash an address for the roster |
+| POST | `/invite` | admin | One-time set-password link for a roster account (`{ account }`) |
+| POST | `/revoke-invites` | admin | Cancel an account's links **and** sign it out everywhere |
 | GET | `/status` | session | Latest deploy run |
 
 ## Security properties
 
 - No GitHub credential ever reaches a browser. Sessions are HMAC-signed bearer tokens.
-- Path allowlist (`content/`, `public/images/`) plus traversal rejection is applied *before*
-  any GitHub token is minted.
-- Members may edit their own person record, create publications/awards/posts, and edit
-  only those that already name them (`personId:`/`authorId:` in the current file). "Is
-  this a create?" and "does it name them?" are resolved server-side from the repo, never
-  trusted from the client. Members can never delete.
-- Magic links are single-use — the nonce is burned in KV on redemption, so a replayed link
-  fails even inside its validity window. Redemption happens only on a form POST, never on
-  the GET a link-preview bot sends.
+- Passwords exist only in KV, only as PBKDF2-SHA256 (100 000 rounds, the most Workers'
+  Web Crypto allows) over an HMAC with `PASSWORD_PEPPER`, with a random salt per record. A
+  copy of KV alone is not enough to start guessing.
+- Each account has a credential version. A new password, or *Sign out everywhere*, bumps it,
+  and every older session is refused on its next request.
+- The public repo never holds an address: the roster stores HMACs, and PRs name the
+  submitter by account id.
+- Path allowlist (`content/`, `public/images/`, `access/`) plus traversal rejection is applied
+  *before* any GitHub token is minted.
+- Members may edit their own person record; create publications, awards, posts and projects;
+  edit only records that already name them; and add *their own* id under an unlinked author
+  on a paper (one inserted line, nothing else). All of it is resolved server-side from the
+  repo, never trusted from the client. Members can never delete.
+- Set-password links are single-use and expire after 14 days; they are spent only by the
+  form's POST.
 - Every authenticated request re-checks the caller against the live roster (cached 60 s):
-  deactivating someone signs them out within a minute, and a role or `personId` change
-  reaches them on their next request without a new link. The session token only proves
-  who signed in; the roster decides what they are now.
+  deactivating someone signs them out within a minute.
 - OAuth uses single-use `state` values for CSRF protection.
 - Approval refuses to merge a submission whose CI gate is failing.
-- Rate limiting per email and per IP on the magic-link endpoint.
 - Errors are logged in full but returned generically, so GitHub API internals are not echoed.
 
 ## Local development

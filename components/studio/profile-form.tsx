@@ -185,7 +185,8 @@ export function ProfileForm({
       id,
       status: record.status ?? "published",
       updatedAt: new Date().toISOString().slice(0, 10),
-      updatedBy: identity.email,
+      // The account id, never the address: content files are public.
+      updatedBy: identity.account ?? identity.name,
     };
     // The affiliation block is optional as a whole, but once an institution is chosen the
     // schema wants a role there too; the obvious default is the title line.

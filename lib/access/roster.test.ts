@@ -1,18 +1,21 @@
 // The roster rules that keep people from being locked out of Studio. Run with `npm test`.
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { rosterIssues, RosterSchema, type RosterEntry } from "./roster";
+import { rosterIssues, rosterWarnings, RosterSchema, suggestAccountId } from "./roster";
 
-const admin: RosterEntry = { email: "admin@utsa.edu", name: "Ada Admin", role: "admin", active: true };
-const member: RosterEntry = {
-  email: "jane@utsa.edu",
+const H = (c: string) => `hmac-sha256:${c.repeat(43)}`;
+
+const admin = { id: "ada-admin", name: "Ada Admin", role: "admin" as const, emailHashes: [H("A")], active: true };
+const member = {
+  id: "jane-doe",
   name: "Jane Doe",
-  role: "member",
+  role: "member" as const,
+  emailHashes: [H("J")],
   personId: "jane-doe",
   active: true,
 };
 
-const roster = (...members: RosterEntry[]) => ({ _comment: ["doc"], members });
+const roster = (...members: object[]) => ({ _comment: ["doc"], members });
 
 describe("roster schema", () => {
   it("accepts a sane roster", () => {
@@ -38,17 +41,18 @@ describe("roster schema", () => {
     assert.ok(issues.some((i) => i.index === 1 && i.field === "personId" && /kebab/.test(i.message)));
   });
 
-  it("rejects duplicate emails, case-insensitively", () => {
-    const issues = rosterIssues(roster(admin, member, { ...member, email: "JANE@utsa.edu", personId: "jane-2" }));
-    assert.ok(issues.some((i) => i.index === 2 && i.field === "email"));
+  it("rejects duplicate account ids and the same address on two entries", () => {
+    const dupId = rosterIssues(roster(admin, member, { ...member, emailHashes: [H("K")], personId: "jane-2" }));
+    assert.ok(dupId.some((i) => i.index === 2 && i.field === "id"));
+    const dupAddress = rosterIssues(roster(admin, member, { ...member, id: "jane-2", personId: "jane-2" }));
+    assert.ok(dupAddress.some((i) => i.index === 2 && i.field === "emailHashes"));
   });
 
   it("rejects two ACTIVE entries owning one profile, but allows an inactive duplicate", () => {
-    const dupActive = rosterIssues(roster(admin, member, { ...member, email: "other@utsa.edu" }));
+    const other = { ...member, id: "jane-old", emailHashes: [H("O")] };
+    const dupActive = rosterIssues(roster(admin, member, other));
     assert.ok(dupActive.some((i) => i.index === 2 && i.field === "personId"));
-
-    const dupInactive = rosterIssues(roster(admin, member, { ...member, email: "other@utsa.edu", active: false }));
-    assert.deepEqual(dupInactive, []);
+    assert.deepEqual(rosterIssues(roster(admin, member, { ...other, active: false })), []);
   });
 
   it("rejects an unknown key (a typo must fail, not vanish)", () => {
@@ -56,8 +60,23 @@ describe("roster schema", () => {
     assert.ok(issues.length > 0);
   });
 
-  it("rejects an entry whose email is missing — the shape that used to throw inside the Worker", () => {
-    const issues = rosterIssues({ members: [{ name: "Nobody", role: "admin", active: true }] });
-    assert.ok(issues.some((i) => i.index === 0 && i.field === "email"));
+  it("rejects an entry with no way to sign in, and anything that is not a real hash", () => {
+    const none = rosterIssues(roster({ ...admin, emailHashes: [] }));
+    assert.ok(none.some((i) => i.index === 0 && i.field === "emailHashes"));
+    const fake = rosterIssues(roster({ ...admin, emailHashes: ["jane@utsa.edu"] }));
+    assert.ok(fake.some((i) => i.index === 0 && i.field === "emailHashes"));
+  });
+
+  it("accepts a legacy plain-text address but warns that it is public", () => {
+    const legacy = roster({ id: "ada-admin", name: "Ada Admin", role: "admin", email: "ada@utsa.edu", active: true });
+    assert.deepEqual(rosterIssues(legacy), []);
+    assert.equal(rosterWarnings(legacy).length, 1);
+    assert.deepEqual(rosterWarnings(roster(admin, member)), []);
+  });
+
+  it("suggests an account id from the profile id, else the name", () => {
+    assert.equal(suggestAccountId("Jane Doe", "jane-doe"), "jane-doe");
+    assert.equal(suggestAccountId("Sri Bhargava Bhamidi"), "sri-bhargava-bhamidi");
+    assert.equal(suggestAccountId("Yusuf Akemoğlu"), "yusuf-akemoglu");
   });
 });

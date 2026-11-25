@@ -29,6 +29,9 @@ import type {
 
 export interface Identity {
   sub: string;
+  /** Roster account id (access/roster.json `id`). Written as updatedBy; never the address. */
+  account?: string;
+  /** The address typed at sign-in, shown back to the user. Never written to the repo. */
   email: string;
   name: string;
   role: "admin" | "editor" | "member";
@@ -67,6 +70,30 @@ export function captureTokenFromHash(): { error?: string } {
 }
 
 export const signInWithGitHubUrl = `${GATE_URL}/auth/github/start`;
+
+/**
+ * Email + password sign-in. Deliberately NOT routed through call(): a wrong password is a
+ * 401 too, and call() treats every 401 as "your session ended" and signs the shell out.
+ * Throws a GateError whose message is the gate's code (wrong_credentials, too_many_attempts,
+ * passwords_not_configured).
+ */
+export async function signInWithPassword(email: string, password: string): Promise<void> {
+  let res: Response;
+  try {
+    res = await fetch(`${GATE_URL}/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+  } catch {
+    throw new GateError("unreachable", 0);
+  }
+  const data = (await res.json().catch(() => ({}))) as { token?: string; error?: string };
+  // A 404 means the gate predates passwords (it has not been redeployed yet).
+  if (res.status === 404) throw new GateError("passwords_not_configured", 404);
+  if (!res.ok || !data.token) throw new GateError(data.error ?? `request failed (${res.status})`, res.status);
+  setToken(data.token);
+}
 
 // --- gate calls ----------------------------------------------------------------
 
@@ -111,7 +138,7 @@ export const api = {
   me: () => call<Identity>("/me"),
 
   health: () =>
-    call<{ checks: { github: string; roster: string; email: string } }>("/health"),
+    call<{ checks: { github: string; roster: string; passwords?: string } }>("/health"),
 
   queue: () => call<{ queue: QueueItem[] }>("/queue"),
 
@@ -144,22 +171,26 @@ export const api = {
   roster: () => call<{ members: RosterEntry[] }>("/roster"),
 
   /**
-   * Admin only. Mints a single-use sign-in link for someone already on the roster, which
-   * the admin delivers by hand. This is what lets members sign in with no email provider
-   * configured at all.
+   * Admin only. Mints a one-time link with which this person sets their password — the
+   * first one, or a new one when they have forgotten it. The admin hands it over; no email
+   * is ever sent.
    */
-  invite: (email: string) =>
-    call<{ link: string; expiresInDays: number; name: string; reusable: boolean }>("/invite", {
+  invite: (account: string) =>
+    call<{ link: string; expiresInDays: number; name: string }>("/invite", {
       method: "POST",
-      body: JSON.stringify({ email }),
+      body: JSON.stringify({ account }),
     }),
 
-  /** Admin only — invalidates every outstanding sign-in link for one address. */
-  revokeInvites: (email: string) =>
-    call<{ ok: true; revoked: number }>("/revoke-invites", {
+  /** Admin only — kills this person's outstanding links and signs them out everywhere. */
+  revokeInvites: (account: string) =>
+    call<{ ok: true; revoked: number; signedOut: boolean }>("/revoke-invites", {
       method: "POST",
-      body: JSON.stringify({ email }),
+      body: JSON.stringify({ account }),
     }),
+
+  /** Admin only — the roster's stored form of an address. The secret stays in the gate. */
+  hashEmail: (email: string) =>
+    call<{ hash: string }>("/hash-email", { method: "POST", body: JSON.stringify({ email }) }),
 };
 
 // The roster's shape lives in lib/access/roster.ts (shared with CI); re-exported so callers

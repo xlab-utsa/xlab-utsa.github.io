@@ -17,7 +17,8 @@
 // Usage:
 //   npm run dev:mock            # this server on :8787 (builds the snapshot first if missing)
 //   npm run dev                 # Next on :3000, with NEXT_PUBLIC_GATE_URL=http://localhost:8787 in .env.local
-//   open http://localhost:3000/studio/ and click "Sign in with GitHub" → a picker of roster entries.
+//   open http://localhost:3000/studio/ and sign in with demo.member@localhost / demo-password,
+//   or click "Admins: sign in with GitHub" → a picker of roster entries.
 //
 // Knobs (env): MOCK_PORT (8787), MOCK_CHECKS_DELAY_MS (4000 — how long "validating…" lasts).
 // A submission whose title contains "[fail]" gets a failing check, to exercise that path.
@@ -25,6 +26,7 @@ import fs from "node:fs";
 import http from "node:http";
 import path from "node:path";
 import { execSync } from "node:child_process";
+import { createHmac, pbkdf2Sync, randomBytes, timingSafeEqual } from "node:crypto";
 
 const ROOT = process.cwd();
 const PORT = Number(process.env.MOCK_PORT ?? 8787);
@@ -41,29 +43,68 @@ const overlay = new Map();
 /** Pull requests, open and closed. */
 const prs = [];
 let nextPr = 101;
-/** Outstanding invite nonces: jti -> email. */
-const invites = new Map();
+/** Outstanding set-password links: jti -> account id. */
+const setpwLinks = new Map();
+/** Password records: account id -> { salt, hash, version } (same derivation as the Worker). */
+const passwords = new Map();
+/** Credential versions bumped by "sign out everywhere": account id -> number. */
+const credVersions = new Map();
+/** Failed password attempts: account id -> count (lockout at LOGIN_ACCOUNT_MAX). */
+const failures = new Map();
+const LOGIN_ACCOUNT_MAX = 10;
+
+// Mock secrets. The real ones exist only in Cloudflare; these only need to be stable here.
+const MOCK_EMAIL_HASH_SECRET = "mock-email-hash-secret";
+const MOCK_PASSWORD_PEPPER = "mock-password-pepper";
+/** Password of the two demo accounts. Anyone else needs a set-password link (as in production). */
+const DEMO_PASSWORD = "demo-password";
+
+function hashEmail(email) {
+  return "hmac-sha256:" + createHmac("sha256", MOCK_EMAIL_HASH_SECRET).update(String(email).trim().toLowerCase()).digest("base64url");
+}
+function derivePassword(password, salt) {
+  const peppered = createHmac("sha256", MOCK_PASSWORD_PEPPER).update(password).digest();
+  return pbkdf2Sync(peppered, salt, 100_000, 32, "sha256").toString("base64url");
+}
+function credentialVersion(account) {
+  return Math.max(passwords.get(account)?.version ?? 0, credVersions.get(account) ?? 0);
+}
+function setPassword(account, password) {
+  const salt = randomBytes(16);
+  const version = credentialVersion(account) + 1;
+  passwords.set(account, { salt, hash: derivePassword(password, salt), version });
+  return version;
+}
+function checkPassword(account, password) {
+  const record = passwords.get(account);
+  if (!record) return false;
+  const a = Buffer.from(derivePassword(password, record.salt));
+  const b = Buffer.from(record.hash);
+  return a.length === b.length && timingSafeEqual(a, b);
+}
 
 // Two members that always exist here, so both member states are one click away without
-// first walking add → approve → invite:
+// first walking add → approve → set password:
 //   Demo Member   — profile ALREADY exists (MOCK_DEMO_MEMBER, default yifan-yang)
 //   Demo Newcomer — profile does NOT exist yet (first sign-in / create path)
+// Both sign in with demo.member@localhost / demo.newcomer@localhost and DEMO_PASSWORD.
 // Set MOCK_DEMO_MEMBER=none to disable both. They are injected only until a roster change is
 // approved in Studio; from then on the approved roster (which includes them) is used as-is.
 const DEMO_PERSON = process.env.MOCK_DEMO_MEMBER ?? "yifan-yang";
 const DEMO_MEMBERS =
   DEMO_PERSON !== "none"
     ? [
-        { email: "demo.member@localhost", name: "Demo Member", role: "member", personId: DEMO_PERSON, active: true },
-        { email: "demo.newcomer@localhost", name: "Demo Newcomer", role: "member", personId: "demo-newcomer", active: true },
+        { id: "demo-member", name: "Demo Member", role: "member", emailHashes: [hashEmail("demo.member@localhost")], personId: DEMO_PERSON, active: true },
+        { id: "demo-newcomer", name: "Demo Newcomer", role: "member", emailHashes: [hashEmail("demo.newcomer@localhost")], personId: "demo-newcomer", active: true },
       ]
     : [];
+for (const d of DEMO_MEMBERS) setPassword(d.id, DEMO_PASSWORD);
 
 function loadRoster() {
   const text = overlay.get(ROSTER_PATH) ?? fs.readFileSync(path.join(ROOT, ROSTER_PATH), "utf8");
   const roster = JSON.parse(text);
   if (!overlay.has(ROSTER_PATH)) {
-    roster.members = [...roster.members, ...DEMO_MEMBERS.filter((d) => !roster.members.some((m) => m.email === d.email))];
+    roster.members = [...roster.members, ...DEMO_MEMBERS.filter((d) => !roster.members.some((m) => m.id === d.id))];
   }
   return roster;
 }
@@ -83,19 +124,22 @@ function readRepoFile(repoPath) {
 
 function findByEmail(email) {
   const needle = String(email ?? "").trim().toLowerCase();
+  const hash = hashEmail(needle);
   return loadRoster().members.find(
-    (m) => m.active && typeof m.email === "string" && m.email.trim().toLowerCase() === needle
+    (m) =>
+      m.active &&
+      typeof m.id === "string" &&
+      ((Array.isArray(m.emailHashes) && m.emailHashes.includes(hash)) ||
+        (typeof m.email === "string" && m.email.trim().toLowerCase() === needle))
   );
 }
 
-function toIdentity(entry, sub) {
-  return {
-    sub: sub ?? entry.email.toLowerCase(),
-    email: entry.email,
-    name: entry.name,
-    role: entry.role,
-    personId: entry.personId,
-  };
+function findById(id) {
+  return loadRoster().members.find((m) => m.active && m.id === id);
+}
+
+function toIdentity(entry, sub, email = "") {
+  return { sub, account: entry.id, email, name: entry.name, role: entry.role, personId: entry.personId };
 }
 
 const canApprove = (id) => id.role === "admin" || id.role === "editor";
@@ -184,14 +228,17 @@ function decodeToken(token) {
   }
 }
 
-function identityOf(req) {
+/** Mirrors the Worker: the live roster wins over the token, and password sessions are version-checked. */
+function sessionOf(req) {
   const header = req.headers.authorization ?? "";
-  const token = header.startsWith("Bearer ") ? header.slice(7) : "";
-  const payload = decodeToken(token);
-  if (!payload?.email) return undefined;
-  // Mirrors the Worker's planned behaviour: the live roster wins over whatever the token says.
-  const entry = findByEmail(payload.email);
-  return entry ? toIdentity(entry, payload.sub) : undefined;
+  return decodeToken(header.startsWith("Bearer ") ? header.slice(7) : "");
+}
+function identityOf(session) {
+  if (!session) return { error: "not signed in" };
+  const entry = session.account ? findById(session.account) : findByEmail(session.email);
+  if (!entry) return { error: "access_removed" };
+  if (session.method === "password" && session.cv !== credentialVersion(entry.id)) return { error: "session_ended" };
+  return { id: toIdentity(entry, session.sub, session.email ?? "") };
 }
 
 // --- HTTP helpers ------------------------------------------------------------------
@@ -256,13 +303,13 @@ function pseudoPatch(file) {
 function openPr(id, body) {
   const number = nextPr++;
   const branch = `submission/${Date.now()}-${number}`;
-  const marker = `<!-- studio:${JSON.stringify({ email: id.email, name: id.name })} -->`;
+  const marker = `<!-- studio:${JSON.stringify({ account: id.account, name: id.name })} -->`;
   const pr = {
     number,
     title: body.title,
     body:
       `${body.summary ?? ""}\n\n---\n` +
-      `Submitted by **${id.name}** (${id.email}), role \`${id.role}\`.\n\n` +
+      `Submitted by **${id.name}** (account \`${id.account}\`), role \`${id.role}\`.\n\n` +
       `Files changed:\n${body.files.map((f) => `- \`${f.path}\`${f.delete ? " (delete)" : ""}`).join("\n")}\n\n` +
       marker,
     author: "xlab-studio-gate[bot]",
@@ -280,7 +327,7 @@ function openPr(id, body) {
   setTimeout(() => {
     if (pr.state === "open") pr.checks = /\[fail\]/i.test(pr.title) ? "failure" : "success";
   }, CHECKS_DELAY_MS);
-  console.log(`  PR #${number} opened by ${id.email}: ${pr.title}`);
+  console.log(`  PR #${number} opened by ${id.account}: ${pr.title}`);
   for (const f of body.files) console.log(`      ${f.delete ? "delete" : "write "} ${f.path}`);
   return pr;
 }
@@ -316,7 +363,7 @@ async function route(req, res) {
   if (p === "/health") {
     return json(req, res, {
       service: "xlab-gate (mock)",
-      checks: { github: "ok (mock)", roster: "ok", email: "not configured — mock" },
+      checks: { github: "ok (mock)", roster: "ok", passwords: "ok (mock secrets)" },
     });
   }
 
@@ -325,43 +372,87 @@ async function route(req, res) {
     const rows = loadRoster()
       .members.map(
         (m) =>
-          `<li style="margin:6px 0"><a href="/auth/as?email=${encodeURIComponent(m.email)}">${m.name}</a>` +
+          `<li style="margin:6px 0"><a href="/auth/as?account=${encodeURIComponent(m.id)}">${m.name}</a>` +
           ` <code>${m.role}</code>${m.personId ? ` · profile <code>${m.personId}</code>` : ""}${m.active ? "" : " · <s>inactive</s>"}</li>`
       )
       .join("");
-    return html(req, res, `<h2>Mock gate — sign in as…</h2><ul>${rows}</ul><p style="color:#666">Edit <code>access/roster.json</code> or approve a roster change in Studio to add people.</p>`);
-  }
-  if (p === "/auth/as") {
-    const entry = findByEmail(url.searchParams.get("email"));
-    if (!entry) return redirect(req, res, `${STUDIO_URL}#error=not_authorized`);
-    return redirect(req, res, `${STUDIO_URL}#token=${encodeURIComponent(encodeToken(toIdentity(entry)))}`);
-  }
-  // Same GET-shows-a-page / POST-redeems split as the Worker, so link previews cannot burn a link.
-  if (p === "/auth/verify" && req.method === "GET") {
-    const jti = url.searchParams.get("token") ?? "";
-    const email = invites.get(jti);
-    if (!email) return html(req, res, `<h2>X-Lab Studio</h2><p>This sign-in link was already used or is not valid. Ask an admin for a new one.</p><a href="${STUDIO_URL}">Go to Studio</a>`);
-    const entry = findByEmail(email);
     return html(
       req,
       res,
-      `<h2>X-Lab Studio</h2><p>Sign in as <strong>${entry?.name ?? email}</strong>. This link works once; nothing happens until you continue.</p>` +
-        `<form method="post"><input type="hidden" name="token" value="${jti}"><button type="submit">Continue to Studio</button></form>`
+      `<h2>Mock gate — sign in as… (stands in for GitHub)</h2><ul>${rows}</ul>` +
+        `<p style="color:#666">Or use Studio's email + password form: <code>demo.member@localhost</code> / <code>demo.newcomer@localhost</code>, password <code>${DEMO_PASSWORD}</code>.</p>`
     );
   }
-  if (p === "/auth/verify" && req.method === "POST") {
-    const raw = await new Promise((resolve) => {
-      let d = "";
-      req.on("data", (c) => (d += c));
-      req.on("end", () => resolve(d));
-    });
-    const jti = new URLSearchParams(raw).get("token") ?? "";
-    const email = invites.get(jti);
-    if (!email) return redirect(req, res, `${STUDIO_URL}#error=already_used`);
-    const entry = findByEmail(email);
+  if (p === "/auth/as") {
+    const entry = findById(url.searchParams.get("account") ?? "");
     if (!entry) return redirect(req, res, `${STUDIO_URL}#error=not_authorized`);
-    if (entry.role !== "admin") invites.delete(jti);
-    return redirect(req, res, `${STUDIO_URL}#token=${encodeURIComponent(encodeToken(toIdentity(entry)))}`);
+    const token = encodeToken({ sub: `github:${entry.id}`, account: entry.id, email: "", method: "github" });
+    return redirect(req, res, `${STUDIO_URL}#token=${encodeURIComponent(token)}`);
+  }
+  if (p === "/auth/login" && req.method === "POST") {
+    const { email, password } = (await readJson(req)) ?? {};
+    const entry = email ? findByEmail(email) : undefined;
+    if (!entry || !password || !passwords.has(entry.id)) return fail(req, res, 401, "wrong_credentials");
+    if ((failures.get(entry.id) ?? 0) >= LOGIN_ACCOUNT_MAX) return fail(req, res, 429, "too_many_attempts");
+    if (!checkPassword(entry.id, password)) {
+      failures.set(entry.id, (failures.get(entry.id) ?? 0) + 1);
+      return fail(req, res, 401, "wrong_credentials");
+    }
+    failures.delete(entry.id);
+    const token = encodeToken({
+      sub: `account:${entry.id}`,
+      account: entry.id,
+      email: String(email).trim().toLowerCase(),
+      method: "password",
+      cv: credentialVersion(entry.id),
+    });
+    return json(req, res, { token });
+  }
+  // Same GET-shows-a-form / POST-sets split as the Worker, so link previews cannot burn a link.
+  if (p === "/auth/set-password") {
+    let token = url.searchParams.get("token") ?? "";
+    let password = "";
+    let confirm = "";
+    if (req.method === "POST") {
+      const form = new URLSearchParams(
+        await new Promise((resolve) => {
+          let d = "";
+          req.on("data", (c) => (d += c));
+          req.on("end", () => resolve(d));
+        })
+      );
+      token = form.get("token") ?? "";
+      password = form.get("password") ?? "";
+      confirm = form.get("confirm") ?? "";
+    }
+    const account = setpwLinks.get(token);
+    const entry = account ? findById(account) : undefined;
+    if (!entry) {
+      return html(req, res, `<h2>X-Lab Studio</h2><p>This link was already used or is not valid. Ask an admin for a new one.</p><a href="${STUDIO_URL}">Go to Studio</a>`);
+    }
+    const form = (error) =>
+      html(
+        req,
+        res,
+        `<h2>X-Lab Studio</h2><p>Choose a password for <strong>${entry.name}</strong>. At least 8 characters.</p>` +
+          (error ? `<p style="color:#b4430e"><strong>${error}</strong></p>` : "") +
+          `<form method="post"><input type="hidden" name="token" value="${token}">` +
+          `<p><label>New password <input type="password" name="password" minlength="8" required></label></p>` +
+          `<p><label>Type it again <input type="password" name="confirm" minlength="8" required></label></p>` +
+          `<button type="submit">Set password and continue</button></form>`
+      );
+    if (req.method !== "POST") return form();
+    if (password !== confirm) return form("The two passwords don't match.");
+    if (password.length < 8) return form("Use at least 8 characters.");
+    const cv = setPassword(entry.id, password);
+    setpwLinks.delete(token);
+    failures.delete(entry.id);
+    console.log(`  password set for ${entry.id}`);
+    const session = encodeToken({ sub: `account:${entry.id}`, account: entry.id, email: "", method: "password", cv });
+    return redirect(req, res, `${STUDIO_URL}#token=${encodeURIComponent(session)}`);
+  }
+  if (p === "/auth/verify") {
+    return html(req, res, `<h2>X-Lab Studio</h2><p>Studio now uses passwords instead of sign-in links. Ask an admin for a set-password link.</p><a href="${STUDIO_URL}">Go to Studio</a>`);
   }
   if (p.startsWith("/pr/")) {
     const pr = prs.find((x) => x.number === Number(p.split("/")[2]));
@@ -371,11 +462,8 @@ async function route(req, res) {
   }
 
   // --- authenticated ---
-  const header = req.headers.authorization ?? "";
-  if (!header.startsWith("Bearer ")) return fail(req, res, 401, "not signed in");
-  const id = identityOf(req);
-  // Same as the Worker: a valid token for someone no longer on the roster is "access_removed".
-  if (!id) return fail(req, res, 401, decodeToken(header.slice(7))?.email ? "access_removed" : "not signed in");
+  const { id, error } = identityOf(sessionOf(req));
+  if (!id) return fail(req, res, 401, error);
 
   if (p === "/me") return json(req, res, id);
   if (p === "/file" && req.method === "GET") {
@@ -409,39 +497,45 @@ async function route(req, res) {
     if (id.role !== "admin") return fail(req, res, 403, "admins only");
     return json(req, res, loadRoster());
   }
-  if (p === "/invite" && req.method === "POST") {
+  if (p === "/hash-email" && req.method === "POST") {
     if (id.role !== "admin") return fail(req, res, 403, "admins only");
     const { email } = (await readJson(req)) ?? {};
-    if (!email) return fail(req, res, 400, "email is required");
-    const entry = findByEmail(email);
-    if (!entry) return fail(req, res, 404, "that address is not on the roster yet");
-    const jti = Math.random().toString(36).slice(2, 12);
-    invites.set(jti, entry.email.toLowerCase());
+    if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(String(email).trim())) return fail(req, res, 400, "a valid email is required");
+    return json(req, res, { hash: hashEmail(email) });
+  }
+  if (p === "/invite" && req.method === "POST") {
+    if (id.role !== "admin") return fail(req, res, 403, "admins only");
+    const { account } = (await readJson(req)) ?? {};
+    if (!account) return fail(req, res, 400, "account is required");
+    const entry = findById(account);
+    if (!entry) return fail(req, res, 404, "no active roster entry with that id — has the roster change been approved?");
+    const jti = randomBytes(9).toString("base64url");
+    setpwLinks.set(jti, entry.id);
     return json(req, res, {
-      link: `http://localhost:${PORT}/auth/verify?token=${jti}`,
+      link: `http://localhost:${PORT}/auth/set-password?token=${jti}`,
       expiresInDays: 14,
       name: entry.name,
-      reusable: entry.role === "admin",
     });
   }
   if (p === "/revoke-invites" && req.method === "POST") {
     if (id.role !== "admin") return fail(req, res, 403, "admins only");
-    const { email } = (await readJson(req)) ?? {};
-    if (!email) return fail(req, res, 400, "email is required");
-    const target = String(email).trim().toLowerCase();
+    const { account } = (await readJson(req)) ?? {};
+    if (!account) return fail(req, res, 400, "account is required");
     let revoked = 0;
-    for (const [jti, e] of invites) if (e === target) (invites.delete(jti), revoked++);
-    return json(req, res, { ok: true, revoked });
+    for (const [jti, a] of setpwLinks) if (a === account) (setpwLinks.delete(jti), revoked++);
+    credVersions.set(account, credentialVersion(account) + 1);
+    return json(req, res, { ok: true, revoked, signedOut: true });
   }
 
+  const isMine = (body) => body.includes(`"account":"${id.account}"`) || (id.email !== "" && body.includes(`"email":"${id.email}"`));
   if (p === "/queue") {
     const open = prs.filter((x) => x.state === "open");
-    const visible = canApprove(id) ? open : open.filter((x) => x.body.includes(`"email":"${id.email}"`));
+    const visible = canApprove(id) ? open : open.filter((x) => isMine(x.body));
     return json(req, res, { queue: visible.map(queueView) });
   }
   if (p === "/returned") {
     const closed = prs.filter((x) => x.state === "closed").reverse();
-    const visible = canApprove(id) ? closed : closed.filter((x) => x.body.includes(`"email":"${id.email}"`));
+    const visible = canApprove(id) ? closed : closed.filter((x) => isMine(x.body));
     return json(req, res, {
       returned: visible.map((x) => ({ number: x.number, title: x.title, body: x.body, closedAt: x.closedAt, url: x.url, reason: x.reason })),
     });

@@ -10,9 +10,6 @@ export interface Env {
   REPO_OWNER: string;
   REPO_NAME: string;
   REPO_BRANCH: string;
-  EMAIL_PROVIDER: "brevo" | "resend";
-  EMAIL_FROM: string;
-  EMAIL_FROM_NAME: string;
   ALLOWED_WRITE_PREFIXES: string;
   MAX_PAYLOAD_BYTES: string;
 
@@ -25,17 +22,26 @@ export interface Env {
   GITHUB_CLIENT_ID: string;
   /** SECRET — GitHub App OAuth client secret. */
   GITHUB_CLIENT_SECRET: string;
-  /** SECRET — Brevo or Resend API key. */
-  EMAIL_API_KEY: string;
-  /** SECRET — random 32+ byte string; signs session and magic-link tokens. */
+  /** SECRET — random 32+ byte string; signs session and set-password tokens. */
   SESSION_SECRET: string;
+  /**
+   * SECRET — random 32+ byte string; keys the HMAC that turns an address into the roster's
+   * emailHashes. Separate from SESSION_SECRET on purpose: rotating sessions must not change
+   * every stored hash. Rotating THIS one locks everyone out until the roster is re-hashed.
+   */
+  EMAIL_HASH_SECRET: string;
+  /** SECRET — random 32+ byte string mixed into every password hash (a "pepper"). Never rotate. */
+  PASSWORD_PEPPER: string;
 }
 
 export type Role = "admin" | "editor" | "member";
 
 export interface Identity {
-  /** Stable subject: the member's email, or "github:<login>" for admin sign-in. */
+  /** Who signed in, and how: "account:<id>" (password) or "github:<login>". */
   sub: string;
+  /** The roster account id (access/roster.json `id`). */
+  account: string;
+  /** The address typed at sign-in, if any. Shown back to the user; never written to the repo. */
   email: string;
   name: string;
   role: Role;

@@ -13,10 +13,12 @@ import {
   api,
   captureTokenFromHash,
   clearToken,
+  GateError,
   getToken,
   loadSnapshot,
   SIGNED_OUT_EVENT,
   signInWithGitHubUrl,
+  signInWithPassword,
   type Identity,
   type Snapshot,
 } from "@/lib/studio/api";
@@ -87,7 +89,15 @@ export default function StudioPage() {
   }
 
   if (!identity) {
-    return <SignIn error={authError} />;
+    return (
+      <SignIn
+        error={authError}
+        onSignedIn={(next) => {
+          setAuthError(undefined);
+          setIdentity(next);
+        }}
+      />
+    );
   }
 
   const canApprove = identity.role === "admin" || identity.role === "editor";
@@ -427,29 +437,74 @@ function Health({ snapshot }: { snapshot: Snapshot }) {
   );
 }
 
-function SignIn({ error }: { error?: string }) {
+function SignIn({ error, onSignedIn }: { error?: string; onSignedIn: (identity: Identity) => void }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [problem, setProblem] = useState<string | undefined>(error);
+
+  async function submit(e: React.FormEvent) {
+    e.preventDefault();
+    setBusy(true);
+    setProblem(undefined);
+    try {
+      await signInWithPassword(email.trim(), password);
+      onSignedIn(await api.me());
+    } catch (err) {
+      setProblem(errorMessage(err instanceof GateError ? err.message : "unreachable"));
+      setPassword("");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  const field =
+    "w-full rounded-sm border border-border bg-background px-3 py-2 text-sm text-foreground outline-none focus:border-foreground";
+
   return (
     <Centered>
-      <div className="w-full max-w-sm space-y-4 text-center">
-        <div>
+      <div className="w-full max-w-sm space-y-4">
+        <div className="text-center">
           <h1 className="text-2xl font-bold tracking-tight text-foreground">X-Lab Studio</h1>
           <p className="mt-1 text-sm text-text-faint">Sign in to manage the lab&apos;s content.</p>
         </div>
-        {error && (
-          <p className="rounded-sm border border-brand-orange/40 bg-brand-orange/5 px-3 py-2 text-[12.5px] text-brand-orange">
-            {error}
+        {problem && (
+          <p role="alert" className="rounded-sm border border-brand-orange/40 bg-brand-orange/5 px-3 py-2 text-[12.5px] text-brand-orange">
+            {problem}
           </p>
         )}
-        <a
-          href={signInWithGitHubUrl}
-          className="block rounded-sm bg-invert-bg px-4 py-2.5 font-mono text-[11.5px] font-bold tracking-wider text-invert-fg uppercase"
-        >
-          Sign in with GitHub
-        </a>
+        <form onSubmit={(e) => void submit(e)} className="space-y-3">
+          <label className="block space-y-1">
+            <span className="font-mono text-[10.5px] font-bold tracking-wider text-text-faint uppercase">Email</span>
+            <input type="email" autoComplete="username" required value={email} onChange={(e) => setEmail(e.target.value)} className={field} />
+          </label>
+          <label className="block space-y-1">
+            <span className="font-mono text-[10.5px] font-bold tracking-wider text-text-faint uppercase">Password</span>
+            <input
+              type="password"
+              autoComplete="current-password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className={field}
+            />
+          </label>
+          <button
+            type="submit"
+            disabled={busy}
+            className="block w-full rounded-sm bg-invert-bg px-4 py-2.5 font-mono text-[11.5px] font-bold tracking-wider text-invert-fg uppercase disabled:opacity-60"
+          >
+            {busy ? "Signing in…" : "Sign in"}
+          </button>
+        </form>
         <p className="text-[11.5px] leading-snug text-text-faint">
-          Lab members sign in with the link an admin sent you — just open it. Links expire
-          after 14 days; if yours has, or you never got one, ask an admin for a new one.
+          First time, or forgot your password? Ask an admin for a set-password link — open it, choose a password, and you&apos;re in.
         </p>
+        <div className="border-t border-hairline pt-3 text-center">
+          <a href={signInWithGitHubUrl} className="font-mono text-[11px] text-text-faint hover:text-foreground hover:underline">
+            Admins: sign in with GitHub
+          </a>
+        </div>
       </div>
     </Centered>
   );
@@ -484,16 +539,20 @@ function NavButton({
 
 function errorMessage(code: string): string {
   switch (code) {
+    case "wrong_credentials":
+      return "That email and password don't match. Check both, or ask an admin for a set-password link.";
+    case "too_many_attempts":
+      return "Too many attempts. Wait 15 minutes and try again — or ask an admin for a set-password link.";
+    case "passwords_not_configured":
+      return "Password sign-in isn't switched on yet (the Studio server needs an update). Admins can sign in with GitHub.";
+    case "unreachable":
+      return "Couldn't reach the Studio server. Check your connection and try again.";
     case "not_authorized":
       return "That account is not on the roster. An admin needs to add you first.";
-    case "already_used":
-      return "That sign-in link was already used — each one works once. Ask an admin for a new link.";
-    case "invalid_or_expired":
-      return "That sign-in link has expired. Ask an admin for a new one.";
     case "access_removed":
-      return "Your access was removed or your session has ended. If that's a surprise, ask an admin for a new link.";
+      return "Your access was removed. If that's a surprise, ask an admin.";
     case "session_ended":
-      return "Your session has ended. Sign in again — admins with GitHub, members with a fresh link from an admin.";
+      return "You were signed out — your password was changed or an admin signed you out. Sign in again.";
     case "bad_oauth_state":
       return "Sign-in could not be verified. Please try again.";
     default:

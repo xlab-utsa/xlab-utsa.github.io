@@ -7,7 +7,7 @@
 // Exit code 1 on any error, so CI can gate merges on it. Warnings never fail the build.
 import fs from "fs";
 import { validateContent } from "../lib/content/validate";
-import { ROSTER_PATH, rosterIssues } from "../lib/access/roster";
+import { ROSTER_PATH, rosterIssues, rosterWarnings } from "../lib/access/roster";
 
 const { errors, warnings, counts } = validateContent();
 
@@ -21,6 +21,9 @@ if (fs.existsSync(ROSTER_PATH)) {
       const where =
         issue.index === undefined ? "" : ` at members[${issue.index}]${issue.field ? `.${issue.field}` : ""}`;
       errors.push(`${ROSTER_PATH}${where}: ${issue.message}`);
+    }
+    for (const issue of rosterWarnings(roster)) {
+      warnings.push(`${ROSTER_PATH} at members[${issue.index}]: ${issue.message}`);
     }
   } catch (err) {
     errors.push(`${ROSTER_PATH}: not valid JSON — ${err instanceof Error ? err.message : String(err)}`);
