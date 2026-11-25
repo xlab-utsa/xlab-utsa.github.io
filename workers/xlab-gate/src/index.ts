@@ -301,7 +301,7 @@ async function handleSubmit(req: Request, env: Env, id: Identity): Promise<Respo
     if (f.delete && id.role === "member") {
       return fail(env, 403, `members cannot delete records — ask an admin to remove ${f.path}`);
     }
-    if (!canWritePath(id, f.path, !exists, existing?.content)) {
+    if (!canWritePath(id, f.path, !exists, existing?.content, f.content)) {
       return fail(env, 403, `you are not allowed to modify ${f.path}`);
     }
   }
@@ -493,6 +493,20 @@ async function route(req: Request, env: Env, ctx: RequestContext): Promise<Respo
 
   if (path === "/me") return json(env, id);
   if (path === "/submit" && req.method === "POST") return await handleSubmit(req, env, id);
+
+  // The exact current text of one content file. Studio needs it to build a self-link
+  // (SPEC.md §9.3), which must differ from the live file by a single inserted line — the
+  // snapshot holds parsed records, not the file's text. Content is public in the repo
+  // anyway; this is gated on a session only to keep it off the open internet's quota.
+  if (path === "/file" && req.method === "GET") {
+    const filePath = new URL(req.url).searchParams.get("path") ?? "";
+    if (!filePath.startsWith("content/") || filePath.includes("..") || filePath.includes("\\")) {
+      return fail(env, 400, "only content/ files can be read");
+    }
+    const file = await readFile(env, filePath);
+    if (!file) return fail(env, 404, "no such file");
+    return json(env, { path: filePath, content: file.content });
+  }
 
   // Roster read + invite issuing. Admin only: these expose lab members' email addresses
   // and mint credentials, neither of which an editor or member has any business doing.

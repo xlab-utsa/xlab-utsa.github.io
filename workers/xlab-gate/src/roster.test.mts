@@ -6,7 +6,7 @@
 // matrix is pinned.
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { canApprove, canWritePath, ownsRecord, toIdentity } from "./roster.js";
+import { canApprove, canWritePath, isSelfLinkOnly, ownsRecord, toIdentity } from "./roster.js";
 import type { Identity } from "./env.js";
 
 const admin: Identity = { sub: "a", email: "a@x.edu", name: "A", role: "admin" };
@@ -48,8 +48,8 @@ describe("canWritePath", () => {
     }
   });
 
-  it("members may CREATE publications, awards and posts", () => {
-    for (const dir of ["content/publications", "content/recognitions", "content/posts"]) {
+  it("members may CREATE publications, awards, posts and projects", () => {
+    for (const dir of ["content/publications", "content/recognitions", "content/posts", "content/projects"]) {
       assert.equal(canWritePath(member, `${dir}/new-thing.yaml`, true), true, dir);
     }
   });
@@ -63,13 +63,15 @@ describe("canWritePath", () => {
       // No content available (file missing but not flagged as create) → no.
       assert.equal(canWritePath(member, `${dir}/old-thing.yaml`, false), false, dir);
     }
-    // Ownership never extends to other collections, even when the file names them.
-    assert.equal(canWritePath(member, "content/projects/p.yaml", false, "contributors:\n  - jane-doe\n"), false);
+    // v3: a project is editable by its contributors, and only by them.
+    assert.equal(canWritePath(member, "content/projects/p.yaml", false, "contributors:\n  - jane-doe\n"), true);
+    assert.equal(canWritePath(member, "content/projects/p.yaml", false, "contributors:\n  - john-roe\n"), false);
+    // Ownership never extends to another person's profile, even when the file names them.
     assert.equal(canWritePath(member, "content/people/john-roe.yaml", false, "personId: jane-doe\n"), false);
   });
 
   it("members may not create anything else", () => {
-    for (const p of ["content/projects/x.yaml", "content/themes/x.yaml", "content/site.yaml", "access/roster.json"]) {
+    for (const p of ["content/themes/x.yaml", "content/venues/x.yaml", "content/gallery/x.yaml", "content/site.yaml", "access/roster.json"]) {
       assert.equal(canWritePath(member, p, true), false, p);
     }
   });
@@ -106,6 +108,66 @@ describe("ownsRecord", () => {
     ]) {
       assert.equal(ownsRecord(content, "jane-doe"), false, JSON.stringify(content));
     }
+  });
+});
+
+describe("ownsRecord — v3 owner lists", () => {
+  it("an id listed under authorIds or contributors owns the record, in block or flow style", () => {
+    for (const content of [
+      "authorIds:\n  - jane-doe\n",
+      "authorIds:\n  - john-roe\n  - jane-doe\n",
+      "authorIds:\n- jane-doe\n",
+      'contributors:\n  - john-roe\n  - "jane-doe"\n',
+      "authorIds: [jane-doe]\n",
+      "authorIds: [john-roe, jane-doe]\n",
+      "---\nkind: blog\nauthorIds:\n  - jane-doe\ntags:\n  - AI\n---\n\nbody",
+    ]) {
+      assert.equal(ownsRecord(content, "jane-doe"), true, JSON.stringify(content));
+    }
+  });
+
+  it("being mentioned, or listed under any other key, does not", () => {
+    for (const content of [
+      "mentions:\n  personIds:\n    - jane-doe\n",
+      "tags:\n  - jane-doe\n",
+      "personIds: [jane-doe]\n",
+      "authorIds:\n  - jane-doe-2\n",
+      "authorIds: [jane-doe-2]\n",
+    ]) {
+      assert.equal(ownsRecord(content, "jane-doe"), false, JSON.stringify(content));
+    }
+  });
+});
+
+describe("self-linking (SPEC.md §9.3)", () => {
+  const paper = "id: p\ntitle: T\nauthors:\n  - name: J. Doe\n  - name: J. Xiong\n    personId: jinjun-xiong\nyear: 2024\n";
+  const claimed = "id: p\ntitle: T\nauthors:\n  - name: J. Doe\n    personId: jane-doe\n  - name: J. Xiong\n    personId: jinjun-xiong\nyear: 2024\n";
+
+  it("lets a member add their own id under an unlinked author, and nothing else", () => {
+    assert.equal(isSelfLinkOnly(paper, claimed, "jane-doe"), true);
+    assert.equal(isSelfLinkOnly(paper.replace(/\n/g, "\r\n"), claimed, "jane-doe"), true);
+    assert.equal(canWritePath(member, "content/publications/p.yaml", false, paper, claimed), true);
+  });
+
+  it("refuses any other change riding along", () => {
+    assert.equal(isSelfLinkOnly(paper, claimed.replace("title: T", "title: Mine now"), "jane-doe"), false);
+    assert.equal(isSelfLinkOnly(paper, claimed + "featured: true\n", "jane-doe"), false);
+    assert.equal(isSelfLinkOnly(paper, paper, "jane-doe"), false);
+  });
+
+  it("refuses linking someone else, or taking over a slot that is already linked", () => {
+    assert.equal(isSelfLinkOnly(paper, claimed.replace("personId: jane-doe", "personId: john-roe"), "jane-doe"), false);
+    const takeover = paper.replace("  - name: J. Xiong\n", "  - name: J. Xiong\n    personId: jane-doe\n");
+    assert.equal(isSelfLinkOnly(paper, takeover, "jane-doe"), false);
+  });
+
+  it("refuses a personId line that is not directly under an author name", () => {
+    assert.equal(isSelfLinkOnly(paper, paper.replace("year: 2024", "personId: jane-doe\nyear: 2024"), "jane-doe"), false);
+  });
+
+  it("applies to publications only", () => {
+    const award = "id: a\naward: Best Paper\n";
+    assert.equal(canWritePath(member, "content/recognitions/a.yaml", false, award, award + "personId: jane-doe\n"), false);
   });
 });
 

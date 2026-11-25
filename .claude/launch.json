@@ -12,6 +12,13 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev:mock"],
       "port": 8787
+    },
+    {
+      "name": "mock-gate-yuting",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev:mock"],
+      "env": { "MOCK_DEMO_MEMBER": "yuting-hu" },
+      "port": 8787
     }
   ]
 }

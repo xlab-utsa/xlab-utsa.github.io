@@ -28,6 +28,7 @@ import { loadAllRecords, type AllContent } from "./index";
 import { ContentValidationError } from "./loader";
 import { titleKey } from "./matching";
 import { isLabLead, joinedYear } from "./people";
+import { authorFitsPerson, candidatesForAuthor, preselect } from "./suggestions";
 import {
   COLLECTION_KEY,
   RELATIONS,
@@ -255,6 +256,41 @@ export function validateContent(preloaded?: AllContent): ValidationReport {
     if (!p.photo) {
       add({ level: "warning", code: "no-photo", entity: "people", id: p.id, message: `people/${p.id}.yaml: no photo` });
     }
+  }
+
+  // --- person ↔ paper link checks (SPEC.md §9.4) --------------------------------
+  // Warnings, never errors: a human resolves both. The first catches a link that names the
+  // wrong person; the second catches the link nobody ever made — invisible to every other
+  // check, because an unlinked author is valid data.
+  const personById = new Map(content.people.map((p) => [p.id, p]));
+  for (const pub of content.publications) {
+    pub.authors.forEach((author, i) => {
+      if (author.personId) {
+        const person = personById.get(author.personId);
+        if (person && !authorFitsPerson(author.name, person)) {
+          add({
+            level: "warning",
+            code: "author-link-mismatch",
+            entity: "publications",
+            id: pub.id,
+            where: `authors[${i}].personId`,
+            message: `publications/${pub.id}.yaml authors[${i}]: "${author.name}" is linked to ${person.name}, but the name does not match theirs or any alias — wrong person, or add the spelling to their aliases`,
+          });
+        }
+        return;
+      }
+      const pick = preselect(candidatesForAuthor(author.name, content.people));
+      if (pick && pick.confidence !== "initial" && !pub.authors.some((a) => a.personId === pick.personId)) {
+        add({
+          level: "warning",
+          code: "author-probably-unlinked",
+          entity: "publications",
+          id: pub.id,
+          where: `authors[${i}]`,
+          message: `publications/${pub.id}.yaml authors[${i}]: "${author.name}" is probably ${pick.personName} (${pick.confidence} match) but is not linked`,
+        });
+      }
+    });
   }
 
   // --- coverage ----------------------------------------------------------------

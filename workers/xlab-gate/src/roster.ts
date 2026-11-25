@@ -103,7 +103,9 @@ export function canWritePath(
   path: string,
   isCreate: boolean,
   /** Current contents of the file when it exists — lets a member edit records they are on. */
-  existing?: string
+  existing?: string,
+  /** The contents being submitted — needed only to recognise a self-link (see below). */
+  incoming?: string
 ): boolean {
   if (id.role === "admin") return true;
   if (id.role === "editor") {
@@ -129,20 +131,95 @@ export function canWritePath(
   const contribution =
     path.startsWith("content/publications/") ||
     path.startsWith("content/recognitions/") ||
-    path.startsWith("content/posts/");
+    path.startsWith("content/posts/") ||
+    path.startsWith("content/projects/");
   if (!contribution) return false;
   if (isCreate) return true;
-  return existing !== undefined && ownsRecord(existing, id.personId);
+  if (existing === undefined) return false;
+  if (ownsRecord(existing, id.personId)) return true;
+
+  // Self-linking (SPEC.md §9.3): a member may claim their own author slot on a paper that
+  // does not name them yet — and nothing else. Review still applies.
+  return (
+    path.startsWith("content/publications/") &&
+    incoming !== undefined &&
+    isSelfLinkOnly(existing, incoming, id.personId)
+  );
+}
+
+const escapeRe = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+/** Keys whose LIST items name a record's owners (schema v3): post authors, project contributors. */
+const OWNER_LIST_KEYS = ["authorIds", "contributors"];
+
+/**
+ * Does this record name the member — as a publication author, award recipient, post author,
+ * or project contributor? A textual test rather than a parse, so this Worker stays
+ * schema-blind: it knows only that ownership is spelled `personId:`/`authorId:` followed by
+ * the id on its own line, or the id as an item of an `authorIds:`/`contributors:` list
+ * (block or flow style). A person merely MENTIONED (`mentions.personIds`) does not own the
+ * record. Review still happens; this merely lets a member fix a typo in their own work
+ * without a round trip through an admin.
+ */
+export function ownsRecord(content: string, personId: string): boolean {
+  const id = escapeRe(personId);
+  const text = content.replace(/\r\n/g, "\n");
+  if (new RegExp(`^\\s*(?:-\\s+)?(?:personId|authorId):\\s*["']?${id}["']?\\s*(?:#.*)?$`, "m").test(text)) return true;
+
+  const keys = OWNER_LIST_KEYS.join("|");
+  // Flow style: authorIds: [a, jane-doe]
+  if (new RegExp(`^\\s*(?:${keys}):\\s*\\[(?:[^\\]]*[\\s,])?["']?${id}["']?\\s*[,\\]]`, "m").test(text)) return true;
+
+  // Block style: find the item line, then walk up past sibling items to the key owning the list.
+  const lines = text.split("\n");
+  const item = new RegExp(`^(\\s*)-\\s+["']?${id}["']?\\s*(?:#.*)?$`);
+  for (let i = 0; i < lines.length; i++) {
+    const m = lines[i].match(item);
+    if (!m) continue;
+    const indent = m[1].length;
+    for (let k = i - 1; k >= 0; k--) {
+      const line = lines[k];
+      if (!line.trim()) continue;
+      const lead = line.length - line.trimStart().length;
+      if (lead === indent && line.trimStart().startsWith("-")) continue; // a sibling item
+      const key = line.match(/^(\s*)([A-Za-z_][\w-]*):\s*(?:#.*)?$/);
+      if (key && key[1].length <= indent && OWNER_LIST_KEYS.includes(key[2])) return true;
+      break;
+    }
+  }
+  return false;
 }
 
 /**
- * Does this record name the member — as a publication author, award recipient, or post
- * author? A textual test rather than a parse, so this Worker stays schema-blind: it only
- * knows that ownership is spelled `personId:` or `authorId:` followed by the id, on its own
- * line, possibly as a list item. Review still happens; this merely lets a member fix a typo
- * in their own paper without a round trip through an admin.
+ * True when `incoming` is `existing` with exactly ONE line added: `personId: <own id>`,
+ * directly under an author's `- name:` line that had no personId yet. Any other difference —
+ * a changed character, a second insertion, a link for someone else — fails. Purely textual,
+ * so Studio must build the submission by inserting that line into the file's current text.
  */
-export function ownsRecord(content: string, personId: string): boolean {
-  const id = personId.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  return new RegExp(`^\\s*(?:-\\s+)?(?:personId|authorId):\\s*["']?${id}["']?\\s*(?:#.*)?$`, "m").test(content);
+export function isSelfLinkOnly(existing: string, incoming: string, personId: string): boolean {
+  const norm = (t: string) => t.replace(/\r\n/g, "\n").replace(/\n+$/, "");
+  const a = norm(existing).split("\n");
+  const b = norm(incoming).split("\n");
+  if (b.length !== a.length + 1) return false;
+  const link = new RegExp(`^(\\s*)personId:\\s*["']?${escapeRe(personId)}["']?\\s*$`);
+
+  let inserted = -1;
+  for (let i = 0, j = 0; j < b.length; j++) {
+    if (i < a.length && b[j] === a[i]) {
+      i++;
+      continue;
+    }
+    if (inserted !== -1) return false;
+    inserted = j;
+  }
+  if (inserted < 1) return false;
+
+  const m = b[inserted].match(link);
+  const author = b[inserted - 1].match(/^(\s*)-\s+name:\s*\S/);
+  if (!m || !author || m[1].length !== author[1].length + 2) return false;
+  // The slot must not already carry a link — a second personId would be a takeover.
+  const next = b[inserted + 1] ?? "";
+  const nextLead = next.length - next.trimStart().length;
+  if (nextLead === m[1].length && /^\s*personId:/.test(next)) return false;
+  return true;
 }

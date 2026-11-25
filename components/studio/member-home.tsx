@@ -21,6 +21,7 @@ import { entityByKey, filePathFor } from "@/lib/studio/entities";
 import { personCompleteness, profileTodos } from "@/lib/studio/records";
 import { filesChangedIn, pendingFor, relativeTime } from "@/lib/studio/submissions";
 import { EntityBrowser } from "./entity-browser";
+import { ClaimPapers } from "./claim-papers";
 import { ActionButton, Notice } from "./notice";
 import { ProfileForm } from "./profile-form";
 
@@ -189,6 +190,7 @@ export function MemberHome({
         <div className="space-y-5">
           {returnedNotices}
           <PendingNotice item={pendingProfile} what="Your profile" onOpenQueue={onOpenQueue} />
+          <ClaimPapers identity={identity} snapshot={snapshot} name={identity.name} queue={queue} onSubmitted={submitted} />
           <MyRecords identity={identity} snapshot={snapshot} queue={queue} onSubmitted={submitted} />
         </div>
       );
@@ -262,6 +264,15 @@ export function MemberHome({
           </ul>
         )}
       </div>
+
+      <ClaimPapers
+        identity={identity}
+        snapshot={snapshot}
+        name={profile.name}
+        aliases={profile.aliases}
+        queue={queue}
+        onSubmitted={submitted}
+      />
 
       <MyRecords identity={identity} snapshot={snapshot} queue={queue} onSubmitted={submitted} />
     </div>

@@ -115,6 +115,9 @@ export const api = {
 
   queue: () => call<{ queue: QueueItem[] }>("/queue"),
 
+  /** The exact current text of a content file — needed to build a one-line self-link. */
+  file: (path: string) => call<{ path: string; content: string }>(`/file?path=${encodeURIComponent(path)}`),
+
   queueFiles: (n: number) => call<{ files: DiffFile[] }>(`/queue/${n}/files`),
 
   /** Submissions sent back with the reviewer's note (members see only their own). */

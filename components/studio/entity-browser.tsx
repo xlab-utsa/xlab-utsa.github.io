@@ -28,6 +28,7 @@ import { fetchByDoi } from "@/lib/studio/crossref";
 import { COLLECTION_KEY, labelOf, referencesTo, refFieldTargets } from "@/lib/content/relations";
 import type { EntityKind } from "@/lib/content/schema";
 import { FieldInput } from "./field-input";
+import { LinkSuggestions } from "./link-suggestions";
 import type { ZodType } from "zod";
 
 type Rec = Record<string, unknown>;
@@ -622,6 +623,13 @@ function RecordForm({
       )}
 
       {entity.key === "publications" && <DoiLookup onFill={(patch) => setRecord((r) => ({ ...r, ...patch }))} />}
+
+      <LinkSuggestions
+        entityKey={entity.key}
+        record={record}
+        snapshot={snapshot}
+        onChange={(patch) => setRecord((r) => ({ ...r, ...patch }))}
+      />
 
       <div className="grid gap-4 md:grid-cols-2">
         {fields.map((f) => (

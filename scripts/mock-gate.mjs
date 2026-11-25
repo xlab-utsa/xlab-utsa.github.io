@@ -100,7 +100,7 @@ function toIdentity(entry, sub) {
 
 const canApprove = (id) => id.role === "admin" || id.role === "editor";
 
-function canWritePath(id, p, isCreate, existing) {
+function canWritePath(id, p, isCreate, existing, incoming) {
   if (id.role === "admin") return true;
   if (id.role === "editor") return p.startsWith("content/") || p.startsWith("public/images/");
   if (!id.personId) return false;
@@ -108,15 +108,68 @@ function canWritePath(id, p, isCreate, existing) {
   if (p === `public/images/people/${id.personId}.png`) return true;
   if (p === `public/images/people/${id.personId}.jpg`) return true;
   const contribution =
-    p.startsWith("content/publications/") || p.startsWith("content/recognitions/") || p.startsWith("content/posts/");
+    p.startsWith("content/publications/") ||
+    p.startsWith("content/recognitions/") ||
+    p.startsWith("content/posts/") ||
+    p.startsWith("content/projects/");
   if (!contribution) return false;
   if (isCreate) return true;
-  return existing !== undefined && ownsRecord(existing, id.personId);
+  if (existing === undefined) return false;
+  if (ownsRecord(existing, id.personId)) return true;
+  return p.startsWith("content/publications/") && incoming !== undefined && isSelfLinkOnly(existing, incoming, id.personId);
 }
 
+const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const OWNER_LIST_KEYS = ["authorIds", "contributors"];
+
 function ownsRecord(content, personId) {
-  const id = personId.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  return new RegExp(`^\\s*(?:-\\s+)?(?:personId|authorId):\\s*["']?${id}["']?\\s*(?:#.*)?$`, "m").test(content);
+  const id = escapeRe(personId);
+  const text = content.replace(/\r\n/g, "\n");
+  if (new RegExp(`^\\s*(?:-\\s+)?(?:personId|authorId):\\s*["']?${id}["']?\\s*(?:#.*)?$`, "m").test(text)) return true;
+  const keys = OWNER_LIST_KEYS.join("|");
+  if (new RegExp(`^\\s*(?:${keys}):\\s*\\[(?:[^\\]]*[\\s,])?["']?${id}["']?\\s*[,\\]]`, "m").test(text)) return true;
+  const lines = text.split("\n");
+  const item = new RegExp(`^(\\s*)-\\s+["']?${id}["']?\\s*(?:#.*)?$`);
+  for (let i = 0; i < lines.length; i++) {
+    const m = lines[i].match(item);
+    if (!m) continue;
+    const indent = m[1].length;
+    for (let k = i - 1; k >= 0; k--) {
+      const line = lines[k];
+      if (!line.trim()) continue;
+      const lead = line.length - line.trimStart().length;
+      if (lead === indent && line.trimStart().startsWith("-")) continue;
+      const key = line.match(/^(\s*)([A-Za-z_][\w-]*):\s*(?:#.*)?$/);
+      if (key && key[1].length <= indent && OWNER_LIST_KEYS.includes(key[2])) return true;
+      break;
+    }
+  }
+  return false;
+}
+
+function isSelfLinkOnly(existing, incoming, personId) {
+  const norm = (t) => t.replace(/\r\n/g, "\n").replace(/\n+$/, "");
+  const a = norm(existing).split("\n");
+  const b = norm(incoming).split("\n");
+  if (b.length !== a.length + 1) return false;
+  const link = new RegExp(`^(\\s*)personId:\\s*["']?${escapeRe(personId)}["']?\\s*$`);
+  let inserted = -1;
+  for (let i = 0, j = 0; j < b.length; j++) {
+    if (i < a.length && b[j] === a[i]) {
+      i++;
+      continue;
+    }
+    if (inserted !== -1) return false;
+    inserted = j;
+  }
+  if (inserted < 1) return false;
+  const m = b[inserted].match(link);
+  const author = b[inserted - 1].match(/^(\s*)-\s+name:\s*\S/);
+  if (!m || !author || m[1].length !== author[1].length + 2) return false;
+  const next = b[inserted + 1] ?? "";
+  const nextLead = next.length - next.trimStart().length;
+  if (nextLead === m[1].length && /^\s*personId:/.test(next)) return false;
+  return true;
 }
 
 // --- tokens (unsigned — this is a mock) ------------------------------------------
@@ -325,6 +378,13 @@ async function route(req, res) {
   if (!id) return fail(req, res, 401, decodeToken(header.slice(7))?.email ? "access_removed" : "not signed in");
 
   if (p === "/me") return json(req, res, id);
+  if (p === "/file" && req.method === "GET") {
+    const filePath = url.searchParams.get("path") ?? "";
+    if (!filePath.startsWith("content/") || filePath.includes("..") || filePath.includes("\\")) return fail(req, res, 400, "only content/ files can be read");
+    const content = readRepoFile(filePath);
+    if (content === undefined) return fail(req, res, 404, "no such file");
+    return json(req, res, { path: filePath, content });
+  }
 
   if (p === "/submit" && req.method === "POST") {
     const body = await readJson(req);
@@ -339,7 +399,7 @@ async function route(req, res) {
       const existing = id.role === "admin" ? undefined : readRepoFile(f.path);
       const exists = id.role === "admin" ? true : existing !== undefined;
       if (f.delete && id.role === "member") return fail(req, res, 403, `members cannot delete records — ask an admin to remove ${f.path}`);
-      if (!canWritePath(id, f.path, !exists, existing)) return fail(req, res, 403, `you are not allowed to modify ${f.path}`);
+      if (!canWritePath(id, f.path, !exists, existing, f.content)) return fail(req, res, 403, `you are not allowed to modify ${f.path}`);
     }
     const pr = openPr(id, body);
     return json(req, res, { ok: true, pr: { number: pr.number, url: pr.url, branch: pr.branch } });
