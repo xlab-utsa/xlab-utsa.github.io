@@ -44,13 +44,9 @@ function Tile({ p }: { p: PreviewPerson }) {
       />
       <p className="mt-4 text-[17px] leading-tight font-bold tracking-tight text-foreground group-hover:underline">{p.name}</p>
       <p className="mt-1 font-mono text-[11.5px] tracking-[0.12em] text-brand-strong uppercase">{alumni ? `Former ${p.role}` : p.role}</p>
-      {p.now ? (
+      {p.now && (
         <p className="mt-2 text-[13.5px] leading-snug text-muted-foreground">
           Now: {p.now.title}, <span className="font-semibold text-foreground">{p.now.where}</span>
-        </p>
-      ) : (
-        <p className="mt-2 text-[13.5px] leading-snug text-muted-foreground">
-          {p.papers > 0 ? `${p.papers} paper${p.papers === 1 ? "" : "s"} · ${p.themes.slice(0, 2).map((t) => t.label).join(", ")}` : "New to the lab"}
         </p>
       )}
     </>
