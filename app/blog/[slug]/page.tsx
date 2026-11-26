@@ -102,8 +102,10 @@ export default async function BlogPostPage({
 
       {publicFileExists(post.image) && post.image && (
         <div className="mx-auto mt-10 max-w-[860px] px-6 sm:px-10">
-          <div className="relative aspect-video overflow-hidden rounded-[24px] bg-muted">
-            <Image src={withBasePath(post.image)} alt="" fill sizes="(min-width: 860px) 780px, 100vw" className="object-cover" priority />
+          {/* Shown whole, over a blurred copy of itself, like the cards on /blog. */}
+          <div className="relative aspect-[16/9] overflow-hidden rounded-[24px] bg-bg-alt">
+            <Image src={withBasePath(post.image)} alt="" fill sizes="780px" aria-hidden="true" className="scale-110 object-cover opacity-60 blur-2xl" />
+            <Image src={withBasePath(post.image)} alt="" fill sizes="(min-width: 860px) 780px, 100vw" className="object-contain" priority />
           </div>
         </div>
       )}
