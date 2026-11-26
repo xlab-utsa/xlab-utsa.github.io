@@ -1,6 +1,6 @@
-import { getProjectsPreviewData } from "@/components/preview/projects/data";
-import { ProjectExplorer } from "@/components/preview/projects/explorer";
-import { ProjectsIntro } from "@/components/preview/projects/intro";
+import { getProjectsPreviewData } from "@/components/projects/data";
+import { ProjectExplorer } from "@/components/projects/explorer";
+import { ProjectsIntro } from "@/components/projects/intro";
 import { ProjectsPreviewBar } from "@/components/preview/projects/nav";
 
 // P4 · Explorer — one project at a time: the list stays put on the left, the chosen project
@@ -12,7 +12,7 @@ export default function ExplorerPreview() {
       <ProjectsPreviewBar current="explorer" />
       <ProjectsIntro projects={projects} />
       <div className="mx-auto max-w-[1500px] px-6 pb-20 sm:px-10">
-        <ProjectExplorer projects={projects} />
+        <ProjectExplorer projects={projects} stickyClass="lg:top-[calc(59px+56px)]" />
       </div>
     </div>
   );

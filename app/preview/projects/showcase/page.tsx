@@ -1,5 +1,5 @@
-import { getProjectsPreviewData } from "@/components/preview/projects/data";
-import { ProjectsIntro, VenueBadge } from "@/components/preview/projects/intro";
+import { getProjectsPreviewData } from "@/components/projects/data";
+import { ProjectsIntro, VenueBadge } from "@/components/projects/intro";
 import { Art, Faces, LinkPills, names, ProjectsPreviewBar, STATUS_LABEL, yearsLabel } from "@/components/preview/projects/nav";
 
 // P1 · Showcase — each project gets a full-width row, like a product page: the illustration

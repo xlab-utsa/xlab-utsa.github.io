@@ -1,5 +1,5 @@
-import { getProjectsPreviewData } from "@/components/preview/projects/data";
-import { ProjectsIntro, VenueBadge } from "@/components/preview/projects/intro";
+import { getProjectsPreviewData } from "@/components/projects/data";
+import { ProjectsIntro, VenueBadge } from "@/components/projects/intro";
 import { Art, Faces, LinkPills, names, ProjectsPreviewBar, STATUS_LABEL, yearsLabel } from "@/components/preview/projects/nav";
 
 // P3 · Timeline — the projects placed on the years of their papers. At the top, one lane per

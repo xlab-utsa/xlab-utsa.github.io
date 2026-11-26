@@ -1,5 +1,5 @@
-import { getProjectsPreviewData } from "@/components/preview/projects/data";
-import { ProjectsIntro } from "@/components/preview/projects/intro";
+import { getProjectsPreviewData } from "@/components/projects/data";
+import { ProjectsIntro } from "@/components/projects/intro";
 import { ProjectsPreviewBar } from "@/components/preview/projects/nav";
 import { ProjectWall } from "@/components/preview/projects/wall";
 

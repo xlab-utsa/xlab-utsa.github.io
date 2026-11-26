@@ -1,4 +1,4 @@
-// Everything the four Projects-page previews (app/preview/projects/**) render, gathered once.
+// Everything the Projects page (and its design previews, app/preview/projects/**) renders, gathered once.
 //
 // SERVER/BUILD ONLY. All of it comes from content/: each project's record, plus the papers
 // that belong to it — its `publicationIds`, and (since none are set yet) any publication whose
@@ -74,7 +74,7 @@ function papersOf(project: Project): Publication[] {
     .sort((a, b) => (b.year ?? 0) - (a.year ?? 0));
 }
 
-export function getProjectsPreviewData() {
+export function getProjectsData() {
   const themes = new Map(getResearchThemes().map((t) => [t.id, t.title]));
   const lead = getCurrentPeople().find(isLabLead);
 
@@ -125,3 +125,6 @@ export function getProjectsPreviewData() {
   const areas = [...new Map(projects.flatMap((p) => p.areas).map((a) => [a.id, a])).values()];
   return { projects, areas };
 }
+
+/** The previews' name for getProjectsData. */
+export const getProjectsPreviewData = getProjectsData;

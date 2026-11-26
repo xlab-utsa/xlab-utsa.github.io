@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { getProjectsPreviewData } from "@/components/preview/projects/data";
+import { getProjectsPreviewData } from "@/components/projects/data";
 import { Art, PROJECT_DESIGNS, ProjectsPreviewBar } from "@/components/preview/projects/nav";
 
 // Index of the four Projects-page designs. Temporary, like the rest of /preview.

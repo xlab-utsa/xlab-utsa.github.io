@@ -1,32 +1,59 @@
 "use client";
 
-// P4 · Explorer — the interactive part: a list of projects (a tab list) beside one large panel
-// for the chosen project. Arrow keys move between projects; on small screens the list sits
-// above the panel.
-import { useRef, useState } from "react";
+// The Projects page (chosen from the /preview/projects designs as "P4 · Explorer"): a list of
+// projects (a tab list) beside one large panel for the chosen project. Arrow keys move between
+// projects; on small screens the list sits above the panel. The chosen project is kept in the
+// address (#quadranet), so a link can open the page on a given project.
+import { useEffect, useRef, useState } from "react";
 
 import { cn } from "@/lib/utils";
 
 import type { PreviewProject } from "./data";
-import { Art, Faces, LinkPills, names, STATUS_LABEL, yearsLabel } from "./nav";
+import { Art, Faces, LinkPills, names, STATUS_LABEL, yearsLabel } from "./parts";
 
-export function ProjectExplorer({ projects }: { projects: PreviewProject[] }) {
+export function ProjectExplorer({
+  projects,
+  stickyClass = "lg:top-[calc(59px+24px)]",
+}: {
+  projects: PreviewProject[];
+  /** Where the list pins under the header (the previews have an extra bar). */
+  stickyClass?: string;
+}) {
   const [i, setI] = useState(0);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
   const p = projects[i];
+
+  // Open on the project named in the address, and follow it if it changes.
+  useEffect(() => {
+    const fromHash = () => {
+      const k = projects.findIndex((q) => `#${q.id}` === window.location.hash);
+      if (k >= 0) setI(k);
+    };
+    const timer = window.setTimeout(fromHash, 0);
+    window.addEventListener("hashchange", fromHash);
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener("hashchange", fromHash);
+    };
+  }, [projects]);
+
+  const choose = (k: number) => {
+    setI(k);
+    window.history.replaceState(null, "", `#${projects[k].id}`);
+  };
 
   const onKey = (e: React.KeyboardEvent) => {
     const step = e.key === "ArrowDown" || e.key === "ArrowRight" ? 1 : e.key === "ArrowUp" || e.key === "ArrowLeft" ? -1 : 0;
     if (!step) return;
     e.preventDefault();
     const next = (i + step + projects.length) % projects.length;
-    setI(next);
+    choose(next);
     tabs.current[next]?.focus();
   };
 
   return (
     <div className="grid grid-cols-[minmax(0,1fr)] gap-8 lg:grid-cols-[360px_minmax(0,1fr)] lg:gap-12">
-      <div role="tablist" aria-label="Projects" aria-orientation="vertical" onKeyDown={onKey} className="flex min-w-0 flex-col gap-2 lg:sticky lg:top-[calc(59px+56px)] lg:self-start">
+      <div role="tablist" aria-label="Projects" aria-orientation="vertical" onKeyDown={onKey} className={cn("flex min-w-0 flex-col gap-2 lg:sticky lg:self-start", stickyClass)}>
         {projects.map((q, k) => (
           <button
             key={q.id}
@@ -38,7 +65,7 @@ export function ProjectExplorer({ projects }: { projects: PreviewProject[] }) {
             aria-selected={k === i}
             aria-controls="project-panel"
             tabIndex={k === i ? 0 : -1}
-            onClick={() => setI(k)}
+            onClick={() => choose(k)}
             className={cn(
               "group flex items-center gap-4 rounded-2xl border p-3 text-left transition-colors",
               k === i ? "border-foreground bg-foreground text-background" : "border-border hover:bg-muted"
@@ -57,7 +84,7 @@ export function ProjectExplorer({ projects }: { projects: PreviewProject[] }) {
         <p className="mt-2 px-1 text-[13px] text-text-faint">Click a project, or use the arrow keys.</p>
       </div>
 
-      <section id="project-panel" role="tabpanel" aria-labelledby={`tab-${p.id}`} key={p.id} className="pv-rise min-w-0">
+      <section id="project-panel" role="tabpanel" aria-labelledby={`tab-${p.id}`} key={p.id} className="min-w-0 animate-in duration-500 fade-in slide-in-from-bottom-2 motion-reduce:animate-none">
         <Art project={p} priority sizes="(min-width: 1024px) 60vw, 100vw" className="aspect-[16/8] rounded-[28px] ring-1 ring-border" />
         <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[12.5px] tracking-[0.16em] text-muted-foreground uppercase">
           {p.areas.map((a) => (

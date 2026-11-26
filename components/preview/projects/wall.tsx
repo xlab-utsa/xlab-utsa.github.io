@@ -5,8 +5,8 @@ import { useState } from "react";
 
 import { cn } from "@/lib/utils";
 
-import type { PreviewProject } from "./data";
-import { Art, Faces, STATUS_LABEL } from "./nav";
+import type { PreviewProject } from "@/components/projects/data";
+import { Art, Faces, STATUS_LABEL } from "@/components/projects/parts";
 
 export function ProjectWall({ projects, areas }: { projects: PreviewProject[]; areas: { id: string; title: string }[] }) {
   const [area, setArea] = useState<string>();
