@@ -19,6 +19,12 @@
       "runtimeArgs": ["run", "dev:mock"],
       "env": { "MOCK_DEMO_MEMBER": "yuting-hu" },
       "port": 8787
+    },
+    {
+      "name": "xlab-static",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "3002", "-d", "out"],
+      "port": 3002
     }
   ]
 }
