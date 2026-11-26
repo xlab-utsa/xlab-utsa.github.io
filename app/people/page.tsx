@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { PageHeader } from "@/components/page-header";
 import { PeopleDirectory } from "@/components/people/people-directory";
+import { ResearchMapSection } from "@/components/people/research-map-section";
 import { getAlumniPeople, getCurrentPeople } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -21,6 +22,9 @@ export default function PeoplePage() {
       />
       <div className="mt-10">
         <PeopleDirectory />
+      </div>
+      <div className="mt-16">
+        <ResearchMapSection />
       </div>
     </div>
   );

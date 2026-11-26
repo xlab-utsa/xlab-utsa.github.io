@@ -596,8 +596,12 @@ export type Course = z.infer<typeof CourseSchema>;
 export const SponsorSchema = z.strictObject({
   id: Slug,
   name: NonEmpty,
+  /** Short form for tight layouts ("NSF", "UTSA"). */
+  shortName: NonEmpty.optional(),
   logo: AssetPath.optional(),
   url: Url.optional(),
+  /** What kind of supporter this is; shown as a small label beside the name. */
+  kind: z.enum(["industry", "government", "university", "foundation"]).optional(),
   grantNumbers: z.array(NonEmpty).default([]),
   ...envelope,
 });

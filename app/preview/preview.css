@@ -1,0 +1,66 @@
+/* Preview-only styles (app/preview/**). Nothing here reaches the live site's pages. */
+
+.font-display {
+  font-family: var(--font-serif-instrument), "Iowan Old Style", Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* One accent per design, picked from the photos' own palette: the National AI Institute's
+   yellow, and the lab's existing blue. */
+.pv-amber {
+  --pv-accent: oklch(0.84 0.16 88);
+  --pv-accent-ink: oklch(0.25 0.05 88);
+}
+.pv-blue {
+  --pv-accent: var(--brand);
+  --pv-accent-ink: var(--brand-foreground);
+}
+
+/* Crossfade slideshow (cinematic): each slide fades in turn; JS-free. */
+@keyframes pv-fade {
+  0% { opacity: 0; transform: scale(1.06); }
+  6% { opacity: 1; }
+  28% { opacity: 1; }
+  34% { opacity: 0; transform: scale(1); }
+  100% { opacity: 0; }
+}
+.pv-slide {
+  animation: pv-fade var(--pv-cycle, 30s) linear infinite;
+  opacity: 0;
+}
+
+@keyframes pv-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+.pv-rise {
+  animation: pv-rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pv-slide { animation: none; opacity: 0; }
+  .pv-slide:first-child { opacity: 1; }
+  .pv-rise { animation: none; }
+}
+
+/* Editorial: warm paper in light mode, plain dark in dark mode. */
+.pv-paper {
+  --pv-paper: oklch(0.985 0.008 85);
+  --pv-ink: oklch(0.18 0.01 60);
+  --pv-rule: oklch(0.82 0.01 70);
+  background: var(--pv-paper);
+  color: var(--pv-ink);
+}
+.dark .pv-paper {
+  --pv-paper: oklch(0.12 0.005 60);
+  --pv-ink: oklch(0.95 0.005 85);
+  --pv-rule: oklch(0.32 0.005 70);
+}
+.pv-dropcap::first-letter {
+  float: left;
+  font-family: var(--font-serif-instrument), Georgia, serif;
+  font-size: 4.4em;
+  line-height: 0.82;
+  padding: 0.06em 0.08em 0 0;
+}

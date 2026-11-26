@@ -236,6 +236,8 @@ export function validateContent(preloaded?: AllContent): ValidationReport {
       });
     for (const file of walk(imagesRoot)) {
       const rel = "/" + path.relative(PUBLIC_ROOT, file).split(path.sep).join("/");
+      // Gallery strip copies (components/gallery-strip.tsx) are derived, not referenced.
+      if (rel.startsWith("/images/gallery/thumbs/")) continue;
       if (!refs.has(rel)) {
         add({
           level: "warning",

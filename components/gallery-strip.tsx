@@ -3,11 +3,19 @@ import Image from "next/image";
 import { getGalleryPhotos } from "@/lib/content";
 import { publicFileExists, withBasePath } from "@/lib/content/assets";
 
-// The homepage's scrolling photo banner, directly below the stats (2026-11-23 meeting).
-// CSS-only animation (app/globals.css, .gallery-track): no client JS, pauses on hover, and
-// stands still under prefers-reduced-motion. Renders nothing until there are photos —
-// they are managed in Studio as GalleryPhoto records.
+// The homepage's scrolling photo banner, directly below the hero (2026-11-23 meeting): edge to
+// edge, rounded photos, the ends fading into the page. CSS-only animation (app/globals.css,
+// .gallery-track): no client JS, pauses on hover, and stands still under
+// prefers-reduced-motion. Renders nothing until there are photos — they are managed in Studio
+// as GalleryPhoto records; a caption, when there is one, is the photo's alt text.
 const SECONDS_PER_PHOTO = 6;
+
+// A 740px copy for the strip (public/images/gallery/thumbs/<name>.jpg) when there is one,
+// else the full photo. Photos added later through Studio have no copy until one is made.
+function stripSrc(image: string): string {
+  const thumb = image.replace(/\/gallery\/([^/]+)\.[a-z]+$/i, "/gallery/thumbs/$1.jpg");
+  return thumb !== image && publicFileExists(thumb) ? thumb : image;
+}
 
 export function GalleryStrip() {
   const photos = getGalleryPhotos().filter((p) => publicFileExists(p.image));
@@ -17,26 +25,27 @@ export function GalleryStrip() {
   const track = [...photos, ...photos];
 
   return (
-    <section aria-label="Lab photos" className="gallery-strip overflow-hidden border-b border-border bg-bg-alt py-4">
+    <section
+      aria-label="Lab photos"
+      className="gallery-strip overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]"
+    >
       <ul
-        className="gallery-track flex w-max gap-3"
+        className="gallery-track flex w-max gap-4"
         style={{ ["--gallery-duration" as string]: `${photos.length * SECONDS_PER_PHOTO}s` }}
       >
         {track.map((photo, i) => (
           <li key={`${photo.id}-${i}`} aria-hidden={i >= photos.length ? true : undefined} className="shrink-0">
-            <figure className="relative h-44 w-64 overflow-hidden border border-border bg-muted sm:h-52 sm:w-80">
+            <figure className="relative h-[clamp(170px,24vh,250px)] w-[clamp(250px,34vh,370px)] overflow-hidden rounded-2xl bg-muted">
+              {/* Eager: the strip moves by CSS transform, which never wakes the browser's lazy
+                  loading, so lazy photos would slide in as empty grey tiles. */}
               <Image
-                src={withBasePath(photo.image)}
+                src={withBasePath(stripSrc(photo.image))}
+                loading="eager"
                 alt={photo.caption ?? "X-Lab group photo"}
                 fill
-                sizes="320px"
+                sizes="370px"
                 className="object-cover"
               />
-              {photo.caption && (
-                <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-3 pt-6 pb-2 text-[12px] text-white">
-                  {photo.caption}
-                </figcaption>
-              )}
             </figure>
           </li>
         ))}

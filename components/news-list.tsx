@@ -1,5 +1,8 @@
+import Image from "next/image";
+
 import { ExternalLink } from "@/components/external-link";
 import type { Post } from "@/lib/content";
+import { publicFileExists, withBasePath } from "@/lib/content/assets";
 import { formatPostDate } from "@/lib/utils";
 
 // One news list, used twice: the homepage's recent strip (compact) and the /news archive
@@ -37,7 +40,10 @@ export function NewsList({
   return (
     <ul className="divide-y divide-hairline">
       {posts.map((post) => (
-        <li key={post.id} className="grid gap-2 py-6 sm:grid-cols-[120px_1fr] sm:gap-6">
+        <li
+          key={post.id}
+          className={`grid gap-2 py-6 sm:gap-6 ${publicFileExists(post.image) ? "sm:grid-cols-[120px_1fr_200px]" : "sm:grid-cols-[120px_1fr]"}`}
+        >
           <span className="pt-1 font-mono text-xs tracking-wide text-text-faint uppercase">
             {formatPostDate(post.date, { year: "numeric", month: "short", day: "numeric" })}
           </span>
@@ -53,6 +59,11 @@ export function NewsList({
               </ExternalLink>
             )}
           </div>
+          {publicFileExists(post.image) && (
+            <div className="relative order-first aspect-[4/3] w-full overflow-hidden rounded-lg bg-muted sm:order-none">
+              <Image src={withBasePath(post.image!)} alt="" fill sizes="(min-width: 640px) 200px, 100vw" className="object-cover" />
+            </div>
+          )}
         </li>
       ))}
     </ul>
