@@ -1,0 +1,13 @@
+status: published
+name: Sri Bhargava Bhamidi
+roleTitle: PhD Student, Computer Science
+photo: /images/people/sri-bhargava-bhamidi.jpg
+links:
+  github: https://github.com/Bhargava1424
+labRoles:
+  - title: PhD
+    role: phd-student
+    current: true
+aliases:
+  - S. B. Bhamidi
+id: sri-bhargava-bhamidi
