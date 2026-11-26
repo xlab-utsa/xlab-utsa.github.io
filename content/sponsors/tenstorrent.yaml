@@ -1,4 +1,7 @@
 id: tenstorrent
 name: Tenstorrent
 kind: industry
+logo: /images/sponsors/tenstorrent.svg
 url: https://tenstorrent.com
+_meta:
+  source: "Logo from tenstorrent.com site header (inline SVG wordmark), downloaded 2026-11-26."

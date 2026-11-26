@@ -1,4 +1,7 @@
 id: microsoft
 name: Microsoft
 kind: industry
+logo: /images/sponsors/microsoft.svg
 url: https://www.microsoft.com
+_meta:
+  source: "Logo from Wikimedia Commons, File:Microsoft logo (2012).svg, downloaded 2026-11-26."

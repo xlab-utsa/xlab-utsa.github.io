@@ -1,4 +1,7 @@
 id: ibm
 name: IBM
 kind: industry
+logo: /images/sponsors/ibm.svg
 url: https://www.ibm.com
+_meta:
+  source: "Logo from Wikimedia Commons, File:IBM logo.svg, downloaded 2026-11-26."

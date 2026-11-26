@@ -3,28 +3,31 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { DESIGNS } from "./designs";
+import { DESIGNS, RESEARCH_DESIGNS } from "./designs";
 
 /** Floating bar for flipping between the design previews. Preview pages only. */
 export function PreviewSwitcher() {
   const path = usePathname().replace(/\/$/, "");
+  const research = path.startsWith("/preview/research");
+  const base = research ? "/preview/research" : "/preview";
+  const list = research ? RESEARCH_DESIGNS : DESIGNS;
   return (
     <nav
       aria-label="Design previews"
       className="fixed inset-x-0 bottom-4 z-50 mx-auto flex w-fit max-w-[calc(100%-2rem)] items-center gap-1 overflow-x-auto rounded-full border border-white/15 bg-neutral-950/90 p-1 text-[12px] text-white shadow-2xl backdrop-blur"
     >
       <Link
-        href="/preview"
-        className={`shrink-0 rounded-full px-3 py-1.5 font-mono tracking-wide ${path === "/preview" ? "bg-white text-neutral-950" : "text-white/70 hover:text-white"}`}
+        href={base}
+        className={`shrink-0 rounded-full px-3 py-1.5 font-mono tracking-wide ${path === base ? "bg-white text-neutral-950" : "text-white/70 hover:text-white"}`}
       >
         ALL
       </Link>
-      {DESIGNS.map((d) => {
-        const active = path === `/preview/${d.slug}`;
+      {list.map((d) => {
+        const active = path === `${base}/${d.slug}`;
         return (
           <Link
             key={d.slug}
-            href={`/preview/${d.slug}`}
+            href={`${base}/${d.slug}`}
             className={`shrink-0 rounded-full px-3 py-1.5 whitespace-nowrap ${active ? "bg-white text-neutral-950" : "text-white/70 hover:text-white"}`}
           >
             <span className="mr-1 font-mono text-[10px] opacity-60">{d.n}</span>

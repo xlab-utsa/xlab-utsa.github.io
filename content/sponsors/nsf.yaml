@@ -2,4 +2,7 @@ id: nsf
 name: U.S. National Science Foundation
 shortName: NSF
 kind: government
+logo: /images/sponsors/nsf.svg
 url: https://www.nsf.gov
+_meta:
+  source: "Logo from Wikimedia Commons, File:NSF logo.svg, downloaded 2026-11-26."

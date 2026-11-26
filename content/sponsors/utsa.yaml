@@ -1,7 +1,9 @@
 id: utsa
 name: The University of Texas at San Antonio
 shortName: UTSA
+logo: /images/sponsors/utsa.svg
 url: https://www.utsa.edu
 kind: university
 _meta:
+  source: "Logo from Wikimedia Commons, File:UTSA Logo.svg, downloaded 2026-11-26."
   note: "Real grant-sponsor data doesn't exist in any collected source yet (see SPEC.md §3.7, §7) — this single UTSA entry is a placeholder standing in for the site's institutional identity, not a funded-grant sponsor. Replace/expand with real grant sponsors later. — asset(s) removed during v2 migration because the file did not exist: logo=/images/sponsors/utsa.png"

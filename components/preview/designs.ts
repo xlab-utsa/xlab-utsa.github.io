@@ -9,3 +9,10 @@ export const DESIGNS = [
   { slug: "story", n: "07", name: "Story scroll", line: "The lab told as a scroll: each research area lights up the chart in turn." },
   { slug: "hero", n: "08", name: "Hero ideas", line: "Two takes on the live home page's opening: balanced figures, a softer gallery, buttons." },
 ] as const;
+
+// The research-page design previews: /preview/research/<slug>. Both keep the live page's
+// layout (header, one research area in focus, all publications) and refine it.
+export const RESEARCH_DESIGNS = [
+  { slug: "side-tabs", n: "R1", name: "Side tabs", line: "The areas as a vertical tab list beside a richer panel; publications with area chips, type tabs and search." },
+  { slug: "top-tabs", n: "R2", name: "Top tabs", line: "Today's horizontal area tabs, refined; publications with their filters in a sidebar." },
+] as const;

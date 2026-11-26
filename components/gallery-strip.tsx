@@ -35,7 +35,7 @@ export function GalleryStrip() {
       >
         {track.map((photo, i) => (
           <li key={`${photo.id}-${i}`} aria-hidden={i >= photos.length ? true : undefined} className="shrink-0">
-            <figure className="relative h-[clamp(170px,24vh,250px)] w-[clamp(250px,34vh,370px)] overflow-hidden rounded-2xl bg-muted">
+            <figure className="relative h-[clamp(190px,29vh,310px)] w-[clamp(285px,44vh,465px)] overflow-hidden rounded-2xl bg-muted">
               {/* Eager: the strip moves by CSS transform, which never wakes the browser's lazy
                   loading, so lazy photos would slide in as empty grey tiles. */}
               <Image
@@ -43,7 +43,7 @@ export function GalleryStrip() {
                 loading="eager"
                 alt={photo.caption ?? "X-Lab group photo"}
                 fill
-                sizes="370px"
+                sizes="465px"
                 className="object-cover"
               />
             </figure>
