@@ -41,6 +41,14 @@
       "role": "member",
       "personId": "aashish-dhakal",
       "active": true
+    },
+    {
+      "id": "cristian-rivera",
+      "name": "Cristian Rivera",
+      "email": "cristian.rivera2@utsa.edu",
+      "role": "member",
+      "personId": "cristian-rivera",
+      "active": true
     }
   ]
 }
