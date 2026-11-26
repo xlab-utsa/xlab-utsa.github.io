@@ -12,7 +12,9 @@ authors:
   - name: R. Nagi
   - name: W. Hwu
 venue: IEEE High Performance Extreme Computing Conference (HPEC)
+venueId: hpec
 year: 2020
+doi: 10.1109/HPEC43674.2020.9286206
 dateDisplay: September 21–25, 2020
 location: Online
 themeIds:

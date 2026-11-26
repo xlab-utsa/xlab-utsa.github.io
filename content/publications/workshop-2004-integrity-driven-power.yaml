@@ -6,7 +6,9 @@ authors:
     personId: jinjun-xiong
   - name: L. He
 venue: ACM/IEEE International Workshop on Timing Issues
+venueId: tau
 year: 2004
+url: https://www.tauworkshop.com/PREVIOUS/04_Slides/Xiong_Integrity-driven.pdf
 dateDisplay: Feb. 2004
 location: Austin, Texas
 themeIds:

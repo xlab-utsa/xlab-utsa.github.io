@@ -9,7 +9,10 @@ authors:
     personId: jinjun-xiong
   - name: L. He
 venue: International Conference on Application Specific Integrated Circuits
+location: Shanghai, China
+venueId: asicon
 year: 2005
+doi: 10.1109/ICASIC.2005.1611442
 dateDisplay: October 2005
 themeIds:
   - eda

@@ -9,7 +9,9 @@ authors:
     personId: jinjun-xiong
   - name: J. Hockenmaier
 venue: The 58th annual meeting of the Association for Computational Linguistics (ACL)
+venueId: acl
 year: 2020
+doi: 10.18653/V1/2020.ACL-MAIN.758
 dateDisplay: July 5–10, 2020
 location: Online, Seattle, WA, USA
 themeIds:

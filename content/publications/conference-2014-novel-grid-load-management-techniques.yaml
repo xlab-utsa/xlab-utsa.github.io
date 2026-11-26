@@ -8,7 +8,9 @@ authors:
     personId: jinjun-xiong
   - name: Y. Shi
 venue: IEEE International Conference on Smart Grid Communications (SmartGridComm)
+venueId: smartgridcomm
 year: 2014
+doi: 10.1109/SmartGridComm.2014.7007742
 dateDisplay: Nov. 2014
 location: Venice
 themeIds:

@@ -1,0 +1,6 @@
+id: bench
+shortName: Bench
+name: BenchCouncil International Symposium on Benchmarking, Measuring and Optimizing (Bench)
+kind: conference
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

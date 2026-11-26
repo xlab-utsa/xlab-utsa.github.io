@@ -10,7 +10,9 @@ authors:
   - name: J. Xiong
     personId: jinjun-xiong
 venue: The 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)
+venueId: emnlp
 year: 2020
+doi: 10.18653/V1/2020.EMNLP-MAIN.684
 dateDisplay: Nov 16–20, 2020
 location: Online
 themeIds:

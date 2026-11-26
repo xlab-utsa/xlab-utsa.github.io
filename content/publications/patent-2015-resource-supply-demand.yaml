@@ -6,9 +6,12 @@ authors:
   - name: D. Phan
   - name: J. Xiong
     personId: jinjun-xiong
-patentNo: YOR820150944
-filedDate: 2015-06
+patentNo: US 10,013,289 B2
+docketNo: YOR820150944
+filedDate: 2016-04
+issuedDate: 2018-07
 year: 2015
+url: https://patents.google.com/patent/US10013289B2/en
 themeIds:
   - cloud-computing
 _meta:

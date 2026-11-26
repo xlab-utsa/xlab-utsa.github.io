@@ -10,7 +10,9 @@ authors:
     personId: jinjun-xiong
   - name: W. Hwu
 venue: "The 2019 Annual Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL-HLT)"
+venueId: naacl-hlt
 year: 2019
+doi: 10.18653/V1/N19-1320
 dateDisplay: June 2–7, 2019
 location: Minneapolis, USA
 themeIds:

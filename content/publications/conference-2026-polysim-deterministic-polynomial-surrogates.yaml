@@ -19,7 +19,9 @@ authors:
   - name: K. Ni
   - name: R. Qin
 venue: The 45th ACM/IEEE International Conference on Computer-Aided Design (ICCAD)
+venueId: iccad
 year: 2026
+url: https://arxiv.org/abs/2607.20358
 dateDisplay: Nov 8–12, 2026
 location: San Jose, California
 themeIds:

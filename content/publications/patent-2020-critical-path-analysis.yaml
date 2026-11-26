@@ -7,9 +7,12 @@ authors:
   - name: C. Pearson
   - name: J. Xiong
     personId: jinjun-xiong
-patentNo: P201809363US01
+patentNo: US 11,327,973 B2
+docketNo: P201809363US01
 filedDate: 2020-01
+issuedDate: 2022-05
 year: 2020
+url: https://patents.google.com/patent/US11327973B2/en
 themeIds:
   - systems
 _meta:

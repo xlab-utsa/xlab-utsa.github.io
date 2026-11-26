@@ -9,9 +9,11 @@ authors:
     personId: jinjun-xiong
   - name: D. Shah
   - name: B. Li
+patentNo: US 2023/0214705 A1
 docketNo: P202102795
-filedDate: 2021-07
+filedDate: 2021-12
 year: 2021
+url: https://patents.google.com/patent/US20230214705A1/en
 themeIds:
   - ai-algorithms
 _meta:

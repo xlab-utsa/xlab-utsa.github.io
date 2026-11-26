@@ -7,7 +7,10 @@ authors:
     personId: jinjun-xiong
   - name: Y. Shi
 venue: IEEE/ACM Asia South Pacific Design Automation Conference (ASP-DAC)
+location: Macao, China
+venueId: asp-dac
 year: 2016
+doi: 10.1109/ASPDAC.2016.7428100
 dateDisplay: January 2016
 themeIds:
   - eda

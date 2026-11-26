@@ -5,10 +5,13 @@ authors:
   - name: H. Chen
   - name: J. Xiong
     personId: jinjun-xiong
-patentNo: P202009164US01
+patentNo: US 11,283,855 B1
+docketNo: P202009164US01
 applicationNo: 17/143943
 filedDate: 2021-01
+issuedDate: 2022-03
 year: 2021
+url: https://patents.google.com/patent/US11283855B1/en
 themeIds:
   - cloud-computing
 _meta:

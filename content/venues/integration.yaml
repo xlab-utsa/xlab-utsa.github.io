@@ -1,0 +1,7 @@
+id: integration
+shortName: Integration
+name: Integration - the VLSI journal
+kind: journal
+dblpKey: journals/integration
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

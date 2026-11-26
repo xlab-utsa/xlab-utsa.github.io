@@ -9,7 +9,9 @@ authors:
   - name: J. Xiong
     personId: jinjun-xiong
 venue: The 27th International Conference on AI in Education (AIED)
+venueId: aied
 year: 2026
+doi: 10.1007/978-3-032-29788-4_71
 dateDisplay: June 27 – July 3, 2026
 location: Seoul, Republic of Korea
 themeIds:

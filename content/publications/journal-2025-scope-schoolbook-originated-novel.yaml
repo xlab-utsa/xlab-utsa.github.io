@@ -8,8 +8,10 @@ authors:
     personId: jinjun-xiong
   - name: J. Xie
 venue: IEEE Transactions on Very Large Scale Integration System (TVLSI)
-volumeIssue: "Volume: 33, Issue: 2"
+venueId: tvlsi
+volumeIssue: "33(2)"
 year: 2025
+doi: 10.1109/TVLSI.2024.3458872
 dateDisplay: February 2025
 themeIds:
   - ai-acceleration

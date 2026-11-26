@@ -1,0 +1,7 @@
+id: iccad
+shortName: ICCAD
+name: ACM International Conference on Computer-Aided Design (ICCAD)
+kind: conference
+dblpKey: conf/iccad
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

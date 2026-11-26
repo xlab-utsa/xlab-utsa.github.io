@@ -7,7 +7,10 @@ authors:
     personId: jinjun-xiong
   - name: Y. Shi
 venue: IEEE Transactions on Power Systems
+volumeIssue: 30(4)
+venueId: tpwrs
 year: 2015
+doi: 10.1109/TPWRS.2014.2357751
 themeIds:
   - smart-energy
 featured: true

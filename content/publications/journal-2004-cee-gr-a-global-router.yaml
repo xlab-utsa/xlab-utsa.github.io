@@ -10,8 +10,10 @@ authors:
     personId: jinjun-xiong
   - name: L. He
 venue: Chinese Journal of Semiconductors
-volumeIssue: Vol. 25, No. 5, pp 508-515
+venueId: chin-j-semicond
+volumeIssue: 25(5)
 year: 2004
+url: https://www.jos.ac.cn/article/id/70577c26-05c6-4e6a-8df6-9afa9bd61fe8
 themeIds:
   - eda
 _meta:

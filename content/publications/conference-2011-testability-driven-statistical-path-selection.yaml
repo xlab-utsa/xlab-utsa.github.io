@@ -8,7 +8,9 @@ authors:
   - name: V. Zolotov
   - name: J. Abraham
 venue: IEEE/ACM Design Automation Conference (DAC)
+venueId: dac
 year: 2011
+doi: 10.1145/2024724.2024822
 location: San Diego, CA
 themeIds:
   - eda

@@ -8,7 +8,9 @@ authors:
     personId: jinjun-xiong
   - name: W. Hwu
 venue: The Doctoral Symposium of the IEEE World Congress on Services (SERVICES)
+venueId: services
 year: 2019
+doi: 10.1109/SERVICES.2019.00093
 dateDisplay: July 8–13, 2019
 location: Milan, Italy
 themeIds:

@@ -1,0 +1,6 @@
+id: amld
+shortName: AMLD
+name: Applied Machine Learning Days
+kind: workshop
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

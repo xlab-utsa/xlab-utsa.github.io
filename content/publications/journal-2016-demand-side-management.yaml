@@ -10,7 +10,10 @@ authors:
     personId: jinjun-xiong
   - name: Y. Shi
 venue: IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems
+volumeIssue: 36(5)
+venueId: tcad
 year: 2016
+doi: 10.1109/TCAD.2016.2598563
 themeIds:
   - smart-energy
 featured: true

@@ -1,0 +1,7 @@
+id: icpe
+shortName: ICPE
+name: ACM/SPEC International Conference on Performance Engineering (ICPE)
+kind: conference
+dblpKey: conf/wosp
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

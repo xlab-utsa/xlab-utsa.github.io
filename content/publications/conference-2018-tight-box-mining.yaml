@@ -12,7 +12,9 @@ authors:
   - name: J. Feng
   - name: T. Huang
 venue: European Conference on Computer Vision (ECCV)
+venueId: eccv
 year: 2018
+doi: 10.1007/978-3-030-01252-6_27
 dateDisplay: September 8–14, 2018
 location: Munich, Germany
 themeIds:

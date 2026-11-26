@@ -13,7 +13,9 @@ authors:
   - name: V. Kindratenko
   - name: D. Chen
 venue: IEEE International Conference on Cloud Computing (CLOUD)
+venueId: cloud
 year: 2024
+doi: 10.1109/CLOUD62652.2024.00023
 dateDisplay: July 7–13, 2024
 location: Shenzhen, China
 themeIds:

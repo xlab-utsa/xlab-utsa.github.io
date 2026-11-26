@@ -9,7 +9,9 @@ authors:
     personId: jinjun-xiong
   - name: W. Hwu
 venue: Findings of the 61st Annual Meeting of the Association for Computational Linguistics (ACL)
+venueId: acl
 year: 2023
+doi: 10.18653/V1/2023.FINDINGS-ACL.45
 dateDisplay: July 9–14, 2023
 location: Toronto, Canada
 themeIds:

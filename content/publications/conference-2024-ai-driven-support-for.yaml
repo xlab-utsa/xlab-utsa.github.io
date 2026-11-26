@@ -12,7 +12,9 @@ authors:
     personId: jinjun-xiong
   - name: J. Kientz
 venue: Extended Abstracts of the CHI Conference on Human Factors in Computing Systems (CHI EA)
+venueId: chi-ea
 year: 2024
+doi: 10.1145/3613905.3643984
 dateDisplay: May 11–16, 2024
 location: Honolulu, Hawaii, USA
 themeIds:

@@ -9,7 +9,10 @@ authors:
     personId: jinjun-xiong
   - name: L. He
 venue: International Symposium on Circuits and Systems
+location: Vancouver, Canada
+venueId: iscas
 year: 2004
+doi: 10.1109/ISCAS.2004.1329459
 dateDisplay: May 2004
 themeIds:
   - eda

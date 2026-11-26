@@ -9,7 +9,9 @@ authors:
     personId: jinjun-xiong
   - name: W. Hwu
 venue: Neural Information Processing Systems (NIPS) Workshop on Systems for ML and Open Source Software
+venueId: neurips-workshop
 year: 2018
+url: http://learningsys.org/nips18/acceptedpapers.html
 dateDisplay: Dec 2–8, 2018
 location: Montréal, Canada
 themeIds:

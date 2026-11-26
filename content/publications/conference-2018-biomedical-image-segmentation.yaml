@@ -11,7 +11,9 @@ authors:
     personId: jinjun-xiong
   - name: X. S. Hu
 venue: The 31st International Symposium on Computer-Based Medical Systems (CBMS)
+venueId: cbms
 year: 2018
+doi: 10.1109/CBMS.2018.00072
 dateDisplay: June 18–21, 2018
 location: Karlstad, Sweden
 themeIds:

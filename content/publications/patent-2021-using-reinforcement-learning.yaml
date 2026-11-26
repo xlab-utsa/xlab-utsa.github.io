@@ -6,10 +6,13 @@ authors:
     personId: jinjun-xiong
   - name: R. Huss
   - name: H. Chen
-patentNo: P202009568US01
+patentNo: US 11,368,521 B1
+docketNo: P202009568US01
 applicationNo: 17/199710
 filedDate: 2021-03
+issuedDate: 2022-06
 year: 2021
+url: https://patents.google.com/patent/US11368521B1/en
 themeIds:
   - cloud-computing
 _meta:

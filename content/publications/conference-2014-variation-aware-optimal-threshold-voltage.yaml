@@ -10,7 +10,9 @@ authors:
   - name: L. Cheng
   - name: Y. Shi
 venue: ACM International Conference on Computer-Aided Design (ICCAD)
+venueId: iccad
 year: 2014
+doi: 10.1109/ICCAD.2014.7001353
 dateDisplay: November 2014
 location: San Jose, CA
 themeIds:

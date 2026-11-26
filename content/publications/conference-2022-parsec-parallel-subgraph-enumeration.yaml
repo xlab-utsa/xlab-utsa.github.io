@@ -9,7 +9,10 @@ authors:
     personId: jinjun-xiong
   - name: W. Hwu
 venue: The 36th IEEE International Parallel and Distributed Processing Symposium (IPDPS)
+location: Lyon, France
+venueId: ipdps
 year: 2022
+doi: 10.1109/IPDPS53621.2022.00025
 dateDisplay: May 30 – June 3, 2022
 themeIds:
   - ai-acceleration

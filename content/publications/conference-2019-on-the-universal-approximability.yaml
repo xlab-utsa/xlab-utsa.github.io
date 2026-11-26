@@ -9,7 +9,9 @@ authors:
     personId: jinjun-xiong
   - name: Y. Shi
 venue: The Seventh International Conference on Learning Representations (ICLR)
+venueId: iclr
 year: 2019
+url: https://openreview.net/forum?id=SJe9rh0cFX
 dateDisplay: May 6–9, 2019
 location: New Orleans, Louisiana, USA
 themeIds:

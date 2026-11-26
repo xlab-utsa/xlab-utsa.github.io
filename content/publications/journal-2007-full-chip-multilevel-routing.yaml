@@ -6,8 +6,10 @@ authors:
     personId: jinjun-xiong
   - name: L. He
 venue: Integration - the VLSI journal
-volumeIssue: Vol. 40, pp 226-234
+venueId: integration
+volumeIssue: "40"
 year: 2007
+doi: 10.1016/J.VLSI.2005.11.001
 themeIds:
   - eda
 _meta:

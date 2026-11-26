@@ -9,8 +9,10 @@ authors:
   - name: V. Zolotov
   - name: C. Visweswariah
 venue: Journal of Low Power Electronics
-volumeIssue: Vol. 5, No. 1, pp. 70-76
+venueId: jolpe
+volumeIssue: 5(1)
 year: 2009
+doi: 10.1166/JOLPE.2009.1005
 dateDisplay: April 2009
 themeIds:
   - eda

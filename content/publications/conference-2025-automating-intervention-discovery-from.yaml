@@ -17,7 +17,9 @@ authors:
   - name: J. Xiong
     personId: jinjun-xiong
 venue: The 34th International Joint Conference on Artificial Intelligence (IJCAI)
+venueId: ijcai
 year: 2025
+doi: 10.24963/IJCAI.2025/1078
 dateDisplay: Aug 16–22, 2025
 location: Montreal, Canada
 themeIds:

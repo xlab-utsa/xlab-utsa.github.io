@@ -9,7 +9,9 @@ authors:
     personId: jinjun-xiong
   - name: W. Hwu
 venue: The 30th ACM International Symposium on High-Performance Parallel and Distributed Computing (HPDC)
+venueId: hpdc
 year: 2021
+doi: 10.1145/3431379.3460645
 dateDisplay: June 21–25, 2021
 location: Stockholm, Sweden
 themeIds:

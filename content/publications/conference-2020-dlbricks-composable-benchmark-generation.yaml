@@ -9,7 +9,9 @@ authors:
     personId: jinjun-xiong
   - name: W. Hwu
 venue: The 11th ACM/SPEC International Conference on Performance Engineering (ICPE)
+venueId: icpe
 year: 2020
+doi: 10.1145/3358960.3379143
 dateDisplay: April 20–24, 2020
 location: Online, Edmonton, Canada
 themeIds:

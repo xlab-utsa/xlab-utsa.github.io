@@ -8,8 +8,10 @@ authors:
   - name: H. Fatemi
   - name: C. Visweswariah
 venue: IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems
-volumeIssue: Vol. 29, No. 5
+venueId: tcad
+volumeIssue: 29(5)
 year: 2010
+doi: 10.1109/TCAD.2010.2043570
 dateDisplay: May 2010
 themeIds:
   - eda

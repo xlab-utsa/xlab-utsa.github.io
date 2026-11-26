@@ -12,7 +12,9 @@ authors:
   - name: W. Hwu
   - name: D. Chen
 venue: 2018 International Conference On Computer Aided Design (ICCAD)
+venueId: iccad
 year: 2018
+doi: 10.1145/3240765.3240801
 dateDisplay: Nov 5–8, 2018
 location: San Diego, CA, USA
 themeIds:

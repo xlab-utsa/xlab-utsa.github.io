@@ -8,7 +8,10 @@ authors:
   - name: J. Pei
   - name: D. Meng
 venue: International Society for Optical Engineering Symposium (SPIE) on Optical Storage
+location: Shanghai, China
+venueId: spie
 year: 2000
+doi: 10.1117/12.416869
 themeIds:
   - systems
 _meta:

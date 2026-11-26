@@ -17,7 +17,9 @@ authors:
   - name: J. Xiong
     personId: jinjun-xiong
 venue: The forty-second International Conference on Machine Learning (ICML)
+venueId: icml
 year: 2025
+url: https://proceedings.mlr.press/v267/xu25t.html
 dateDisplay: July 13–19, 2025
 location: Vancouver, Canada
 themeIds:

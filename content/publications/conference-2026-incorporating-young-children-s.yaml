@@ -9,7 +9,9 @@ authors:
   - name: J. Xiong
     personId: jinjun-xiong
 venue: International Conference of the Learning Sciences (ICLS)
+venueId: icls
 year: 2026
+doi: 10.22318/icls2026.677300
 dateDisplay: June 15–19, 2026
 location: Irvine, California, USA
 themeIds:

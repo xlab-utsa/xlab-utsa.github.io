@@ -1,0 +1,6 @@
+id: asha
+shortName: ASHA
+name: Annual Convention of the American Speech-Language-Hearing Association (ASHA)
+kind: conference
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

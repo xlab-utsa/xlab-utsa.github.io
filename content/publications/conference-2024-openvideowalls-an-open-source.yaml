@@ -10,7 +10,9 @@ authors:
     personId: jinjun-xiong
   - name: S. Wei
 venue: ACM Multimedia Asia
+venueId: mmasia
 year: 2024
+doi: 10.1145/3696409.3700251
 dateDisplay: Dec 3–6, 2024
 location: Auckland, New Zealand
 themeIds:

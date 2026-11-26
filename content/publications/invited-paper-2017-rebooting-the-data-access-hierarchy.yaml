@@ -12,7 +12,9 @@ authors:
     personId: jinjun-xiong
   - name: Z. Sura
 venue: IEEE international conference on Rebooting Computing (ICRC)
+venueId: icrc
 year: 2017
+doi: 10.1109/ICRC.2017.8123667
 dateDisplay: Nov 8–9, 2017
 location: Washington, DC, USA
 themeIds:

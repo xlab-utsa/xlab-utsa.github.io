@@ -9,9 +9,12 @@ authors:
   - name: J. Xiong
     personId: jinjun-xiong
   - name: B. Worth
+patentNo: US 8,904,329 B2
 docketNo: BUR920120074US2
 filedDate: "2013"
+issuedDate: 2014-12
 year: 2013
+url: https://patents.google.com/patent/US8904329B2/en
 themeIds:
   - eda
 _meta:

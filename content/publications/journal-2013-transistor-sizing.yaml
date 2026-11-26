@@ -8,7 +8,10 @@ authors:
     personId: jinjun-xiong
   - name: V. Zolotov
 venue: Optimization and Engineering, Springer US
+volumeIssue: 15(1)
+venueId: optim-eng
 year: 2013
+doi: 10.1007/s11081-012-9208-0
 dateDisplay: January 2013
 themeIds:
   - eda

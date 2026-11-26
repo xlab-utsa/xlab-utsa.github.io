@@ -8,7 +8,10 @@ authors:
   - name: E. Sarto
   - name: L. He
 venue: IEEE/ACM Asia South Pacific Design Automation Conference (ASP-DAC)
+location: Yokohama, Japan
+venueId: asp-dac
 year: 2006
+doi: 10.1109/ASPDAC.2006.1594683
 dateDisplay: January 2006
 themeIds:
   - eda

@@ -12,8 +12,10 @@ authors:
     personId: jinjun-xiong
   - name: H. Amrouch
 venue: IEEE Transactions on Electron Devices
-volumeIssue: "pages 213-222, Volume: 71, Issue: 1"
+venueId: ted
+volumeIssue: "71(1), pp. 213–222"
 year: 2024
+doi: 10.1109/TED.2023.3336305
 dateDisplay: Jan 2024
 themeIds:
   - eda

@@ -7,7 +7,9 @@ authors:
   - name: K. Tam
   - name: L. He
 venue: Design Automation and Test in Europe (DATE)
+venueId: date
 year: 2005
+doi: 10.1109/DATE.2005.85
 dateDisplay: March 2005
 location: Munich, Germany
 themeIds:

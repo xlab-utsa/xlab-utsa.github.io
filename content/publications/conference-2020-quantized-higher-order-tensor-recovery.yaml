@@ -7,7 +7,9 @@ authors:
   - name: J. Xiong
     personId: jinjun-xiong
 venue: The 54th Asilomar Conference on Signals, Systems and Computers
+venueId: asilomar
 year: 2020
+doi: 10.1109/IEEECONF51394.2020.9443481
 dateDisplay: Nov 1–2, 2020
 location: Online
 themeIds:

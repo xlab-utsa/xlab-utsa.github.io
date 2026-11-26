@@ -9,8 +9,10 @@ authors:
   - name: S. Liu
   - name: P. Chen
 venue: IEEE Transactions on Neural Networks and Learning Systems (TNNLS)
-volumeIssue: Vol 32, Issue 6, pages 2622-2635
+venueId: tnnls
+volumeIssue: 32(6), pp. 2622–2635
 year: 2021
+doi: 10.1109/TNNLS.2020.3007399
 dateDisplay: June 2021
 themeIds:
   - ai-algorithms

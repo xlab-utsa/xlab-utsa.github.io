@@ -13,7 +13,9 @@ authors:
     personId: jinjun-xiong
   - name: R. Qin
 venue: The 69th IEEE International Midwest Symposium on Circuits and Systems (MWSCAS)
+venueId: mwscas
 year: 2026
+doi: 10.1109/MWSCAS67364.2026.11680955
 dateDisplay: August 9–12, 2026
 location: Cincinnati, Ohio, USA
 themeIds:

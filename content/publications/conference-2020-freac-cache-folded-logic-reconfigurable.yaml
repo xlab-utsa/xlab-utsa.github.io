@@ -12,7 +12,9 @@ authors:
   - name: N. Kim
   - name: D. Chen
 venue: The IEEE/ACM International Symposium on Microarchitecture (MICRO-53)
+venueId: micro
 year: 2020
+doi: 10.1109/MICRO50266.2020.00021
 dateDisplay: October 17–21, 2020
 location: Online
 themeIds:

@@ -9,9 +9,12 @@ authors:
   - name: H. Gong
   - name: S. Bhat
   - name: W. Hwu
-patentNo: P202005821
+patentNo: US 11,704,486 B2
+docketNo: P202005821
 filedDate: 2020-12
+issuedDate: 2023-07
 year: 2020
+url: https://patents.google.com/patent/US11704486B2/en
 themeIds:
   - ai-algorithms
 _meta:

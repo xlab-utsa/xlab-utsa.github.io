@@ -8,8 +8,10 @@ authors:
     personId: jinjun-xiong
   - name: G. Wang
 venue: Neural Networks (Elsevier)
-volumeIssue: Vol 122
+venueId: neural-networks
+volumeIssue: "122"
 year: 2020
+doi: 10.1016/J.NEUNET.2020.01.007
 dateDisplay: Feb 2020
 themeIds:
   - ai-algorithms

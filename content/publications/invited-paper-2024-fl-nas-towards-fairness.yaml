@@ -11,7 +11,9 @@ authors:
   - name: A. Abbasi
   - name: Y. Shi
 venue: The 29th Asia and South Pacific Design Automation Conference (ASP-DAC)
+venueId: asp-dac
 year: 2024
+doi: 10.1109/ASP-DAC58780.2024.10473847
 dateDisplay: Jan. 22–25, 2024
 location: Incheon, South Korea
 themeIds:

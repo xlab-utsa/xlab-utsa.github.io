@@ -7,7 +7,9 @@ authors:
     personId: jinjun-xiong
   - name: C. Zhai
 venue: The Web Conference (WWW)
+venueId: www
 year: 2023
+doi: 10.1145/3543507.3587431
 dateDisplay: April 30 – May 4, 2023
 location: Austin Texas, USA
 themeIds:

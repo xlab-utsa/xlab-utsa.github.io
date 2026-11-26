@@ -8,7 +8,9 @@ authors:
     personId: jinjun-xiong
   - name: C. Zhai
 venue: The 15th International Natural Language Generation Conference (NLG)
+venueId: inlg
 year: 2022
+doi: 10.18653/v1/2022.inlg-main.25
 dateDisplay: July 18–22, 2022
 location: Maine, USA
 themeIds:

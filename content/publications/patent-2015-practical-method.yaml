@@ -6,9 +6,12 @@ authors:
   - name: J. Xiong
     personId: jinjun-xiong
   - name: V. Zolotov
-patentNo: YOR820150485
-filedDate: 2015-05
+patentNo: US 9,836,434 B2
+docketNo: YOR820150485
+filedDate: 2015-08
+issuedDate: 2017-12
 year: 2015
+url: https://patents.google.com/patent/US9836434B2/en
 themeIds:
   - ai-acceleration
 _meta:

@@ -9,7 +9,9 @@ authors:
   - name: J. Xiong
     personId: jinjun-xiong
 venue: 23rd Asia and South Pacific Design Automation Conference (ASP-DAC)
+venueId: asp-dac
 year: 2018
+doi: 10.1109/ASPDAC.2018.8297361
 dateDisplay: January 2018
 location: Jeju Island, Korea
 themeIds:

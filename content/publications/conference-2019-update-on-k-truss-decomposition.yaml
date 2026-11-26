@@ -12,7 +12,9 @@ authors:
     personId: jinjun-xiong
   - name: W. Hwu
 venue: IEEE High Performance Extreme Computing Conference (HPEC)
+venueId: hpec
 year: 2019
+doi: 10.1109/HPEC.2019.8916285
 dateDisplay: September 24–26, 2019
 location: Waltham, MA, USA
 themeIds:

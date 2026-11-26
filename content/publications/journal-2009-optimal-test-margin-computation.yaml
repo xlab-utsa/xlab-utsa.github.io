@@ -7,8 +7,10 @@ authors:
   - name: V. Zolotov
   - name: C. Visweswariah
 venue: IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems
-volumeIssue: Vol. 28, No. 9, pp. 1414-1423
+venueId: tcad
+volumeIssue: 28(9)
 year: 2009
+doi: 10.1109/TCAD.2009.2024709
 dateDisplay: Sept. 2009
 themeIds:
   - eda

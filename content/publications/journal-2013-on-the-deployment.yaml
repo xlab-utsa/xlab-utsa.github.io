@@ -8,7 +8,10 @@ authors:
     personId: jinjun-xiong
   - name: Y. Shi
 venue: IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems
+volumeIssue: 33(4)
+venueId: tcad
 year: 2013
+doi: 10.1109/TCAD.2013.2293477
 themeIds:
   - eda
 _meta:

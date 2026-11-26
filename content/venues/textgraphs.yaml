@@ -1,0 +1,7 @@
+id: textgraphs
+shortName: TextGraphs
+name: Workshop on Graph-Based Natural Language Processing (TextGraphs)
+kind: workshop
+dblpKey: conf/textgraphs
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

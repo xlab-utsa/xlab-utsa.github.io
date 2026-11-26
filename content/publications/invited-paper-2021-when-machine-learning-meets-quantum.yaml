@@ -7,7 +7,9 @@ authors:
     personId: jinjun-xiong
   - name: Y. Shi
 venue: IEEE/ACM Asia South Pacific Design Automation Conference (ASP-DAC)
+venueId: asp-dac
 year: 2021
+doi: 10.1145/3394885.3431629
 dateDisplay: January 18–21, 2021
 location: Online, Tokyo, Japan
 themeIds:

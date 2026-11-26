@@ -7,7 +7,9 @@ authors:
   - name: V. Zolotov
   - name: L. He
 venue: ACM International Symposium on Physical Design (ISPD)
+venueId: ispd
 year: 2006
+doi: 10.1145/1123008.1123011
 dateDisplay: April 2006
 location: San Jose, California
 themeIds:

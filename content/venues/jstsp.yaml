@@ -1,0 +1,7 @@
+id: jstsp
+shortName: JSTSP
+name: IEEE Journal of Selected Topics in Signal Processing
+kind: journal
+dblpKey: journals/jstsp
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

@@ -9,7 +9,9 @@ authors:
     personId: jinjun-xiong
   - name: W. Hwu
 venue: "TrustNLP: First Workshop on Trustworthy Natural Language Processing, Collocated with the Annual Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)"
+venueId: naacl-workshops
 year: 2021
+doi: 10.18653/v1/2021.trustnlp-1.5
 dateDisplay: June 6–11, 2021
 location: Online
 themeIds:

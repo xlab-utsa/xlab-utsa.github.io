@@ -1,0 +1,6 @@
+id: iwapt
+shortName: iWAPT
+name: International Workshop on Automatic Performance Tuning (iWAPT)
+kind: workshop
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

@@ -10,7 +10,9 @@ authors:
     personId: jinjun-xiong
   - name: X. Chen
 venue: Winter Conference on Applications of Computer Vision (WACV)
+venueId: wacv
 year: 2026
+doi: 10.1109/WACV61042.2026.00139
 dateDisplay: Feb. 28 – March 4, 2026
 location: Tucson, Arizona, USA
 themeIds:

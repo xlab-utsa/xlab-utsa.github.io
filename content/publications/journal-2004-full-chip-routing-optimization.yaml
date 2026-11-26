@@ -6,8 +6,10 @@ authors:
     personId: jinjun-xiong
   - name: L. He
 venue: IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems
-volumeIssue: Vol. 23, No. 3, pp 366-377
+venueId: tcad
+volumeIssue: 23(3)
 year: 2004
+doi: 10.1109/TCAD.2004.823347
 dateDisplay: March 2004
 themeIds:
   - eda

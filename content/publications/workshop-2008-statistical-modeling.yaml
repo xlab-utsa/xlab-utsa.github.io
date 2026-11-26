@@ -9,7 +9,9 @@ authors:
   - name: V. Zolotov
   - name: C. Visweswariah
 venue: International Workshop on Power and Timing Modeling, Optimization and Simulation, PATMOS’08
+venueId: patmos
 year: 2008
+doi: 10.1007/978-3-540-95948-9_18
 dateDisplay: September 10–12, 2008
 location: Lisbon, Portugal
 themeIds:

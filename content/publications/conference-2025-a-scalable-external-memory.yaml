@@ -15,7 +15,9 @@ authors:
   - name: L. Lin
   - name: M. Hashimoto
 venue: The 2025 ACM/IEEE International Symposium on Low Power Electronics and Design (ISLPED)
+venueId: islped
 year: 2025
+doi: 10.1109/ISLPED65674.2025.11261804
 dateDisplay: August 6–8, 2025
 location: University of Iceland, Iceland
 themeIds:

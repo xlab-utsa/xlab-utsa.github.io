@@ -11,7 +11,9 @@ authors:
     personId: jinjun-xiong
   - name: W. Hwu
 venue: The Fifteenth International Workshop on Automatic Performance Tuning (iWAPT), collocated with IEEE IPDPS
+venueId: iwapt
 year: 2020
+doi: 10.1109/IPDPSW50202.2020.00136
 dateDisplay: May 22, 2020
 location: New Orleans, Louisiana, USA (virtual workshop)
 themeIds:

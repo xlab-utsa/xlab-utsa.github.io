@@ -6,7 +6,9 @@ authors:
   - name: J. Xiong
     personId: jinjun-xiong
 venue: ACM International Conference on Computer-Aided Design (ICCAD)
+venueId: iccad
 year: 2015
+doi: 10.1109/ICCAD.2015.7372649
 dateDisplay: November 2–6, 2015
 location: Austin, TX
 themeIds:

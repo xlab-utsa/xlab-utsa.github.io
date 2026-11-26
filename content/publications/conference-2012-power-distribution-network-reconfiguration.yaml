@@ -10,7 +10,9 @@ authors:
     personId: jinjun-xiong
   - name: Y. Wang
 venue: IEEE PES Innovative Smart Grid Technologies (ISGT) Asia 2012 Conference
+venueId: isgt-asia
 year: 2012
+doi: 10.1109/ISGT-Asia.2012.6303210
 dateDisplay: May 2012
 location: Tianjin, China
 themeIds:

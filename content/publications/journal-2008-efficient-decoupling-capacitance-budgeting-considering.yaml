@@ -8,8 +8,10 @@ authors:
   - name: C. Liu
   - name: L. He
 venue: IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems
-volumeIssue: Vol. 27, No. 7, pp. 1253-1263
+venueId: tcad
+volumeIssue: 27(7)
 year: 2008
+doi: 10.1109/TCAD.2008.923636
 dateDisplay: July 2008
 themeIds:
   - eda

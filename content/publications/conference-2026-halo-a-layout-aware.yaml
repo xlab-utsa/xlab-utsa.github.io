@@ -8,7 +8,9 @@ authors:
     personId: jinjun-xiong
   - name: W. Wen
 venue: The 45th ACM/IEEE International Conference on Computer-Aided Design (ICCAD)
+venueId: iccad
 year: 2026
+url: https://iccad.com/2026/full-program
 dateDisplay: Nov 8–12, 2026
 location: San Jose, California
 themeIds:

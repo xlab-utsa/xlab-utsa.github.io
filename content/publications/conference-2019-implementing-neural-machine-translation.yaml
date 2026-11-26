@@ -9,7 +9,9 @@ authors:
   - name: W. Hwu
   - name: D. Chen
 venue: The 24th Asia and South Pacific Design Automation Conference (ASP-DAC)
+venueId: asp-dac
 year: 2019
+doi: 10.1145/3287624.3287717
 dateDisplay: Jan 21–24, 2019
 location: Tokyo Odaiba Waterfront, Japan
 themeIds:

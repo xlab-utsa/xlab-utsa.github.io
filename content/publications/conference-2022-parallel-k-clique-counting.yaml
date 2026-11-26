@@ -10,7 +10,9 @@ authors:
     personId: jinjun-xiong
   - name: W. Hwu
 venue: ACM International Conference on Supercomputing (ICS’22)
+venueId: ics
 year: 2022
+doi: 10.1145/3524059.3532382
 dateDisplay: June 27–30, 2022
 location: Online
 themeIds:

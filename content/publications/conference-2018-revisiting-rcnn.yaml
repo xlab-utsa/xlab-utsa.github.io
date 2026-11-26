@@ -11,7 +11,9 @@ authors:
     personId: jinjun-xiong
   - name: T. Huang
 venue: European Conference on Computer Vision (ECCV)
+venueId: eccv
 year: 2018
+doi: 10.1007/978-3-030-01267-0_28
 dateDisplay: September 8–14, 2018
 location: Munich, Germany
 themeIds:

@@ -1,0 +1,6 @@
+id: odml-cdnnr
+shortName: ODML-CDNNR
+name: ICML Joint Workshop on On-Device Machine Learning and Compact Deep Neural Network Representations (ODML-CDNNR)
+kind: workshop
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

@@ -10,9 +10,12 @@ authors:
   - name: G. Zhang
   - name: M. Wang
   - name: R. Wang
-patentNo: P202002597US01
+patentNo: US 11,394,742 B2
+docketNo: P202002597US01
 filedDate: 2020-08
+issuedDate: 2022-07
 year: 2020
+url: https://patents.google.com/patent/US11394742B2/en
 themeIds:
   - ai-algorithms
 _meta:

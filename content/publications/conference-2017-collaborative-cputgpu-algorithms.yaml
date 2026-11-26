@@ -10,7 +10,10 @@ authors:
   - name: N. Kim
   - name: W. Hwu
 venue: IEEE High Performance Extreme Computing Conference (HPEC)
+location: Waltham, MA, USA
+venueId: hpec
 year: 2017
+doi: 10.1109/HPEC.2017.8091042
 dateDisplay: September 2017
 themeIds:
   - ai-acceleration

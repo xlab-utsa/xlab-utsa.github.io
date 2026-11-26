@@ -1,0 +1,7 @@
+id: mwscas
+shortName: MWSCAS
+name: IEEE International Midwest Symposium on Circuits and Systems (MWSCAS)
+kind: conference
+dblpKey: conf/mwscas
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

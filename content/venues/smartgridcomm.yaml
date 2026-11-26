@@ -1,0 +1,7 @@
+id: smartgridcomm
+shortName: SmartGridComm
+name: IEEE International Conference on Smart Grid Communications (SmartGridComm)
+kind: conference
+dblpKey: conf/smartgridcomm
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

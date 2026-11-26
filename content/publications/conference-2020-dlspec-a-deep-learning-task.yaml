@@ -9,7 +9,9 @@ authors:
     personId: jinjun-xiong
   - name: W. Hwu
 venue: 2020 USENIX Conference on Operational Machine Learning (OpML)
+venueId: opml
 year: 2020
+url: https://www.usenix.org/conference/opml20/presentation/dakkak
 dateDisplay: July 30, 2020
 location: Online, Santa Clara, CA, USA
 themeIds:

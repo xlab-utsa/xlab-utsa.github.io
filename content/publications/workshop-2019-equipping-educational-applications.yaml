@@ -11,7 +11,9 @@ authors:
     personId: jinjun-xiong
   - name: S. Bhat
 venue: The Annual Meeting of the Association for Computational Linguistics (ACL’19), 14th Workshop on Innovative Use of NLP for Building Educational Applications (BEA)
+venueId: bea
 year: 2019
+doi: 10.18653/V1/W19-4448
 dateDisplay: August 2, 2019
 location: Florence, Italy
 themeIds:

@@ -13,7 +13,9 @@ authors:
   - name: W. Hwu
   - name: D. Chen
 venue: IEEE Computer Society Annual Symposium on VLSI (ISVLSI)
+venueId: isvlsi
 year: 2019
+doi: 10.1109/ISVLSI.2019.00021
 dateDisplay: July 15–17, 2019
 location: Miami, Florida, USA
 themeIds:

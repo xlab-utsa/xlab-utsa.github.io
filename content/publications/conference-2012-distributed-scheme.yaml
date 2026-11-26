@@ -7,7 +7,9 @@ authors:
     personId: jinjun-xiong
   - name: S. Ghosh
 venue: The 2012 American Control Conference (ACC)
+venueId: acc
 year: 2012
+doi: 10.1109/ACC.2012.6315622
 dateDisplay: June 2012
 location: Montreal, Canada
 themeIds:

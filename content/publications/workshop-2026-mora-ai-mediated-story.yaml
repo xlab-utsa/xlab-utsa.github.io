@@ -12,7 +12,9 @@ authors:
     personId: jinjun-xiong
   - name: T. Li
 venue: Midwest Speech and Language Days (MSLD)
+venueId: msld
 year: 2026
+url: https://nlp.cs.illinois.edu/msld_poster_sessions.html
 dateDisplay: April 15–16, 2026
 location: Urbana-Champaign, Illinois, USA
 themeIds:

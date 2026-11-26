@@ -9,7 +9,9 @@ authors:
   - name: X. Xu
   - name: Y. Shi
 venue: The Thirty-Third AAAI Conference on Artificial Intelligence (AAAI)
+venueId: aaai
 year: 2019
+doi: 10.1609/AAAI.V33I01.33015321
 dateDisplay: January 27 – February 1, 2019
 location: Honolulu, Hawaii, USA
 themeIds:

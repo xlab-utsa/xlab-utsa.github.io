@@ -1,0 +1,6 @@
+id: date-workshop
+shortName: DATE Workshop
+name: "DATE Workshop W2: Design Methods and Tools for FPGA-Based Acceleration of Scientific Computing"
+kind: workshop
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

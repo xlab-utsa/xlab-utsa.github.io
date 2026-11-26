@@ -9,7 +9,10 @@ authors:
   - name: J. Xiong
     personId: jinjun-xiong
 venue: ASHA Journal on Language, Speech, and Hearing Services in Schools (LSHSS)
+volumeIssue: 56(2)
+venueId: lshss
 year: 2025
+doi: 10.1044/2025_LSHSS-24-00113
 dateDisplay: "\x01 \x02"
 themeIds:
   - ai-education

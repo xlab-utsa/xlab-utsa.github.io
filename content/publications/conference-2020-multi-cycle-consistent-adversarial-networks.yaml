@@ -14,7 +14,9 @@ authors:
   - name: C. Liu
   - name: Y. Shi
 venue: The 2020 IEEE International Symposium on Biomedical Imaging (ISBI)
+venueId: isbi
 year: 2020
+doi: 10.1109/ISBI45749.2020.9098683
 dateDisplay: April 3–7, 2020
 location: Iowa City, Iowa, USA
 themeIds:

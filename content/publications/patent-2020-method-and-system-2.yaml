@@ -7,9 +7,12 @@ authors:
   - name: L. Wu
   - name: J. Xiong
     personId: jinjun-xiong
-patentNo: P201910870US01
+patentNo: US 11,314,950 B2
+docketNo: P201910870US01
 filedDate: 2020-03
+issuedDate: 2022-04
 year: 2020
+url: https://patents.google.com/patent/US11314950B2/en
 themeIds:
   - ai-algorithms
 _meta:

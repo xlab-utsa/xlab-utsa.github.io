@@ -1,0 +1,6 @@
+id: mai
+shortName: MAI
+name: Mobile AI Workshop and Challenges at CVPR (MAI)
+kind: workshop
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

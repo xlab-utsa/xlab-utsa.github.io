@@ -8,7 +8,10 @@ authors:
   - name: J. Xiong
     personId: jinjun-xiong
 venue: EURASIP Journal on Advances in Signal Processing
+volumeIssue: 2020(1)
+venueId: eurasip-jasp
 year: 2020
+doi: 10.1186/S13634-020-00682-7
 dateDisplay: May 7, 2020
 themeIds:
   - ai-algorithms

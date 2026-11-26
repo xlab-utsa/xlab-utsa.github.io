@@ -9,7 +9,9 @@ authors:
   - name: P. Shil
   - name: Y. Shi
 venue: IEEE Innovative Smart Grid Technology Conference (ISGT)
+venueId: isgt
 year: 2015
+doi: 10.1109/ISGT.2015.7131850
 dateDisplay: Feb. 2015
 location: Washington D.C., USA
 themeIds:

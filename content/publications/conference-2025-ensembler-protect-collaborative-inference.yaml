@@ -14,7 +14,9 @@ authors:
   - name: J. Xiong
     personId: jinjun-xiong
 venue: The 62nd Design Automation Conference (DAC)
+venueId: dac
 year: 2025
+doi: 10.1109/DAC63849.2025.11132673
 dateDisplay: June 22–25, 2025
 location: San Francisco, CA, USA
 themeIds:

@@ -7,7 +7,10 @@ authors:
   - name: J. Xiong
     personId: jinjun-xiong
 venue: IEEE VLSI Test Symposium (VTS)
+location: Santa Cruz, CA, USA
+venueId: vts
 year: 2009
+doi: 10.1109/VTS.2009.72
 dateDisplay: May 2009
 themeIds:
   - eda

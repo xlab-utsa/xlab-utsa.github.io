@@ -1,0 +1,6 @@
+id: tpwrs
+shortName: TPWRS
+name: IEEE Transactions on Power Systems
+kind: journal
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

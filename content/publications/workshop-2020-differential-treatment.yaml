@@ -13,6 +13,7 @@ authors:
   - name: T. Huang
   - name: H. Shi
 venue: The 32nd IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshop on Visual Learning with Limited Labels (VL3W)
+venueId: vl3w
 year: 2020
 dateDisplay: June 16–18, 2020
 location: Seattle, Washington, USA

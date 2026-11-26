@@ -11,7 +11,9 @@ authors:
     personId: jinjun-xiong
   - name: D. Chen
 venue: The 27th Asia and South Pacific Design Automation Conference (ASP-DAC)
+venueId: asp-dac
 year: 2022
+doi: 10.1109/ASP-DAC52403.2022.9712553
 dateDisplay: Jan 17–22, 2022
 location: Virtual
 themeIds:

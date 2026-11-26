@@ -1,0 +1,7 @@
+id: glsvlsi
+shortName: GLSVLSI
+name: IEEE/ACM International Great Lakes Symposium on VLSI (GLSVLSI)
+kind: conference
+dblpKey: conf/glvlsi
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

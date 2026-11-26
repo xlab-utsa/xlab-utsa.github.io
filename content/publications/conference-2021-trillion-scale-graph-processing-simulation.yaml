@@ -7,7 +7,9 @@ authors:
     personId: jinjun-xiong
   - name: M. Kim
 venue: The 37th IEEE International Conference on Data Engineering (ICDE)
+venueId: icde
 year: 2021
+doi: 10.1109/ICDE51399.2021.00134
 dateDisplay: April 19–22, 2021
 location: Online
 themeIds:

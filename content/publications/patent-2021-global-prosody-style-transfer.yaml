@@ -9,9 +9,12 @@ authors:
     personId: jinjun-xiong
   - name: C. Gan
   - name: D. Cox
-patentNo: P202102159US01
+patentNo: US 11,996,083 B2
+docketNo: P202102159US01
 filedDate: 2021-06
+issuedDate: 2024-05
 year: 2021
+url: https://patents.google.com/patent/US11996083B2/en
 themeIds:
   - ai-algorithms
 _meta:

@@ -10,7 +10,10 @@ authors:
     personId: jinjun-xiong
   - name: L. He
 venue: International Conference on ASIC
+location: Beijing, China
+venueId: asicon
 year: 2003
+doi: 10.1109/ICASIC.2003.1277521
 dateDisplay: October 2003
 themeIds:
   - eda

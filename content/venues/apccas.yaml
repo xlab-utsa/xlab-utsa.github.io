@@ -1,0 +1,7 @@
+id: apccas
+shortName: APCCAS
+name: IEEE Asia Pacific Conference on Circuits and Systems (APCCAS)
+kind: conference
+dblpKey: conf/apccas
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

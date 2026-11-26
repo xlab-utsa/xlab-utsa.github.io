@@ -8,7 +8,9 @@ authors:
   - name: C. Visweswariah
   - name: P. A. Habitz
 venue: International Conference on Design, Automation and Test in Europe (DATE)
+venueId: date
 year: 2008
+doi: 10.1109/DATE.2008.4484746
 dateDisplay: March 2008
 location: Munich, Germany
 themeIds:

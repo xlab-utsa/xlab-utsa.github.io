@@ -16,8 +16,10 @@ authors:
     personId: jinjun-xiong
   - name: L. Sheng
 venue: Frontiers in Education
-volumeIssue: Vol 10
+venueId: front-educ
+volumeIssue: "10"
 year: 2025
+doi: 10.3389/feduc.2025.1696031
 themeIds:
   - ai-education
 _meta:

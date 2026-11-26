@@ -8,7 +8,9 @@ authors:
     personId: jinjun-xiong
   - name: W. Hwu
 venue: OpenPOWER Summit
+venueId: openpower-summit
 year: 2019
+url: https://openpowerna19.sched.com/event/SPYL/d4p-the-power-platform-for-docker-online-container-authoring-abdul-dakkak-uiuc
 dateDisplay: August 19–20, 2019
 location: San Diego, CA, USA
 themeIds:

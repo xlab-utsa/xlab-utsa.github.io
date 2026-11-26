@@ -12,8 +12,10 @@ authors:
   - name: X. Xu
   - name: Y. Shi
 venue: Nature Electronics
-volumeIssue: Vol. 3
+venueId: nat-electron
+volumeIssue: "3"
 year: 2020
+doi: 10.1038/s41928-020-00476-7
 dateDisplay: September 2020
 themeIds:
   - ai-acceleration

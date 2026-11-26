@@ -12,7 +12,10 @@ authors:
   - name: T. Huang
   - name: H. Shi
 venue: The 32nd IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshop on Visual Learning with Limited Labels (VL3W)
+venueId: vl3w
 year: 2020
+doi: 10.1109/CVPRW50498.2020.00476
+url: https://openaccess.thecvf.com/content_CVPRW_2020/html/w54/Wang_Alleviating_Semantic-Level_Shift_A_Semi-Supervised_Domain_Adaptation_Method_for_Semantic_CVPRW_2020_paper.html
 dateDisplay: June 16–18, 2020
 location: Seattle, Washington, USA
 themeIds:

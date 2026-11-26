@@ -1,0 +1,7 @@
+id: kdd
+shortName: KDD
+name: ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD)
+kind: conference
+dblpKey: conf/kdd
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

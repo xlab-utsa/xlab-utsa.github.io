@@ -11,7 +11,9 @@ authors:
     personId: jinjun-xiong
   - name: D. Chen
 venue: The 28th edition of the ACM Great Lakes Symposium on VLSI (GLSVLSI)
+venueId: glsvlsi
 year: 2018
+doi: 10.1145/3194554.3194597
 dateDisplay: May 23–25, 2018
 location: Chicago, Illinois, USA
 themeIds:

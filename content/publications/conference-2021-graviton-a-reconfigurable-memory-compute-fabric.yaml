@@ -9,7 +9,9 @@ authors:
   - name: W. Hwu
   - name: D. Chen
 venue: The international symposium on Applied Reconfigurable Computing (ARC)
+venueId: arc
 year: 2021
+doi: 10.1007/978-3-030-79025-7_18
 dateDisplay: June 29 – July 1, 2021
 location: Rennes, France, Online
 themeIds:

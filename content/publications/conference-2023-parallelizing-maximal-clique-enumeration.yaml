@@ -11,7 +11,9 @@ authors:
     personId: jinjun-xiong
   - name: W. Hwu
 venue: The 32nd International Conference on Parallel Architectures and Compilation Techniques (PACT)
+venueId: pact
 year: 2023
+doi: 10.1109/PACT58117.2023.00022
 dateDisplay: October 21–25, 2023
 location: Vienna, Austria
 themeIds:

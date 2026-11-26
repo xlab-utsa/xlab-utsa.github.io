@@ -9,7 +9,10 @@ authors:
     personId: jinjun-xiong
   - name: W. Hwu
 venue: Findings of the Association for Computational Linguistics (ACL’22)
+location: Dublin, Ireland
+venueId: acl
 year: 2022
+doi: 10.18653/V1/2022.FINDINGS-ACL.26
 dateDisplay: May 22–27, 2022
 themeIds:
   - ai-algorithms

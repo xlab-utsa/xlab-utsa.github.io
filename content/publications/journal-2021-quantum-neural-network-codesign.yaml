@@ -8,8 +8,10 @@ authors:
     personId: jinjun-xiong
   - name: Y. Shi
 venue: Nature Communications
-volumeIssue: 12, 579
+venueId: nat-commun
+volumeIssue: "12"
 year: 2021
+doi: 10.1038/s41467-020-20729-5
 dateDisplay: Jan 2021
 themeIds:
   - systems

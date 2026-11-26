@@ -7,8 +7,10 @@ authors:
     personId: jinjun-xiong
   - name: D. Kung
 venue: The European Journal for the Informatics Professional
-volumeIssue: Vol. 12, No. 4, pp. 28-40
+venueId: upgrade
+volumeIssue: 12(4)
 year: 2011
+url: http://web.archive.org/web/20111215191755/http://www.cepis.org:80/upgrade/media/MONOGRAPH_2011_41.pdf
 dateDisplay: October 2011
 themeIds:
   - smart-energy

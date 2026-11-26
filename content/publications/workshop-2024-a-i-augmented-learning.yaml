@@ -11,7 +11,9 @@ authors:
   - name: A. Goel
   - name: P. Foltz
 venue: The Fourth Annual Meeting of the International Society of the Learning Sciences (ISLS)
+venueId: isls-workshops
 year: 2024
+url: https://2024.isls.org/workshops-tutorials/#augmented-learning
 dateDisplay: June 10–14, 2024
 location: Buffalo, New York, USA
 themeIds:

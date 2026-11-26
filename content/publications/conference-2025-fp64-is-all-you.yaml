@@ -12,7 +12,10 @@ authors:
   - name: J. Xiong
     personId: jinjun-xiong
 venue: The Thirty-ninth Annual Conference on Neural Information Processing Systems (NeurIPS)
+venueId: neurips
 year: 2025
+doi: 10.52202/085713-4785
+url: http://papers.nips.cc/paper_files/paper/2025/hash/d274ea8b3c7f526f79ac9ce75ee3c8df-Abstract-Conference.html
 dateDisplay: Dec 2–7, 2025
 location: San Diego, California, USA
 themeIds:

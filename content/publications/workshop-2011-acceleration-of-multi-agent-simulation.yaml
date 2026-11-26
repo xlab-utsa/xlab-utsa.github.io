@@ -8,7 +8,10 @@ authors:
     personId: jinjun-xiong
   - name: Y. Hu
 venue: "DATE Workshop W2: Design Methods and Tools for FPGA-Based Acceleration of Scientific Computing"
+location: Grenoble, France
+venueId: date-workshop
 year: 2011
+url: https://past.date-conference.com/date11/files/file/date11/DATE11-Advance-Programme.pdf
 themeIds:
   - ai-acceleration
 _meta:

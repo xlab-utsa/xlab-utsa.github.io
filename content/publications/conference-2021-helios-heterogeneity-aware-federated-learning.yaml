@@ -9,7 +9,9 @@ authors:
     personId: jinjun-xiong
   - name: X. Chen
 venue: The 58th Design Automation Conference (DAC)
+venueId: dac
 year: 2021
+doi: 10.1109/DAC18074.2021.9586241
 dateDisplay: Dec 5–9, 2021
 location: San Francisco, CA, USA
 themeIds:

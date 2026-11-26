@@ -1,0 +1,7 @@
+id: www
+shortName: WWW
+name: Web Conference (WWW)
+kind: conference
+dblpKey: conf/www
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

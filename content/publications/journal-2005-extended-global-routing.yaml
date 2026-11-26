@@ -6,8 +6,10 @@ authors:
     personId: jinjun-xiong
   - name: L. He
 venue: IEEE Transactions on Very Large Scale Integration Systems
-volumeIssue: Vol. 13, No. 3, pp 319-329
+venueId: tvlsi
+volumeIssue: 13(3)
 year: 2005
+doi: 10.1109/TVLSI.2004.842896
 dateDisplay: March 2005
 themeIds:
   - eda

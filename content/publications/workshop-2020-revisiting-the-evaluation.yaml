@@ -9,7 +9,10 @@ authors:
     personId: jinjun-xiong
   - name: Y. Shi
 venue: The 32nd IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshop on Fair, Data Efficient and Trusted Computer Vision
+venueId: cvprw
 year: 2020
+doi: 10.1109/CVPRW50498.2020.00010
+url: https://openaccess.thecvf.com/content_CVPRW_2020/html/w1/Ding_Revisiting_the_Evaluation_of_Uncertainty_Estimation_and_Its_Application_to_CVPRW_2020_paper.html
 dateDisplay: June 16–18, 2020
 location: Seattle, Washington, USA
 themeIds:

@@ -1,0 +1,7 @@
+id: ciss
+shortName: CISS
+name: Annual Conference on Information Sciences and Systems (CISS)
+kind: conference
+dblpKey: conf/ciss
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

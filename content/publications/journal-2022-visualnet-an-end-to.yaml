@@ -14,8 +14,10 @@ authors:
   - name: X. Xu
   - name: Y. Shi
 venue: IEEE Transactions on Computers
-volumeIssue: "Volume: 71, Issue: 11"
+venueId: tc
+volumeIssue: "71(11)"
 year: 2022
+doi: 10.1109/TC.2022.3188211
 dateDisplay: Nov 2022
 themeIds:
   - ai-algorithms

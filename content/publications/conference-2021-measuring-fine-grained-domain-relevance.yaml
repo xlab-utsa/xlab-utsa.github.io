@@ -9,7 +9,9 @@ authors:
     personId: jinjun-xiong
   - name: W. Hwu
 venue: The Joint Conference of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (ACL-IJCNLP)
+venueId: acl-ijcnlp
 year: 2021
+doi: 10.18653/V1/2021.ACL-LONG.282
 dateDisplay: Aug 1–6, 2021
 location: Online
 themeIds:

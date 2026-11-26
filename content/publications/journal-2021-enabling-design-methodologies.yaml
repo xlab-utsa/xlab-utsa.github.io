@@ -11,8 +11,10 @@ authors:
   - name: Z. Zhang
   - name: D. Chen
 venue: IEEE Design & Test
-volumeIssue: Vol 38, Issue 4
+venueId: ieee-d-t
+volumeIssue: 38(4)
 year: 2021
+doi: 10.1109/MDAT.2021.3069952
 dateDisplay: Aug 2021
 themeIds:
   - ai-acceleration

@@ -6,6 +6,7 @@ authors:
     personId: jinjun-xiong
   - name: V. Zolotov
 venue: IBM Watson Deep Learning Workshop
+venueId: ibm-watson-dl-workshop
 year: 2016
 dateDisplay: January 2016
 themeIds:

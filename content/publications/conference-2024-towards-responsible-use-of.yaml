@@ -13,7 +13,9 @@ authors:
     personId: jinjun-xiong
   - name: Y. Huang
 venue: Conference on Computer-Supported Cooperative Work and Social Computing (CSCW)
+venueId: cscw
 year: 2024
+doi: 10.1145/3678884.3687137
 dateDisplay: Nov. 9–13, 2024
 location: San Jose, Costa Rica
 themeIds:

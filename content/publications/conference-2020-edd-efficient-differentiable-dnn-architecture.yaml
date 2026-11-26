@@ -13,7 +13,9 @@ authors:
   - name: W. Hwu
   - name: D. Chen
 venue: IEEE/ACM Design Automation Conference (DAC)
+venueId: dac
 year: 2020
+doi: 10.1109/DAC18072.2020.9218749
 dateDisplay: July 19–23, 2020
 location: Online, San Francisco, CA, USA
 themeIds:

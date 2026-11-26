@@ -7,8 +7,10 @@ authors:
     personId: jinjun-xiong
   - name: A. Bishop
 venue: Human Factors
-volumeIssue: Vol. 45, No. 2, pp 296-306
+venueId: hum-factors
+volumeIssue: 45(2)
 year: 2003
+doi: 10.1518/hfes.45.2.296.27242
 themeIds:
   - systems
 _meta:

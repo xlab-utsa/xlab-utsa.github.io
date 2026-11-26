@@ -8,8 +8,10 @@ authors:
   - name: V. Zolotov
   - name: J. Abraham
 venue: IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems
-volumeIssue: Vol. 31, No. 4
+venueId: tcad
+volumeIssue: 31(4)
 year: 2012
+doi: 10.1109/TCAD.2011.2179042
 dateDisplay: April 2012
 themeIds:
   - eda

@@ -16,7 +16,9 @@ authors:
   - name: M. Hashimoto
   - name: L. Lin
 venue: International Test Conference (ITC)
+venueId: itc
 year: 2025
+doi: 10.1109/ITC58126.2025.00008
 dateDisplay: Sept 21–26, 2025
 location: San Diego, California, USA
 themeIds:

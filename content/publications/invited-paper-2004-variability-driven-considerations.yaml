@@ -8,7 +8,10 @@ authors:
   - name: J. Xiong
     personId: jinjun-xiong
 venue: IEEE VLSI Multilevel Interconnection Conference
+location: Waikoloa, HI, USA
+venueId: vmic
 year: 2004
+url: https://vlsicad.ucsd.edu/Publications/Conferences/182/c182.pdf
 dateDisplay: October 2004
 themeIds:
   - eda

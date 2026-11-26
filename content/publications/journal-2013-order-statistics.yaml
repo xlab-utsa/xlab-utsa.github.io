@@ -8,8 +8,10 @@ authors:
   - name: V. Zolotov
   - name: C. Visweswariah
 venue: ACM Transactions on Design Automation of Electronic Systems
-volumeIssue: Vol. 18, No. 3
+venueId: todaes
+volumeIssue: 18(3)
 year: 2013
+doi: 10.1145/2491477.2491486
 dateDisplay: July 2013
 themeIds:
   - eda

@@ -1,0 +1,7 @@
+id: tcad
+shortName: TCAD
+name: IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems
+kind: journal
+dblpKey: journals/tcad
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

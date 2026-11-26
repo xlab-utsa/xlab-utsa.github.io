@@ -7,8 +7,10 @@ authors:
   - name: J. Xiong
     personId: jinjun-xiong
 venue: IEEE Journal of Selected Topics in Signal Processing
-volumeIssue: Vol 12, Issue 6
+venueId: jstsp
+volumeIssue: 12(6)
 year: 2018
+doi: 10.1109/JSTSP.2018.2867450
 dateDisplay: December 2018
 note: Cover Featured Paper
 themeIds:

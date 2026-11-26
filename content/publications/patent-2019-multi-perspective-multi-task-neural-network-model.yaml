@@ -7,9 +7,12 @@ authors:
   - name: J. Xiong
     personId: jinjun-xiong
   - name: J. Hockenmaier
-patentNo: P20190211US01
+patentNo: US 11,132,512 B2
+docketNo: P20190211US01
 filedDate: 2019-11
+issuedDate: 2021-09
 year: 2019
+url: https://patents.google.com/patent/US11132512B2/en
 themeIds:
   - ai-algorithms
 _meta:

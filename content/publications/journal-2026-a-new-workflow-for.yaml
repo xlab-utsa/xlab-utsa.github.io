@@ -14,8 +14,10 @@ authors:
     personId: jinjun-xiong
   - name: H. Zeng
 venue: Journal of Magnetism and Magnetic Materials
-volumeIssue: Vol 650
+venueId: jmmm
+volumeIssue: "650"
 year: 2026
+doi: 10.1016/j.jmmm.2026.174131
 dateDisplay: July 15, 2026
 themeIds:
   - ai-algorithms

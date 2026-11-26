@@ -8,9 +8,11 @@ authors:
   - name: V. Zolotov
   - name: J. Abraham
 venue: ACM/IEEE International Workshop on Timing Issues
+venueId: tau
 year: 2011
+url: https://www.tauworkshop.com/2011/program2011.htm
 dateDisplay: February 2011
-location: Austin, TX
+location: Santa Barbara, CA, USA
 themeIds:
   - eda
 _meta:

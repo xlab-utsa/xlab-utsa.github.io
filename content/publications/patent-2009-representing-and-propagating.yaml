@@ -8,9 +8,11 @@ authors:
   - name: J. Xiong
     personId: jinjun-xiong
   - name: V. Zolotov
-patentNo: US7620921
-issuedDate: 2009-11
+patentNo: US 7,814,448 B2
+filedDate: 2007-04
+issuedDate: 2010-10
 year: 2009
+url: https://patents.google.com/patent/US7814448B2/en
 themeIds:
   - eda
 _meta:

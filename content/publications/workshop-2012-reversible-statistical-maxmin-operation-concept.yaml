@@ -9,7 +9,9 @@ authors:
   - name: V. Zolotov
   - name: N. Venkateswaran
 venue: ACM/IEEE International Workshop on Timing Issues
+venueId: tau
 year: 2012
+url: https://www.tauworkshop.com/2012/
 dateDisplay: January 2012
 location: Taipei, Taiwan
 themeIds:

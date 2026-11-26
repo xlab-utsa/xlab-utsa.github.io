@@ -10,9 +10,12 @@ authors:
   - name: J. Xiong
     personId: jinjun-xiong
   - name: W. Hwu
-patentNo: P201809609US01
+patentNo: US 11,074,189 B2
+docketNo: P201809609US01
 filedDate: 2019-06
+issuedDate: 2021-07
 year: 2019
+url: https://patents.google.com/patent/US11074189B2/en
 themeIds:
   - systems
 _meta:

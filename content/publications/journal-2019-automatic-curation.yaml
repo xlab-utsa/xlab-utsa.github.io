@@ -15,8 +15,10 @@ authors:
   - name: J. Smith
   - name: R. Feris
 venue: IEEE Transactions on MultiMedia (TMM)
-volumeIssue: Volume 21, Issue 5
+venueId: tmm
+volumeIssue: 21(5)
 year: 2019
+doi: 10.1109/TMM.2018.2876046
 dateDisplay: May 2019
 themeIds:
   - ai-algorithms

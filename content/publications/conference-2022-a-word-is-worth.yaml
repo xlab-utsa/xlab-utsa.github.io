@@ -11,7 +11,9 @@ authors:
   - name: S. Liu
   - name: O. Koyejo
 venue: 2022 Annual Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)
+venueId: naacl
 year: 2022
+doi: 10.18653/V1/2022.NAACL-MAIN.43
 dateDisplay: July 10–15, 2022
 location: "Hybrid: Seattle, Washington, USA and Online"
 themeIds:

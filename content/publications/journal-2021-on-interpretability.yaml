@@ -9,8 +9,10 @@ authors:
   - name: M. Li
   - name: G. Wang
 venue: IEEE Transactions on Radiation and Plasma Medical Sciences
-volumeIssue: Vol 5, Issue 6
+venueId: trpms
+volumeIssue: 5(6)
 year: 2021
+doi: 10.1109/TRPMS.2021.3066428
 dateDisplay: Nov 2021
 themeIds:
   - ai-algorithms

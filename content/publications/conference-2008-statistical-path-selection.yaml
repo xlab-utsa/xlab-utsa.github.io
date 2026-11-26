@@ -8,7 +8,9 @@ authors:
   - name: H. Fatemi
   - name: C. Visweswariah
 venue: ACM International Conference on Computer-Aided Design (ICCAD)
+venueId: iccad
 year: 2008
+doi: 10.1109/ICCAD.2008.4681642
 dateDisplay: November 2008
 location: San Jose
 themeIds:

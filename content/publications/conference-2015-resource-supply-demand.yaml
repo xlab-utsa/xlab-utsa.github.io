@@ -7,7 +7,9 @@ authors:
   - name: D. Phan
   - name: D. Kung
 venue: The 17th International Conference on High Performance Computing and Communications (HPCC)
+venueId: hpcc
 year: 2015
+doi: 10.1109/HPCC-CSS-ICESS.2015.130
 dateDisplay: Aug 2015
 location: New York, NY
 themeIds:

@@ -7,7 +7,9 @@ authors:
     personId: jinjun-xiong
   - name: Y. Liu
 venue: IEEE Asia Pacific Conference on Circuits and Systems (APCCAS)
+venueId: apccas
 year: 2006
+doi: 10.1109/APCCAS.2006.342219
 dateDisplay: December 4–7, 2006
 location: Singapore
 themeIds:

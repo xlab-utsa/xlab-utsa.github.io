@@ -13,7 +13,9 @@ authors:
   - name: J. Xiong
     personId: jinjun-xiong
 venue: The 14th International Conference on Learning Representations (ICLR)
+venueId: iclr
 year: 2026
+url: https://proceedings.iclr.cc/paper_files/paper/2026/hash/ac3af725ae398b6184faae0828bdbd6c-Abstract-Conference.html
 dateDisplay: April 23–27, 2026
 location: Rio de Janeiro, Brazil
 themeIds:

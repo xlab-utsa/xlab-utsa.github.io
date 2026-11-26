@@ -1,0 +1,7 @@
+id: aied
+shortName: AIED
+name: International Conference on Artificial Intelligence in Education (AIED)
+kind: conference
+dblpKey: conf/aied
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

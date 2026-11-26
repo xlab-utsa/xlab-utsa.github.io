@@ -13,7 +13,10 @@ authors:
   - name: T. Huang
   - name: H. Shi
 venue: Proceedings of the Computer Vision and Pattern Recognition (CVPR)
+venueId: cvpr
 year: 2020
+doi: 10.1109/CVPR42600.2020.01265
+url: https://openaccess.thecvf.com/content_CVPR_2020/html/Wang_Differential_Treatment_for_Stuff_and_Things_A_Simple_Unsupervised_Domain_CVPR_2020_paper.html
 dateDisplay: June 16–20, 2020
 location: Online, Seattle, WA, USA
 themeIds:

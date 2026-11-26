@@ -8,7 +8,10 @@ authors:
     personId: jinjun-xiong
   - name: W. M. Hwu
 venue: IEEE Micro, special issue on Post-Moore’s Era Supercomputing
+volumeIssue: 37(4)
+venueId: ieee-micro
 year: 2017
+doi: 10.1109/MM.2017.3211105
 themeIds:
   - ai-acceleration
 _meta:

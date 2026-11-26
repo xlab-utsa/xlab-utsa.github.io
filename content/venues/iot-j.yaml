@@ -1,0 +1,7 @@
+id: iot-j
+shortName: IoT-J
+name: IEEE Internet of Things Journal
+kind: journal
+dblpKey: journals/iotj
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

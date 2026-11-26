@@ -12,7 +12,9 @@ authors:
   - name: W. Hwu
   - name: D. Chen
 venue: Thirty-sixth International Conference on Machine Learning (ICML) Joint Workshop on On-Device Machine Learning and Compact Deep Neural Network Representations (ODML-CDNNR)
+venueId: odml-cdnnr
 year: 2019
+url: https://arxiv.org/abs/1905.08369
 dateDisplay: June 9–15, 2019
 location: Long Beach, California, USA
 themeIds:

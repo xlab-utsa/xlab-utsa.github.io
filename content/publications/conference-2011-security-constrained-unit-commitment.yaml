@@ -6,7 +6,9 @@ authors:
   - name: J. Xiong
     personId: jinjun-xiong
 venue: IEEE Power & Energy Society (PES) General Meeting
+venueId: pes-gm
 year: 2011
+doi: 10.1109/PES.2011.6039643
 location: Detroit, Michigan
 themeIds:
   - smart-energy

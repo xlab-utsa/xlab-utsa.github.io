@@ -10,7 +10,9 @@ authors:
   - name: M. Do
   - name: A. Schwing
 venue: Neural Information Processing Systems (NIPS)
+venueId: neurips
 year: 2017
+url: https://proceedings.neurips.cc/paper/2017/hash/52292e0c763fd027c6eba6b8f494d2eb-Abstract.html
 dateDisplay: December 4–9, 2017
 location: Long Beach, CA, USA
 note: Oral, 1.8%

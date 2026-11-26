@@ -11,7 +11,9 @@ authors:
   - name: C. Visweswariah
   - name: J. Sunduist
 venue: ACM International Conference on Computer-Aided Design (ICCAD)
+venueId: iccad
 year: 2012
+doi: 10.1145/2429384.2429419
 dateDisplay: November 2012
 location: San Jose, CA
 themeIds:

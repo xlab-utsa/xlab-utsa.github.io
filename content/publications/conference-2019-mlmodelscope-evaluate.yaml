@@ -9,7 +9,9 @@ authors:
     personId: jinjun-xiong
   - name: W. Hwu
 venue: "Hot Chips: A Symposium on High Performance Chips (Hotchips)"
+venueId: hot-chips
 year: 2019
+url: https://old.hotchips.org/hc31/HC31.UIUC.ChengLi.v01.pdf
 dateDisplay: August 18–20, 2019
 location: Palo Alto, California, USA
 themeIds:

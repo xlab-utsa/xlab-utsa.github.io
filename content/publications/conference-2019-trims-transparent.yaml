@@ -9,7 +9,9 @@ authors:
     personId: jinjun-xiong
   - name: W. Hwu
 venue: The IEEE International Conference on Cloud Computing (CLOUD)
+venueId: cloud
 year: 2019
+doi: 10.1109/CLOUD.2019.00067
 dateDisplay: July 8–13, 2019
 location: Milan, Italy
 themeIds:

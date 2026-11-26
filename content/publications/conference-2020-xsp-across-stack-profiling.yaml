@@ -11,7 +11,9 @@ authors:
   - name: L. Xu
   - name: W. Hwu
 venue: The 34th IEEE International Parallel and Distributed Processing Symposium (IPDPS)
+venueId: ipdps
 year: 2020
+doi: 10.1109/IPDPS47924.2020.00042
 dateDisplay: May 18–22, 2020
 location: Online, New Orleans, Louisiana, USA
 themeIds:

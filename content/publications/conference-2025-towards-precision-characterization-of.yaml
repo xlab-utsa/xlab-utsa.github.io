@@ -12,7 +12,9 @@ authors:
     personId: jinjun-xiong
   - name: O. Fuentes
 venue: IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP)
+venueId: icassp
 year: 2025
+doi: 10.1109/ICASSP49660.2025.10890858
 dateDisplay: April 6–11, 2025
 location: Hyderabad, India
 themeIds:

@@ -10,7 +10,9 @@ authors:
     personId: jinjun-xiong
   - name: D. Chen
 venue: Thirty-fifth Conference on Neural Information Processing Systems (NeurIPS)
+venueId: neurips
 year: 2021
+url: https://proceedings.neurips.cc/paper/2021/hash/aba53da2f6340a8b89dc96d09d0d0430-Abstract.html
 dateDisplay: Dec 6–14, 2021
 location: Virtual
 note: Spotlight, 3%

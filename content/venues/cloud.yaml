@@ -1,0 +1,7 @@
+id: cloud
+shortName: CLOUD
+name: IEEE International Conference on Cloud Computing (CLOUD)
+kind: conference
+dblpKey: conf/IEEEcloud
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

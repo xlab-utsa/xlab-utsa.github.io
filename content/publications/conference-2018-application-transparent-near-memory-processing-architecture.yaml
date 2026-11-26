@@ -17,7 +17,9 @@ authors:
   - name: W. Hwu
   - name: N. Kim
 venue: The 51st Annual IEEE/ACM International Symposium on Microarchitecture (MICRO’51)
+venueId: micro
 year: 2018
+doi: 10.1109/MICRO.2018.00070
 dateDisplay: Oct 20–24, 2018
 location: Fukuoka City, Japan
 themeIds:

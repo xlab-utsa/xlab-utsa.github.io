@@ -10,8 +10,10 @@ authors:
   - name: W. Hwu
   - name: D. Chen
 venue: IEEE Transactions on Parallel and Distributed Systems (TPDS)
-volumeIssue: "Volume: 32, Issue: 7, pages 1866-1877"
+venueId: tpds
+volumeIssue: "32(7), pp. 1866–1877"
 year: 2021
+doi: 10.1109/TPDS.2020.3047371
 dateDisplay: July 2021
 themeIds:
   - ai-acceleration

@@ -8,7 +8,9 @@ authors:
     personId: jinjun-xiong
   - name: W. Hwu
 venue: The First International Workshop on the Intersection of High Performance Computing and Machine Learning (HPCaML), in conjunction with the International Symposium on Code Generation and Optimization (CGO)
+venueId: hpcaml
 year: 2019
+url: https://hpc.pnl.gov/hpcaml19/
 dateDisplay: February 16, 2019
 location: Washington DC, USA
 themeIds:

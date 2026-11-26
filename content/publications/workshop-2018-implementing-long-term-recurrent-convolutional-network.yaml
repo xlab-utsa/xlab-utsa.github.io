@@ -10,7 +10,9 @@ authors:
     personId: jinjun-xiong
   - name: D. Chen
 venue: OpenPOWER US Summit
+venueId: openpower-summit
 year: 2018
+url: https://opfus2018.sched.com/event/E36o/implementing-long-term-recurrent-convolutional-network-using-hls-on-power-system
 dateDisplay: March 19, 2018
 location: Las Vegas, Nevada, USA
 themeIds:

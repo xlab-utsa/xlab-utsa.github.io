@@ -8,7 +8,9 @@ authors:
     personId: jinjun-xiong
   - name: W. Hwu
 venue: SIAM International Conference on Data Mining (SDM)
+venueId: sdm
 year: 2021
+doi: 10.1137/1.9781611976700.72
 dateDisplay: April 29 – May 1, 2021
 location: Online
 note: "Acceptance rate: 21%"

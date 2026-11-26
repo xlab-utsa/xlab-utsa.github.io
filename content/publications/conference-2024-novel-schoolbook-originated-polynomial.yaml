@@ -8,7 +8,9 @@ authors:
     personId: jinjun-xiong
   - name: J. Xie
 venue: The 5th NIST Post-Quantum Cryptography (PQC) Standardization Conference
+venueId: nist-pqc
 year: 2024
+url: https://csrc.nist.gov/Presentations/2024/novel-schoolbook
 dateDisplay: April 10–12, 2024
 location: Rockville, Maryland, USA
 themeIds:

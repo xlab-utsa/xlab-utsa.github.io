@@ -8,8 +8,10 @@ authors:
   - name: H. Chen
   - name: L. He
 venue: IEEE Transactions on Very Large Scale Integration Systems
-volumeIssue: Vol. 19, No. 3, pp. 508-512
+venueId: tvlsi
+volumeIssue: 19(3)
 year: 2011
+doi: 10.1109/TVLSI.2009.2036266
 themeIds:
   - eda
 _meta:

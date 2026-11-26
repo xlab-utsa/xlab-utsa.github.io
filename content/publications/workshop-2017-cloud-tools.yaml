@@ -9,7 +9,9 @@ authors:
   - name: C. Li
   - name: C. Pearson
 venue: The OpenPOWER Workshop at HPCXXL
+venueId: hpcxxl
 year: 2017
+url: https://hpcxxl.org/wp-content/uploads/2017/09/HPCXXL-Fall-2017-V6.pdf
 dateDisplay: Sept 27, 2017
 location: New York, NY
 themeIds:

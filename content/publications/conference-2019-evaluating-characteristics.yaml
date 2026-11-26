@@ -11,7 +11,9 @@ authors:
     personId: jinjun-xiong
   - name: W. Hwu
 venue: The 10th ACM/SPEC International Conference on Performance Engineering (ICPE)
+venueId: icpe
 year: 2019
+doi: 10.1145/3297663.3310299
 dateDisplay: April 7–11, 2019
 location: Mumbai, India
 themeIds:

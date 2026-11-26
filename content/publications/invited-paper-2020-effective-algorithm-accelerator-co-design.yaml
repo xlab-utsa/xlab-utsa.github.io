@@ -12,7 +12,9 @@ authors:
   - name: W. Hwu
   - name: D. Chen
 venue: The 30th ACM Great Lakes Symposium on VLSI (GLSVLSI)
+venueId: glsvlsi
 year: 2020
+doi: 10.1145/3386263.3406956
 dateDisplay: September 8–11, 2020
 location: Online, Beijing, China
 themeIds:

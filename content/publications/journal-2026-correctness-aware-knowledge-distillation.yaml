@@ -7,7 +7,10 @@ authors:
   - name: J. Xiong
     personId: jinjun-xiong
 venue: Transactions on Machine Learning Research
+volumeIssue: "2026"
+venueId: tmlr
 year: 2026
+url: https://openreview.net/forum?id=XpRXmzd2sF
 dateDisplay: Feb. 2026
 themeIds:
   - ai-algorithms

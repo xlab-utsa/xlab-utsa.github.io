@@ -13,7 +13,9 @@ authors:
   - name: W. Hwu
   - name: D. Chen
 venue: IEEE/ACM Design Automation Conference (DAC)
+venueId: dac
 year: 2019
+doi: 10.1145/3316781.3317829
 dateDisplay: June 2–6, 2019
 location: Las Vegas, NV
 themeIds:

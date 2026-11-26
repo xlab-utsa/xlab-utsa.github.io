@@ -8,7 +8,9 @@ authors:
     personId: jinjun-xiong
   - name: S. Zou
 venue: Asilomar Conference on Signals, Systems, and Computers
+venueId: asilomar
 year: 2024
+url: https://cmsworkshops.com/Asilomar2024/view_paper.php?PaperNum=1437
 dateDisplay: Oct 27–30, 2024
 location: Pacific Grove, California, USA
 themeIds:

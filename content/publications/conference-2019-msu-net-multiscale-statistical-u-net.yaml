@@ -13,7 +13,9 @@ authors:
   - name: M. Huang
   - name: J. Zhuang
 venue: The 22nd International Conference on Medical Image Computing and Computer Assisted Interventions (MICCAI)
+venueId: miccai
 year: 2019
+doi: 10.1007/978-3-030-32245-8_68
 dateDisplay: Oct 13–17, 2019
 location: Shenzhen, China
 themeIds:

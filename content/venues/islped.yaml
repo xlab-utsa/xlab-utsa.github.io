@@ -1,0 +1,7 @@
+id: islped
+shortName: ISLPED
+name: ACM/IEEE International Symposium on Low Power Electronics and Design (ISLPED)
+kind: conference
+dblpKey: conf/islped
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

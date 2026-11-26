@@ -14,7 +14,9 @@ authors:
   - name: J. Smith
   - name: R. Feris
 venue: The 30th IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) workshop on Sight and Sound
+venueId: cvprw
 year: 2018
+url: https://openaccess.thecvf.com/content_cvpr_2018_workshops/w49/html/Merler_The_Excitement_of_CVPR_2018_paper.html
 dateDisplay: June 22, 2018
 location: Salt Lake City, Utah, USA
 themeIds:

@@ -7,7 +7,10 @@ authors:
     personId: jinjun-xiong
   - name: A. Bishop
 venue: The 45th Human Factors and Ergonomics Society Annual Meeting
+location: Minneapolis, MN, USA
+venueId: hfes
 year: 2001
+doi: 10.1177/154193120104501415
 themeIds:
   - systems
 _meta:

@@ -6,7 +6,9 @@ authors:
     personId: jinjun-xiong
   - name: L. He
 venue: International Conference on Design, Automation and Test in Europe (DATE)
+venueId: date
 year: 2004
+doi: 10.1109/DATE.2004.1269042
 dateDisplay: February 2004
 location: Paris, France
 themeIds:

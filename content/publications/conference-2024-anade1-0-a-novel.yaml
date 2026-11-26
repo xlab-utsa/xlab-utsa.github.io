@@ -9,7 +9,9 @@ authors:
     personId: jinjun-xiong
   - name: C. Zhai
 venue: The 18th Conference of the European Chapter of the Association for Computational Linguistics (EACL)
+venueId: eacl
 year: 2024
+doi: 10.18653/V1/2024.EACL-LONG.103
 dateDisplay: March 17–22, 2024
 location: Malta
 themeIds:

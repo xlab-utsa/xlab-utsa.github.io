@@ -11,7 +11,9 @@ authors:
   - name: D. Chen
   - name: W. Hwu
 venue: The International Conference on Field-Programmable Logic and Applications (FPL)
+venueId: fpl
 year: 2019
+doi: 10.1109/FPL.2019.00055
 dateDisplay: Sept 9–11, 2019
 location: Barcelona, Spain
 themeIds:

@@ -9,9 +9,11 @@ authors:
   - name: C. Visweswariah
   - name: J. Xiong
     personId: jinjun-xiong
+patentNo: US 2009/0150844 A1
 docketNo: BUR920070146US1
-filedDate: 2007-11
+filedDate: 2007-12
 year: 2007
+url: https://patents.google.com/patent/US20090150844A1/en
 themeIds:
   - eda
 _meta:

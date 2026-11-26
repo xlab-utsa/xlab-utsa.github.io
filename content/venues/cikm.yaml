@@ -1,0 +1,7 @@
+id: cikm
+shortName: CIKM
+name: International Conference on Information and Knowledge Management (CIKM)
+kind: conference
+dblpKey: conf/cikm
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

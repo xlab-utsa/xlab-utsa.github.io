@@ -8,7 +8,9 @@ authors:
   - name: Y. Zhu
   - name: J. He
 venue: The 28th ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD)
+venueId: kdd
 year: 2022
+doi: 10.1145/3534678.3539311
 dateDisplay: Aug 14–18, 2022
 location: Washington DC, USA
 themeIds:

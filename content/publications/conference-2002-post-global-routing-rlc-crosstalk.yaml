@@ -8,7 +8,9 @@ authors:
   - name: J. Ma
   - name: L. He
 venue: ACM International Conference on Computer-Aided Design (ICCAD)
+venueId: iccad
 year: 2002
+doi: 10.1145/774572.774646
 dateDisplay: November 2002
 location: San Jose
 themeIds:

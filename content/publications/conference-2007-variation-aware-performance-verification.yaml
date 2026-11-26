@@ -11,7 +11,9 @@ authors:
   - name: P. Habitz
   - name: C. Visweswariah
 venue: ACM International Conference on Computer-Aided Design (ICCAD)
+venueId: iccad
 year: 2007
+doi: 10.1109/ICCAD.2007.4397299
 dateDisplay: November 2007
 location: San Jose
 themeIds:

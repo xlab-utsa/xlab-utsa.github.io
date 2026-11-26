@@ -10,7 +10,9 @@ authors:
   - name: I. Gelado
   - name: W. Hwu
 venue: The 33rd International Conference on Supercomputing (ICS)
+venueId: ics
 year: 2019
+doi: 10.1145/3330345.3331057
 dateDisplay: June 26–28, 2019
 location: Phoenix, AZ, USA
 themeIds:

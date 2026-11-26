@@ -9,7 +9,9 @@ authors:
   - name: J. Xiong
     personId: jinjun-xiong
 venue: The 54th Annual Conference on Information Sciences and Systems (CISS)
+venueId: ciss
 year: 2020
+doi: 10.1109/CISS48834.2020.1570627111
 dateDisplay: March 18–20, 2020
 location: Princeton, NJ, USA
 themeIds:

@@ -22,7 +22,9 @@ authors:
   - name: A. Miller
   - name: S. Patel
 venue: CoronaDef Workshop at the Network and Distributed System Security Symposium (NDSS)
+venueId: coronadef
 year: 2021
+doi: 10.14722/coronadef.2021.23001
 dateDisplay: February 21–24, 2021
 location: Online
 themeIds:

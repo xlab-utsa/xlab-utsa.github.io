@@ -1,0 +1,7 @@
+id: services
+shortName: SERVICES
+name: Doctoral Symposium of the IEEE World Congress on Services (SERVICES)
+kind: conference
+dblpKey: conf/services
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

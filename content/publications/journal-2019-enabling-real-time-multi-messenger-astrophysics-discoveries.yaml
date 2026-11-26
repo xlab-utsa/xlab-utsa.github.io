@@ -8,8 +8,10 @@ authors:
     personId: jinjun-xiong
   - name: et al.
 venue: Nature Reviews Physics
-volumeIssue: volume 1, pages 600-608, Issue 3
+venueId: nat-rev-phys
+volumeIssue: 1(3), pp. 600–608
 year: 2019
+doi: 10.1038/s42254-019-0097-4
 dateDisplay: October 3, 2019
 themeIds:
   - ai-algorithms

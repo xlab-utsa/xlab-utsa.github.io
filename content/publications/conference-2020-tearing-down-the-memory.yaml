@@ -11,7 +11,9 @@ authors:
     personId: jinjun-xiong
   - name: W. Hwu
 venue: SRC TECHCON
+venueId: techcon
 year: 2020
+url: https://arxiv.org/abs/2008.10169
 dateDisplay: Sept 14–17, 2020
 location: Online
 themeIds:

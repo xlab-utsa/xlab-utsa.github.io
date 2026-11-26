@@ -9,9 +9,12 @@ authors:
     personId: jinjun-xiong
   - name: N. Gaur
   - name: A. Topol
-patentNo: P202009336
-filedDate: 2020-11
+patentNo: US 12,561,555 B2
+docketNo: P202009336
+filedDate: 2021-02
+issuedDate: 2026-02
 year: 2020
+url: https://patents.google.com/patent/US12561555B2/en
 themeIds:
   - ai-algorithms
 _meta:

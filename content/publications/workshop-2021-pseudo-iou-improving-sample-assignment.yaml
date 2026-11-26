@@ -12,7 +12,9 @@ authors:
   - name: W. Hwu
   - name: H. Shi
 venue: The 33rd IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), Collocated Mobile AI Workshop and Challenges (MAI)
+venueId: mai
 year: 2021
+doi: 10.1109/CVPRW53098.2021.00270
 dateDisplay: Jun 20, 2021
 location: Online
 themeIds:

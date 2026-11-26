@@ -7,7 +7,10 @@ authors:
   - name: J. Xiong
     personId: jinjun-xiong
 venue: ECI Conferences on Modeling, Simulation, And Optimization for the 21st Century Electric Power Grid
+location: Lake Geneva, WI, USA
+venueId: eci
 year: 2012
+url: https://dc.engconfintl.org/power_grid/
 dateDisplay: October 2012
 themeIds:
   - smart-energy

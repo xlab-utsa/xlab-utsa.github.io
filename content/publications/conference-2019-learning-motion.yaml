@@ -11,7 +11,9 @@ authors:
   - name: R. Feris
   - name: M. Do
 venue: International Conference on Computer Vision (ICCV)
+venueId: iccv
 year: 2019
+doi: 10.1109/ICCV.2019.00638
 dateDisplay: Oct 27 – Nov 2, 2019
 location: Seoul, Korea
 note: Oral, 1.8%

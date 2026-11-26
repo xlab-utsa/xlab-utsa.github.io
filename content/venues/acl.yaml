@@ -1,0 +1,7 @@
+id: acl
+shortName: ACL
+name: Annual Meeting of the Association for Computational Linguistics (ACL)
+kind: conference
+dblpKey: conf/acl
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

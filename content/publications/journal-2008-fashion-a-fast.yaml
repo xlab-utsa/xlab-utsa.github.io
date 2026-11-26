@@ -10,8 +10,10 @@ authors:
   - name: L. He
   - name: X. Hong
 venue: IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems
-volumeIssue: Vol. 27, No. 4, pp.726-737
+venueId: tcad
+volumeIssue: 27(4)
 year: 2008
+doi: 10.1109/TCAD.2008.917590
 dateDisplay: April 2008
 themeIds:
   - eda

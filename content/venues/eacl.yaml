@@ -1,0 +1,7 @@
+id: eacl
+shortName: EACL
+name: Conference of the European Chapter of the Association for Computational Linguistics (EACL)
+kind: conference
+dblpKey: conf/eacl
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

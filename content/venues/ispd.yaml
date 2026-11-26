@@ -1,0 +1,7 @@
+id: ispd
+shortName: ISPD
+name: ACM International Symposium on Physical Design (ISPD)
+kind: conference
+dblpKey: conf/ispd
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

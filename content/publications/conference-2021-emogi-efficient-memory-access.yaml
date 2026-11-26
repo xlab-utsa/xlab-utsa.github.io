@@ -11,7 +11,10 @@ authors:
   - name: E. Ebrahimi
   - name: W. Hwu
 venue: The 47th International Conference on Very Large Data Bases (VLDB)
+venueId: vldb
 year: 2021
+doi: 10.14778/3425879.3425883
+url: http://www.vldb.org/pvldb/vol14/p114-min.pdf
 dateDisplay: August 16–20, 2021
 location: Copenhagen, Denmark
 themeIds:

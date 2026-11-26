@@ -13,7 +13,10 @@ authors:
   - name: D. Chen
   - name: W. Hwu
 venue: The 47th International Conference on Very Large Data Bases (VLDB)
+venueId: vldb
 year: 2021
+doi: 10.14778/3476249.3476264
+url: http://www.vldb.org/pvldb/vol14/p2087-min.pdf
 dateDisplay: August 16–20, 2021
 location: Copenhagen, Denmark
 themeIds:

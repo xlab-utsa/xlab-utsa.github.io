@@ -16,7 +16,9 @@ authors:
   - name: J. Xiong
     personId: jinjun-xiong
 venue: The Association for the Advancement of Artificial Intelligence’s Fall Symposium (AAAI)
+venueId: aaai
 year: 2024
+doi: 10.1609/AAAISS.V4I1.31807
 dateDisplay: Nov. 7–9, 2024
 location: Arlington, Virginia
 themeIds:

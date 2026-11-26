@@ -1,0 +1,7 @@
+id: emnlp
+shortName: EMNLP
+name: Conference on Empirical Methods in Natural Language Processing (EMNLP)
+kind: conference
+dblpKey: conf/emnlp
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

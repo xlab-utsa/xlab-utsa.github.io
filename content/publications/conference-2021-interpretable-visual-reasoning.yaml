@@ -12,7 +12,9 @@ authors:
   - name: M. Hasegawa-Johnson
   - name: H. Shi
 venue: International Conference on Computer Vision (ICCV)
+venueId: iccv
 year: 2021
+doi: 10.1109/ICCV48922.2021.00189
 dateDisplay: Oct 11–17, 2021
 location: Online
 themeIds:

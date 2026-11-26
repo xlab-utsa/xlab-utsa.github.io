@@ -1,0 +1,7 @@
+id: micro
+shortName: MICRO
+name: Annual IEEE/ACM International Symposium on Microarchitecture (MICRO)
+kind: conference
+dblpKey: conf/micro
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

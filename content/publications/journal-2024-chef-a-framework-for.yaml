@@ -12,8 +12,10 @@ authors:
   - name: P. Zhou
   - name: J. Hu
 venue: IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems (TCAD)
-volumeIssue: Volume 43, Issue 11, Pages 3937-3948
+venueId: tcad
+volumeIssue: 43(11), pp. 3937–3948
 year: 2024
+doi: 10.1109/TCAD.2024.3438994
 dateDisplay: Nov. 2024
 themeIds:
   - ai-acceleration

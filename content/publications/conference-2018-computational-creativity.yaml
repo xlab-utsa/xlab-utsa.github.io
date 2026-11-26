@@ -7,7 +7,9 @@ authors:
     personId: jinjun-xiong
   - name: L. Varshney
 venue: The Ninth International Conference on Computational Creativity (ICCC)
+venueId: iccc
 year: 2018
+url: https://computationalcreativity.net/iccc2018/sites/default/files/papers/ICCC_2018_paper_19.pdf
 dateDisplay: June 25–29, 2018
 location: Salamanca, Spain
 themeIds:

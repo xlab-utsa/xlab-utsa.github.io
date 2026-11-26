@@ -7,7 +7,9 @@ authors:
     personId: jinjun-xiong
   - name: Y. Shi
 venue: IEEE 57th International Midwest Symposium on Circuits and Systems
+venueId: mwscas
 year: 2014
+doi: 10.1109/MWSCAS.2014.6908425
 dateDisplay: Aug 2014
 location: College Station, Tx
 themeIds:

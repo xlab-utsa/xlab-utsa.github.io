@@ -182,7 +182,9 @@ export function validateContent(preloaded?: AllContent): ValidationReport {
       const key = p.doi.toLowerCase();
       byDoi.set(key, [...(byDoi.get(key) ?? []), p.id]);
     }
-    const key = `${titleKey(p.title)}|${p.category}|${p.year ?? ""}`;
+    // The venue is part of the key: the same paper presented at two different workshops
+    // (common for TAU and NATW) is two real records, not a duplicate.
+    const key = `${titleKey(p.title)}|${p.category}|${p.year ?? ""}|${p.venueId ?? p.venue ?? ""}`;
     byTitle.set(key, [...(byTitle.get(key) ?? []), p.id]);
   }
   for (const [doi, ids] of byDoi) {

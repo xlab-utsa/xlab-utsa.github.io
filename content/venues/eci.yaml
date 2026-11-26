@@ -1,0 +1,6 @@
+id: eci
+shortName: ECI
+name: ECI Conference on Modeling, Simulation, and Optimization for the 21st Century Electric Power Grid
+kind: workshop
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

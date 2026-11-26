@@ -7,7 +7,9 @@ authors:
   - name: J. Xiong
     personId: jinjun-xiong
 venue: ACM/IEEE International Workshop on Timing Issues
+venueId: tau
 year: 2013
+url: https://www.tauworkshop.com/2013/
 dateDisplay: March 2013
 location: Lake Tahoe, Nevada
 themeIds:

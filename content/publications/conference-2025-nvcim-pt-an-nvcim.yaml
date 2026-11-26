@@ -17,7 +17,9 @@ authors:
   - name: S. Hu
   - name: Y. Shi
 venue: The 28th Design, Automation and Test in Europe Conference (DATE)
+venueId: date
 year: 2025
+doi: 10.23919/DATE64628.2025.10993249
 dateDisplay: March 31 – April 2, 2025
 location: Lyon, France
 themeIds:

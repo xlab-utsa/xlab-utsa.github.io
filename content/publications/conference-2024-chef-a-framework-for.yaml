@@ -12,10 +12,13 @@ authors:
   - name: P. Zhou
   - name: J. Hu
 venue: The International Conference on Hardware/Software Codesign and System Synthesis (CODES+ISSS)
+venueId: codes-isss
 year: 2024
+url: https://doi.org/10.1109/TCAD.2024.3438994
 dateDisplay: Sept 29 – Oct 4, 2024
 location: Raleigh, NC, USA
 themeIds:
   - ai-acceleration
 _meta:
   source: "JinjunXiong_CV.pdf (last updated 2026-08-12), conference #181"
+  note: Published in IEEE TCAD 43(11) as part of ESWEEK; the DOI lives on journal-2024-chef-a-framework-for.

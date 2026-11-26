@@ -7,7 +7,10 @@ authors:
   - name: V. Zolotov
   - name: C. Visweswariah
 venue: IEEE 8th International Conference on ASIC
+location: Changsha, China
+venueId: asicon
 year: 2009
+doi: 10.1109/ASICON.2009.5351307
 dateDisplay: Oct. 2009
 themeIds:
   - eda

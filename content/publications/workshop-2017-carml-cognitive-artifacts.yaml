@@ -8,7 +8,9 @@ authors:
     personId: jinjun-xiong
   - name: W. Hwu
 venue: The Third Career Workshop for Women and Minorities in Computer Architecture
+venueId: cwwmca
 year: 2017
+url: https://chengli.netlify.app/talk/2017-cwwmca/
 dateDisplay: October 14, 2017
 location: Boston, MA, USA
 themeIds:

@@ -1,0 +1,7 @@
+id: asplos
+shortName: ASPLOS
+name: ACM International Conference on Architectural Support for Programming Languages and Operating Systems (ASPLOS)
+kind: conference
+dblpKey: conf/asplos
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

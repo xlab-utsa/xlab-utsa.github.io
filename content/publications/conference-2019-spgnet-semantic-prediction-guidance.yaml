@@ -14,7 +14,9 @@ authors:
   - name: W. Hwu
   - name: H. Shi
 venue: International Conference on Computer Vision (ICCV)
+venueId: iccv
 year: 2019
+doi: 10.1109/ICCV.2019.00532
 dateDisplay: Oct 27 – Nov 2, 2019
 location: Seoul, Korea
 themeIds:

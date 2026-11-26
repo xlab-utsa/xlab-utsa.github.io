@@ -9,7 +9,9 @@ authors:
     personId: jinjun-xiong
   - name: W. Hwu
 venue: The IEEE International Conference on Cloud Computing (CLOUD)
+venueId: cloud
 year: 2020
+doi: 10.1109/CLOUD49709.2020.00063
 dateDisplay: Oct 19–23, 2020
 location: Beijing, China
 note: "Acceptance rate: 17%"

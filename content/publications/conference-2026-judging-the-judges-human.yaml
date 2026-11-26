@@ -11,7 +11,9 @@ authors:
     personId: jinjun-xiong
   - name: Tingting Li
 venue: The Computing Conference
+venueId: computing-conference
 year: 2026
+doi: 10.1007/978-3-032-24807-7_31
 dateDisplay: July 9–10, 2026
 location: London, United Kingdom
 themeIds:

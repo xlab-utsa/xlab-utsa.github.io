@@ -1,0 +1,7 @@
+id: asp-dac
+shortName: ASP-DAC
+name: IEEE/ACM Asia South Pacific Design Automation Conference (ASP-DAC)
+kind: conference
+dblpKey: conf/aspdac
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

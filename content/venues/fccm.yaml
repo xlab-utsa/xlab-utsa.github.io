@@ -1,0 +1,7 @@
+id: fccm
+shortName: FCCM
+name: IEEE International Symposium on Field-Programmable Custom Computing Machines (FCCM)
+kind: conference
+dblpKey: conf/fccm
+_meta:
+  source: publication-data-gaps.xlsx (venue short names, filled 2026-11-25); dblpKey from the DBLP export

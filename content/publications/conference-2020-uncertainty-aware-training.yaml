@@ -12,7 +12,9 @@ authors:
     personId: jinjun-xiong
   - name: Y. Shi
 venue: The 3rd edition of Medical Imaging with Deep Learning (MIDL)
+venueId: midl
 year: 2020
+url: http://proceedings.mlr.press/v121/ding20a.html
 dateDisplay: July 6–8, 2020
 location: Online, Montreal, Canada
 note: Oral presentation, 12%

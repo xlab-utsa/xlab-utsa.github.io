@@ -7,8 +7,10 @@ authors:
   - name: V. Zolotov
   - name: L. He
 venue: IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems
-volumeIssue: Vol. 26, No. 4
+venueId: tcad
+volumeIssue: 26(4)
 year: 2007
+doi: 10.1109/TCAD.2006.884403
 dateDisplay: April 2007
 themeIds:
   - eda

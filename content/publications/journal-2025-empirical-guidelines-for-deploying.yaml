@@ -21,8 +21,10 @@ authors:
     personId: jinjun-xiong
   - name: Y. Shi
 venue: ACM Transactions on Design Automation of Electronic Systems (TODAES)
-volumeIssue: Volume 30, Issue 5, Pages 1-58
+venueId: todaes
+volumeIssue: 30(5), pp. 1–58
 year: 2025
+doi: 10.1145/3736721
 themeIds:
   - ai-acceleration
 _meta:

@@ -10,8 +10,10 @@ authors:
   - name: L. He
   - name: M. Sarrafzadeh
 venue: IEEE Transactions on Very Large Scale Integration Systems
-volumeIssue: Vol. 20, No. 8, pp. 1383-1391
+venueId: tvlsi
+volumeIssue: 20(8)
 year: 2012
+doi: 10.1109/TVLSI.2011.2157843
 dateDisplay: June 2012
 themeIds:
   - eda

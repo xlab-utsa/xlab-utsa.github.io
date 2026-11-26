@@ -10,7 +10,9 @@ authors:
   - name: J. Xiong
     personId: jinjun-xiong
 venue: Thirty-fifth Conference on Neural Information Processing Systems (NeurIPS)
+venueId: neurips
 year: 2021
+url: https://proceedings.neurips.cc/paper/2021/hash/15f99f2165aa8c86c9dface16fefd281-Abstract.html
 dateDisplay: Dec 6–14, 2021
 location: Virtual
 note: "Acceptance rate: 26%"

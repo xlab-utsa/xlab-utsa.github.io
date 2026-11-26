@@ -9,7 +9,9 @@ authors:
   - name: J. Xiong
     personId: jinjun-xiong
 venue: The 56th Annual Meeting of the Association for Computational Linguistics (ACL)
+venueId: acl
 year: 2018
+doi: 10.18653/v1/P18-1218
 dateDisplay: July 15–20, 2018
 location: Melbourne, Australia
 themeIds:

@@ -12,7 +12,9 @@ authors:
     personId: jinjun-xiong
   - name: Y. Zhu
 venue: The 23rd International Conference and Exhibition on Electricity Distribution (CIRED)
+venueId: cired
 year: 2015
+url: http://web.archive.org/web/20200320235619/http://cired.net/publications/cired2015/papers/CIRED2015_0804_final.pdf
 dateDisplay: June 2015
 location: Lyon, France
 themeIds:

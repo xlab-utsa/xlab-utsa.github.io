@@ -12,7 +12,9 @@ authors:
   - name: J. Leitzen
   - name: N. Venkateswaran
 venue: IEEE/ACM Design Automation Conference (DAC)
+venueId: dac
 year: 2012
+doi: 10.1145/2228360.2228553
 location: San Francisco, CA
 themeIds:
   - eda

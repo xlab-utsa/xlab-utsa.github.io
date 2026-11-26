@@ -6,7 +6,9 @@ authors:
   - name: J. Xiong
     personId: jinjun-xiong
 venue: 2nd IEEE International Conference on Smart Grid Communications (SmartGridComm)
+venueId: smartgridcomm
 year: 2011
+doi: 10.1109/SMARTGRIDCOMM.2011.6102343
 dateDisplay: October 2011
 location: Brussels, Belgium
 themeIds:

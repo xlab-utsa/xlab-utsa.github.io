@@ -15,7 +15,10 @@ authors:
     personId: jinjun-xiong
   - name: R. Zhang
 venue: IBM Journal of Research and Development
+volumeIssue: 60(1)
+venueId: ibm-jrd
 year: 2015
+doi: 10.1147/JRD.2015.2475935
 themeIds:
   - smart-energy
 featured: true
